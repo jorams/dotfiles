@@ -1,0 +1,38 @@
+URxvt*scrollBar: false
+
+! Url stuff
+URxvt.perl-ext:     default,url-select
+URxvt.keysym.M-u:   perl:url-select:select_next
+URxvt.url-select.launcher:  /usr/bin/firefox -P default -new-tab
+URxvt.url-select.underline: true
+URxvt.font: -*-tamsyn-medium-r-*-*-14-*-*-*-*-*-*-*
+
+URxvt.depth: 32
+
+URxvt*background: [90]#151515
+URxvt*foreground: #FFFFFF
+
+!black
+URxvt*color0:    #2b312e
+URxvt*color8:    #3b4b42
+!red
+URxvt*color1:     #b4261c
+URxvt*color9:     #8f2910
+!green
+URxvt*color2:    #6f5f00
+URxvt*color10:   #2a4c29
+!yellow
+URxvt*color3:    #FD971F
+URxvt*color11:   #986826
+!blue
+URxvt*color4:    #435e87
+URxvt*color12:   #587aa4
+!magenta
+URxvt*color5:    #ba666a
+URxvt*color13:   #884346
+!cyan
+URxvt*color6:    #00a1ae
+URxvt*color14:   #7cb997
+!white
+URxvt*color7:    #b6c3bc
+URxvt*color15:   #9ab3a5

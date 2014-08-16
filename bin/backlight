@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+case "$1" in
+    up) awk '{printf("%d\n",$1+100)}' /sys/class/backlight/intel_backlight/brightness > /sys/class/backlight/intel_backlight/brightness ;;
+    down) awk '{printf("%d\n",$1-100)}' /sys/class/backlight/intel_backlight/brightness > /sys/class/backlight/intel_backlight/brightness ;;
+    *) echo "$1" > /sys/class/backlight/intel_backlight/brightness ;;
+esac

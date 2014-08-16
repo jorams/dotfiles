@@ -1,0 +1,9 @@
+gtk-theme-name="Clearlooks Wine Dark"
+
+# Fix ugly borders around gvim window
+style "vimfix" {
+    # bg[NORMAL] = "#272822"  # This is vim's background color
+    bg[NORMAL] = "#1D1F21"  # This is vim's background color
+}
+
+widget "vim-main-window.*GtkForm" style "vimfix"

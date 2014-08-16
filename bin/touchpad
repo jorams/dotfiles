@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+case "$1" in
+    off)    synclient TouchpadOff=1 ;;
+    on)     synclient TouchpadOff=0 ;;
+    toggle) synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0') ;;
+esac
+    

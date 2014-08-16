@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+mpv --ao=alsa:device=[plughw:0,3] -loop=inf $(youtube-dl --no-playlist -g "$*")

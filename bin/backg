@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+feh --no-fehbg --bg-fill --randomize ~/pictures/wallpapers/abstract/
+

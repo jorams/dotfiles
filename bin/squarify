@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export infile="$1"
+
+export max=`convert $infile -format "%[fx:max(w,h)]" info:`
+convert $infile -background white -gravity center -extent ${max}x${max} $infile

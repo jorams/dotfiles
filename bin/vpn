@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo sshuttle -r tunnel 0/0 --dns -vv
+notify-send -u critical "VPN DIED"

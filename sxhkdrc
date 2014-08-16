@@ -1,0 +1,205 @@
+#####################
+#   bspwm hotkeys   #
+#####################
+
+# Exit bspwm
+super + shift + q
+    bspc quit
+
+# Close window
+super + shift + c
+    bspc window -c
+
+# Kill window
+super + shift + ctrl + c
+    bspc window -k
+
+# Toggle window mode
+super + {ctrl,shift,alt +} t
+    bspc window -t {floating,fullscreen,pseudo_tiled}
+
+# Balance tree
+super + equal
+    bspc desktop -B
+
+# Preselect window for splitting
+super + alt + {h,j,k,l}
+    bspc window -p {left,down,up,right}
+
+# Move window into preselection
+super + alt + shift + {h,j,k,l}
+    bspc window -w {left,down,up,right}
+
+# Cancel preselection
+super + Escape
+    bspc desktop -c
+
+# Focus or swap window
+super + {_,shift + }{h,j,k,l}
+    bspc window -{f,s} {left,down,up,right}
+
+# Resize window
+alt + ctrl + {h,j,k,l}
+    bspc window -e {left,down,up,right} push
+
+alt + shift + {h,j,k,l}
+    bspc window -e {right,up,down,left} pull
+
+# Move or resize window
+super + button{1-3}
+    bspc pointer -g {move,resize_side,resize_corner}
+# Needed to make the above action work
+super + !button{1-3}
+    bspc pointer -t %i %i
+
+# Flip the tree
+super + alt + ctrl + {h,j}
+    bspc desktop -F {horizontal, vertical}
+
+# Rotate the tree
+super + alt + ctrl + {k,l}
+    bspc desktop -R {90,270}
+
+# Select previous or next occupied desktop
+super + {shift,_} + n
+    bspc desktop -f {prev.occupied,next.occupied}
+
+# Select previous or next desktop
+super + alt + {shift,_} + n
+    bspc desktop -f {prev,next}
+
+# Next layout
+super + space
+    bspc desktop -l next
+
+# Decrease gaps
+super + minus
+    bspc config window_gap $((`bspc config -d focused window_gap` - 5 ))
+
+# Increase gaps
+super + plus
+    bspc config window_gap $((`bspc config -d focused window_gap` + 5 ))
+
+# Set splitting ratio of windows
+super + alt + {1-9}
+    bspc window -r 0.{1-9}
+
+# Change desktop
+super + {_,shift +} {1-9,0}
+    bspc {desktop -f,window -d} {1-9,0}
+
+super + ctrl + {_,shift +} {1-9,0}
+    bspc {desktop -f,window -d} {a-i,j}
+
+# Focus window
+~button1
+    bspc pointer -g focus
+
+# Send to monitor
+super + ctrl + shift + {h,j,k,l}
+    bspc window -m {left,down,up,right}
+
+# Focus monitor
+super + ctrl + {h,j,k,l}
+    bspc monitor -f {left,down,up,right}
+
+# Focus previous or next monitor
+super + {shift,_} + n
+    bspc monitor -f {older,newer}
+
+
+#######################
+#   General hotkeys   #
+#######################
+
+super + Return
+    urxvt -e fish
+
+-*-tamsyn-medium-r-*-*-20-*-*-*-*-*-*-*
+
+# urxvt with bigger font size (huge!)
+super + shift + Return
+    urxvt -fn -*-tamsyn-medium-r-*-*-40-*-*-*-*-*-*-* -e fish
+
+
+super + f
+    firefox -P default
+
+super + shift + f
+    firefox -P vs
+
+super + c
+    urxvt -title im -name im -e weechat-curses
+
+super + t
+    teamspeak3
+
+super + XF86AudioPlay
+    sudo systemctl start mpd && urxvt -title pms -e pms
+
+super + p
+    sudo systemctl start mpd && urxvt -title pms -e pms
+
+super + x
+    iocane p
+
+super + a
+    infnot
+
+super + o
+    dmenu_run -b
+
+super + XF86AudioMute
+    sudo systemctl poweroff
+
+ctrl + XF86AudioMute
+    slock
+
+### Music
+super + m; {t,s,d,u,n,p}
+    music {toggle,stop,vol down,vol up,next,prev}
+
+super + v
+    vol toggle
+
+super + {d,u}
+    vol {down,up}
+
+super + shift + {d,u}
+    vol {down 10, up 10}
+
+XF86AudioPlay
+    music toggle
+
+XF86AudioStop
+    music stop
+
+shift + XF86AudioLowerVolume
+    music vol down
+
+shift + XF86AudioRaiseVolume
+    music vol up
+
+XF86AudioNext
+    music next
+
+XF86AudioPrev
+    music prev
+
+XF86AudioLowerVolume
+    vol down
+
+XF86AudioRaiseVolume
+    vol up
+
+XF86AudioMute
+    vol toggle
+
+XF86MonBrightnessUp
+    sudo backlight up
+
+XF86MonBrightnessDown
+    sudo backlight down
+
+XF86TouchpadToggle
+    touchpad toggle

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+case "$1" in
+    cte)
+        setxkbmap -option
+        setxkbmap -option caps:escape -option compose:menu &
+        ;;
+    ctc)
+        setxkbmap -option
+        setxkbmap -option ctrl:nocaps -option compose:menu &
+        ;;
+esac

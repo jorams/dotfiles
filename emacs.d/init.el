@@ -26,8 +26,6 @@
                          (concat user-emacs-directory "backups/"))))
   (setq backup-directory-alist
         `((".*" . ,backup-directory)))
-  ;; (setq auto-save-file-name-transforms
-  ;;      `((".*" ,backup-directory t)))
   (setq auto-save-list-file-prefix
         (concat backup-directory "list-")))
 
@@ -55,9 +53,6 @@
 (require 'fill-column-indicator)
 (require 'magit)
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
-;;; Some keybindings
-;; (global-set-key (kbd "C-;") (lookup-key (current-global-map) (kbd "C-x")))
 
 (setq epg-gpg-program "/usr/bin/gpg")
 

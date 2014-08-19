@@ -5,13 +5,9 @@
 									   "themes")))
 
 (load-theme 'distinguished t)
-;(load-theme 'base16-default t)
 
 ;;; Font settings
-;(set-default-font "-adobe-Source Code Pro-normal-normal-normal-*-17-*-*-*-m-0-iso10646-1")
-(set-default-font "-misc-tamsyn-*-*-normal-*-14-*-*-*-*-70-iso8859-1")
-(set-frame-font "-misc-tamsyn-*-*-normal-*-14-*-*-*-*-70-iso8859-1")
-;(set-face-attribute 'default nil :height 130)
+(set-frame-font "-misc-tamsyn-*-*-normal-*-14-*-*-*-*-70-iso8859-1" nil t)
 
 ;;; Mode line simplification
 (set-face-attribute 'mode-line nil :box nil)

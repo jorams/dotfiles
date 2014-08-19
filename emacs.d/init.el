@@ -68,4 +68,5 @@
 (require 'setup-lua)
 (require 'setup-arduino)
 (require 'setup-less)
+(require 'setup-circe)
 (require 'setup-evil)

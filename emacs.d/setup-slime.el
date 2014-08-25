@@ -2,6 +2,8 @@
 
 (setq inferior-lisp-program "sbcl")
 
+(setq common-lisp-hyperspec-root "file:/home/joram/dev/lisp/HyperSpec/")
+
 (slime-setup '(slime-company))
 
 (slime-setup '(slime-indentation))

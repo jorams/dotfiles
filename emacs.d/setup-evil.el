@@ -27,6 +27,10 @@
 (evil-define-key 'normal lisp-mode-map
   (kbd "M-,") 'slime-pop-find-definition-stack)
 
+;; And add a key to look something up in the HyperSpec
+(evil-define-key 'normal lisp-mode-map
+  (kbd "M-H") 'common-lisp-hyperspec)
+
 (add-hook 'emacs-lisp-mode-hook 'evil-paredit-mode)
 
 ;;; Multiple cursors

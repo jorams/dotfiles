@@ -52,6 +52,8 @@
 (require 'multiple-cursors)
 (require 'fill-column-indicator)
 (require 'magit)
+(global-set-key (kbd "M-M") 'magit-status)
+
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 (setq epg-gpg-program "/usr/bin/gpg")

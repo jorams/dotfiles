@@ -63,6 +63,7 @@
 (require 'utils)
 (require 'setup-ido)
 (require 'setup-smex)
+(require 'setup-company)
 (require 'setup-slime)
 (require 'setup-paredit)
 (require 'setup-markdown)

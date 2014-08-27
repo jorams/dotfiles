@@ -30,4 +30,8 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 
+;;; Show excess whitespace
+(setq-default show-trailing-whitespace t)
+(setq-default indicate-empty-lines t)
+
 (provide 'defaults)

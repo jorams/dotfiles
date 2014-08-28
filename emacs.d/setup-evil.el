@@ -5,11 +5,6 @@
 
 (evil-mode 1)
 
-;;; Some custom keybindings
-;(define-key evil-motion-state-map ":" 'smex)
-; (define-key evil-motion-state-map (kbd "C-;")
-;  (lookup-key (current-global-map) (kbd "C-x")))
-
 ;; bind slime's eval and elisp eval to the key sequence "<SPC>e"
 (evil-define-key 'normal lisp-mode-map
   (kbd "<SPC>e") 'slime-eval-last-expression)

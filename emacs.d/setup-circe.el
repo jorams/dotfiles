@@ -23,16 +23,16 @@
          :nick "joram"
          :host "irc.joram.io"
          :service 2345
-         :pass (concat "joram/freenode:" ,znc-password))
-        ("zfn"
+         :pass ,(concat "joram/freenode:" znc-password))
+        ("zfr"
          :nick "joram"
          :host "irc.joram.io"
          :service 2345
-         :pass (concat "joram/freign:" ,znc-password))
+         :pass ,(concat "joram/freign:" znc-password))
         ("zim"
          :nick "joram"
          :host "irc.joram.io"
          :service 2345
-         :pass (concat "joram/im:" ,znc-password))))
+         :pass ,(concat "joram/im:" znc-password))))
 
 (provide 'setup-circe)

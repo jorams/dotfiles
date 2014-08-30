@@ -10,6 +10,7 @@
 (setq circe-color-nicks-everywhere t)
 
 (add-to-list 'ido-ignore-buffers "#.*")
+(add-to-list 'ido-ignore-buffers "irc\.joram\.io:.*")
 
 (defun ido-switch-irc-buffer ()
   (interactive)

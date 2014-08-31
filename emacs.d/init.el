@@ -54,6 +54,8 @@
 (require 'magit)
 (global-set-key (kbd "M-M") 'magit-status)
 
+(require 'scribble)
+
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 (setq epg-gpg-program "/usr/bin/gpg")

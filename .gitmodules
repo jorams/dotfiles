@@ -1,0 +1,39 @@
+[submodule "emacs.d/org-mode"]
+    path = "emacs.d/org-mode"
+    url = "git://orgmode.org/org-mode.git"
+[submodule "emacs.d/site-lisp/arduino-mode"]
+    path = "emacs.d/site-lisp/arduino-mode"
+    url = "https://github.com/bookest/arduino-mode.git"
+[submodule "emacs.d/site-lisp/autopair"]
+    path = "emacs.d/site-lisp/autopair"
+    url = "https://github.com/capitaomorte/autopair"
+[submodule "emacs.d/site-lisp/circe"]
+    path = "emacs.d/site-lisp/circe"
+    url = "git://github.com/jorgenschaefer/circe.git"
+[submodule "emacs.d/site-lisp/distinguished-theme"]
+    path = "emacs.d/site-lisp/distinguished-theme"
+    url = "https://github.com/Lokaltog/distinguished-theme.git"
+[submodule "emacs.d/site-lisp/evil-paredit"]
+    path = "emacs.d/site-lisp/evil-paredit"
+    url = "https://github.com/roman/evil-paredit.git"
+[submodule "emacs.d/site-lisp/git-modes"]
+    path = "emacs.d/site-lisp/git-modes"
+    url = "https://github.com/magit/git-modes"
+[submodule "emacs.d/site-lisp/less-css-mode"]
+    path = "emacs.d/site-lisp/less-css-mode"
+    url = "https://github.com/purcell/less-css-mode/"
+[submodule "emacs.d/site-lisp/magit"]
+    path = "emacs.d/site-lisp/magit"
+    url = "git://github.com/magit/magit.git"
+[submodule "emacs.d/site-lisp/markdown-mode"]
+    path = "emacs.d/site-lisp/markdown-mode"
+    url = "git://jblevins.org/git/markdown-mode.git"
+[submodule "emacs.d/site-lisp/multiple-cursors.el"]
+    path = "emacs.d/site-lisp/multiple-cursors.el"
+    url = "https://github.com/magnars/multiple-cursors.el.git"
+[submodule "emacs.d/site-lisp/php-mode"]
+    path = "emacs.d/site-lisp/php-mode"
+    url = "https://github.com/ejmr/php-mode.git"
+[submodule "emacs.d/site-lisp/slime-company"]
+    path = "emacs.d/site-lisp/slime-company"
+    url = "https://github.com/anwyn/slime-company"

@@ -36,4 +36,4 @@
     url = "https://github.com/ejmr/php-mode.git"
 [submodule "emacs.d/site-lisp/slime-company"]
     path = "emacs.d/site-lisp/slime-company"
-    url = "https://github.com/anwyn/slime-company"
+    url = "https://github.com/jorams/slime-company"

@@ -314,3 +314,18 @@
   (toggle-mode-line (stumpwm::group-screen group) head))
 
 (mode-line)
+
+(defun hide-all-lower-windows (current last)
+  (declare (ignore current last))
+  (when (typep (current-group) 'stumpwm::tile-group)
+    (mapc (lambda (win)
+            (unless (eq win (stumpwm::frame-window
+                             (stumpwm::window-frame win)))
+              (stumpwm::hide-window win)))
+          (group-windows (current-group)))))
+
+(defcommand enable-hiding-lower-windows () ()
+  "Enable a hook that hides all windows that aren't at the top of their frame.
+This is primarily useful when you have (a) transparent window(s) and want to see
+the wallpaper underneath instead of other windows."
+  (add-hook *focus-window-hook* 'hide-all-lower-windows))

@@ -178,7 +178,7 @@
     ((:volume "Volume: ") :number)
   (handler-case
        (let ((captures (nth-value 1 (ppcre:scan-to-strings
-                                     "Mono: .*?\\[(:?([0-9]{1,2})%|off)\\]"
+                                     "Mono: .*?\\[(:?([0-9]{1,3})%|off)\\]"
                                      (run-volume-command vol amount)))))
          (setf *volume* (or (elt captures 1) "m")))
     (serious-condition () (err "Master not found!")))

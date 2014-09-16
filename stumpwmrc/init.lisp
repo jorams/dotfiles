@@ -106,6 +106,10 @@
   :command "mysql-workbench"
   :props '(:class "Mysql-workbench-bin"))
 
+(defprogram-shortcut mpv
+  :key (kbd "s-v")
+  :command "mpv"
+  :props '(:class "mpv"))
 
 ;;; Miscellaneous
 

@@ -127,7 +127,9 @@
   ("v" "exec xrandr --output VGA1 --auto --right-of LVDS1")
   ("V" "exec xrandr --output VGA1 --auto --left-of LVDS1")
   ("d" "exec xrandr --output HDMI1 --auto --right-of LVDS1")
-  ("D" "exec xrandr --output HDMI1 --auto --left-of LVDS1"))
+  ("D" "exec xrandr --output HDMI1 --auto --left-of LVDS1")
+  ("b" "exec sudo backlight 2000")
+  ("B" "exec sudo backlight 900"))
 
 (define-key *root-map* (kbd "d") '*xrandr-map*)
 

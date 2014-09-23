@@ -28,7 +28,7 @@ function cd() {
 }
 
 #-- Alternative binary paths
-PATH=$PATH:~/bin:~/.cabal/bin:~/.gem/ruby/2.1.0/bin
+PATH=$PATH:~/bin:~/.cabal/bin:~/.gem/ruby/2.1.0/bin:~/dev/php/arcanist/bin
 export PATH
 
 #--Get rid of .lesshst, useless clutter

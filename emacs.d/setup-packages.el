@@ -30,6 +30,7 @@
      smex
      flycheck
      web-mode
+     csharp-mode
      htmlize)))
 
 ;;; Now really

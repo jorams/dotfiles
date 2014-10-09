@@ -8,6 +8,7 @@
 (require 'circe-color-nicks)
 
 (setq circe-color-nicks-everywhere t)
+(enable-circe-color-nicks)
 
 (add-to-list 'ido-ignore-buffers "#.*")
 (add-to-list 'ido-ignore-buffers "irc\.joram\.io:.*")

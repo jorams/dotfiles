@@ -35,6 +35,7 @@ by using nxml's indentation rules."
 
 (defun compile-without-asking ()
   (interactive)
+  (save-buffer)
   (compile compile-command))
 
 (global-set-key (kbd "M-N") 'compile-without-asking)

@@ -33,4 +33,10 @@ by using nxml's indentation rules."
       (indent-region begin end))
     (message "Ah, much better!"))
 
+(defun compile-without-asking ()
+  (interactive)
+  (compile compile-command))
+
+(global-set-key (kbd "M-N") 'compile-without-asking)
+
 (provide 'utils)

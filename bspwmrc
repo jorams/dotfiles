@@ -4,8 +4,6 @@ bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 
 bspc config split_ratio         0.50
 bspc config border_width        1
-# bspc config window_gap          1
-# bspc config window_gap          10
 bspc config window_gap          5
 bspc config borderless_monocle  true
 bspc config gapless_monocle     true
@@ -19,5 +17,5 @@ bspc rule -a im desktop=9
 bspc rule -a Ts3client_linux_amd64 desktop=9
 bspc rule -a mpv floating
 bspc rule -a Firefox desktop=2
+
 wmname LG3D
-xcape -e 'Control_L=Escape' -t 300 &

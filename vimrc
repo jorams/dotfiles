@@ -43,7 +43,7 @@ endif
 
 set expandtab " Turn tabs into spaces
 " Each tab should be 4 spaces wide
-set tabstop=4 
+set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 

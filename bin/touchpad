@@ -4,4 +4,3 @@ case "$1" in
     on)     synclient TouchpadOff=0 ;;
     toggle) synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0') ;;
 esac
-    

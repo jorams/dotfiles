@@ -1,3 +1,10 @@
 #!/usr/bin/env bash
 
-mpv -loop=inf $(youtube-dl --no-playlist -g "$*")
+if [[ "$1" = "-h" ]]; then
+    shift
+    echo "aiai"
+    mpv --ao=alsa:device=[plughw:0,3] -loop=inf $(youtube-dl --no-playlist -g "$*")
+else
+    echo "oioi"
+    mpv -loop=inf $(youtube-dl --no-playlist -g "$*")
+fi

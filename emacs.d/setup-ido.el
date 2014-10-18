@@ -1,4 +1,8 @@
 (require 'ido)
+
+(setq ido-save-directory-list-file
+      (expand-file-name "backups/ido.last" user-emacs-directory))
+
 (ido-mode 1)
 
 ;;; Everywhere
@@ -13,7 +17,7 @@
 (require 'flx-ido)
 (flx-ido-mode 1)
 
-(eval-after-load 'ido 
+(eval-after-load 'ido
   (progn (require 'ido-vertical-mode)
          (ido-vertical-mode)))
 

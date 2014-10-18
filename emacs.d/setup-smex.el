@@ -1,3 +1,6 @@
+(setq smex-save-file
+      (expand-file-name "backups/smex-items" user-emacs-directory))
+
 (require 'smex)
 
 (global-set-key (kbd "M-x") 'smex)

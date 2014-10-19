@@ -18,6 +18,10 @@
   (let ((ido-ignore-buffers '("^[^#]*$")))
     (ido-switch-buffer)))
 
+(defun irc-frame ()
+  (interactive)
+  (make-frame '((name . "irc"))))
+
 (global-set-key (kbd "C-x I") 'ido-switch-irc-buffer)
 
 (setq circe-network-options

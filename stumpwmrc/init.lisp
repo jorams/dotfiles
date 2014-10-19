@@ -73,8 +73,8 @@
 
 (defprogram-shortcut weechat
   :key (kbd "s-c")
-  :command "st -c weechat -e weechat-curses"
-  :props '(:instance "weechat"))
+  :command "st -c irc -e weechat-curses"
+  :props '(:instance "irc"))
 
 (defprogram-shortcut pms
   :key (kbd "s-m")

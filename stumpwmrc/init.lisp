@@ -3,15 +3,17 @@
 (set-font '("-*-bitbuntu-*-*-*-*-*-*-*-*-*-*-*-*"
             "-*-tamsyn-*-r-*-*-20-*-*-*-*-*-*-*"))
 
-(ql:quickload "swank")
+#-j-modules-loaded
+(progn
+  (ql:quickload "swank")
+  (set-contrib-dir "~/dev/lisp/stumpwm-contrib")
+  (load-module "mpd")
+  (load-module "notifications")
+  (load-module "ttf-fonts"))
+
 (handler-case
     (swank:create-server :dont-close t :port 4005)
   (serious-condition () (swank:create-server :dont-close t :port 4006)))
-
-(set-contrib-dir "~/dev/lisp/stumpwm-contrib")
-(load-module "mpd")
-(load-module "notifications")
-(load-module "ttf-fonts")
 
 (set-font `("-*-bitbuntu-*-*-*-*-*-*-*-*-*-*-*-*"
             "-*-tamsyn-*-r-*-*-20-*-*-*-*-*-*-*"

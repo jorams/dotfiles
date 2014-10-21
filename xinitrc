@@ -24,7 +24,7 @@ xset dpms 0 0 300
 
 backg &
 doset &
-redshift -l 52.4397963:6.2302368 -t 5500:4500 -b 1.0:0.8 &
+redshift -l 52.4397963:6.2302368 -t 5500:3000 -b 1.0:0.4 &
 
 # Make Skype look prettier
 export GTK2_RC_FILES="/etc/gtk-2.0/gtkrc:$HOME/.gtkrc-2.0"

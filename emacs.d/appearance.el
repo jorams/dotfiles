@@ -4,7 +4,7 @@
 			 (expand-file-name (concat user-emacs-directory
 									   "themes")))
 
-(load-theme 'distinguished t)
+(load-theme 'my-distinguished t)
 
 ;;; Font settings
 (set-frame-font "-misc-tamsyn-*-*-normal-*-14-*-*-*-*-70-iso8859-1" nil t)

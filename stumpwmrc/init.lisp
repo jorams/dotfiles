@@ -337,3 +337,14 @@
 This is primarily useful when you have (a) transparent window(s) and want to see
 the wallpaper underneath instead of other windows."
   (add-hook *focus-window-hook* 'hide-all-lower-windows))
+
+(defcommand firefox-url-as-vid () ()
+  "Run Firefox's current url through 'vid', opening it in mpv.
+
+This is incredibly ugly. It sends a bunch of keys to firefox to copy the url,
+then pastes it into the command."
+  (stumpwm::send-fake-key (current-window) (kbd "C-l"))
+  (stumpwm::send-fake-key (current-window) (kbd "C-c"))
+  (run-shell-command (format nil "vid '~a'" (get-x-selection))))
+
+(define-key *top-map* (kbd "s-y") "firefox-url-as-vid")

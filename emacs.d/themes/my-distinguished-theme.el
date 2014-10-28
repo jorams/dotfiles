@@ -192,6 +192,13 @@
    `(magit-diff-add ((t (:background ,dst-green-3))))
    `(magit-diff-del ((t (:background ,dst-red-3))))
    `(magit-diff-file-header ((t (:background ,dst-gray-1))))
+
+   `(term-color-blue ((t (:background ,dst-blue :foreground ,dst-blue))))
+   `(term-color-green ((t (:background ,dst-green :foreground ,dst-green-1))))
+   `(term-color-cyan ((t (:background ,dst-blue+1 :foreground ,dst-blue+1))))
+   `(term-color-magenta ((t (:foreground ,dst-red+1))))
+   `(term-color-red ((t (:foreground ,dst-red-1))))
+   `(term-color-yellow ((t (:background ,dst-yellow+1 :foreground ,dst-yellow+1))))
   ))
 
 ;;;###autoload

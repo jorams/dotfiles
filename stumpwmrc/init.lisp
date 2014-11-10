@@ -113,6 +113,11 @@
   :command "mpv"
   :props '(:class "mpv"))
 
+(defprogram-shortcut telegram
+  :key (kbd "s-p")
+  :command "telegram"
+  :props '(:class "Telegram"))
+
 ;;; Miscellaneous
 
 (defmacro defkeymap (name &body bindings)

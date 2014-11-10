@@ -5,12 +5,6 @@
 
 (evil-mode 1)
 
-;; bind slime's eval and elisp eval to the key sequence "<SPC>e"
-(evil-define-key 'normal lisp-mode-map
-  (kbd "<SPC>e") 'slime-eval-last-expression)
-(evil-define-key 'normal lisp-mode-map
-  (kbd "<SPC>d") 'slime-eval-defun)
-
 (evil-define-key 'normal lisp-interaction-mode-map
   (kbd "<SPC>e") 'eval-last-sexp)
 (evil-define-key 'normal lisp-interaction-mode-map
@@ -21,6 +15,18 @@
   (kbd "M-.") 'slime-edit-definition)
 (evil-define-key 'normal lisp-mode-map
   (kbd "M-,") 'slime-pop-find-definition-stack)
+
+;; Dired
+(defun better-dired-up-directory ()
+  "Take dired up one directory, but behave like dired-find-alternate-file"
+  (interactive)
+  (let ((old (current-buffer)))
+    (dired-up-directory)
+    (kill-buffer old)))
+
+(evil-define-key 'normal dired-mode-map "h" 'better-dired-up-directory)
+(evil-define-key 'normal dired-mode-map "l" 'dired-find-alternate-file)
+(put 'dired-find-alternate-file 'disabled nil)
 
 ;; And add a key to look something up in the HyperSpec
 (global-set-key (kbd "M-H") 'common-lisp-hyperspec)

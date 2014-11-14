@@ -34,4 +34,7 @@
 (setq-default show-trailing-whitespace t)
 (setq-default indicate-empty-lines t)
 
+;;; Dired
+(setq dired-listing-switches "-al --group-directories-first")
+
 (provide 'defaults)

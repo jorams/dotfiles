@@ -6,11 +6,8 @@
 
 (load-theme 'my-distinguished t)
 
-;;; Font settings
+;; Font settings
 (set-frame-font "-misc-tamsyn-*-*-normal-*-14-*-*-*-*-70-iso8859-1" nil t)
-
-;;; Mode line simplification
-(set-face-attribute 'mode-line nil :box nil)
 
 ;; Better Company-mode styling
 (let ((bg (face-attribute 'default :background)))
@@ -22,7 +19,7 @@
        `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
        `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))))
 
-;;; Highlight matching parens
+;; Highlight matching parens
 (show-paren-mode 1)
 
 ;;; Transparency
@@ -37,6 +34,26 @@
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 (set-frame-parameter nil 'alpha '(100 100))
 
+;; Show excess whitespace
+(setq-default show-trailing-whitespace t)
+
+;; ...except in the minibuffer
+(defun minibuffer-hide-whitespace ()
+  (setq show-trailing-whitespace nil))
+(add-hook 'minibuffer-inactive-mode-hook #'minibuffer-hide-whitespace)
+
+
+;; Make it easier to spot excess newslines at the end of a buffer
+(setq-default indicate-empty-lines t)
+
+;;; Nicer buffer names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
+;;; Nicer scrolling
+(require 'smooth-scroll)
+(smooth-scroll-mode t)
 
 (provide 'appearance)
 
+;;; appearance.el ends here

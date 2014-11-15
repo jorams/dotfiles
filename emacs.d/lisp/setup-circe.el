@@ -1,7 +1,7 @@
 
 (load "~/.private.el")
 (let ((circe-path
-       (expand-file-name "site-lisp/circe/lisp" user-emacs-directory)))
+       (expand-file-name "vendor/circe/lisp" user-emacs-directory)))
   (add-to-list 'load-path circe-path))
 
 (require 'circe)

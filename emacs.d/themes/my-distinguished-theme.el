@@ -81,7 +81,7 @@
    `(mode-line-inactive ((t (:foreground ,dst-gray :background ,dst-bg :box nil))))
 
    ;; font lock
-   `(font-lock-builtin-face ((t (:foreground ,dst-yellow+1 :weight bold))))
+   `(font-lock-builtin-face ((t (:foreground ,dst-yellow :weight bold))))
    `(font-lock-comment-face ((t (:foreground ,dst-gray))))
    `(font-lock-comment-delimiter-face ((t (:foreground ,dst-bg+2))))
    `(font-lock-doc-face ((t (:foreground ,dst-gray))))
@@ -133,7 +133,7 @@
    `(git-gutter-fr:modified ((t (:foreground ,dst-blue :weight bold))))
 
    ;; flx
-   `(flx-highlight-face ((t (:foreground ,dst-red :weight bold :underline ,dst-red-2))))
+   `(flx-highlight-face ((t (:foreground ,dst-blue :weight bold :underline ,t))))
 
    ;; flycheck
    `(flycheck-error

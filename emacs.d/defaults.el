@@ -32,6 +32,11 @@
 
 ;;; Show excess whitespace
 (setq-default show-trailing-whitespace t)
+
+(defun minibuffer-hide-whitespace ()
+  (setq show-trailing-whitespace nil))
+(add-hook 'minibuffer-inactive-mode-hook #'minibuffer-hide-whitespace)
+
 (setq-default indicate-empty-lines t)
 
 ;;; Dired

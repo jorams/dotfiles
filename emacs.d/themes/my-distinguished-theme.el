@@ -199,6 +199,12 @@
    `(term-color-magenta ((t (:foreground ,dst-red+1))))
    `(term-color-red ((t (:foreground ,dst-red-1))))
    `(term-color-yellow ((t (:background ,dst-yellow+1 :foreground ,dst-yellow+1))))
+
+   `(company-scrollbar-bg ((t (:background ,dst-bg))))
+   `(company-scrollbar-fg ((t (:background ,dst-bg+1))))
+   `(company-tooltip ((t (:inherit default :background ,dst-bg++))))
+   `(company-tooltip-common ((t (:inherit font-lock-constant-face))))
+   `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
   ))
 
 ;;;###autoload

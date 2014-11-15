@@ -21,25 +21,14 @@
 ;;; Make it look pretty
 (require 'appearance)
 
-;;; Some packages
-(require 'fill-column-indicator)
-(require 'magit)
-(global-set-key (kbd "M-M") 'magit-status)
-
 ;;; General setup
 (require 'defaults)
 (require 'utils)
 (require 'setup-ido)
 (require 'setup-smex)
-(require 'setup-company)
 (require 'setup-slime)
-(require 'setup-paredit)
-(require 'setup-markdown)
-(require 'setup-web-mode)
-(require 'setup-lua)
-(require 'setup-arduino)
-(require 'setup-less)
 (require 'setup-circe)
+(require 'setup-misc)
 (require 'setup-evil)
 
 ;;; init.el ends here

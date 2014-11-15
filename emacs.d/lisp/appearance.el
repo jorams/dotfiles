@@ -1,3 +1,5 @@
+;;; Appearance --- Make Emacs look nicer
+
 (require 'color)
 
 (add-to-list 'custom-theme-load-path
@@ -53,6 +55,9 @@
 ;;; Nicer scrolling
 (require 'smooth-scroll)
 (smooth-scroll-mode t)
+
+;;; Optional fill column indicator
+(require 'fill-column-indicator)
 
 (provide 'appearance)
 

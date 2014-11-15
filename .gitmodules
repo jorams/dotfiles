@@ -1,39 +1,39 @@
 [submodule "emacs.d/org-mode"]
     path = "emacs.d/org-mode"
     url = "git://orgmode.org/org-mode.git"
-[submodule "emacs.d/site-lisp/arduino-mode"]
-    path = "emacs.d/site-lisp/arduino-mode"
+[submodule "emacs.d/vendor/arduino-mode"]
+    path = "emacs.d/vendor/arduino-mode"
     url = "https://github.com/bookest/arduino-mode.git"
-[submodule "emacs.d/site-lisp/autopair"]
-    path = "emacs.d/site-lisp/autopair"
+[submodule "emacs.d/vendor/autopair"]
+    path = "emacs.d/vendor/autopair"
     url = "https://github.com/capitaomorte/autopair"
-[submodule "emacs.d/site-lisp/circe"]
-    path = "emacs.d/site-lisp/circe"
+[submodule "emacs.d/vendor/circe"]
+    path = "emacs.d/vendor/circe"
     url = "git://github.com/jorgenschaefer/circe.git"
-[submodule "emacs.d/site-lisp/distinguished-theme"]
-    path = "emacs.d/site-lisp/distinguished-theme"
+[submodule "emacs.d/vendor/distinguished-theme"]
+    path = "emacs.d/vendor/distinguished-theme"
     url = "https://github.com/Lokaltog/distinguished-theme.git"
-[submodule "emacs.d/site-lisp/evil-paredit"]
-    path = "emacs.d/site-lisp/evil-paredit"
+[submodule "emacs.d/vendor/evil-paredit"]
+    path = "emacs.d/vendor/evil-paredit"
     url = "https://github.com/roman/evil-paredit.git"
-[submodule "emacs.d/site-lisp/git-modes"]
-    path = "emacs.d/site-lisp/git-modes"
+[submodule "emacs.d/vendor/git-modes"]
+    path = "emacs.d/vendor/git-modes"
     url = "https://github.com/magit/git-modes"
-[submodule "emacs.d/site-lisp/less-css-mode"]
-    path = "emacs.d/site-lisp/less-css-mode"
+[submodule "emacs.d/vendor/less-css-mode"]
+    path = "emacs.d/vendor/less-css-mode"
     url = "https://github.com/purcell/less-css-mode/"
-[submodule "emacs.d/site-lisp/magit"]
-    path = "emacs.d/site-lisp/magit"
+[submodule "emacs.d/vendor/magit"]
+    path = "emacs.d/vendor/magit"
     url = "git://github.com/magit/magit.git"
-[submodule "emacs.d/site-lisp/markdown-mode"]
-    path = "emacs.d/site-lisp/markdown-mode"
+[submodule "emacs.d/vendor/markdown-mode"]
+    path = "emacs.d/vendor/markdown-mode"
     url = "git://jblevins.org/git/markdown-mode.git"
-[submodule "emacs.d/site-lisp/multiple-cursors.el"]
-    path = "emacs.d/site-lisp/multiple-cursors.el"
+[submodule "emacs.d/vendor/multiple-cursors.el"]
+    path = "emacs.d/vendor/multiple-cursors.el"
     url = "https://github.com/magnars/multiple-cursors.el.git"
-[submodule "emacs.d/site-lisp/php-mode"]
-    path = "emacs.d/site-lisp/php-mode"
+[submodule "emacs.d/vendor/php-mode"]
+    path = "emacs.d/vendor/php-mode"
     url = "https://github.com/ejmr/php-mode.git"
-[submodule "emacs.d/site-lisp/slime-company"]
-    path = "emacs.d/site-lisp/slime-company"
-    url = "https://github.com/jorams/slime-company"
+[submodule "emacs.d/vendor/slime-company"]
+    path = "emacs.d/vendor/slime-company"
+    url = "https://github.com/anwyn/slime-company"

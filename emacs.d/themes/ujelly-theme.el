@@ -35,6 +35,8 @@
       (custom-theme-set-faces
        'ujelly
        `(default ((,class (:foreground ,ujelly-fg :background ,ujelly-bg))))
+       `(fringe ((t (:foreground ,ujelly-grey-4 :background ,ujelly-bg))))
+       `(vertical-border ((t (:foreground ,ujelly-grey-4))))
        `(company-preview-common ((,class (:foreground nil :background ,ujelly-purple-1))))
        `(company-scrollbar-bg ((,class (:background ,ujelly-grey-2))))
        `(company-scrollbar-fg ((,class (:background ,ujelly-grey-0))))
@@ -119,7 +121,7 @@
        `(match ((,class (:background ,ujelly-red-1))))
        `(minibuffer-prompt ((,class (:foreground ,ujelly-fg))))
        `(mode-line ((,class (:foreground ,ujelly-fg :background nil))))
-       `(mode-line-inactive ((,class (:foreground ,ujelly-grey-4 :background nil))))
+       `(mode-line-inactive ((,class (:foreground ,ujelly-grey-1 :background nil))))
        `(org-checkbox ((,class (:foreground ,ujelly-green-0))))
        `(org-date ((,class (:foreground ,ujelly-purple-0))))
        `(org-done ((,class (:foreground ,ujelly-green-0))))

@@ -35,6 +35,8 @@
 (defcommand reboot () ()
   (run-shell-command "sudo systemctl reboot"))
 
+(defcommand-alias herscheep reboot)
+
 ;;; Key settings
 
 (set-prefix-key (kbd "C-i"))

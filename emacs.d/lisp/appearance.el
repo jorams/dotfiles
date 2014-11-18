@@ -9,7 +9,7 @@
 (load-theme 'ujelly t)
 
 ;; Font settings
-(set-frame-font "-misc-tamsyn-*-*-normal-*-14-*-*-*-*-70-iso8859-1" nil t)
+(set-frame-font (font-spec :family "atari8x16") nil t)
 
 ;; Better Company-mode styling
 (let ((bg (face-attribute 'default :background)))

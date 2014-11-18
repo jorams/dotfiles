@@ -1,6 +1,6 @@
 (in-package #:stumpwm-user)
 
-(set-font '("-*-bitbuntu-*-*-*-*-*-*-*-*-*-*-*-*"
+(set-font '("-*-8x16 system font-*-*-*-*-*-*-*-*-*-*-*-*"
             "-*-tamsyn-*-r-*-*-20-*-*-*-*-*-*-*"))
 
 #-j-modules-loaded
@@ -15,7 +15,7 @@
     (swank:create-server :dont-close t :port 4005)
   (serious-condition () (swank:create-server :dont-close t :port 4006)))
 
-(set-font `("-*-bitbuntu-*-*-*-*-*-*-*-*-*-*-*-*"
+(set-font `("-*-8x16 system font-*-*-*-*-*-*-*-*-*-*-*-*"
             "-*-tamsyn-*-r-*-*-20-*-*-*-*-*-*-*"
             ,(make-instance 'xft:font :family "FontAwesome" :subfamily "Regular" :size 8)))
 

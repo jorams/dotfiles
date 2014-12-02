@@ -6,7 +6,7 @@
 			 (expand-file-name (concat user-emacs-directory
 									   "themes")))
 
-(load-theme 'ujelly t)
+(load-theme 'gotham t)
 
 ;; Font settings
 (set-frame-font (font-spec :family "DejaVu Sans Mono") nil t)

@@ -87,8 +87,12 @@ then pastes it into the command."
 ;;; Font settings
 
 (defun reset-font ()
-  (set-font `("-*-8x16 system font-*-*-*-*-*-*-*-*-*-*-*-*"
+  (set-font `(,(make-instance 'xft:font
+                              :family "DejaVu Sans Mono"
+                              :subfamily "Book"
+                              :size 12)
               "-*-tamsyn-*-r-*-*-20-*-*-*-*-*-*-*"
               ,(make-instance 'xft:font
                               :family "FontAwesome"
-                              :subfamily "Regular" :size 8))))
+                              :subfamily "Regular"
+                              :size 8))))

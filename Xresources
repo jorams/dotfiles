@@ -5,7 +5,7 @@ URxvt.perl-ext:     default,url-select
 URxvt.keysym.M-u:   perl:url-select:select_next
 URxvt.url-select.launcher:  /usr/bin/firefox -P default -new-tab
 URxvt.url-select.underline: true
-URxvt.font: xft:atari8x16
+URxvt.font: -*-tamsyn-medium-r-*-*-16-*-*-*-*-*-*-*
 
 URxvt.depth: 32
 

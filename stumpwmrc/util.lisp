@@ -70,6 +70,8 @@ then pastes it into the command."
 (defcommand reboot () ()
   (run-shell-command "sudo systemctl reboot"))
 
+(defcommand-alias deboot shutdown)
+(defcommand-alias ontscheep shutdown)
 (defcommand-alias herscheep reboot)
 
 

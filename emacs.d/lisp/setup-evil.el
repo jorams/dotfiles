@@ -48,6 +48,10 @@
 ;; Exit insert mode with C-g
 (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
 
+(defun delete-trailing-whitespace-on-current-line ()
+  (delete-trailing-whitespace (line-beginning-position) (line-end-position)))
+(add-hook 'evil-insert-state-exit-hook #'delete-trailing-whitespace-on-current-line)
+
 ;;; Org-mode
 (evil-define-key 'normal org-mode-map
   (kbd "<tab>") 'org-cycle

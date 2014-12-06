@@ -25,5 +25,15 @@
 (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level)
 (define-key helm-find-files-map (kbd "C-j") 'helm-execute-persistent-action)
 
+(defun helm-magit-status (candidate)
+  (interactive)
+  (magit-status (file-name-directory candidate)))
+
+(define-key helm-find-files-map (kbd "M-M")
+  (lambda ()
+    (interactive)
+    (with-helm-alive-p
+      (helm-quit-and-execute-action 'helm-magit-status))))
+
 (provide 'setup-helm)
 ;;; setup-helm.el ends here

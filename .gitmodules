@@ -37,3 +37,9 @@
 [submodule "emacs.d/vendor/slime-company"]
     path = "emacs.d/vendor/slime-company"
     url = "https://github.com/anwyn/slime-company"
+[submodule "emacs.d/vendor/async"]
+	path = emacs.d/vendor/async
+	url = https://github.com/jwiegley/emacs-async.git
+[submodule "emacs.d/vendor/helm"]
+	path = emacs.d/vendor/helm
+	url = https://github.com/emacs-helm/helm.git

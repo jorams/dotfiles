@@ -28,6 +28,7 @@
 (require 'setup-smex)
 (require 'setup-slime)
 (require 'setup-circe)
+(require 'setup-helm)
 (require 'setup-misc)
 (require 'setup-evil)
 

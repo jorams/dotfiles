@@ -1,9 +1,24 @@
-(setq evil-want-C-u-scroll t)
-
 (require 'evil)
 (require 'evil-paredit)
 
 (evil-mode 1)
+
+;;; Global bindings
+
+(evil-global-set-key 'normal (kbd "C-j") 'evil-scroll-down)
+(evil-global-set-key 'normal (kbd "C-k") 'evil-scroll-up)
+
+;; This is normally C-o, with jump-forward being <tab>
+(evil-global-set-key 'normal (kbd "C-<tab>") 'evil-jump-backward)
+
+;; Insert a blank line without entering insert mode
+(defun -evil-inb () (interactive) (evil-insert-newline-below))
+(defun -evil-ina () (interactive) (evil-insert-newline-above))
+
+(evil-global-set-key 'normal (kbd "C-o") '-evil-inb)
+(evil-global-set-key 'normal (kbd "C-S-o") '-evil-ina)
+
+;;; Mode-specific bindings
 
 (evil-define-key 'normal lisp-interaction-mode-map
   (kbd "<SPC>e") 'eval-last-sexp)
@@ -32,6 +47,7 @@
 (global-set-key (kbd "M-H") 'common-lisp-hyperspec)
 
 (add-hook 'emacs-lisp-mode-hook 'evil-paredit-mode)
+(add-hook 'lisp-mode-hook 'evil-paredit-mode)
 
 ;;; Multiple cursors
 
@@ -75,3 +91,4 @@
   (kbd "M-o") 'org-insert-heading-after-current)
 
 (provide 'setup-evil)
+;;; setup-evil.el ends here

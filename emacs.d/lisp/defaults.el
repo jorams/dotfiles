@@ -8,6 +8,12 @@
 ;; Disable startup screen
 (setq inhibit-startup-screen t)
 
+;; Simplify frame title
+(setq frame-title-format
+      '(multiple-frames
+        "%b"
+        ("" invocation-name)))
+
 ;;; Selection to X clipboard
 (setq x-select-enable-clipboard t)
 (setq x-select-enable-primary t)

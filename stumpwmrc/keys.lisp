@@ -38,12 +38,12 @@
 
 (defprogram-shortcut weechat
   :key (kbd "s-c")
-  :command "st -c irc -e weechat-curses"
+  :command "urxvt -c irc -e weechat-curses"
   :props '(:instance "irc"))
 
 (defprogram-shortcut pms
   :key (kbd "s-m")
-  :command "st -c pms -e pms"
+  :command "urxvt -c pms -e pms"
   :props '(:instance "pms"))
 
 (defprogram-shortcut gimp

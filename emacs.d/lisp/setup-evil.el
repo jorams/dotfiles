@@ -7,6 +7,7 @@
 
 (evil-global-set-key 'normal (kbd "C-j") 'evil-scroll-down)
 (evil-global-set-key 'normal (kbd "C-k") 'evil-scroll-up)
+(evil-global-set-key 'normal (kbd "C-d") 'ignore)
 
 ;; This is normally C-o, with jump-forward being <tab>
 (evil-global-set-key 'normal (kbd "C-<tab>") 'evil-jump-backward)

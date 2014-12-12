@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-# I still don't have connman working with the eduroam network...
-
-sudo systemctl stop connman
-sudo ip link set wlan0 down
-sudo netctl switch-to wheim

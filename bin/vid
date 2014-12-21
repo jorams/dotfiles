@@ -2,7 +2,7 @@
 
 if [[ "$1" = "-h" ]]; then
     shift
-    mpv --ao=alsa:device=[plughw:0,3] -loop=inf $(youtube-dl --no-playlist -g "$*")
+    mpv --ao=alsa:device=[plughw:0,3] --x11-name youtube-vid -loop=inf $(youtube-dl --no-playlist -g "$*")
 else
-    mpv -loop=inf $(youtube-dl --no-playlist -g "$*")
+    mpv --x11-name youtube-vid -loop=inf $(youtube-dl --no-playlist -g "$*")
 fi

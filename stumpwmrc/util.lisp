@@ -15,7 +15,8 @@
   (normalize-titles
    :class "Gimp" "gimp"
    :class "Firefox" "firefox"
-   :instance "weechat" "weechat"))
+   :instance "weechat" "weechat"
+   :instance "youtube-vid" "ytv"))
 
 (add-hook *new-window-hook* 'normalize-window-titles)
 

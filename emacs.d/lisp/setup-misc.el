@@ -78,6 +78,8 @@
 (require 'magit)
 (global-set-key (kbd "M-M") 'magit-status)
 
+;;; Projectile
+(projectile-global-mode)
 
 (provide 'setup-misc)
 ;;; setup-misc.el ends here

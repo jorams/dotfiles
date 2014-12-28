@@ -31,7 +31,8 @@
      flycheck
      web-mode
      csharp-mode
-     htmlize)))
+     htmlize
+     projectile)))
 
 ;;; Now really
 (condition-case nil

@@ -17,7 +17,7 @@
              (separator-right (intern (format "powerline-%s-%s"
                                               powerline-default-separator
                                               (cdr powerline-default-separator-dir))))
-             (lhs (append (list (powerline-raw "%*" nil 'l))
+             (lhs (append (list (powerline-raw "%*" face1 'l))
                           ;; Evil
                           (if evil-mode
                               (list (funcall separator-left face1 face2)
@@ -25,7 +25,7 @@
                                     (powerline-raw " " face2)
                                     (funcall separator-left face2 face1)))
                           ;; Buffer name
-                          (list (powerline-buffer-id nil 'l))
+                          (list (powerline-buffer-id face1 'l))
                           ;; Location in file
                           (list
                            (funcall separator-left face1 face2)

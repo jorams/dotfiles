@@ -97,11 +97,18 @@
 
 ;;; Dual screen configuration
 
+(defcommand xrandr (args) ((:rest "xrandr "))
+  (stumptray:stumptray)
+  ;; Apparently we first have to close the tray, or the second monitor won't be
+  ;; recognized
+  (run-with-timer 1 nil #'run-shell-command (format nil "xrandr ~a" args))
+  (run-with-timer 2 nil #'stumptray:stumptray))
+
 (defkeymap *xrandr-map*
-  ("v" "exec xrandr --output VGA1 --auto --right-of LVDS1")
-  ("V" "exec xrandr --output VGA1 --auto --left-of LVDS1")
-  ("d" "exec xrandr --output HDMI1 --auto --right-of LVDS1")
-  ("D" "exec xrandr --output HDMI1 --auto --left-of LVDS1")
+  ("v" "xrandr --output VGA1 --auto --right-of LVDS1")
+  ("V" "xrandr --output VGA1 --auto --left-of LVDS1")
+  ("d" "xrandr --output HDMI1 --auto --right-of LVDS1")
+  ("D" "xrandr --output HDMI1 --auto --left-of LVDS1")
   ("b" "exec sudo backlight 2000")
   ("B" "exec sudo backlight 900")
   ("C-b" "exec sudo backlight 300"))

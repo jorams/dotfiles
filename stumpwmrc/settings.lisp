@@ -43,3 +43,6 @@
 
 ;; Enable the mode line on the first head
 (mode-line)
+
+;; Enable Stumptray
+(stumptray::stumptray)

@@ -107,8 +107,10 @@
 (defkeymap *xrandr-map*
   ("v" "xrandr --output VGA1 --auto --right-of LVDS1")
   ("V" "xrandr --output VGA1 --auto --left-of LVDS1")
+  ("C-v" "xrandr --output VGA1 --auto --same-as LVDS1")
   ("d" "xrandr --output HDMI1 --auto --right-of LVDS1")
   ("D" "xrandr --output HDMI1 --auto --left-of LVDS1")
+  ("C-d" "xrandr --output HDMI1 --auto --same-as LVDS1")
   ("b" "exec sudo backlight 2000")
   ("B" "exec sudo backlight 900")
   ("C-b" "exec sudo backlight 300"))

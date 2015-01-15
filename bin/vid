@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
+NO_PLAYLIST="--no-playlist"
+if [[ "$1" = "-p" ]]; then
+    shift
+    NO_PLAYLIST=""
+fi
+
 if [[ "$1" = "-h" ]]; then
     shift
-    mpv --ao=alsa:device=[plughw:0,3] --x11-name youtube-vid -loop=inf $(youtube-dl --no-playlist -g "$*")
+    mpv --ao=alsa:device=[plughw:0,3] --x11-name youtube-vid $(youtube-dl $NO_PLAYLIST -g "$*")
 else
-    mpv --x11-name youtube-vid -loop=inf $(youtube-dl --no-playlist -g "$*")
+    mpv --x11-name youtube-vid $(youtube-dl $NO_PLAYLIST -g "$*")
 fi

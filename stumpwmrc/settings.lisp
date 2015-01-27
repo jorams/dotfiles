@@ -13,6 +13,8 @@
 (setf *input-window-gravity* :bottom)
 (setf *message-window-gravity* :bottom)
 (setf *window-border-style* :thin)
+(setf *normal-border-width* 0)
+(setf *maxsize-border-width* 0)
 (set-focus-color "#222")
 
 (setf *mouse-focus-policy* :sloppy)

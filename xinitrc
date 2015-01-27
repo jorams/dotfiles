@@ -14,7 +14,9 @@ test -f ~/.Xkeymap && xkbcomp ~/.Xkeymap $DISPLAY
 xset +fp /usr/share/fonts/local
 xset fp rehash
 
+# Fix Java
 wmname LG3D &
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
 # Darker screen
 sudo backlight 900 &

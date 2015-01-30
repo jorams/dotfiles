@@ -81,6 +81,11 @@
   :command "telegram"
   :props '(:class "Telegram"))
 
+(defprogram-shortcut zathura
+  :key (kbd "s-z")
+  :command "zathura"
+  :props '(:class "Zathura"))
+
 ;;; Miscellaneous
 
 (defmacro defkeymap (name &body bindings)

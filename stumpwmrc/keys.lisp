@@ -82,7 +82,7 @@
   :props '(:class "Telegram"))
 
 (defprogram-shortcut zathura
-  :key (kbd "s-z")
+  :key (kbd "s-a")
   :command "zathura"
   :props '(:class "Zathura"))
 

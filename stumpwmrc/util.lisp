@@ -17,7 +17,8 @@
    :class "Firefox" "firefox"
    :instance "weechat" "weechat"
    :instance "youtube-vid" "ytv"
-   :class "Filezilla" "filezilla"))
+   :class "Filezilla" "filezilla"
+   :class "Chromium" "chromium"))
 
 (add-hook *new-window-hook* 'normalize-window-titles)
 

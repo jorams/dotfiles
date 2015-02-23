@@ -23,23 +23,33 @@
 
 ;;; Applications
 
-(define-key *top-map* (kbd "s-e") "emacs")
-(define-key *root-map* (kbd "e") "emacs")
+(defprogram-shortcut emacs
+  :key (kbd "s-e")
+  :command "emacs"
+  :props '(:class "Emacs")
+  :pullp t
+  :pull-key (kbd "s-E"))
 
 (defprogram-shortcut firefox
   :key (kbd "s-f")
   :command "firefox -P default"
-  :props '(:class "Firefox"))
+  :props '(:class "Firefox")
+  :pullp t
+  :pull-key (kbd "s-F"))
 
 (defprogram-shortcut chromium
   :key (kbd "s-d")
   :command "chromium"
-  :props '(:class "Chromium"))
+  :props '(:class "Chromium")
+  :pullp t
+  :pull-key (kbd "s-D"))
 
 (defprogram-shortcut weechat
   :key (kbd "s-c")
   :command "urxvt -name irc -e weechat-curses"
-  :props '(:instance "irc"))
+  :props '(:instance "irc")
+  :pullp t
+  :pull-key (kbd "s-C"))
 
 (defprogram-shortcut pms
   :key (kbd "s-m")
@@ -49,42 +59,51 @@
 (defprogram-shortcut gimp
   :key (kbd "s-g")
   :command "gimp"
-  :props '(:class "Gimp"))
+  :props '(:class "Gimp")
+  :pullp t
+  :pull-key (kbd "s-G"))
 
 (defprogram-shortcut teamspeak
   :key (kbd "s-t")
   :command "teamspeak3"
-  :props '(:class "TeamSpeak 3"))
+  :props '(:class "TeamSpeak 3")
+  :pullp t
+  :pull-key (kbd "s-T"))
 
 (defprogram-shortcut libreoffice
   :key (kbd "s-l")
   :command "libreoffice"
-  :props '(:instance "libreoffice"))
+  :props '(:instance "libreoffice")
+  :pullp t
+  :pull-key (kbd "s-L"))
 
 (defprogram-shortcut filezilla
   :key (kbd "s-z")
   :command "filezilla"
-  :props '(:class "Filezilla"))
-
-(defprogram-shortcut mysql-workbench
-  :key (kbd "s-w")
-  :command "mysql-workbench"
-  :props '(:class "Mysql-workbench-bin"))
+  :props '(:class "Filezilla")
+  :pullp t
+  :pull-key (kbd "s-Z"))
 
 (defprogram-shortcut mpv
   :key (kbd "s-v")
   :command "mpv"
-  :props '(:class "mpv"))
+  :props '(:class "mpv")
+  :pullp t
+  :pull-key (kbd "s-V"))
 
 (defprogram-shortcut telegram
   :key (kbd "s-p")
   :command "telegram"
-  :props '(:class "Telegram"))
+  :props '(:class "Telegram")
+  :pullp t
+  :pull-key (kbd "s-P"))
 
 (defprogram-shortcut zathura
   :key (kbd "s-a")
   :command "zathura"
-  :props '(:class "Zathura"))
+  :props '(:class "Zathura")
+  :pullp t
+  :pull-key (kbd "s-A"))
 
 ;;; Miscellaneous
 

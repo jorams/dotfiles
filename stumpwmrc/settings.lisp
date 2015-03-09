@@ -34,8 +34,8 @@
 (setf mpd:*mpd-modeline-fmt* "^f2%i^f0 %a - %A - %t (%n/%p)")
 (setf *screen-mode-line-format* (concatenate 'string
                                              "[^B%d v%V%%"
-                                             #+system-has-battery" b%B%%^b"
-                                             "] %W ^>%m(%N)"))
+                                             #+system-has-battery" b%B%%"
+                                             "^b] %W ^>%m(%N)"))
 (setf *time-modeline-string* "%H:%M")
 (setf *mode-line-timeout* 10)
 (setf *mode-line-background-color* "Black")

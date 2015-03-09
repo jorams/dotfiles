@@ -20,26 +20,10 @@ set mouse=a " Enable mouse support
 
 filetype plugin indent on " Load filetype plugins
 
-" Set automatic wrapping for certain filetypes
-augroup wrapping
-autocmd!
-" For all text and markdown files set 'textwidth' to 79 characters.
-autocmd FileType text setlocal textwidth=79 colorcolumn=80
-autocmd FileType day setlocal textwidth=79 colorcolumn=80
-autocmd FileType markdown setlocal textwidth=79 colorcolumn=80
-autocmd FileType org setlocal textwidth=79 colorcolumn=80
-autocmd FileType lua setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType moon setlocal tabstop=2 shiftwidth=2 softtabstop=2
-augroup END
-
 let g:PHP_default_indenting = 1
 let g:PHP_outdentphpescape = 0
 
-color molokai
-if has("gui_running")
-    color base16-tomorrow
-    set gfn=Meslo\ LG\ S\ 13
-endif
+color ron
 
 set expandtab " Turn tabs into spaces
 " Each tab should be 4 spaces wide
@@ -61,14 +45,4 @@ let mapleader = " "
 nnoremap <leader><leader> :noh<cr>
 " Easily select the text just pasted
 nnoremap <leader>v V`]
-" Toggle NERDTree
-nnoremap <leader>n :NERDTreeToggle<CR>
-" Better NERDTree
-let g:NERDTreeMinimalUI = 1
 
-" Toggle Gundo
-nnoremap <leader>g :GundoToggle<CR>
-
-" Make paredit not mess with muscle memory
-let g:paredit_shortmaps = 0
-let g:paredit_leader = '\'

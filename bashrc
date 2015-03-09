@@ -5,8 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-eval `dircolors ~/.dir_colors`
-
 #--alias
 alias ls='ls --indicator-style=slash --color=auto'
 alias color='stint | while read -r; do printf "#%X %X %X\n" $REPLY; done'
@@ -28,7 +26,7 @@ function cd() {
 }
 
 #-- Alternative binary paths
-PATH=$PATH:~/bin:~/.cabal/bin:~/.gem/ruby/2.1.0/bin:~/dev/php/arcanist/bin
+PATH=$PATH:~/bin:~/bin/blob:~/.cabal/bin:~/.gem/ruby/2.1.0/bin:~/dev/php/arcanist/bin
 export PATH
 
 #--Get rid of .lesshst, useless clutter

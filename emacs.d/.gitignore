@@ -1,5 +1,6 @@
-/tramp
-/.places
-/backups
-/undo
-/elpa
+*
+!/.gitignore
+!/init.el
+!/lisp
+!/themes
+!/vendor

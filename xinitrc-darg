@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export DOTFILE_TYPE=laptop
+
+# Darker screen
+sudo backlight 900
+
+source ~/.dotfiles/xinitrc

@@ -7,5 +7,5 @@
                (:file "selection")
                (:file "volume")
                (:file "util")
-               (:file "battery")
+               #+system-has-battery (:file "battery")
                (:file "settings")))

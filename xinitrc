@@ -18,8 +18,6 @@ xset fp rehash
 wmname LG3D &
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
-# Darker screen
-sudo backlight 900 &
 # screen off after 5 minutes
 xset +dpms
 xset dpms 0 0 300

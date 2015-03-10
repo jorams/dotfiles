@@ -20,7 +20,6 @@
 
 ;;; Make it look pretty
 (require 'appearance)
-(require 'setup-powerline)
 
 ;;; General setup
 (require 'defaults)

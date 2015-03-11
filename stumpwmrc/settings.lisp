@@ -31,7 +31,7 @@
 (notifications:notifications-add "^[^10day^]")
 
 (setf *mode-line-position* :bottom)
-(setf mpd:*mpd-modeline-fmt* "^f2%i^f0 %a - %A - %t (%n/%p)")
+(setf mpd:*mpd-modeline-fmt* "^f2%i^f0 %t (%n/%p)")
 (setf *screen-mode-line-format* (concatenate 'string
                                              "[^B%d v%V%%"
                                              #+system-has-battery" b%B%%"

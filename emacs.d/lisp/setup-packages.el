@@ -32,7 +32,9 @@
      web-mode
      csharp-mode
      htmlize
-     projectile)))
+     projectile
+     anaconda-mode
+     company-anaconda)))
 
 ;;; Now really
 (condition-case nil

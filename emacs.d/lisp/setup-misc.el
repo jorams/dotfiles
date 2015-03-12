@@ -46,6 +46,12 @@
   "Major mode for editing Arduino files" t)
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . arduino-mode))
 
+;;; Anaconda mode
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'eldoc-mode)
+(add-hook 'python-mode-hook 'company-mode)
+; Note: Company-anaconda set up below
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Other modes
@@ -70,6 +76,7 @@
 ;;; Company mode
 
 (require 'company)
+(add-to-list 'company-backends 'company-anaconda)
 (define-key company-active-map (kbd "RET") ())
 (define-key company-active-map [return] ())
 (define-key company-active-map (kbd "M-RET") 'company-complete-selection)

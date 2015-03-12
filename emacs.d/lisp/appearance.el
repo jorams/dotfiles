@@ -6,7 +6,7 @@
 			 (expand-file-name (concat user-emacs-directory
 									   "themes")))
 
-(load-theme 'jazz t)
+(load-theme 'wombat t)
 
 ;; Font settings
 (set-frame-font (font-spec :family "DejaVu Sans Mono") nil t)

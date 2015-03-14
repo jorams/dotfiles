@@ -8,7 +8,8 @@
       mu4e-trash-folder  "/fm/Inbox/.Trash"
       mu4e-refile-folder "/fm/Inbox/.Archive"
       mu4e-get-mail-command "syncmail"
-      mu4e-compose-signature "Joram")
+      mu4e-compose-signature "Joram"
+      mu4e-change-filenames-when-moving t)
 
 ;;; Sending mail
 

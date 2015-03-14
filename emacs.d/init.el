@@ -31,5 +31,6 @@
 (require 'setup-helm)
 (require 'setup-misc)
 (require 'setup-evil)
+(require 'setup-mu4e)
 
 ;;; init.el ends here

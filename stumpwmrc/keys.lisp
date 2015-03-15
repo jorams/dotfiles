@@ -139,6 +139,11 @@
   ("j" "xrandr --output DP-0 --auto --right-of HDMI-0")
   ("J" "xrandr --output DP-0 --auto --left-of HDMI-0")
   ("C-j" "xrandr --output DP-0 --auto --same-as HDMI-0")
+  ("r" (concatenate 'string
+                    "xrandr --output HDMI-0 --auto --rotate left"
+                    " --output DP-0 --auto --rotate right --right-of HDMI-0"))
+  ("R" "xrandr --output HDMI-0 --rotate left")
+  ("C-r" "xrandr --output DP-0 --rotate right")
   ("b" "exec sudo backlight 2000")
   ("B" "exec sudo backlight 900")
   ("C-b" "exec sudo backlight 300"))

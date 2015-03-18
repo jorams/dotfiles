@@ -68,6 +68,12 @@
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
+;;; highlight-parentheses.el and highlight-symbol.el
+(add-hook 'emacs-lisp-mode-hook       #'highlight-parentheses-mode)
+(add-hook 'lisp-mode-hook             #'highlight-parentheses-mode)
+(add-hook 'emacs-lisp-mode-hook       #'highlight-symbol-mode)
+(add-hook 'lisp-mode-hook             #'highlight-symbol-mode)
+
 ;;; Autopair mode
 
 (require 'autopair)

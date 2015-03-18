@@ -34,7 +34,9 @@
      htmlize
      projectile
      anaconda-mode
-     company-anaconda)))
+     company-anaconda
+     highlight-parentheses
+     highlight-symbol)))
 
 ;;; Now really
 (condition-case nil

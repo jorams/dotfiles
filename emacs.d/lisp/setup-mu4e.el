@@ -19,4 +19,7 @@
       smtpmail-smtp-server "mail.messagingengine.com"
       smtpmail-smtp-service 587)
 
+;; Hotkey
+(global-set-key (kbd "M-N") 'mu4e)
+
 (provide 'setup-mu4e)

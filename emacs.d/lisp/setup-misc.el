@@ -88,6 +88,7 @@
 (define-key company-active-map (kbd "M-RET") 'company-complete-selection)
 
 ;;; Magit
+(setq magit-last-seen-setup-instructions "1.4.0")
 (require 'magit)
 (global-set-key (kbd "M-M") 'magit-status)
 

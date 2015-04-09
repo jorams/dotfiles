@@ -1,6 +1,5 @@
 set nocompatible " Because we don't need compatibility
 set encoding=utf-8 " Necessary to show Unicode glyphs
-call pathogen#infect() " Initialize pathogen
 set history=50 " Keep 50 lines of command line history
 set ruler " Show the cursor position all the time
 set showcmd	" Display incomplete commands

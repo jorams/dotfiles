@@ -15,7 +15,7 @@
   (normalize-titles
    :class "Gimp" "gimp"
    :class "Firefox" "firefox"
-   :instance "weechat" "weechat"
+   :instance "irc" "irc"
    :instance "youtube-vid" "ytv"
    :class "Filezilla" "filezilla"
    :class "Chromium" "chromium"))

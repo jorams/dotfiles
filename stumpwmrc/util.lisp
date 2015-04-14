@@ -68,12 +68,13 @@ then pastes it into the command."
 ;;; Power control
 
 (defcommand shutdown () ()
-  (run-shell-command "sudo systemctl poweroff"))
+  (run-shell-command "poweroff"))
 
 (defcommand reboot () ()
-  (run-shell-command "sudo systemctl reboot"))
+  (run-shell-command "reboot"))
 
 (defcommand-alias deboot shutdown)
+(defcommand-alias poweroff shutdown)
 (defcommand-alias ontscheep shutdown)
 (defcommand-alias herscheep reboot)
 

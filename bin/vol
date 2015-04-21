@@ -1,18 +1,1 @@
-#!/bin/bash
-
-if [ $# -eq 2 ]
-then
-    export tvol="$2"
-else
-    export tvol="5"
-fi
-
-case "$1" in
-    up)     amixer set Master ${tvol}%+       >/dev/null ;;
-    down)   amixer set Master ${tvol}%-       >/dev/null ;;
-    toggle) amixer set Master toggle    >/dev/null ;;
-    status) 
-            amixer get Master | awk '/Mono:/ { gsub(/[\[\]]/,"",$4); gsub(/%/,"",$4); print $4 }' > ~/.audio_volume
-            [[ `amixer get Master | grep "Mono:.*\[off\]"` ]] && echo "-1" > ~/.audio_volume ;;
-    *)      amixer set Master "$1%" ;;
-esac
+blob/autome

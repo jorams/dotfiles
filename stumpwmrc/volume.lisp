@@ -29,10 +29,12 @@
 (defcommand volume (vol &optional (amount 5))
     ((:volume "Volume: ") :number)
   (handler-case
-       (let ((captures (nth-value 1 (ppcre:scan-to-strings
-                                     "Mono: .*?\\[(:?([0-9]{1,3})%|off)\\]"
-                                     (run-volume-command vol amount)))))
-         (setf *volume* (or (elt captures 1) "m")))
+      (ppcre:register-groups-bind (result enabled)
+          ("Mono: .*?([0-9]{1,3})%.*?(on|off)"
+           (run-volume-command vol amount))
+        (setf *volume* (if (string= enabled "on")
+                           result
+                           "m")))
     (serious-condition () (err "Master not found!")))
   (values))
 

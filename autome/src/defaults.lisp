@@ -57,5 +57,6 @@
         (_ (reduce (lambda (x y) (and x y))
                    (list (keyboard)
                          (beep)
-                         (dpms)))))
+                         (dpms)
+                         (fonts)))))
     (serious-condition () nil)))

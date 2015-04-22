@@ -1,7 +1,30 @@
 (defpackage :autome/util
-  (:use :cl)
-  (:export #:define-entry))
+  (:use :cl :optima :optima.ppcre)
+  (:export #:define-entry
+           #:boolify
+           #:boolify*))
 (in-package :autome/util)
+
+;;; Miscellaneous utilities
+
+(defun boolify (input)
+  "Take an input (string) and test whether it is positive or negative.
+Returns (values result match-found)"
+  (match input
+    ((ppcre "[yY].*?|on|en.*")
+     (values t t))
+    ((ppcre "[nN].*?|off|dis.*")
+     (values nil t))
+    (_ (values nil nil))))
+
+(defun boolify* (input)
+  "Like BOOLIFY, but returns either a list containing the result or NIL if no
+valid value was found."
+  (multiple-value-bind (result match-found)
+      (boolify input)
+    (when match-found (list result))))
+
+;;; Program entry
 
 (defun describe-commands (commands)
   "Used by DEFINE-ENTRY to output sub-command documentation."
@@ -10,7 +33,7 @@
       (format out "~%Available commands:")
       (dolist (command commands)
         (if (consp command)
-            (format out "~%  ~A~2,4@T~A"
+            (format out "~%  ~A~2,16@T~A"
                     (first command)
                     (second command))
             (format out "~% ~A" command))))))
@@ -68,9 +91,11 @@ The second one doesn't make any sense, but it's handled fine."
          (destructuring-bind (&key ,@(mapcar #'first opts) &allow-other-keys)
              ,options
            (if (getf ,options :help)
-               (opts:describe :prefix ,(format nil "~A~%~A"
-                                               description
-                                               (describe-commands commands)))
+               (prog1 t
+                 (opts:describe
+                  :prefix ,(format nil "~A~%~A"
+                                   description
+                                   (describe-commands commands))))
                (let (,@(when command
                          (list (list command
                                      `(when (find (first ,free)

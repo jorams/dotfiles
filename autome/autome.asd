@@ -7,9 +7,11 @@
                #:cl-ppcre
                #:unix-opts
                #:quri
-               #:optima)
+               #:optima
+               #:optima.ppcre)
   :pathname "src"
   :components ((:file "util")
                (:file "volume")
                (:file "backlight")
-               (:file "puburl")))
+               (:file "puburl")
+               (:file "defaults")))

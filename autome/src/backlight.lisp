@@ -1,5 +1,5 @@
 (defpackage :autome/backlight
-  (:use :cl :uiop :autome/util)
+  (:use :cl :uiop :autome/util :optima)
   (:shadow #:set)
   (:export #:up
            #:down
@@ -42,17 +42,16 @@
                 ("set" "set brightness")
                 ("<brightness>" "set brightness to <brightness>")
                 ("status" "get current brightness")))
-  (let ((result (cond
-                  ((string= command "up")
+  (let ((result (match command
+                  ("up"
                    (apply 'up (mapcar #'parse-integer free)))
-                  ((string= command "down")
+                  ("down"
                    (apply 'down (mapcar #'parse-integer free)))
-                  ((or (string= command "status")
-                       (and (null command)
-                            (null free)))
+                  ((or "status" nil)
+                   (unless (null free) (fail))
                    (status))
                   ;; The command is either "set" or something else
-                  (t (apply 'set (mapcar #'parse-integer free))))))
+                  (_ (apply 'set (mapcar #'parse-integer free))))))
     (prog1 result
       (when result
         (princ result)

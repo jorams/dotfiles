@@ -1,5 +1,5 @@
 (defpackage :autome/volume
-  (:use :cl :uiop :autome/util)
+  (:use :cl :uiop :autome/util :optima)
   (:shadow #:set)
   (:export #:up
            #:down
@@ -54,13 +54,13 @@
                 ("<volume>" "set volume to <volume>")
                 ("toggle" "toggle mute status")
                 ("status" "get current volume (or 'm' when muted)")))
-  (let ((result (cond
-                  ((string= command "up") (apply 'up free))
-                  ((string= command "down") (apply 'down free))
-                  ((string= command "toggle") (toggle))
-                  ((string= command "status") (status))
+  (let ((result (match command
+                  ("up" (apply 'up free))
+                  ("down" (apply 'down free))
+                  ("toggle" (toggle))
+                  ("status" (status))
                   ;; The command is either "set" or something else
-                  (t (apply 'set free)))))
+                  (_ (apply 'set free)))))
     (prog1 result
       (when result
         (princ result)

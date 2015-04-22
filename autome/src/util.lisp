@@ -2,10 +2,15 @@
   (:use :cl :optima :optima.ppcre)
   (:export #:define-entry
            #:boolify
-           #:boolify*))
+           #:boolify*
+           #:run!))
 (in-package :autome/util)
 
 ;;; Miscellaneous utilities
+
+(defmacro run! (program)
+  "Run program, return whether or not it succeeded."
+  `(nth-value 2 (uiop:run-program ,program)))
 
 (defun boolify (input)
   "Take an input (string) and test whether it is positive or negative.

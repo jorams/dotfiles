@@ -7,23 +7,13 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-[[ -f ~/.Xresources ]] && xrdb -load ~/.Xresources &
-test -f ~/.Xkeymap && xkbcomp ~/.Xkeymap $DISPLAY
-
-# Update fonts
-xset +fp /usr/share/fonts/local
-xset fp rehash
-
 # Fix Java
 wmname LG3D &
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
-# screen off after 5 minutes
-xset +dpms
-xset dpms 0 0 300
+defaults &
 
 backg &
-doset &
 
 # Make Skype look prettier
 export GTK2_RC_FILES="/etc/gtk-2.0/gtkrc:$HOME/.gtkrc-2.0"

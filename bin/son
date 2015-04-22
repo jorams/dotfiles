@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-# Don't disable the screen after a few minutes
-# This is mostly useful when watching long videos using Flash.
-xset -dpms
-xset s off

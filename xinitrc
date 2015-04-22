@@ -18,7 +18,7 @@ export GTK2_RC_FILES="/etc/gtk-2.0/gtkrc:$HOME/.gtkrc-2.0"
 
 defaults &
 backg &
-systemctl --user start redshift
+systemctl --user restart redshift
 
 case "$2" in
     xbmc) amixer set Master 100% && exec xbmc-standalone

@@ -36,10 +36,15 @@ complete -cf sudo
 set -o vi
 shopt -s globstar
 
-if [ `id -u` -eq "0" ]; then
-	userp="»"
-else
-	userp=""
-fi
+my_prompt () {
+    last=$?
+    if [[ $last == 0 ]]; then
+        pcolor="\[\e[0;34m\]"
+    else
+        pcolor="\[\033[0;31m\] $last"
+    fi
 
-PS1="\[\e[0;34m\] » ${userp} \[\e[0m\]"
+    PS1="$pcolor » \[\e[0m\]"
+}
+
+PROMPT_COMMAND='my_prompt'

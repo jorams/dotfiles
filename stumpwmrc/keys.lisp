@@ -143,7 +143,7 @@
                     "xrandr --output HDMI-0 --auto --rotate left"
                     " --output DP-0 --auto --rotate right --right-of HDMI-0"))
   ("R" "xrandr --output HDMI-0 --rotate left")
-  ("C-r" "xrandr --output DP-0 --rotate right")
+  ("C-r" "xrandr --output DP-0 --rotate right --pos 1920x-340")
   ("b" "exec sudo backlight 2000")
   ("B" "exec sudo backlight 900")
   ("C-b" "exec sudo backlight 300"))

@@ -36,7 +36,9 @@
      anaconda-mode
      company-anaconda
      highlight-parentheses
-     highlight-symbol)))
+     highlight-symbol
+     js2-mode
+     js2-refactor)))
 
 ;;; Now really
 (condition-case nil

@@ -31,6 +31,9 @@
 ;;; Handle CamelCase nicely
 (global-subword-mode 1)
 
+;;; Delete selection before typing with region active
+(delete-selection-mode)
+
 ;;; I don't double-space
 (set-default 'sentence-end-double-space nil)
 

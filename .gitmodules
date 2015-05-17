@@ -29,8 +29,8 @@
     path = "emacs.d/vendor/markdown-mode"
     url = "git://jblevins.org/git/markdown-mode.git"
 [submodule "emacs.d/vendor/multiple-cursors.el"]
-    path = "emacs.d/vendor/multiple-cursors.el"
-    url = "https://github.com/magnars/multiple-cursors.el.git"
+	path = emacs.d/vendor/multiple-cursors.el
+	url = https://github.com/magnars/multiple-cursors.el
 [submodule "emacs.d/vendor/php-mode"]
     path = "emacs.d/vendor/php-mode"
     url = "https://github.com/ejmr/php-mode.git"

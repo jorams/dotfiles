@@ -30,7 +30,8 @@
 (require 'setup-circe)
 (require 'setup-helm)
 (require 'setup-misc)
-(require 'setup-evil)
+;;(require 'setup-evil)
+(require 'setup-multiple-cursors)
 (require 'setup-mu4e)
 
 ;;; init.el ends here

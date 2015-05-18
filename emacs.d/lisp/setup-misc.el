@@ -74,11 +74,6 @@
 (add-hook 'emacs-lisp-mode-hook       #'highlight-symbol-mode)
 (add-hook 'lisp-mode-hook             #'highlight-symbol-mode)
 
-;;; Autopair mode
-
-(require 'autopair)
-(autopair-global-mode)
-
 ;;; Company mode
 
 (require 'company)

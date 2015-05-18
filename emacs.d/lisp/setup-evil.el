@@ -91,5 +91,10 @@
   (kbd "M-O") 'org-insert-heading
   (kbd "M-o") 'org-insert-heading-after-current)
 
+;;; Autopair mode
+
+(require 'autopair)
+(autopair-global-mode)
+
 (provide 'setup-evil)
 ;;; setup-evil.el ends here

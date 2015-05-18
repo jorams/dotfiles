@@ -31,7 +31,7 @@
 (require 'setup-helm)
 (require 'setup-misc)
 ;;(require 'setup-evil)
-(require 'setup-multiple-cursors)
+(require 'setup-non-evil)
 (require 'setup-mu4e)
 
 ;;; init.el ends here

@@ -38,7 +38,9 @@
      highlight-parentheses
      highlight-symbol
      js2-mode
-     js2-refactor)))
+     js2-refactor
+     expand-region
+     smartparens)))
 
 ;;; Now really
 (condition-case nil

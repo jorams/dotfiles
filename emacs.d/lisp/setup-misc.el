@@ -74,6 +74,9 @@
 (add-hook 'emacs-lisp-mode-hook       #'highlight-symbol-mode)
 (add-hook 'lisp-mode-hook             #'highlight-symbol-mode)
 
+;;; Ace Jump Mode
+(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+
 ;;; Company mode
 
 (require 'company)

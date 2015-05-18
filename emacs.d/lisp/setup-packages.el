@@ -40,7 +40,8 @@
      js2-mode
      js2-refactor
      expand-region
-     smartparens)))
+     smartparens
+     ace-jump-mode)))
 
 ;;; Now really
 (condition-case nil

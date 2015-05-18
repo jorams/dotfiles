@@ -77,6 +77,9 @@
 ;;; Ace Jump Mode
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
+;;; Switch-window
+(global-set-key (kbd "C-x o") 'switch-window)
+
 ;;; Company mode
 
 (require 'company)

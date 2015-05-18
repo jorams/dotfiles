@@ -35,7 +35,8 @@
      js2-refactor
      expand-region
      smartparens
-     ace-jump-mode)))
+     ace-jump-mode
+     switch-window)))
 
 ;;; Now really
 (condition-case nil

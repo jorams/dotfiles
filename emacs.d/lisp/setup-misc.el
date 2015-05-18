@@ -80,6 +80,9 @@
 ;;; Switch-window
 (global-set-key (kbd "C-x o") 'switch-window)
 
+;;; Whitespace cleanup
+(global-whitespace-cleanup-mode)
+
 ;;; Company mode
 
 (require 'company)

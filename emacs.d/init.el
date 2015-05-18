@@ -24,8 +24,6 @@
 ;;; General setup
 (require 'defaults)
 (require 'utils)
-(require 'setup-ido)
-(require 'setup-smex)
 (require 'setup-slime)
 (require 'setup-circe)
 (require 'setup-helm)

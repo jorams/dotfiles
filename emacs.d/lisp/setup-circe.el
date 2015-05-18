@@ -10,14 +10,6 @@
 (setq circe-color-nicks-everywhere t)
 (enable-circe-color-nicks)
 
-(add-to-list 'ido-ignore-buffers "#.*")
-(add-to-list 'ido-ignore-buffers "irc\.joram\.io:.*")
-
-(defun ido-switch-irc-buffer ()
-  (interactive)
-  (let ((ido-ignore-buffers '("^[^#]*$")))
-    (ido-switch-buffer)))
-
 (defun irc-frame ()
   (interactive)
   (make-frame '((name . "irc"))))

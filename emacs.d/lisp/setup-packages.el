@@ -21,13 +21,7 @@
      paredit
      evil-paredit
      elisp-slime-nav
-     flx
-     flx-ido
      whitespace-cleanup-mode
-     ido-ubiquitous
-     ido-vertical-mode
-     ido-at-point
-     smex
      flycheck
      web-mode
      csharp-mode

@@ -8,10 +8,12 @@
                #:unix-opts
                #:quri
                #:optima
-               #:optima.ppcre)
+               #:optima.ppcre
+               #:drakma)
   :pathname "src"
   :components ((:file "util")
                (:file "volume")
                (:file "backlight")
                (:file "puburl")
+               (:file "linkbox")
                (:file "defaults")))

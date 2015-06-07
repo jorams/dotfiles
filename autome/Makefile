@@ -13,3 +13,4 @@ autome:
 	--dispatch-entry backlight/autome/backlight:cli \
 	--dispatch-entry puburl/autome/puburl:cli       \
 	--dispatch-entry defaults/autome/defaults:cli   \
+	--dispatch-entry linkbox/autome/linkbox:cli     \

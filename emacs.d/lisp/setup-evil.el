@@ -44,9 +44,6 @@
 (evil-define-key 'normal dired-mode-map "l" 'dired-find-alternate-file)
 (put 'dired-find-alternate-file 'disabled nil)
 
-;; And add a key to look something up in the HyperSpec
-(global-set-key (kbd "M-H") 'common-lisp-hyperspec)
-
 (add-hook 'emacs-lisp-mode-hook 'evil-paredit-mode)
 (add-hook 'lisp-mode-hook 'evil-paredit-mode)
 

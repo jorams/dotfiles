@@ -7,4 +7,7 @@
 
 (slime-setup '(slime-fancy slime-company slime-indentation slime-asdf))
 
+;; Add a key to look something up in the HyperSpec
+(global-set-key (kbd "M-H") 'common-lisp-hyperspec)
+
 (provide 'setup-slime)

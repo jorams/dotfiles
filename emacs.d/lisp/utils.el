@@ -4,7 +4,8 @@
 
 (defun wrap/soft ()
   (interactive)
-  (longlines-mode 'toggle))
+  (visual-fill-column-mode 'toggle)
+  (visual-line-mode 'toggle))
 
 (defun colorcolumn ()
   (interactive)

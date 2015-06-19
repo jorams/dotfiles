@@ -36,7 +36,8 @@
      expand-region
      smartparens
      ace-jump-mode
-     switch-window)))
+     switch-window
+     visual-fill-column)))
 
 ;;; Now really
 (condition-case nil

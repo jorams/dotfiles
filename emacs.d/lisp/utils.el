@@ -16,6 +16,13 @@
 				       (format-time-string "%Y-%m-%d.day"))))
   (auto-fill-mode 1))
 
+(defun fill-to-end (char)
+  (interactive "cFill Character:")
+  (save-excursion
+    (end-of-line)
+    (while (< (current-column) fill-column)
+      (insert-char char))))
+
 ;;; Taken from here:
 ;;; http://blog.bookworm.at/2007/03/pretty-print-xml-with-emacs.html
 (defun bf-pretty-print-xml-region (begin end)

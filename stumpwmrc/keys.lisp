@@ -72,11 +72,11 @@
   :pull-key (kbd "s-T"))
 
 (defprogram-shortcut libreoffice
-  :key (kbd "s-l")
+  :key (kbd "s-o")
   :command "libreoffice"
   :props '(:instance "libreoffice")
   :pullp t
-  :pull-key (kbd "s-L"))
+  :pull-key (kbd "s-O"))
 
 (defprogram-shortcut filezilla
   :key (kbd "s-z")
@@ -164,3 +164,12 @@
   (("F" "L") "move-window right"))
 
 (define-key *root-map* (kbd "w") '*window-map*)
+
+(define-key *top-map* (kbd "s-h")  "move-focus left")
+(define-key *top-map* (kbd "s-j")  "move-focus down")
+(define-key *top-map* (kbd "s-k")  "move-focus up")
+(define-key *top-map* (kbd "s-l")  "move-focus right")
+(define-key *top-map* (kbd "s-H")  "move-window left")
+(define-key *top-map* (kbd "s-J")  "move-window down")
+(define-key *top-map* (kbd "s-K")  "move-window up")
+(define-key *top-map* (kbd "s-L")  "move-window right")

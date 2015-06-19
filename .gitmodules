@@ -46,3 +46,6 @@
 [submodule "emacs.d/vendor/powerline"]
 	path = emacs.d/vendor/powerline
 	url = https://github.com/milkypostman/powerline
+[submodule "emacs.d/vendor/sunrise-commander"]
+	path = emacs.d/vendor/sunrise-commander
+	url = https://github.com/escherdragon/sunrise-commander

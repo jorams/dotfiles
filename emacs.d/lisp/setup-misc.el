@@ -104,5 +104,8 @@
 ;;; Projectile
 (projectile-global-mode)
 
+;;; Sunrise Commander
+(require 'sunrise-commander)
+
 (provide 'setup-misc)
 ;;; setup-misc.el ends here

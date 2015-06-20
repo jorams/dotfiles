@@ -52,10 +52,6 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-;;; Nicer scrolling
-(require 'smooth-scroll)
-(smooth-scroll-mode t)
-
 ;;; Optional fill column indicator
 (require 'fill-column-indicator)
 

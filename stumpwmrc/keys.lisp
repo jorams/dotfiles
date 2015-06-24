@@ -8,7 +8,7 @@
 (define-key *root-map* (kbd "c") "exec urxvt")
 (define-key *root-map* (kbd "C-c") "exec urxvt")
 (define-key *root-map* (kbd "C")
-  "exec urxvt -fn -*-tamsyn-medium-r-*-*-40-*-*-*-*-*-*-* -e fish")
+  "exec urxvt -fn -*-tamsyn-medium-r-*-*-40-*-*-*-*-*-*-*")
 
 (define-key *root-map* (kbd "'") "windowlist")
 (define-key *root-map* (kbd "\"") "pull-window-from-list")

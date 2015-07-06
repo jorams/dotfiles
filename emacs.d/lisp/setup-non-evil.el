@@ -7,10 +7,6 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-(require 'smartparens-config)
-(turn-on-show-smartparens-mode)
-(smartparens-global-mode)
-
 (global-undo-tree-mode)
 
 (provide 'setup-non-evil)

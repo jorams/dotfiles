@@ -34,7 +34,6 @@
      js2-mode
      js2-refactor
      expand-region
-     smartparens
      ace-jump-mode
      switch-window
      visual-fill-column)))

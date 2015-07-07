@@ -36,6 +36,9 @@ complete -cf sudo
 set -o vi
 shopt -s globstar
 
+envoy -t ssh-agent id_ecdsa
+source <(envoy -p)
+
 my_prompt () {
     last=$?
     if [[ $last == 0 ]]; then

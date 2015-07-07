@@ -108,5 +108,8 @@
 ;;; Sunrise Commander
 (require 'sunrise-commander)
 
+;;; Centered Cursor Mode
+(setq-default ccm-recenter-at-end-of-file t)
+
 (provide 'setup-misc)
 ;;; setup-misc.el ends here

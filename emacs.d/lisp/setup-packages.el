@@ -36,7 +36,9 @@
      expand-region
      ace-jump-mode
      switch-window
-     visual-fill-column)))
+     visual-fill-column
+     writeroom-mode
+     centered-cursor-mode)))
 
 ;;; Now really
 (condition-case nil

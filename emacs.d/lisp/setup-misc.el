@@ -36,6 +36,8 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
 
+(setq-default web-mode-markup-indent-offset 2)
+
 ;;; PHP mode
 
 (autoload 'php-mode "php-mode" "Major mode for editing php code." t)

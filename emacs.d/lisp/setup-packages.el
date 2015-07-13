@@ -38,7 +38,8 @@
      switch-window
      visual-fill-column
      writeroom-mode
-     centered-cursor-mode)))
+     centered-cursor-mode
+     magit)))
 
 ;;; Now really
 (condition-case nil

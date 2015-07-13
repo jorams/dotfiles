@@ -77,4 +77,8 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
 
+(defun j/align-on-single-quote ()
+  (interactive)
+  (align-regexp (region-beginning) (region-end) "\\(\\s-*\\) '" nil 0 t))
+
 (provide 'utils)

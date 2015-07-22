@@ -1,6 +1,4 @@
-#
-# ~/.bashrc
-#
+# To be included by machine-specific bashrc
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -14,7 +12,6 @@ alias sp='sudo pacman'
 alias cls='clear && ls'
 alias torrd='systemctl --user start transmission'
 alias torr='transgui'
-alias mh='mpv --ao=alsa:device=[plughw:0,3]'
 
 function cd() {
     builtin cd "$1"

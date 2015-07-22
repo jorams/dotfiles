@@ -12,13 +12,9 @@ alias sshot='scrot --exec '\''mv $f ~/pictures/screenshots'' 2>/dev/null'\'
 alias sc='sudo systemctl'
 alias sp='sudo pacman'
 alias cls='clear && ls'
-alias db='dropbox'
 alias torrd='systemctl --user start transmission'
 alias torr='transgui'
-alias calc='bc -i'
 alias mh='mpv --ao=alsa:device=[plughw:0,3]'
-alias genpass='pwgen -s -y 16 1 | xclip -selection CLIPBOARD'
-alias irctunnel='ssh torrn -L localhost:2345:localhost:2345'
 
 function cd() {
     builtin cd "$1"
@@ -26,7 +22,7 @@ function cd() {
 }
 
 #-- Alternative binary paths
-PATH=$PATH:~/bin:~/bin/blob:~/.cabal/bin:~/.gem/ruby/2.1.0/bin:~/dev/php/arcanist/bin
+PATH=$PATH:~/bin:~/bin/blob:~/.cabal/bin
 export PATH
 
 #--Get rid of .lesshst, useless clutter

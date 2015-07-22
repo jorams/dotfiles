@@ -29,7 +29,7 @@ export PATH
 export LESSHISTFILE='-'
 
 complete -cf sudo
-set -o vi
+set -o emacs
 shopt -s globstar
 
 envoy -t ssh-agent id_ecdsa

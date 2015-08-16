@@ -30,6 +30,7 @@ set -o emacs
 shopt -s globstar
 
 envoy -t ssh-agent id_ecdsa
+envoy -t gpg-agent
 source <(envoy -p)
 
 my_prompt () {

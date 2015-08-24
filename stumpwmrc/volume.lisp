@@ -17,25 +17,28 @@
   (declare (ignore ml))
   *volume*)
 
-(defun run-volume-command (vol amount)
+(defun run-volume-command (vol &optional amount)
   (run-shell-command (case vol
-                       (:up (format nil "amixer set Master ~A%+" amount))
-                       (:down (format nil "amixer set Master ~A%-" amount))
-                       (:toggle "amixer set Master toggle")
-                       (:update "amixer get Master")
-                       (t (format nil "amixer set Master ~A%" vol)))
+                       (:up (format nil "pamixer --increase ~A" amount))
+                       (:down (format nil "pamixer --decrease ~A" amount))
+                       (:toggle "pamixer --toggle-mute")
+                       (:muted "pamixer --get-mute")
+                       (:update "pamixer --get-volume")
+                       (t (format nil "pamixer --set-volume ~A" vol)))
                      t))
 
 (defcommand volume (vol &optional (amount 5))
     ((:volume "Volume: ") :number)
   (handler-case
-      (ppcre:register-groups-bind (result enabled)
-          ("Mono: .*?([0-9]{1,3})%.*?(on|off)"
-           (run-volume-command vol amount))
-        (setf *volume* (if (string= enabled "on")
-                           result
-                           "m")))
-    (serious-condition () (err "Master not found!")))
+      (progn (run-volume-command vol amount)
+             (setf *volume*
+                   (if (ppcre:scan "true" (run-volume-command :muted))
+                       "m"
+                       (ppcre:scan-to-strings
+                        "\\d+"
+                        (run-volume-command :update)))))
+    (serious-condition (c)
+      (err "An error has occurred while managing the volume: ~S" c)))
   (values))
 
 (defkeymap *volume-map*

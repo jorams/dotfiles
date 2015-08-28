@@ -139,6 +139,7 @@
   ("j" "xrandr --output DP-0 --auto --right-of HDMI-0")
   ("J" "xrandr --output DP-0 --auto --left-of HDMI-0")
   ("C-j" "xrandr --output DP-0 --auto --same-as HDMI-0")
+  ("k" "xrandr --output HDMI-0 --auto --right-of DP-0 --rotate right")
   ("r" (concatenate 'string
                     "xrandr --output HDMI-0 --auto --rotate left"
                     " --output DP-0 --auto --rotate right --right-of HDMI-0"))

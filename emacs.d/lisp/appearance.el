@@ -6,7 +6,7 @@
 			 (expand-file-name (concat user-emacs-directory
 									   "themes")))
 
-(load-theme 'darktooth t)
+(load-theme 'my-darktooth t)
 
 ;; Font settings
 (set-frame-font "-Misc-Tamsyn-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"

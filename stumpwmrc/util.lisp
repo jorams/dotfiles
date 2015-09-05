@@ -93,11 +93,8 @@ then pastes it into the command."
 ;;; Font settings
 
 (defun reset-font ()
-  (set-font `(,(make-instance 'xft:font
-                              :family "DejaVu Sans Mono"
-                              :subfamily "Book"
-                              :size 12)
-              "-*-tamsyn-*-r-*-*-20-*-*-*-*-*-*-*"
+  (set-font `("-*-tamsyn-*-r-*-*-16-*-*-*-*-*-*-*"
+              "-*-tamsyn-*-r-*-*-12-*-*-*-*-*-*-*"
               ,(make-instance 'xft:font
                               :family "FontAwesome"
                               :subfamily "Regular"

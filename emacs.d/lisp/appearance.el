@@ -9,7 +9,10 @@
 (load-theme 'darktooth t)
 
 ;; Font settings
-(set-frame-font (font-spec :family "DejaVu Sans Mono") nil t)
+(set-frame-font "-Misc-Tamsyn-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"
+                nil
+                t)
+
 
 ;; Better Company-mode styling
 (let ((bg (face-attribute 'default :background)))

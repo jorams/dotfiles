@@ -101,6 +101,9 @@ entered path, which is a URL in this case."
                               .arguments.torrent-duplicate.name))))
         (_ (user-error .result))))))
 
-(define-key transmission-mode-map (kbd "A") 'transmission-add-url)
+(defun torr ()
+  (interactive)
+  (transmission)
+  (define-key transmission-mode-map (kbd "A") 'transmission-add-url))
 
 (provide 'utils)

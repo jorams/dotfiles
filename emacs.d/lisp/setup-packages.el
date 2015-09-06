@@ -39,7 +39,8 @@
      visual-fill-column
      writeroom-mode
      centered-cursor-mode
-     magit)))
+     magit
+     transmission)))
 
 ;;; Now really
 (condition-case nil

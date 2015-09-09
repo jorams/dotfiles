@@ -88,6 +88,12 @@
 ;;; Switch-window
 (global-set-key (kbd "C-x o") 'switch-window)
 
+;;; Windmove
+(global-set-key (kbd "C-M-h") 'windmove-left)
+(global-set-key (kbd "C-M-j") 'windmove-down)
+(global-set-key (kbd "C-M-k") 'windmove-up)
+(global-set-key (kbd "C-M-l") 'windmove-right)
+
 ;;; Whitespace cleanup
 (global-whitespace-cleanup-mode)
 

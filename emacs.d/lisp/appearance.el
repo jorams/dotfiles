@@ -6,23 +6,19 @@
 			 (expand-file-name (concat user-emacs-directory
 									   "themes")))
 
-(load-theme 'my-darktooth t)
+(defun j/load-theme ()
+  (load-theme 'my-darktooth t)
+  (set-frame-font "-Misc-Tamsyn-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"
+                  nil
+                  t))
 
-;; Font settings
-(set-frame-font "-Misc-Tamsyn-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"
-                nil
-                t)
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (with-selected-frame frame
+                  (j/load-theme))))
+  (j/load-theme))
 
-
-;; Better Company-mode styling
-(let ((bg (face-attribute 'default :background)))
-  (if (not (string= bg "nil"))
-      (custom-set-faces
-       `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 4)))))
-       `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
-       `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
-       `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
-       `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))))
 
 ;; Highlight matching parens
 (show-paren-mode 1)

@@ -1,9 +1,10 @@
 [Unit]
 Description=Emacs: the extensible, self-documenting text editor
+After=envoy@ssh-agent.service
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/emacs --daemon
+ExecStart=/usr/bin/bash -c 'source <(envoy -dp); /usr/bin/emacs --daemon'
 ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
 Restart=always
 

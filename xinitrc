@@ -12,26 +12,19 @@ fi
 # Fix Java
 wmname LG3D &
 
-# Make Skype look prettier
-export GTK2_RC_FILES="/etc/gtk-2.0/gtkrc:$HOME/.gtkrc-2.0"
-
 defaults &
 backg &
 systemctl --user restart redshift
 
+xsetroot -cursor_name left_ptr &
 case "$2" in
-    xbmc) amixer set Master 100% && exec xbmc-standalone
-        ;;
-    b) sxhkd &
-        xsetroot -cursor_name left_ptr &
-        exec bspwm
-        ;;
-    stumpdev)
-        xsetroot -cursor_name left_ptr &
+    ddev)
         exec ~/dev/lisp/stumpwm/stumpwm
         ;;
+    edev)
+        exec ~/dev/stumpwm/stumpwm/stumpwm
+        ;;
     *)
-        xsetroot -cursor_name left_ptr &
         exec stumpwm
         ;;
 esac

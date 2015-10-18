@@ -3,11 +3,22 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-#--alias
+# Environment variables -------------------------------------------------------
+
+# ~/bin and ~/bin/blob come first so that other executables can be overridden
+PATH=~/bin:~/bin/blob:$PATH
+export PATH
+
+# Bash settings ---------------------------------------------------------------
+complete -cf sudo
+set -o emacs
+shopt -s globstar
+
+# Aliases
 alias ls='ls --indicator-style=slash --color=auto'
 alias color='stint | while read -r; do printf "#%X %X %X\n" $REPLY; done'
-alias sshot='scrot --exec '\''mv $f ~/pictures/screenshots'' 2>/dev/null'\'
 alias sc='sudo systemctl'
+alias scu='systemctl --user'
 alias sp='sudo pacman'
 alias cls='clear && ls'
 alias torrd='systemctl --user start transmission'
@@ -18,20 +29,17 @@ function cd() {
     ls
 }
 
-#-- Alternative binary paths
-PATH=$PATH:~/bin:~/bin/blob:~/.cabal/bin
-export PATH
+# Other program settings ------------------------------------------------------
 
-#--Get rid of .lesshst, useless clutter
+# .lesshst is useless clutter
 export LESSHISTFILE='-'
 
-complete -cf sudo
-set -o emacs
-shopt -s globstar
-
+# Envoy manages ssh-agent and sometimes gpg-agent
 envoy -t ssh-agent id_ecdsa
 envoy -t gpg-agent
 source <(envoy -p)
+
+# The prompt ------------------------------------------------------------------
 
 my_prompt () {
     last=$?

@@ -26,7 +26,7 @@
 
 (defprogram-shortcut emacs
   :key (kbd "s-e")
-  :command "emacsclient -c -a \"\""
+  :command "emacs"
   :props '(:class "Emacs")
   :pullp t
   :pull-key (kbd "s-E"))

@@ -18,7 +18,7 @@
    :instance "irc" "irc"
    :instance "youtube-vid" "ytv"
    :class "Filezilla" "filezilla"
-   :class "Chromium" "chromium"))
+   :class "chromium" "chromium"))
 
 (add-hook *new-window-hook* 'normalize-window-titles)
 

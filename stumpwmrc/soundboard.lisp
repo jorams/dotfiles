@@ -72,7 +72,7 @@
 (defcommand bind-superkey (&optional (key "SPC") (sound "space"))
     (:string :string)
   "Bind KEY in *TOP-MAP* to `SUPERKEY KEY SOUND'"
-  (define-key *top-map* (kbd key) (format nil "superspace ~A ~A" key sound)))
+  (define-key *top-map* (kbd key) (format nil "superkey ~A ~A" key sound)))
 
 (defcommand unbind-superkey (&optional (key "SPC"))
     (:string)

@@ -58,4 +58,23 @@
         (mixalot:mixer-add-streamer *soundboard-mixer* streamer)))))
 
 (define-key *root-map* (kbd "z") '*soundboard-keymap*)
+
 (start-soundboard)
+
+;;; Superkeys -----------------------------------------------------------------
+
+(defcommand superkey (&optional (key "SPC") (sound "space"))
+    (:string :string)
+  "Play a sound and send a key."
+  (soundboard sound)
+  (stumpwm::send-fake-key (current-window) (kbd key)))
+
+(defcommand bind-superkey (&optional (key "SPC") (sound "space"))
+    (:string :string)
+  "Bind KEY in *TOP-MAP* to `SUPERKEY KEY SOUND'"
+  (define-key *top-map* (kbd key) (format nil "superspace ~A ~A" key sound)))
+
+(defcommand unbind-superkey (&optional (key "SPC"))
+    (:string)
+  "Unbind KEY in *TOP-MAP*, meant to undo the effect of BIND-SUPERKEY."
+  (undefine-key *top-map* (kbd key)))

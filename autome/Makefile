@@ -14,3 +14,4 @@ autome:
 	--dispatch-entry puburl/autome/puburl:cli       \
 	--dispatch-entry defaults/autome/defaults:cli   \
 	--dispatch-entry linkbox/autome/linkbox:cli     \
+	--dispatch-entry browser/autome/browser:cli     \

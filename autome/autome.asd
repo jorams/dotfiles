@@ -9,11 +9,13 @@
                #:quri
                #:optima
                #:optima.ppcre
-               #:drakma)
+               #:drakma
+               #:cl-shellwords)
   :pathname "src"
   :components ((:file "util")
                (:file "volume")
                (:file "backlight")
                (:file "puburl")
                (:file "linkbox")
-               (:file "defaults")))
+               (:file "defaults")
+               (:file "browser")))

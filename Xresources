@@ -3,7 +3,7 @@ URxvt*scrollBar: false
 ! Url stuff
 URxvt.perl-ext:     default,url-select
 URxvt.keysym.M-u:   perl:url-select:select_next
-URxvt.url-select.launcher:  /usr/bin/firefox -P default -new-tab
+URxvt.url-select.launcher:  browser
 URxvt.url-select.underline: true
 URxvt.font: -*-tamsyn-medium-r-*-*-16-*-*-*-*-*-*-*
 

@@ -40,7 +40,8 @@
      writeroom-mode
      centered-cursor-mode
      magit
-     transmission)))
+     transmission
+     slime-company)))
 
 ;;; Now really
 (condition-case nil

@@ -28,6 +28,7 @@
 (require 'utils)
 (require 'setup-slime)
 (require 'setup-helm)
+(require 'setup-org)
 (require 'setup-misc)
 (require 'setup-mu4e)
 

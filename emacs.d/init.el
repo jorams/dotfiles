@@ -18,6 +18,8 @@
 ;;; Setup packages
 (require 'setup-packages)
 
+(load "~/.private.el")
+
 ;;; Make it look pretty
 (require 'appearance)
 
@@ -25,11 +27,8 @@
 (require 'defaults)
 (require 'utils)
 (require 'setup-slime)
-(require 'setup-circe)
 (require 'setup-helm)
 (require 'setup-misc)
-;;(require 'setup-evil)
-(require 'setup-non-evil)
 (require 'setup-mu4e)
 
 ;;; init.el ends here

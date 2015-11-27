@@ -10,23 +10,18 @@
 (add-to-list 'auto-mode-alist '("\\.less$" . less-css-mode))
 
 ;;; Lua mode
-
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
-
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
 ;;; Markdown mode
-
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
-
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;;; Web-mode
-
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
@@ -39,12 +34,10 @@
 (setq-default web-mode-markup-indent-offset 2)
 
 ;;; PHP mode
-
 (autoload 'php-mode "php-mode" "Major mode for editing php code." t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
 ;;; Arduino mode
-
 (autoload 'arduino-mode "arduino-mode"
   "Major mode for editing Arduino files" t)
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . arduino-mode))
@@ -98,7 +91,6 @@
 (global-whitespace-cleanup-mode)
 
 ;;; Company mode
-
 (require 'company)
 (add-to-list 'company-backends 'company-anaconda)
 (define-key company-active-map (kbd "RET") ())
@@ -116,6 +108,21 @@
 
 ;;; Centered Cursor Mode
 (setq-default ccm-recenter-at-end-of-file t)
+
+;;; Multiple Cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+
+;;; Expand region
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+;;; Undo Tree
+(global-undo-tree-mode)
 
 (provide 'setup-misc)
 ;;; setup-misc.el ends here

@@ -24,6 +24,12 @@
     (while (< (current-column) fill-column)
       (insert-char char))))
 
+(defun fill-to-end-- ()
+  (interactive)
+  (fill-to-end ?\-))
+
+(global-set-key (kbd "M-F") 'fill-to-end--)
+
 ;;; Taken from here:
 ;;; http://blog.bookworm.at/2007/03/pretty-print-xml-with-emacs.html
 (defun bf-pretty-print-xml-region (begin end)

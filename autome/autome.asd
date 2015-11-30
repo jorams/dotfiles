@@ -10,7 +10,8 @@
                #:optima
                #:optima.ppcre
                #:drakma
-               #:cl-shellwords)
+               #:cl-shellwords
+               #:ubiquitous)
   :pathname "src"
   :components ((:file "util")
                (:file "volume")

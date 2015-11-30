@@ -16,10 +16,7 @@
    *url*
    :method :post
    :parameters
-   (append `(("auth"
-              .
-              #.(or (getenv "linkbox_auth")
-                    (error "linkbox_auth is not an environment variable!"))))
+   (append `(("auth" . ,(ubiquitous:value :linkbox :auth)))
            (plist-alist parameters))))
 
 (defun shorten (url)

@@ -74,6 +74,9 @@ and output
 The second one doesn't make any sense, but it's handled fine."
   (alexandria:with-gensyms (argv options)
     `(defun ,name (,argv)
+       ;; Set up configuration
+       (ubiquitous:restore :autome)
+       ;; Let's go
        (opts:define-opts
            (:name :help
             :description "print this help text"

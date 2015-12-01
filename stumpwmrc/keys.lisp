@@ -106,6 +106,13 @@
   :pullp t
   :pull-key (kbd "s-A"))
 
+(defprogram-shortcut android-studio
+  :key (kbd "s-s")
+  :command "android-studio"
+  :props '(:class "jetbrains-studio")
+  :pullp t
+  :pull-key (kbd "s-S"))
+
 ;;; Miscellaneous
 
 (defmacro defkeymap (name &body bindings)

@@ -41,7 +41,8 @@
      centered-cursor-mode
      magit
      transmission
-     slime-company)))
+     slime-company
+     company-quickhelp)))
 
 ;;; Now really
 (condition-case nil

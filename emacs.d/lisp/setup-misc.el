@@ -96,6 +96,7 @@
 (define-key company-active-map (kbd "RET") ())
 (define-key company-active-map [return] ())
 (define-key company-active-map (kbd "M-RET") 'company-complete-selection)
+(company-quickhelp-mode)
 
 ;;; Magit
 (global-set-key (kbd "M-M") 'magit-status)

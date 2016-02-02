@@ -53,6 +53,9 @@
 (js2r-add-keybindings-with-prefix "C-c C-m")
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
 
+;;; C++
+(fa-config-default)
+(semantic-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Other modes

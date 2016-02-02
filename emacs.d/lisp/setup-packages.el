@@ -43,6 +43,7 @@
      transmission
      slime-company
      company-quickhelp
+     function-args
      yasnippet)))
 
 ;;; Now really

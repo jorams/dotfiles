@@ -98,6 +98,9 @@
 (define-key company-active-map (kbd "M-RET") 'company-complete-selection)
 (company-quickhelp-mode)
 
+;;; Yasnippet
+(yas-global-mode 1)
+
 ;;; Magit
 (global-set-key (kbd "M-M") 'magit-status)
 

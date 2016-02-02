@@ -42,7 +42,8 @@
      magit
      transmission
      slime-company
-     company-quickhelp)))
+     company-quickhelp
+     yasnippet)))
 
 ;;; Now really
 (condition-case nil

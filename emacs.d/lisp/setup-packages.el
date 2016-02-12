@@ -43,7 +43,10 @@
      transmission
      slime-company
      company-quickhelp
-     function-args
+     irony
+     company-irony
+     flycheck-irony
+     irony-eldoc
      yasnippet)))
 
 ;;; Now really

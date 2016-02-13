@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: post
+# key: post
+# --
+$_POST['$1']

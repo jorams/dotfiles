@@ -3,5 +3,5 @@
 # key: fea
 # --
 $1.forEach(function($2) {
-    $3
+    $0
 });

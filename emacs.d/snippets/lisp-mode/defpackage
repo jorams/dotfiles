@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: defpackage
+# key: pack
+# --
+(defpackage :$1
+  (:use :cl$2)
+  (:export))
+(in-package :$1)
+$0

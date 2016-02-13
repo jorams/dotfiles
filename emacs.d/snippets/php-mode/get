@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: get
+# key: get
+# --
+$_GET['$1']

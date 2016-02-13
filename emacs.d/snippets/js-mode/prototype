@@ -3,5 +3,5 @@
 # key: p
 # --
 $1.prototype.$2 = function($3) {
-    $4
+    $0
 };

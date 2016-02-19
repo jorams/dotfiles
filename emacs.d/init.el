@@ -408,7 +408,28 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package transmission
   :ensure t
-  :commands (transmission))
+  :commands (transmission)
+  :config
+  (defun transmission-add-url (torrent &optional directory)
+    "Add a torrent from a URL. This to work around an issue where
+Helm's file input will prepend the current directory to the
+entered path, which is a URL in this case."
+    (interactive (list (read-string "Add torrent URL: ")
+                       (if current-prefix-arg
+                           (read-directory-name "Target directory: "))))
+    (let ((arguments
+           (append `(:filename ,torrent)
+                   (list :download-dir directory))))
+      (let-alist (transmission-request "torrent-add" arguments)
+        (pcase .result
+          ("success"
+           (or (and .arguments.torrent-added.name
+                    (message "Added %s" .arguments.torrent-added.name))
+               (and .arguments.torrent-duplicate.name
+                    (user-error "Already added %s"
+                                .arguments.torrent-duplicate.name))))
+          (_ (user-error .result))))))
+  (define-key transmission-mode-map (kbd "A") 'transmission-add-url))
 
 ;;; Projectile ----------------------------------------------------------------
 

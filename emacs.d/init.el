@@ -133,9 +133,9 @@
 
 (defun j/fill-to-end-- ()
   (interactive)
-  (fill-to-end ?\-))
+  (j/fill-to-end ?\-))
 
-(bind-key "M-F" 'fill-to-end--)
+(bind-key "M-F" 'j/fill-to-end--)
 
 ;;; Smarter C-a.
 ;;; From http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/

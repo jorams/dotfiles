@@ -317,6 +317,7 @@ point reaches the beginning or end of the buffer, stop there."
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this-dwim)
+         ("C-c M-i" . mc/insert-numbers)
          ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 
 ;;; Slime-style elisp navigation ----------------------------------------------

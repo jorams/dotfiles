@@ -334,6 +334,7 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (global-company-mode)
   (setq company-idle-delay 0)
+  (setq company-tooltip-align-annotations t)
   (unbind-key "RET" company-active-map)
   (bind-key "M-RET" 'company-complete-selection company-active-map))
 
@@ -426,9 +427,11 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package sly-company
   :ensure t
   :config
+  (setq sly-company-completion 'fuzzy)
   (defadvice sly-company-doc-buffer (around package-guard (candidate) activate)
     (unless (string-match-p ":$" candidate)
-      ad-do-it)))
+      ad-do-it))
+  (add-hook 'sly-mode-hook 'sly-company-mode))
 
 ;;; Lua -----------------------------------------------------------------------
 

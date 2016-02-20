@@ -15,3 +15,4 @@ autome:
 	--dispatch-entry defaults/autome/defaults:cli   \
 	--dispatch-entry linkbox/autome/linkbox:cli     \
 	--dispatch-entry browser/autome/browser:cli     \
+	--dispatch-entry nof/autome/notiflier:cli       \

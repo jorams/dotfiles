@@ -19,4 +19,5 @@
                (:file "puburl")
                (:file "linkbox")
                (:file "defaults")
-               (:file "browser")))
+               (:file "browser")
+               (:file "notiflier")))

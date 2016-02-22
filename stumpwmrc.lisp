@@ -353,7 +353,7 @@ then pastes it into the command."
                             (run-shell-command
                              (format nil "mpv '~a'" (get-x-selection))))))
 
-(define-key *top-map* (kbd "s-y") 'firefox-url-as-vid)
+(define-key *top-map* (kbd "s-y") "firefox-url-as-vid")
 
 ;;; Window pulling ------------------------------------------------------------
 

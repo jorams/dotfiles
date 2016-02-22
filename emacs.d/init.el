@@ -336,7 +336,11 @@ point reaches the beginning or end of the buffer, stop there."
   (setq company-idle-delay 0)
   (setq company-tooltip-align-annotations t)
   (unbind-key "RET" company-active-map)
-  (bind-key "M-RET" 'company-complete-selection company-active-map))
+  (bind-key "M-RET" 'company-complete-selection company-active-map)
+  (unbind-key "TAB" company-active-map)
+  ;; This next line would normally use unbind-key, but that breaks on vectors.
+  (bind-key [tab] nil company-active-map)
+  (bind-key "M-TAB" 'company-complete-common company-active-map))
 
 (use-package company-quickhelp
   :ensure t

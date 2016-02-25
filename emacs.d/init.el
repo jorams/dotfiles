@@ -319,6 +319,13 @@ point reaches the beginning or end of the buffer, stop there."
          ("C-c M-i" . mc/insert-numbers)
          ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 
+;;; Aggressive indentation ----------------------------------------------------
+
+(use-package aggressive-indent :ensure t :config
+  (add-hook 'lisp-mode-hook #'aggressive-indent-mode)
+  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+  (add-hook 'c++-mode-hook #'aggressive-indent-mode))
+
 ;;; Slime-style elisp navigation ----------------------------------------------
 
 (use-package elisp-slime-nav

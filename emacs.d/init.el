@@ -7,9 +7,8 @@
 
 ;;; Package installation ------------------------------------------------------
 
-;;; Disable automatic package loading
+;;; Initialize package.el
 (package-initialize nil)
-(setq package-enable-at-startup nil)
 
 ;;; Allow loading locally installed packages
 (let ((vendor-dir (expand-file-name "vendor" user-emacs-directory)))

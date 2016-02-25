@@ -436,6 +436,11 @@ entered path, which is a URL in this case."
           (_ (user-error .result))))))
   (define-key transmission-mode-map (kbd "A") 'transmission-add-url))
 
+;;; The Silver Searcher--------------------------------------------------------
+
+(use-package ag
+  :ensure t)
+
 ;;; Projectile ----------------------------------------------------------------
 
 (use-package projectile

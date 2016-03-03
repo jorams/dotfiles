@@ -174,8 +174,9 @@ point reaches the beginning or end of the buffer, stop there."
 									   "themes")))
 
 (defun j/load-theme ()
-  (load-theme 'my-darktooth t)
-  (set-frame-font "-Misc-Tamsyn-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"
+  (set-frame-parameter nil 'background-mode 'dark)
+  (load-theme 'solarized t)
+  (set-frame-font (font-spec :family "Input Mono")
                   nil
                   t))
 

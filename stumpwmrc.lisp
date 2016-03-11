@@ -85,7 +85,8 @@
   ;; Apparently we first have to close the tray, or the second monitor won't be
   ;; recognized
   (run-with-timer 1 nil #'run-shell-command (format nil "xrandr ~a" args))
-  (run-with-timer 2 nil #'stumptray:stumptray))
+  (run-with-timer 2 nil #'stumptray:stumptray)
+  (run-with-timer 2 nil 'enable-all-mode-lines))
 
 (defkeymap *xrandr-map*
   ;; Laptop
@@ -453,8 +454,13 @@ then pastes it into the command."
 (setf *mode-line-border-color* "Black")
 (setf *mode-line-highlight-template* "^B~A^b")
 
-;; Enable the mode line on the first head
-(mode-line)
+(defcommand enable-all-mode-lines () ()
+  "Enable all mode lines on the current screen."
+  (loop for head in (screen-heads (current-screen))
+        do (enable-mode-line (current-screen) head t)))
+
+;; Enable the mode line on all current heads
+(enable-all-mode-lines)
 
 ;; Enable Stumptray
 (stumptray::stumptray)

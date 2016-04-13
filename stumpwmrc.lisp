@@ -81,12 +81,14 @@
 ;;; Screen configuration ------------------------------------------------------
 
 (defcommand xrandr (args) ((:rest "xrandr "))
+  (run-shell-command "killall whatpulse")
   (stumptray:stumptray)
   ;; Apparently we first have to close the tray, or the second monitor won't be
   ;; recognized
   (run-with-timer 1 nil #'run-shell-command (format nil "xrandr ~a" args))
   (run-with-timer 2 nil #'stumptray:stumptray)
-  (run-with-timer 2 nil 'enable-all-mode-lines))
+  (run-with-timer 2 nil 'enable-all-mode-lines)
+  (run-with-timer 2 nil #'run-shell-command "whatpulse"))
 
 (defkeymap *xrandr-map*
   ;; Laptop
@@ -464,6 +466,9 @@ then pastes it into the command."
 
 ;; Enable Stumptray
 (stumptray::stumptray)
+
+;; Run Whatpulse, now that stumptray is started
+(run-shell-command "whatpulse")
 
 ;;; Soundboard ----------------------------------------------------------------
 

@@ -80,7 +80,6 @@
 
 ;;; Sync selection and X clipboard
 (setq x-select-enable-clipboard t)
-(setq x-select-enable-primary t)
 
 ;;; Allow editing of compressed files
 (auto-compression-mode t)

@@ -245,6 +245,10 @@ point reaches the beginning or end of the buffer, stop there."
   :commands (ace-window)
   :bind ("C-x o" . ace-window))
 
+;;; Winner Mode ---------------------------------------------------------------
+
+(winner-mode 1)
+
 ;;; Windmove ------------------------------------------------------------------
 
 (bind-key "C-S-h" 'windmove-left)

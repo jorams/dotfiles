@@ -473,6 +473,11 @@ point reaches the beginning or end of the buffer, stop there."
   :mode "\\.lua\\'"
   :interpreter "lua")
 
+(use-package company-lua
+  :ensure t
+  :init
+  (add-to-list 'company-backends 'company-lua))
+
 ;;; Markdown ------------------------------------------------------------------
 
 (use-package markdown-mode

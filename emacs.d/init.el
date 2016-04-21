@@ -427,6 +427,12 @@ point reaches the beginning or end of the buffer, stop there."
   :commands (magit-status)
   :bind ("M-M" . magit-status))
 
+;;; Git Time Machine ----------------------------------------------------------
+
+(use-package git-timemachine
+  :ensure t
+  :commands (git-timemachine))
+
 ;;; Transmission --------------------------------------------------------------
 
 (use-package transmission

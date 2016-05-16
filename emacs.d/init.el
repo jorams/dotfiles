@@ -516,7 +516,8 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package company-lua
   :ensure t
   :init
-  (add-to-list 'company-backends 'company-lua))
+  (add-hook 'lua-mode-hook
+            (lambda () (setq-local company-backends '(company-lua)))))
 
 ;;; Markdown ------------------------------------------------------------------
 

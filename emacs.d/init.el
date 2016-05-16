@@ -310,6 +310,10 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (global-whitespace-cleanup-mode))
 
+(use-package visual-fill-column
+  :ensure t
+  :commands (visual-fill-column-mode))
+
 ;;; Expand region -------------------------------------------------------------
 
 (use-package expand-region

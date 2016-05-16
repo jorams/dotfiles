@@ -123,6 +123,36 @@
                                        (format-time-string "%Y-%m-%d.day"))))
   (auto-fill-mode 1))
 
+(defun j/linkbox (buffer start end type)
+  (interactive
+   (list (window-buffer (minibuffer-selected-window))
+         (region-beginning)
+         (region-end)
+         (let ((name (buffer-file-name
+                      (window-buffer
+                       (minibuffer-selected-window)))))
+           (if (or current-prefix-arg
+                   (null name))
+               (read-string "File extension: "
+                            nil
+                            nil
+                            (and name (file-name-extension name)))
+             (file-name-extension name)))))
+  (with-temp-buffer
+    (insert-buffer-substring buffer start end)
+    (call-process-region (point-min)
+                         (point-max)
+                         shell-file-name
+                         t
+                         t
+                         nil
+                         shell-command-switch
+                         (concat "linkbox --type " type))
+    (kill-new (buffer-substring-no-properties (point-min)
+                                              (point-max)))
+    (message (buffer-substring-no-properties (point-min)
+                                             (point-max)))))
+
 (defun j/fill-to-end (char)
   (interactive "cFill Character:")
   (save-excursion

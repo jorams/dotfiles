@@ -566,7 +566,8 @@ PHP-mode also extends c-mode, which normally triggers a warning."
   :commands (irony-mode)
   :config
   (add-hook 'c++-mode-hook 'enable-irony-mode t)
-  (add-hook 'c-mode-hook 'enable-irony-mode t))
+  (add-hook 'c-mode-hook 'enable-irony-mode t)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
 (use-package irony-eldoc
   :ensure t

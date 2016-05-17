@@ -376,6 +376,13 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode))
 
+;;; GNU Global tags -----------------------------------------------------------
+
+(use-package ggtags
+  :ensure t
+  :config
+  (add-hook 'c-mode-hook 'ggtags-mode))
+
 ;;; Company -------------------------------------------------------------------
 
 (use-package company

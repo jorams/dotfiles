@@ -287,6 +287,11 @@ point reaches the beginning or end of the buffer, stop there."
 (bind-key "C-S-k" 'windmove-up)
 (bind-key "C-S-l" 'windmove-right)
 
+;;; Ediff ---------------------------------------------------------------------
+
+(setq-default ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq-default ediff-split-window-function 'split-window-horizontally)
+
 ;;; Helm-swoop ----------------------------------------------------------------
 
 (use-package helm-swoop

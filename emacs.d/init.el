@@ -49,6 +49,7 @@
   (setq show-trailing-whitespace nil))
 (add-hook 'minibuffer-inactive-mode-hook #'j/hide-whitespace)
 (add-hook 'magit-popup-mode-hook #'j/hide-whitespace)
+(add-hook 'sql-interactive-mode-hook #'j/hide-whitespace)
 
 ;;; Indicate empty lines at the end of a buffer
 (setq-default indicate-empty-lines t)

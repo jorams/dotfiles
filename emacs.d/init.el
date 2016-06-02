@@ -362,7 +362,9 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :bind (("C-S-c C-S-c" . mc/edit-lines)
          ("C->" . mc/mark-next-like-this)
+         ("C-M->" . mc/mark-next-symbol-like-this)
          ("C-<" . mc/mark-previous-like-this)
+         ("C-M-<" . mc/mark-previous-symbol-like-this)
          ("C-c C-<" . mc/mark-all-like-this-dwim)
          ("C-c M-i" . mc/insert-numbers)
          ("C-S-<mouse-1>" . mc/add-cursor-on-click)))

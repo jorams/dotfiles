@@ -533,7 +533,9 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :init
   (add-hook 'lua-mode-hook
-            (lambda () (setq-local company-backends '(company-lua)))))
+            (lambda ()
+              (setq-local company-backends '(company-lua))
+              (electric-indent-mode -1))))
 
 ;;; Markdown ------------------------------------------------------------------
 

@@ -587,6 +587,10 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :mode "\\.less\\'")
 
+(use-package sass-mode
+  :ensure t
+  :mode "\\.scss\\'")
+
 ;;; Python --------------------------------------------------------------------
 
 (use-package anaconda-mode

@@ -554,7 +554,9 @@ point reaches the beginning or end of the buffer, stop there."
          "\\.djhtml\\'"
          "\\.twig\\'")
   :config
-  (setq-default web-mode-markup-indent-offset 2))
+  (setq-default web-mode-markup-indent-offset 2)
+  (add-hook 'web-mode-hook
+            (lambda () (autopair-mode -1))))
 
 (use-package emmet-mode
   :ensure t

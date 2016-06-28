@@ -593,7 +593,7 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :mode "\\.less\\'")
 
-(use-package sass-mode
+(use-package scss-mode
   :ensure t
   :mode "\\.scss\\'")
 

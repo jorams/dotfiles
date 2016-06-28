@@ -107,6 +107,10 @@
   (setq-default save-place t)
   (setq save-place-file (expand-file-name ".places" user-emacs-directory)))
 
+;;; Enable some commands
+(put 'downcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
 ;;; Utilities -----------------------------------------------------------------
 
 (defun j/wrap-hard ()

@@ -531,7 +531,9 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package lua-mode
   :ensure t
   :mode "\\.lua\\'"
-  :interpreter "lua")
+  :interpreter "lua"
+  :config
+  (setq-default lua-indent-level 2))
 
 (use-package company-lua
   :ensure t

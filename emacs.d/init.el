@@ -101,6 +101,14 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 
+;;; Keep the cursor at the same point on the screen
+(setq scroll-preserve-screen-position 1)
+
+(use-package view
+  :config
+  (bind-key "C-v" 'View-scroll-half-page-forward)
+  (bind-key "M-v" 'View-scroll-half-page-backward))
+
 ;;; Remember point position
 (use-package saveplace
   :config

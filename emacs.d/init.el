@@ -519,6 +519,8 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package sly-company
   :ensure t
+  :init
+  (add-to-list 'company-backends 'sly-company)
   :config
   (setq sly-company-completion 'fuzzy)
   (defadvice sly-company-doc-buffer (around package-guard (candidate) activate)

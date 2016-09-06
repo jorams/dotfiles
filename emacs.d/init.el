@@ -101,13 +101,23 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 
-;;; Keep the cursor at the same point on the screen
-(setq scroll-preserve-screen-position 1)
+;;; Make C-v and M-v scroll by half a page, maintaining the current screen
+;;; position of the cursor.
+
+(defun j/scroll-half-page-forward (&optional lines)
+  (interactive "P")
+  (let ((scroll-preserve-screen-position 1))
+    (View-scroll-half-page-forward lines)))
+
+(defun j/scroll-half-page-backward (&optional lines)
+  (interactive "P")
+  (let ((scroll-preserve-screen-position 1))
+    (View-scroll-half-page-backward lines)))
 
 (use-package view
   :config
-  (bind-key "C-v" 'View-scroll-half-page-forward)
-  (bind-key "M-v" 'View-scroll-half-page-backward))
+  (bind-key "C-v" 'j/scroll-half-page-forward)
+  (bind-key "M-v" 'j/scroll-half-page-backward))
 
 ;;; Remember point position
 (use-package saveplace

@@ -8,9 +8,9 @@
 
 ;;; Miscellaneous utilities
 
-(defmacro run! (program)
+(defmacro run! (program &rest arguments)
   "Run program, return whether or not it succeeded."
-  `(nth-value 2 (uiop:run-program ,program)))
+  `(nth-value 2 (uiop:run-program ,program ,@arguments)))
 
 (defun boolify (input)
   "Take an input (string) and test whether it is positive or negative.

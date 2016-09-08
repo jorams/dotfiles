@@ -20,4 +20,5 @@
                (:file "linkbox")
                (:file "defaults")
                (:file "browser")
-               (:file "notiflier")))
+               (:file "notiflier")
+               (:file "dush")))

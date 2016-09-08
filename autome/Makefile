@@ -16,3 +16,4 @@ autome:
 	--dispatch-entry linkbox/autome/linkbox:cli     \
 	--dispatch-entry browser/autome/browser:cli     \
 	--dispatch-entry nof/autome/notiflier:cli       \
+	--dispatch-entry dush/autome/dush:cli           \

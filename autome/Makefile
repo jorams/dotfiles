@@ -17,3 +17,4 @@ autome:
 	--dispatch-entry browser/autome/browser:cli     \
 	--dispatch-entry nof/autome/notiflier:cli       \
 	--dispatch-entry dush/autome/dush:cli           \
+	--dispatch-entry packup/autome/packup:cli       \

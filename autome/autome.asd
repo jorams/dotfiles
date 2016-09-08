@@ -21,4 +21,5 @@
                (:file "defaults")
                (:file "browser")
                (:file "notiflier")
-               (:file "dush")))
+               (:file "dush")
+               (:file "packup")))

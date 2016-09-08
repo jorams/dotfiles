@@ -282,6 +282,11 @@ point reaches the beginning or end of the buffer, stop there."
                     (interactive)
                     (with-helm-alive-p
                       (helm-quit-and-execute-action 'helm-magit-status)))
+            helm-find-files-map)
+  (bind-key "M-U" (lambda ()
+                    (interactive)
+                    (start-process "urxvt" nil
+                                   "urxvt" "-cd" (helm-get-selection)))
             helm-find-files-map))
 
 ;;; Avy -----------------------------------------------------------------------

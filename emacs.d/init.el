@@ -391,6 +391,13 @@ point reaches the beginning or end of the buffer, stop there."
          ("C-c M-i" . mc/insert-numbers)
          ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 
+;;; Shift-number --------------------------------------------------------------
+
+(use-package shift-number
+  :ensure t
+  :bind (("M-+" . shift-number-up)
+         ("M-_" . shift-number-down)))
+
 ;;; Aggressive indentation ----------------------------------------------------
 
 (use-package aggressive-indent :ensure t :config

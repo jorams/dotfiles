@@ -462,7 +462,14 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Org -----------------------------------------------------------------------
 
-(use-package org-passwords)
+(use-package org-passwords
+  :commands (org-passwords
+             org-passwords-mode
+             org-passwords-copy-password
+             org-passwords-copy-username
+             org-passwords-open-url
+             org-passwords-random-words
+             org-passwords-generate-password))
 
 (defvar j/org-notes-file "~/life/notes.org")
 (bind-key "M-C" 'org-capture)
@@ -531,7 +538,12 @@ point reaches the beginning or end of the buffer, stop there."
 ;;; The Silver Searcher--------------------------------------------------------
 
 (use-package ag
-  :ensure t)
+  :ensure t
+  :commands (ag
+             ag-project
+             ag-files
+             ag-dired
+             ag-dired-regexp))
 
 ;;; Projectile ----------------------------------------------------------------
 
@@ -543,14 +555,14 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package sly
   :ensure t
+  :bind (("M-H" . common-lisp-hyperspec))
   :config
   (setq common-lisp-hyperspec-root "file:///home/joram/.dump/HyperSpec/")
-  :bind (("M-H" . common-lisp-hyperspec)))
+  (add-to-list 'company-backends 'sly-company))
 
 (use-package sly-company
   :ensure t
-  :init
-  (add-to-list 'company-backends 'sly-company)
+  :commands sly-company
   :config
   (setq sly-company-completion 'fuzzy)
   (defadvice sly-company-doc-buffer (around package-guard (candidate) activate)
@@ -569,6 +581,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package company-lua
   :ensure t
+  :commands company-lua
   :init
   (add-hook 'lua-mode-hook
             (lambda ()
@@ -601,7 +614,8 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package emmet-mode
   :ensure t
-  :config
+  :commands emmet-mode
+  :init
   (add-hook 'web-mode-hook 'emmet-mode t))
 
 ;;; PHP -----------------------------------------------------------------------
@@ -614,13 +628,15 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package js2-mode
   :ensure t
-  :mode "\\.js\\'")
+  :mode "\\.js\\'"
+  :config
+  (add-hook 'js2-mode-hook 'js2-refactor-mode))
 
 (use-package js2-refactor
   :ensure t
+  :commands js2-refactor-mode
   :config
-  (js2r-add-keybindings-with-prefix "C-c C-m")
-  (add-hook 'js2-mode-hook #'js2-refactor-mode t))
+  (js2r-add-keybindings-with-prefix "C-c C-m"))
 
 ;;; CSS -----------------------------------------------------------------------
 

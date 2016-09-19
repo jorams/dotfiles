@@ -258,42 +258,43 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (global-undo-tree-mode))
 
-;;; Helm ----------------------------------------------------------------------
+;;; Ivy -----------------------------------------------------------------------
 
-(defun helm-magit-status (candidate)
-  (interactive)
-  (magit-status (file-name-directory candidate)))
+;;; Small utilities
 
-(use-package helm
+(defun j/run-urxvt-action (dir)
+  (start-process "urxvt" nil
+                 "urxvt" "-cd" dir))
+
+(defun j/delete-file-action (file)
+  (dired-delete-file file 'top t))
+
+;;; Proper fuzzy matching and sorting
+(use-package flx :ensure t)
+
+(use-package counsel
   :ensure t
-  :init
-  (progn
-    (require 'helm-config)
-    (setq helm-split-window-in-side-p t
-          helm-move-to-line-cycle-in-source t)
-    (helm-mode))
-  :bind (("C-c h" . helm-command-prefix)
-         ("C-x b" . helm-mini)
-         ("C-x C-b" . helm-buffers-list)
-         ("C-x C-f" . helm-find-files)
-         ("C-c h o" . helm-occur)
-         ("M-x" . helm-M-x)
-         ("M-y" . helm-show-kill-ring))
+  :demand t
+  :bind (("C-s" . swiper)
+         ("C-c C-r" . ivy-resume))
   :config
-  (bind-key "<tab>" 'helm-execute-persistent-action helm-map)
-  (bind-key "<C-tab>" 'helm-select-action helm-map)
-  (bind-key "C-k" 'helm-find-files-up-one-level helm-find-files-map)
-  (bind-key "C-j" 'helm-execute-persistent-action helm-find-files-map)
-  (bind-key "M-M" (lambda ()
-                    (interactive)
-                    (with-helm-alive-p
-                      (helm-quit-and-execute-action 'helm-magit-status)))
-            helm-find-files-map)
-  (bind-key "M-U" (lambda ()
-                    (interactive)
-                    (start-process "urxvt" nil
-                                   "urxvt" "-cd" (helm-get-selection)))
-            helm-find-files-map))
+  ;; Enable keybinding overrides
+  (ivy-mode 1)
+  (counsel-mode 1)
+  ;; Settings
+  (setq ivy-use-virtual-buffers t
+        ivy-height 15
+        ivy-fixed-height-minibuffer t
+        ivy-re-builders-alist '((swiper . regexp-quote)
+                                (t . ivy--regex-fuzzy))
+        ivy-initial-inputs-alist nil)
+  ;; File navigation
+  (bind-key "C-l" 'counsel-up-directory counsel-find-file-map)
+  (ivy-add-actions
+   'counsel-find-file
+   '(("m" magit-status "magit")
+     ("u" j/run-urxvt-action "urxvt")
+     ("d" j/delete-file-action "delete"))))
 
 ;;; Avy -----------------------------------------------------------------------
 

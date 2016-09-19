@@ -618,6 +618,12 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (add-hook 'web-mode-hook 'emmet-mode t))
 
+(use-package company-web
+  :ensure t
+  :commands company-web-html
+  :init
+  (add-to-list 'company-backends 'company-web-html))
+
 ;;; PHP -----------------------------------------------------------------------
 
 (use-package php-mode

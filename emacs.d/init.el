@@ -86,7 +86,7 @@
 (auto-compression-mode t)
 
 ;;; Line length 79
-(setq-default fill-column 80)
+(setq-default fill-column 79)
 
 ;;; Handle CamelCase nicely
 (global-subword-mode 1)

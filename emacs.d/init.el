@@ -632,21 +632,6 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :mode "\\.scss\\'")
 
-;;; Python --------------------------------------------------------------------
-
-(use-package anaconda-mode
-  :ensure t
-  :config
-  (add-hook 'python-mode-hook 'anaconda-mode t)
-  (add-hook 'python-mode-hook 'turn-on-eldoc-mode))
-
-(use-package company-anaconda
-  :ensure t
-  :defer t
-  :init
-  (add-to-list 'company-backends 'company-anaconda)
-  (add-hook 'python-mode-hook 'company-mode t))
-
 ;;; C++ -----------------------------------------------------------------------
 
 (defun enable-irony-mode ()

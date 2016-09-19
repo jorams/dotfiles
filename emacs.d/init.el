@@ -301,6 +301,7 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package avy
   :ensure t
   :bind (("C-c j" . avy-goto-word-or-subword-1)
+         ("C-r" . avy-goto-word-or-subword-1)
          ("C-c l" . avy-goto-line)))
 
 ;;; Ace Window ----------------------------------------------------------------

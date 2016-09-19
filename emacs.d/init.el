@@ -101,6 +101,9 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 
+;;; Automatically pair pairs
+(electric-pair-mode 1)
+
 ;;; Make C-v and M-v scroll by half a page, maintaining the current screen
 ;;; position of the cursor.
 
@@ -325,13 +328,6 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :commands (helm-swoop helm-swoop-from-isearch)
   :init (bind-key "M-i" 'helm-swoop-from-isearch isearch-mode-map))
-
-;;; Autopair ------------------------------------------------------------------
-
-(use-package autopair
-  :ensure t
-  :config
-  (autopair-global-mode))
 
 ;;; Paredit -------------------------------------------------------------------
 
@@ -610,7 +606,11 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (setq-default web-mode-markup-indent-offset 2)
   (add-hook 'web-mode-hook
-            (lambda () (autopair-mode -1))))
+            '(lambda ()
+               (setq web-mode-enable-auto-pairing nil)
+               (setq-local
+                electric-pair-pairs
+                (append electric-pair-pairs '((?% . ?%)))))))
 
 (use-package emmet-mode
   :ensure t

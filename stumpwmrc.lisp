@@ -6,15 +6,15 @@
               "laptop")
   (pushnew :system-has-battery *features*))
 
-(ql:quickload '(#:slynk
+(ql:quickload '(#:swank
                 #:mpd #:notifications #:ttf-fonts #:stumptray
                 #:mixalot #:mixalot-mp3 #:mixalot-vorbis #:mixalot-flac))
 
 ;;; Remote control ------------------------------------------------------------
 
 (handler-case
-    (slynk:create-server :dont-close t :port 4005)
-  (serious-condition () (slynk:create-server :dont-close t :port 4006)))
+    (swank:create-server :dont-close t :port 4005)
+  (serious-condition () (swank:create-server :dont-close t :port 4006)))
 
 ;;; Utilities -----------------------------------------------------------------
 

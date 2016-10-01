@@ -554,22 +554,27 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Lisp ----------------------------------------------------------------------
 
-(use-package sly
+(use-package slime
   :ensure t
-  :bind (("M-H" . common-lisp-hyperspec))
+  :commands (slime
+             slime-connect)
+  :bind ("M-H" . hyperspec-lookup)
   :config
-  (setq common-lisp-hyperspec-root "file:///home/joram/.dump/HyperSpec/")
-  (add-to-list 'company-backends 'sly-company))
+  (setq inferior-lisp-program "/usr/bin/sbcl"
+        slime-contribs '(slime-fancy
+                         slime-indentation
+                         slime-company)))
 
-(use-package sly-company
+(use-package slime-company
   :ensure t
-  :commands sly-company
+  :commands company-slime
   :config
-  (setq sly-company-completion 'fuzzy)
-  (defadvice sly-company-doc-buffer (around package-guard (candidate) activate)
+  (setq slime-company-completion 'fuzzy)
+  (defadvice slime-company--doc-buffer (around package-guard
+                                               (candidate)
+                                               activate)
     (unless (string-match-p ":$" candidate)
-      ad-do-it))
-  (add-hook 'sly-mode-hook 'sly-company-mode))
+      ad-do-it)))
 
 ;;; Lua -----------------------------------------------------------------------
 

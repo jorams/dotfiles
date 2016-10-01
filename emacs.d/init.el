@@ -423,6 +423,7 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package ggtags
   :ensure t
   :config
+  (add-hook 'c-mode-hook 'ggtags-mode)
   (add-hook 'c++-mode-hook 'ggtags-mode)
   (add-hook 'php-mode-hook 'ggtags-mode))
 

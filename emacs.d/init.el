@@ -131,6 +131,9 @@
 ;;; Start a server for emacsclients
 (server-start)
 
+;;; Allow multiple recursive minibuffers
+(setq-default enable-recursive-minibuffers t)
+
 ;;; Enable some commands
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)

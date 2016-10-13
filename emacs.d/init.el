@@ -514,7 +514,9 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package magit
   :ensure t
   :commands (magit-status)
-  :bind ("M-M" . magit-status))
+  :bind ("M-M" . magit-status)
+  :config
+  (setq git-commit-summary-max-length 50))
 
 ;;; Git Time Machine ----------------------------------------------------------
 

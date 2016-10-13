@@ -662,35 +662,3 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package scss-mode
   :ensure t
   :mode "\\.scss\\'")
-
-;;; C++ -----------------------------------------------------------------------
-
-(defun enable-irony-mode ()
-  "Only enable irony when actually in a supported major mode.
-PHP-mode also extends c-mode, which normally triggers a warning."
-  (when (member major-mode irony-supported-major-modes)
-    (irony-mode 1)))
-
-(use-package irony
-  :ensure t
-  :commands (irony-mode)
-  :config
-  (add-hook 'c++-mode-hook 'enable-irony-mode t)
-  (add-hook 'c-mode-hook 'enable-irony-mode t)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
-
-(use-package irony-eldoc
-  :ensure t
-  :config
-  (add-hook 'irony-mode-hook 'irony-eldoc t))
-
-(use-package company-irony
-  :ensure t
-  :defer t
-  :init
-  (add-to-list 'company-backends 'company-irony))
-
-(use-package flycheck-irony
-  :ensure t
-  :config
-  (flycheck-irony-setup))

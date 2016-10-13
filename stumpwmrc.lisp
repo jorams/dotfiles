@@ -143,6 +143,11 @@
   :command "urxvt -name pms -e pms"
   :props '(:instance "pms"))
 
+(defprogram-shortcut cantata
+  :key (kbd "s-M")
+  :command "cantata"
+  :props '(:class "cantata"))
+
 (defprogram-shortcut gimp
   :key (kbd "s-g")
   :command "gimp"

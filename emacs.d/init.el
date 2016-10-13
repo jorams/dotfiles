@@ -330,13 +330,6 @@ point reaches the beginning or end of the buffer, stop there."
 (setq-default ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq-default ediff-split-window-function 'split-window-horizontally)
 
-;;; Helm-swoop ----------------------------------------------------------------
-
-(use-package helm-swoop
-  :ensure t
-  :commands (helm-swoop helm-swoop-from-isearch)
-  :init (bind-key "M-i" 'helm-swoop-from-isearch isearch-mode-map))
-
 ;;; Paredit -------------------------------------------------------------------
 
 (use-package paredit

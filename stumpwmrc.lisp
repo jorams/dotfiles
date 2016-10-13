@@ -399,6 +399,8 @@ then pastes it into the command."
 (setf *normal-border-width* 0)
 (setf *maxsize-border-width* 0)
 (set-focus-color "#222")
+(set-bg-color "#1c023c")
+(set-win-bg-color "#1c023c")
 
 (setf *mouse-focus-policy* :sloppy)
 (setf *new-frame-action* :empty)
@@ -455,8 +457,8 @@ then pastes it into the command."
                                              "^b] %W ^>%m(%N)"))
 (setf *time-modeline-string* "%H:%M")
 (setf *mode-line-timeout* 10)
-(setf *mode-line-background-color* "Black")
-(setf *mode-line-border-color* "Black")
+(setf *mode-line-background-color* "#1c023c")
+(setf *mode-line-border-color* "#1c023c")
 (setf *mode-line-highlight-template* "^B~A^b")
 
 (defcommand enable-all-mode-lines () ()

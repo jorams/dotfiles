@@ -26,6 +26,7 @@
   (package-install 'use-package))
 (require 'use-package)
 (require 'bind-key)
+(require 'diminish)
 
 ;;; Backups -------------------------------------------------------------------
 
@@ -90,6 +91,7 @@
 
 ;;; Handle CamelCase nicely
 (global-subword-mode 1)
+(diminish 'subword-mode)
 
 ;;; Delete selection before typing with region active
 (delete-selection-mode)
@@ -137,6 +139,26 @@
 ;;; Enable some commands
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+
+;;; Diminish various modes
+
+(diminish 'abbrev-mode)
+(diminish 'auto-fill-function "&")
+(diminish 'visual-line-mode "\\")
+(diminish 'eldoc-mode "doc")
+
+;; Some modes are apparently hard to diminish
+(defmacro really-diminish (mode replacement)
+  (let ((function-name (intern (concat "j/diminish/" (symbol-name mode))))
+        (hook-name (intern (concat (symbol-name mode) "-hook"))))
+    `(progn
+       (defun ,function-name ()
+         (interactive)
+         (diminish ',mode ,replacement))
+       (add-hook ',hook-name ',function-name))))
+
+(really-diminish org-indent-mode "»")
+(really-diminish auto-revert-mode "#")
 
 ;;; Utilities -----------------------------------------------------------------
 
@@ -267,6 +289,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package undo-tree
   :ensure t
+  :diminish undo-tree-mode
   :init
   (setq undo-tree-history-directory-alist
         `((".*" . ,(expand-file-name
@@ -294,6 +317,8 @@ point reaches the beginning or end of the buffer, stop there."
   :demand t
   :bind (("C-s" . swiper)
          ("C-c C-r" . ivy-resume))
+  :diminish counsel-mode
+  :diminish ivy-mode
   :config
   ;; Enable keybinding overrides
   (ivy-mode 1)
@@ -349,6 +374,7 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package paredit
   :ensure t
   :commands enable-paredit-mode
+  :diminish "()"
   :init
   (add-hook 'emacs-lisp-mode-hook                  'enable-paredit-mode)
   (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
@@ -365,6 +391,7 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package highlight-parentheses
   :ensure t
   :commands (highlight-parentheses-mode)
+  :diminish highlight-parentheses-mode
   :init
   (add-hook 'prog-mode-hook #'highlight-parentheses-mode))
 
@@ -373,6 +400,7 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package highlight-symbol
   :ensure t
   :commands (highlight-symbol-mode)
+  :diminish highlight-symbol-mode
   :init
   (add-hook 'prog-mode-hook #'highlight-symbol-mode))
 
@@ -381,6 +409,7 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package whitespace-cleanup-mode
   :ensure t
   :commands (global-whitespace-cleanup-mode)
+  :diminish whitespace-cleanup-mode
   :init
   (global-whitespace-cleanup-mode))
 
@@ -416,7 +445,10 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Aggressive indentation ----------------------------------------------------
 
-(use-package aggressive-indent :ensure t :config
+(use-package aggressive-indent
+  :ensure t
+  :diminish "!"
+  :config
   (add-hook 'lisp-mode-hook #'aggressive-indent-mode)
   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
   (add-hook 'c++-mode-hook #'aggressive-indent-mode))
@@ -425,6 +457,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package elisp-slime-nav
   :ensure t
+  :diminish elisp-slime-nav-mode
   :config
   (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode))
 
@@ -432,6 +465,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package ggtags
   :ensure t
+  :diminish "gg"
   :config
   (add-hook 'c-mode-hook 'ggtags-mode)
   (add-hook 'c++-mode-hook 'ggtags-mode)
@@ -441,6 +475,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package company
   :ensure t
+  :diminish company-mode
   :config
   (global-company-mode)
   (setq company-idle-delay 0)
@@ -463,6 +498,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package flycheck
   :ensure t
+  :diminish flycheck-mode
   :config
   (global-flycheck-mode))
 
@@ -521,6 +557,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
   :config (yas-global-mode))
 
 ;;; Magit ---------------------------------------------------------------------
@@ -563,6 +600,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :config (projectile-global-mode))
 
 ;;; Lisp ----------------------------------------------------------------------
@@ -572,6 +610,7 @@ point reaches the beginning or end of the buffer, stop there."
   :commands (slime
              slime-connect)
   :bind ("M-H" . hyperspec-lookup)
+  :diminish ")"
   :config
   (setq inferior-lisp-program "/usr/bin/sbcl"
         slime-contribs '(slime-fancy

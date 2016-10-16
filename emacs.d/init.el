@@ -237,17 +237,31 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defun j/load-theme ()
   (set-frame-parameter nil 'background-mode 'dark)
-  (load-theme 'solarized t)
+  (load-theme 'spacemacs-dark t)
   (set-frame-font (font-spec :family "Input Mono")
                   nil
                   t))
 
-(if (daemonp)
-    (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (with-selected-frame frame
-                  (j/load-theme))))
-  (j/load-theme))
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (with-selected-frame frame
+              (j/load-theme))))
+
+(j/load-theme)
+
+;;; Spaceline -----------------------------------------------------------------
+
+(use-package spaceline-config
+  :ensure spaceline
+  :config
+  (setq powerline-default-separator 'slant
+        powerline-height 25)
+  (spaceline-emacs-theme)
+  ;; These hooks cause the selected window to stay deselected when the frame
+  ;; loses focus, until another action is performed. I don't particularly care
+  ;; about their functionality, so I just remove them.
+  (remove-hook 'focus-in-hook 'powerline-set-selected-window)
+  (remove-hook 'focus-out-hook 'powerline-unset-selected-window))
 
 ;;; Undo Tree -----------------------------------------------------------------
 

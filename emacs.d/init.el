@@ -327,7 +327,7 @@ point reaches the beginning or end of the buffer, stop there."
   (setq ivy-use-virtual-buffers t
         ivy-height 15
         ivy-fixed-height-minibuffer t
-        ivy-re-builders-alist '((swiper . regexp-quote)
+        ivy-re-builders-alist '((swiper . identity)
                                 (t . ivy--regex-fuzzy))
         ivy-initial-inputs-alist nil)
   ;; File navigation

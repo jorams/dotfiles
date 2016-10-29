@@ -39,6 +39,9 @@
 
 ;;; Visual tweaks -------------------------------------------------------------
 
+;;; Disable the blinking cursor
+(blink-cursor-mode -1)
+
 ;;; Highlight matching parentheses
 (show-paren-mode 1)
 

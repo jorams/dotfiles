@@ -127,7 +127,7 @@
 (defprogram-shortcut chromium
   :key (kbd "s-d")
   :command "chromium"
-  :props '(:class "chromium")
+  :props '(:class "Chromium")
   :pullp t
   :pull-key (kbd "s-D"))
 

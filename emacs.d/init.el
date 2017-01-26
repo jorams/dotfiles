@@ -718,3 +718,9 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package scss-mode
   :ensure t
   :mode "\\.scss\\'")
+
+(use-package rainbow-mode
+  :ensure t
+  :diminish "🌈"
+  :config
+  (add-hook 'css-mode-hook 'rainbow-mode))

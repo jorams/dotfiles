@@ -455,7 +455,7 @@ then pastes it into the command."
 (setf *screen-mode-line-format* (concatenate 'string
                                              "[^B%d v%V%%"
                                              #+system-has-battery " b%B%%"
-                                             "^b] %W ^>%m(%N)"))
+                                             "^b] %W ^>%m(%N)%T"))
 (setf *time-modeline-string* "%H:%M")
 (setf *mode-line-timeout* 10)
 (setf *mode-line-background-color* "#1c023c")

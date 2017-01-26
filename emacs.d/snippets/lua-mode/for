@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
-# name: if
-# key: if
+# name: for
+# key: for
 # --
-if $1 then
+for $1 do
   $0
 end

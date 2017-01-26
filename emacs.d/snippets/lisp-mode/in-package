@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: in-package
+# key: ip
+# --
+(in-package :$1)
+$0

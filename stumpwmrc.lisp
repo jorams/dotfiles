@@ -186,7 +186,7 @@
 (defprogram-shortcut telegram
   :key (kbd "s-p")
   :command "telegram-desktop"
-  :props '(:class "Telegram")
+  :props '(:class "telegram-desktop")
   :pullp t
   :pull-key (kbd "s-P"))
 

@@ -297,7 +297,6 @@ point reaches the beginning or end of the buffer, stop there."
   (setq undo-tree-history-directory-alist
         `((".*" . ,(expand-file-name
                     (concat user-emacs-directory "undo")))))
-  (setq undo-tree-auto-save-history t)
   :config
   (global-undo-tree-mode))
 

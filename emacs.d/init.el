@@ -453,7 +453,8 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (add-hook 'lisp-mode-hook #'aggressive-indent-mode)
   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-  (add-hook 'c++-mode-hook #'aggressive-indent-mode))
+  (add-hook 'c++-mode-hook #'aggressive-indent-mode)
+  (add-hook 'lua-mode-hook #'aggressive-indent-mode))
 
 ;;; Slime-style elisp navigation ----------------------------------------------
 

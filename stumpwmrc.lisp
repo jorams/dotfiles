@@ -50,10 +50,6 @@
 (define-key *root-map* (kbd "p") "prev-in-frame")
 (define-key *root-map* (kbd "C-p") "prev-in-frame")
 
-(define-key stumpwm::*tile-group-top-map* (kbd "s-u") "echo tile")
-(define-key stumpwm.floating-group::*float-group-top-map*
-    (kbd "s-u") "echo float")
-
 ;;; Focus and window selection ------------------------------------------------
 
 (defkeymap *window-map*

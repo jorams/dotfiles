@@ -18,11 +18,11 @@ systemctl --user restart redshift
 
 xsetroot -cursor_name left_ptr &
 case "$2" in
-    ddev)
-        exec ~/dev/lisp/stumpwm/stumpwm
-        ;;
-    edev)
+    dev)
         exec ~/dev/stumpwm/stumpwm/stumpwm
+        ;;
+    dev-ql)
+        exec sbcl --eval '(ql:quickload :stumpwm)' --eval '(stumpwm:stumpwm)' --quit
         ;;
     *)
         exec stumpwm

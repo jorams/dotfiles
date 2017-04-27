@@ -466,3 +466,5 @@ then pastes it into the command."
 
 ;; Enable Stumptray
 (stumptray::stumptray)
+
+(run-shell-command "gpg-connect-agent updatestartuptty /bye >/dev/null")

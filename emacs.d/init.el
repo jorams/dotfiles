@@ -45,15 +45,15 @@
 ;;; Highlight matching parentheses
 (show-paren-mode 1)
 
-;;; Show trailing whitespace
-(setq-default show-trailing-whitespace t)
-
-;; ...except in the minibuffer
-(defun j/hide-whitespace ()
-  (setq show-trailing-whitespace nil))
-(add-hook 'minibuffer-inactive-mode-hook #'j/hide-whitespace)
-(add-hook 'magit-popup-mode-hook #'j/hide-whitespace)
-(add-hook 'sql-interactive-mode-hook #'j/hide-whitespace)
+;;; Whitespace mode
+(setq-default whitespace-line-column nil)
+(setq-default whitespace-style '(face
+                                 trailing
+                                 empty
+                                 lines
+                                 indentation::space
+                                 space-before-tab))
+(global-whitespace-mode 1)
 
 ;;; Indicate empty lines at the end of a buffer
 (setq-default indicate-empty-lines t)

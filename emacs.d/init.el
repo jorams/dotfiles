@@ -143,6 +143,9 @@
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
+;;; Always follow symlinks under version control
+(setq vc-follow-symlinks t)
+
 ;;; Diminish various modes
 
 (diminish 'abbrev-mode)

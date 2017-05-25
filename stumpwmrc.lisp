@@ -132,15 +132,12 @@
   :pullp t
   :pull-key (kbd "s-C"))
 
-(defprogram-shortcut pms
-  :key (kbd "s-m")
-  :command "urxvt -name pms -e pms"
-  :props '(:instance "pms"))
-
 (defprogram-shortcut cantata
-  :key (kbd "s-M")
+  :key (kbd "s-m")
   :command "cantata"
-  :props '(:class "cantata"))
+  :props '(:class "cantata")
+  :pullp t
+  :pull-key (kbd "s-M"))
 
 (defprogram-shortcut gimp
   :key (kbd "s-g")

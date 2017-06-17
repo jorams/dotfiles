@@ -50,7 +50,7 @@
 (setq-default whitespace-style '(face
                                  trailing
                                  empty
-                                 lines
+                                 lines-tail
                                  indentation::space
                                  space-before-tab))
 (global-whitespace-mode 1)

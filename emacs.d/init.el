@@ -604,7 +604,23 @@ point reaches the beginning or end of the buffer, stop there."
              ag-project
              ag-files
              ag-dired
-             ag-dired-regexp))
+             ag-dired-regexp)
+  :bind ("C-c s s" . ag))
+
+;;; Ripgrep -------------------------------------------------------------------
+
+(use-package rg
+  :ensure t
+  :commands (rg-dwim
+             rg-kill-saved-searches
+             rg-list-searches
+             rg-project
+             rg
+             rg-save-search
+             rg-save-search-as-name
+             rg-literal)
+  :bind (("C-c s r" . rg)
+         ("C-c p s r" . rg-project)))
 
 ;;; Projectile ----------------------------------------------------------------
 

@@ -450,8 +450,8 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package shift-number
   :ensure t
-  :bind (("M-+" . shift-number-up)
-         ("M-_" . shift-number-down)))
+  :bind (("C-M-+" . shift-number-up)
+         ("C-M-_" . shift-number-down)))
 
 ;;; Aggressive indentation ----------------------------------------------------
 

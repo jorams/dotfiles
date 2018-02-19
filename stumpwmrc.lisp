@@ -441,7 +441,7 @@ then pastes it into the command."
 
 (notifications:notifications-add "^[^10day^]")
 
-(setf *mode-line-position* :bottom)
+(setf *mode-line-position* :top)
 (setf mpd:*mpd-modeline-fmt* "^f2%i^f0 %t (%n/%p)")
 (setf *screen-mode-line-format* (concatenate 'string
                                              "[^B%d v%V%%"

@@ -630,6 +630,26 @@ point reaches the beginning or end of the buffer, stop there."
   :diminish projectile-mode
   :config (projectile-global-mode))
 
+;;; LSP -----------------------------------------------------------------------
+
+(use-package lsp-mode
+  :ensure t)
+
+(use-package lsp-ui
+  :ensure t
+  :after lsp-mode
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(use-package lsp-flycheck
+  :after (lsp-mode flycheck))
+
+(use-package company-lsp
+  :ensure t
+  :after (lsp-mode company)
+  :config
+  (push 'company-lsp company-backends))
+
 ;;; Lisp ----------------------------------------------------------------------
 
 (use-package slime

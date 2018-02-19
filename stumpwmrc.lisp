@@ -378,8 +378,8 @@ then pastes it into the command."
 
 ;;; Appearance ----------------------------------------------------------------
 
-(set-font `("-*-tamsyn-medium-r-*-*-16-*-*-*-*-*-*-*"
-            "-*-tamsyn-medium-r-*-*-12-*-*-*-*-*-*-*"
+(set-font `("-*-tamsyn-medium-r-*-*-12-*-*-*-*-*-*-*"
+            "-*-tamsyn-medium-r-*-*-9-*-*-*-*-*-*-*"
             ,(make-instance 'xft:font
                             :family "FontAwesome"
                             :subfamily "Regular"

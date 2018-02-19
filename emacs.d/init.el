@@ -739,6 +739,12 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :mode "\\.php\\'")
 
+(use-package lsp-php
+  :ensure t
+  :after (php-mode lsp-mode)
+  :config
+  (add-hook 'php-mode-hook #'lsp-php-enable))
+
 ;;; Javascript ----------------------------------------------------------------
 
 (use-package js2-mode

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+theme=${1:-home}
+wall_dir=~/pictures/wallpapers/$theme/
+
+feh --no-fehbg --bg-fill --randomize "$wall_dir"

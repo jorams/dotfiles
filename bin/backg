@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-wall_dir=${1:-~/pictures/wallpapers/}
-
-feh --no-fehbg --bg-fill --randomize $wall_dir
-

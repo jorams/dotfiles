@@ -98,7 +98,10 @@
   ;; Backlight, not all that xrandr-related
   ("b" "exec sudo backlight 2000")
   ("B" "exec sudo backlight 900")
-  ("C-b" "exec sudo backlight 300"))
+  ("C-b" "exec sudo backlight 300")
+  ;; Theme, also not xrandr-related
+  ("y" "theme home")
+  ("Y" "theme work"))
 
 (define-key *root-map* (kbd "d") '*xrandr-map*)
 
@@ -390,9 +393,6 @@ then pastes it into the command."
 (setf *window-border-style* :thin)
 (setf *normal-border-width* 0)
 (setf *maxsize-border-width* 0)
-(set-focus-color "#222")
-(set-bg-color "#1c023c")
-(set-win-bg-color "#1c023c")
 
 (setf *mouse-focus-policy* :sloppy)
 (setf *new-frame-action* :empty)
@@ -402,6 +402,38 @@ then pastes it into the command."
 
 (setf stumpwm::*grab-pointer-character* 102)
 (setf stumpwm::*grab-pointer-character-mask* 103)
+
+(define-stumpwm-type :theme (input prompt)
+  (let* ((values '(("home" :home)
+                   ("work" :work)))
+         (raw-theme (or (argument-pop input)
+                        (completing-read (current-screen) prompt values)))
+         (theme (second (assoc raw-theme values :test 'string-equal))))
+    (or theme (throw 'error "Invalid theme."))))
+
+(defcommand theme (theme) ((:theme "Theme: "))
+  (case theme
+    (:home
+     (set-focus-color "#222")
+     (set-bg-color "#1c023c")
+     (set-border-color "#1c023c")
+     (set-win-bg-color "#1c023c")
+     (setf *mode-line-background-color* "#1c023c")
+     (setf *mode-line-border-color* "#1c023c"))
+    (:work
+     (set-focus-color "#222")
+     (set-bg-color "#3b3b3a")
+     (set-border-color "#ea7c21")
+     (set-win-bg-color "#3b3b3a")
+     (setf *mode-line-background-color* "#3b3b3a")
+     (setf *mode-line-border-color* "#3b3b3a")))
+  ;; Make sure all colors are applied to the mode line
+  (loop for head in (screen-heads (current-screen))
+        do (toggle-mode-line (current-screen) head)
+           (toggle-mode-line (current-screen) head))
+  (stumptray:stumptray)
+  (stumptray:stumptray)
+  (run-shell-command (format nil "theme ~A" (string-downcase theme))))
 
 ;;; Mode line battery ---------------------------------------------------------
 
@@ -447,11 +479,9 @@ then pastes it into the command."
                                              "[^B%d v%V%%"
                                              #+system-has-battery " b%B%%"
                                              "^b] %W ^>%m(%N)%T"))
+(setf *mode-line-highlight-template* "^B~A^b")
 (setf *time-modeline-string* "%H:%M")
 (setf *mode-line-timeout* 10)
-(setf *mode-line-background-color* "#1c023c")
-(setf *mode-line-border-color* "#1c023c")
-(setf *mode-line-highlight-template* "^B~A^b")
 
 (defcommand enable-all-mode-lines () ()
   "Enable all mode lines on the current screen."
@@ -463,5 +493,7 @@ then pastes it into the command."
 
 ;; Enable Stumptray
 (stumptray::stumptray)
+
+(theme :home)
 
 (run-shell-command "gpg-connect-agent updatestartuptty /bye >/dev/null")

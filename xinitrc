@@ -13,7 +13,6 @@ fi
 wmname LG3D &
 
 defaults &
-backg &
 systemctl --user restart redshift
 
 xsetroot -cursor_name left_ptr &

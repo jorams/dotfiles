@@ -650,6 +650,13 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (push 'company-lsp company-backends))
 
+;;; Editorconfig --------------------------------------------------------------
+
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 ;;; Lisp ----------------------------------------------------------------------
 
 (use-package slime

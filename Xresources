@@ -5,7 +5,7 @@ URxvt.perl-ext:     default,url-select
 URxvt.keysym.M-u:   perl:url-select:select_next
 URxvt.url-select.launcher:  browser
 URxvt.url-select.underline: true
-URxvt.font: -*-tamsyn-medium-r-*-*-16-*-*-*-*-*-*-*
+URxvt.font: XR_FONT
 
 URxvt.depth: 32
 

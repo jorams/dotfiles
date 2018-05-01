@@ -1,0 +1,14 @@
+#!/bin/sh
+
+export DOTFILE_TYPE=laptop
+
+if [ -n "$IS4K" ]; then
+    export GDK_SCALE=2
+    export QT_SCALE_FACTOR=2
+    export XR_FONT="-*-tamsyn-medium-r-*-*-40-*-*-*-*-*-*-*"
+fi
+
+# Set touchpad pointer speed
+xinput --set-prop 15 290 1
+
+source ~/.dotfiles/xinitrc

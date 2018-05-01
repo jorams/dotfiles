@@ -267,7 +267,7 @@ point reaches the beginning or end of the buffer, stop there."
   (set-frame-parameter nil 'background-mode 'dark)
   (load-theme 'spacemacs-dark t)
   (set-frame-font (font-spec :family "Input Mono"
-                             :size 11)
+                             :size (if (getenv "IS4K") 22 11))
                   nil
                   t))
 

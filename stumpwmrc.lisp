@@ -83,7 +83,8 @@
   ;; recognized
   (run-with-timer 1 nil #'run-shell-command (format nil "xrandr ~a" args))
   (run-with-timer 2 nil #'stumptray:stumptray)
-  (run-with-timer 2 nil 'enable-all-mode-lines))
+  (run-with-timer 2 nil 'enable-all-mode-lines)
+  (run-with-timer 2 nil #'refresh-heads))
 
 (defkeymap *xrandr-map*
   ;; darg

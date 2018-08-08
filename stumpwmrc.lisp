@@ -111,7 +111,8 @@
   ("C-b" "exec sudo backlight 300")
   ;; Theme, also not xrandr-related
   ("y" "theme home")
-  ("Y" "theme work"))
+  ("Y" "theme work")
+  ("l" "exec bash -c 'i3lock -f -i <(import -window root - | convert -scale 20% -scale 500% - png:-)'"))
 
 (define-key *root-map* (kbd "d") '*xrandr-map*)
 

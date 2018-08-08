@@ -641,9 +641,6 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
-(use-package lsp-flycheck
-  :after (lsp-mode flycheck))
-
 (use-package company-lsp
   :ensure t
   :after (lsp-mode company)

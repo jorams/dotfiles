@@ -392,15 +392,6 @@ point reaches the beginning or end of the buffer, stop there."
   (setq paredit-space-for-delimiter-predicates
         '((lambda (endp delimiter) nil))))
 
-;;; Highlight parentheses -----------------------------------------------------
-
-(use-package highlight-parentheses
-  :ensure t
-  :commands (highlight-parentheses-mode)
-  :diminish highlight-parentheses-mode
-  :init
-  (add-hook 'prog-mode-hook #'highlight-parentheses-mode))
-
 ;;; Highlight symbol ----------------------------------------------------------
 
 (use-package highlight-symbol

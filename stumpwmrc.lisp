@@ -289,13 +289,22 @@
 (defcommand volume (vol &optional (amount 5))
     ((:volume "Volume: ") :number)
   (handler-case
-      (progn (run-volume-command vol amount)
-             (setf *volume*
-                   (if (ppcre:scan "true" (run-volume-command :muted))
-                       "m"
-                       (ppcre:scan-to-strings
-                        "\\d+"
-                        (run-volume-command :update)))))
+      (progn
+        (run-volume-command vol amount)
+        (let* ((mutedp (ppcre:scan "true" (run-volume-command :muted)))
+               (volume-string (ppcre:scan-to-strings
+                               "\\d+"
+                               (run-volume-command :update)))
+               (volume (or (parse-integer volume-string :junk-allowed t)
+                           -1)))
+          (setf *volume* (format nil "^[^f2~a ^f0~a^]"
+                                 (cond (mutedp "")
+                                       ((< volume 0) "")
+                                       ((= volume 0) "")
+                                       ((<= 0 volume 50) "")
+                                       ((<= 50 volume 100) "")
+                                       (t ""))
+                                 (if mutedp "" (format nil "~a%" volume))))))
     (serious-condition (c)
       (err "An error has occurred while managing the volume: ~S" c)))
   (values))
@@ -397,10 +406,14 @@ then pastes it into the command."
             #-screen-is-4k "-*-tamsyn-medium-r-*-*-9-*-*-*-*-*-*-*"
             #+screen-is-4k "-*-tamsyn-medium-r-*-*-20-*-*-*-*-*-*-*"
             #+screen-is-4k "-*-tamsyn-medium-r-*-*-16-*-*-*-*-*-*-*"
-            ,(make-instance 'xft:font
-                            :family "FontAwesome"
-                            :subfamily "Regular"
-                            :size 8)))
+            #-screen-is-4k ,(make-instance 'xft:font
+                                           :family "FontAwesome"
+                                           :subfamily "Regular"
+                                           :size 8)
+            #+screen-is-4k ,(make-instance 'xft:font
+                                           :family "FontAwesome"
+                                           :subfamily "Regular"
+                                           :size 12)))
 
 (setf *input-window-gravity* :bottom)
 (setf *message-window-gravity* :bottom)
@@ -467,11 +480,15 @@ then pastes it into the command."
                        -1))
            (chargingp (string-equal "Charging" (elt captures 0))))
       (setf *battery*
-            (format nil "^[~A~A^]"
-                    (if chargingp "^(:fg 6)" "")
-                    (cond ((< status 10) (format nil "^(:bg 1)~A" status))
-                          ((< status 50) (format nil "^(:bg 3)~A" status))
-                          (t (format nil "~A" status)))))))
+            (format nil "^[^f2~A ^f0~A%^]"
+                    (cond (chargingp "")
+                          ((<= 0 status 5) "")
+                          ((<= 5 status 25) "")
+                          ((<= 25 status 50) "")
+                          ((<= 50 status 75) "")
+                          ((<= 75 status 100) "")
+                          (t ""))
+                    status))))
 
   (add-screen-mode-line-formatter #\B 'battery-status)
   (run-with-timer 0 30 'update-battery-status))
@@ -490,8 +507,8 @@ then pastes it into the command."
 (setf *mode-line-position* :top)
 (setf mpd:*mpd-modeline-fmt* "^f2%i^f0 %t (%n/%p)")
 (setf *screen-mode-line-format* (concatenate 'string
-                                             "[^B%d v%V%%"
-                                             #+system-has-battery " b%B%%"
+                                             "[^B%d %V"
+                                             #+system-has-battery " %B"
                                              "^b] %W ^>%m(%N)%T"))
 (setf *mode-line-highlight-template* "^B~A^b")
 (setf *time-modeline-string* "%H:%M")

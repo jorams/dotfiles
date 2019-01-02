@@ -1,3 +1,18 @@
+;; -*- lexical-binding: t; -*-
+;;; Speed up init -------------------------------------------------------------
+
+(setq gc-cons-threshold 402653184
+      gc-cons-percentage 0.6)
+
+(defvar j//file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold 16777216
+                  gc-cons-percentage 0.1)
+            (setq file-name-handler-alist j//file-name-handler-alist)))
+
 ;;; Me ------------------------------------------------------------------------
 
 (setq user-full-name "Joram Schrijver"
@@ -13,7 +28,7 @@
 ;;; Allow loading locally installed packages
 (let ((vendor-dir (expand-file-name "vendor" user-emacs-directory)))
   (add-to-list 'load-path vendor-dir)
-  (dolist (project (directory-files vendor-dir t "\\w+"))
+  (dolist (project (directory-files vendor-dir t "\\w+" t))
     (when (file-directory-p project)
       (add-to-list 'load-path project))))
 
@@ -165,6 +180,9 @@
 
 (really-diminish org-indent-mode "»")
 (really-diminish auto-revert-mode "#")
+
+;;; Speed up files with very long lines
+(setq-default bidi-display-reordering nil)
 
 ;;; Utilities -----------------------------------------------------------------
 

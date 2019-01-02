@@ -184,6 +184,10 @@
 ;;; Speed up files with very long lines
 (setq-default bidi-display-reordering nil)
 
+;;; Set an explicit custom-file
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file t)
+
 ;;; Utilities -----------------------------------------------------------------
 
 (defun j/wrap-hard ()

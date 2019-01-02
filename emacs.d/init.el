@@ -647,28 +647,13 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Lisp ----------------------------------------------------------------------
 
-(use-package slime
+(use-package sly
   :ensure t
-  :commands (slime
-             slime-connect)
+  :commands (sly sly-connect)
   :bind ("M-H" . hyperspec-lookup)
   :diminish ")"
   :config
-  (setq inferior-lisp-program "/usr/bin/sbcl"
-        slime-contribs '(slime-fancy
-                         slime-indentation
-                         slime-company)))
-
-(use-package slime-company
-  :ensure t
-  :commands company-slime
-  :config
-  (setq slime-company-completion 'fuzzy)
-  (defadvice slime-company--doc-buffer (around package-guard
-                                               (candidate)
-                                               activate)
-    (unless (string-match-p ":$" candidate)
-      ad-do-it)))
+  (setq inferior-lisp-program "/usr/bin/sbcl"))
 
 ;;; Lua -----------------------------------------------------------------------
 

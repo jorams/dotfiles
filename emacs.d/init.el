@@ -526,6 +526,12 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (global-flycheck-mode))
 
+(use-package flycheck-posframe
+  :ensure t
+  :after flycheck
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
+
 ;;; Eldoc ---------------------------------------------------------------------
 
 (use-package eldoc

@@ -129,7 +129,7 @@
 
 (defprogram-shortcut chromium
   :key (kbd "s-d")
-  :command "chromium"
+  :command "systemd-run --user --slice chromium.slice --scope chromium"
   :props '(:class "Chromium")
   :pullp t
   :pull-key (kbd "s-D"))

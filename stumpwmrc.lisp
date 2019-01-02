@@ -87,13 +87,6 @@
   (run-with-timer 2 nil #'refresh-heads))
 
 (defkeymap *xrandr-map*
-  ;; darg
-  ("v" "xrandr --output VGA1 --auto --right-of LVDS1")
-  ("V" "xrandr --output VGA1 --auto --left-of LVDS1")
-  ("C-v" "xrandr --output VGA1 --auto --same-as LVDS1")
-  ("d" "xrandr --output HDMI1 --auto --right-of LVDS1")
-  ("D" "xrandr --output HDMI1 --auto --left-of LVDS1")
-  ("C-d" "xrandr --output HDMI1 --auto --same-as LVDS1")
   ;; erion
   ("j" "xrandr --output DP-0 --auto --right-of HDMI-0")
   ("J" "xrandr --output DP-0 --auto --left-of HDMI-0")

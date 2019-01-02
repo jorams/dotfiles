@@ -9,13 +9,13 @@
 (when (stumpwm:getenv "IS4K")
   (pushnew :screen-is-4k *features*))
 
-(ql:quickload '(#:swank #:mpd #:notifications #:ttf-fonts #:stumptray))
+(ql:quickload '(#:slynk #:mpd #:notifications #:ttf-fonts #:stumptray))
 
 ;;; Remote control ------------------------------------------------------------
 
 (handler-case
-    (swank:create-server :dont-close t :port 4005)
-  (serious-condition () (swank:create-server :dont-close t :port 4006)))
+    (slynk:create-server :dont-close t :port 4005)
+  (serious-condition () (slynk:create-server :dont-close t :port 4006)))
 
 ;;; Utilities -----------------------------------------------------------------
 

@@ -569,7 +569,10 @@ point reaches the beginning or end of the buffer, stop there."
   :commands (magit-status)
   :bind ("M-M" . magit-status)
   :config
-  (setq git-commit-summary-max-length 50))
+  (setq git-commit-summary-max-length 50)
+  (add-hook 'git-commit-mode-hook
+            (lambda ()
+              (setq fill-column 72))))
 
 ;;; Git Time Machine ----------------------------------------------------------
 

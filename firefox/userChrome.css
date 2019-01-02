@@ -1,6 +1,6 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
-#tabbrowser-tabs {
+#tabbrowser-tabs, #alltabs-button {
   visibility: collapse !important;
 }
 
@@ -9,8 +9,8 @@
 }
 
 #sidebar-header {
-  background-color: #323234;
-  color: #BEBEBE;
+  background-color: #323234 !important;
+  color: #BEBEBE !important;;
   font-weight: 400 !important;
   border-bottom: 1px solid black !important;
 }

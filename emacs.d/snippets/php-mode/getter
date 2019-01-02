@@ -1,0 +1,6 @@
+# key: getter
+# name: getter
+# --
+public function get${1:$(upcase-initials yas-text)}()${2:: $3} {
+    return $this->$1;
+}

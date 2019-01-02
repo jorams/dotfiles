@@ -766,3 +766,10 @@ point reaches the beginning or end of the buffer, stop there."
   :diminish "🌈"
   :config
   (add-hook 'css-mode-hook 'rainbow-mode))
+
+;;; Rust ----------------------------------------------------------------------
+
+(use-package rust-mode
+  :ensure t
+  :mode "\\.rs\\'"
+  :init (setq rust-format-on-save t))

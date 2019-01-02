@@ -626,20 +626,8 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; LSP -----------------------------------------------------------------------
 
-(use-package lsp-mode
+(use-package eglot
   :ensure t)
-
-(use-package lsp-ui
-  :ensure t
-  :after lsp-mode
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
-(use-package company-lsp
-  :ensure t
-  :after (lsp-mode company)
-  :config
-  (push 'company-lsp company-backends))
 
 ;;; Editorconfig --------------------------------------------------------------
 
@@ -720,13 +708,12 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package php-mode
   :ensure t
-  :mode "\\.php\\'")
-
-(use-package lsp-php
-  :ensure t
-  :after (php-mode lsp-mode)
-  :config
-  (add-hook 'php-mode-hook #'lsp-php-enable))
+  :mode "\\.php\\'"
+  :init
+  (add-to-list
+   'eglot-server-programs
+   `(php-mode . ("php" ,(expand-file-name "php-language-server/vendor/felixfbecker/language-server/bin/php-language-server.php"
+                                          user-emacs-directory)))))
 
 ;;; Javascript ----------------------------------------------------------------
 

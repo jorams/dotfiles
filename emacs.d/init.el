@@ -300,6 +300,13 @@ point reaches the beginning or end of the buffer, stop there."
 
 (j/load-theme)
 
+;;; Solaire mode --------------------------------------------------------------
+
+(use-package solaire-mode
+  :ensure t
+  :config
+  (solaire-global-mode))
+
 ;;; Spaceline -----------------------------------------------------------------
 
 (use-package spaceline-config

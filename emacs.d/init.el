@@ -748,6 +748,17 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (js2r-add-keybindings-with-prefix "C-c C-m"))
 
+;;; Vue -----------------------------------------------------------------------
+
+(use-package vue-mode
+  :ensure t
+  :mode "\\.vue\\'"
+  :init
+  (add-to-list
+   'eglot-server-programs
+   `(vue-mode ,(expand-file-name "vue-language-server/node_modules/vue-language-server/bin/vls"
+                                 user-emacs-directory))))
+
 ;;; CSS -----------------------------------------------------------------------
 
 (use-package less-css-mode

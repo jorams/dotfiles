@@ -618,7 +618,8 @@ point reaches the beginning or end of the buffer, stop there."
              ag-files
              ag-dired
              ag-dired-regexp)
-  :bind ("C-c s s" . ag))
+  :bind (("C-c s s" . ag)
+         ("C-c p s s" . projectile-ag)))
 
 ;;; Ripgrep -------------------------------------------------------------------
 

@@ -64,7 +64,6 @@
 (setq-default whitespace-line-column nil)
 (setq-default whitespace-style '(face
                                  trailing
-                                 empty
                                  lines-tail
                                  indentation::space
                                  space-before-tab))

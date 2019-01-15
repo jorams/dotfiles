@@ -122,7 +122,7 @@
 
 (defprogram-shortcut firefox
   :key (kbd "s-f")
-  :command "firefox -P default"
+  :command "systemd-run --user --slice firefox.slice --scope firefox -P default"
   :props '(:class "Firefox")
   :pullp t
   :pull-key (kbd "s-F"))

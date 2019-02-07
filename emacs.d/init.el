@@ -491,6 +491,14 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode))
 
+;;; Better help pages ---------------------------------------------------------
+
+(use-package helpful
+  :ensure t
+  :bind (("C-h f" . helpful-callable)
+         ("C-h v" . helpful-variable)
+         ("C-h k" . helpful-key)))
+
 ;;; Company -------------------------------------------------------------------
 
 (use-package company

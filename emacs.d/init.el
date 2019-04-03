@@ -456,14 +456,18 @@ point reaches the beginning or end of the buffer, stop there."
          ("C->" . mc/mark-next-like-this)
          ("C-M->" . mc/mark-next-symbol-like-this)
          ("C-M-." . mc/unmark-next-like-this)
+         ("C-." . mc/skip-to-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-M-<" . mc/mark-previous-symbol-like-this)
          ("C-M-," . mc/unmark-previous-like-this)
+         ("C-," . mc/skip-to-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this-dwim)
+         ("C-c C->" . mc/mark-more-like-this-extended)
          ("C-c M-i" . mc/insert-numbers)
          ("C-S-<mouse-1>" . mc/add-cursor-on-click))
   :init
-  (use-package mc-cycle-cursors))
+  (use-package mc-cycle-cursors)
+  (use-package mc-hide-unmatched-lines-mode))
 
 ;;; Shift-number --------------------------------------------------------------
 

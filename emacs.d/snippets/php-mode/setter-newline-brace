@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: setter-newline-brace
+# key: settern
+# --
+public function set${1:$(upcase-initials yas-text)}($2\$$1)
+{
+    $this->$1 = \$$1;
+}

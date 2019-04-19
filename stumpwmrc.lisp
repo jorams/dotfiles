@@ -162,6 +162,13 @@
   :pullp t
   :pull-key (kbd "s-T"))
 
+(defprogram-shortcut discord
+  :key (kbd "s-r")
+  :command "discord"
+  :props '(:class "discord")
+  :pullp t
+  :pull-key (kbd "s-R"))
+
 (defprogram-shortcut libreoffice
   :key (kbd "s-o")
   :command "libreoffice"

@@ -120,6 +120,13 @@
   :pullp t
   :pull-key (kbd "s-E"))
 
+(defprogram-shortcut urxvt
+  :key (kbd "s-x")
+  :command "urxvt"
+  :props '(:class "URxvt")
+  :pullp t
+  :pull-key (kbd "s-X"))
+
 (defprogram-shortcut firefox
   :key (kbd "s-f")
   :command "systemd-run --user --slice firefox.slice --scope firefox -P default"

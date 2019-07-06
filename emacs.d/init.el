@@ -370,7 +370,10 @@ point reaches the beginning or end of the buffer, stop there."
    'counsel-find-file
    '(("m" magit-status "magit")
      ("u" j/run-urxvt-action "urxvt")
-     ("d" j/delete-file-action "delete"))))
+     ("d" j/delete-file-action "delete")))
+  (ivy-add-actions
+   'ivy-switch-buffer
+   '(("d" ivy--kill-buffer-action "kill"))))
 
 ;;; Avy -----------------------------------------------------------------------
 

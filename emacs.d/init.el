@@ -299,13 +299,6 @@ point reaches the beginning or end of the buffer, stop there."
 
 (j/load-theme)
 
-;;; Solaire mode --------------------------------------------------------------
-
-(use-package solaire-mode
-  :ensure t
-  :config
-  (solaire-global-mode))
-
 ;;; doom-modeline -------------------------------------------------------------
 
 (use-package doom-modeline

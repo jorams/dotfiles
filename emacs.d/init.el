@@ -286,7 +286,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defun j/load-theme ()
   (set-frame-parameter nil 'background-mode 'dark)
-  (load-theme 'doom-challenger-deep t)
+  (load-theme 'kaolin-eclipse t)
   (set-frame-font (font-spec :family "Input"
                              :size (if (getenv "IS4K") 22 11))
                   nil

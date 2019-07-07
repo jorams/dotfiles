@@ -306,19 +306,11 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (solaire-global-mode))
 
-;;; Spaceline -----------------------------------------------------------------
+;;; doom-modeline -------------------------------------------------------------
 
-(use-package spaceline-config
-  :ensure spaceline
-  :config
-  (setq powerline-default-separator 'slant
-        powerline-height 25)
-  (spaceline-emacs-theme)
-  ;; These hooks cause the selected window to stay deselected when the frame
-  ;; loses focus, until another action is performed. I don't particularly care
-  ;; about their functionality, so I just remove them.
-  (remove-hook 'focus-in-hook 'powerline-set-selected-window)
-  (remove-hook 'focus-out-hook 'powerline-unset-selected-window))
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
 
 ;;; Undo Tree -----------------------------------------------------------------
 

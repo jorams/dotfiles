@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: docl
+# key: docl
+# --
+/** $0 */

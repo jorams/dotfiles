@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: doci
+# key: doci
+# --
+/**
+ * {@inheritdoc}
+ */

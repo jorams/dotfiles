@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: top
+# key: top
+# --
+<?php
+declare(strict_types=1);
+
+namespace $1;
+
+$0

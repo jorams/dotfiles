@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: docil
+# key: docil
+# --
+/** {@inheritdoc} */

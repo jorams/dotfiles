@@ -649,6 +649,15 @@ point reaches the beginning or end of the buffer, stop there."
   :diminish projectile-mode
   :config (projectile-global-mode))
 
+(defun j/find-projectile-project (dir)
+  (let ((f (locate-dominating-file dir ".projectile")))
+    (when f `(projectile . ,f))))
+
+(add-hook 'project-find-functions 'j/find-projectile-project)
+
+(cl-defmethod project-roots ((project (head projectile)))
+  (list (cdr project)))
+
 ;;; LSP -----------------------------------------------------------------------
 
 (use-package eglot

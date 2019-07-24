@@ -201,8 +201,13 @@
 (defun j/day ()
   (interactive)
   (find-file (expand-file-name (concat "~/life/day/"
-                                       (format-time-string "%Y-%m-%d.day"))))
+                                       (format-time-string "%Y-%m-%d.day")))))
+
+(define-derived-mode j/day-mode text-mode "Day"
+  "Major mode for editing dayfiles."
   (auto-fill-mode 1))
+
+(add-to-list 'auto-mode-alist '("\\.day\\'" . j/day-mode))
 
 (defun j/linkbox (buffer start end type)
   (interactive

@@ -34,7 +34,7 @@
 
 ;;; Load packages from MELPA
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/"))
+             '("melpa" . "https://melpa.org/packages/"))
 
 ;;; Use use-package to load packages
 (unless (package-installed-p 'use-package)

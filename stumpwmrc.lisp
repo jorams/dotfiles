@@ -130,7 +130,7 @@
 (defprogram-shortcut firefox
   :key (kbd "s-f")
   :command "systemd-run --user --slice firefox.slice --scope firefox -P default"
-  :props '(:class "Firefox")
+  :props '(:class "firefox")
   :pullp t
   :pull-key (kbd "s-F"))
 
@@ -344,7 +344,7 @@
 (defun normalize-window-titles (window)
   (normalize-titles
    :class "Gimp" "gimp"
-   :class "Firefox" "firefox"
+   :class "firefox" "firefox"
    :instance "irc" "irc"
    :instance "youtube-vid" "ytv"
    :class "Filezilla" "filezilla"

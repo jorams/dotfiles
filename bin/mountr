@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+NAME="$1"
+REMOTE="${NAME}:"
+DIR="/media/${NAME}"
+
+/usr/bin/rclone mount "$REMOTE" "$DIR" \
+                --buffer-size 1G \
+                --dir-cache-time 1h \
+                --drive-chunk-size 32M \
+                --read-only \
+                --log-level INFO

@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+NAME="$1"
+REMOTE="${NAME}:"
+
+/usr/bin/rclone serve dlna "$REMOTE" \
+                --name "$NAME" \
+                --buffer-size 1G \
+                --dir-cache-time 1h \
+                --drive-chunk-size 32M \
+                --read-only \
+                --log-level INFO

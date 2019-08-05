@@ -36,6 +36,11 @@
 (set-prefix-key (kbd "C-i"))
 
 (define-key *root-map* (kbd "m") 'mpd:*mpd-map*)
+(define-key *top-map* (kbd "XF86AudioPlay") "mpd-toggle-pause")
+(define-key *top-map* (kbd "XF86AudioPause") "mpd-toggle-pause")
+(define-key *top-map* (kbd "XF86AudioNext") "mpd-next")
+(define-key *top-map* (kbd "XF86AudioPrev") "mpd-prev")
+
 (define-key *root-map* (kbd "N") 'notifications:*notifications-map*)
 
 (define-key *root-map* (kbd "c") "exec urxvt")

@@ -11,12 +11,12 @@
 #sidebar-header {
   background-color: #323234 !important;
   color: #BEBEBE !important;;
-  font-weight: 400 !important;
   border-bottom: 1px solid black !important;
+  font-size: 14px;
 }
 
-#sidebar-icon {
-  filter: grayscale(100%) brightness(10);
+#sidebar-title {
+  font-size: 16px;
 }
 
 .sidebar-splitter {

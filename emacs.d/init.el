@@ -858,3 +858,8 @@ empty string."
   :ensure t
   :after (flycheck rust-mode)
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+;;; C -------------------------------------------------------------------------
+
+(setq-default c-default-style "linux"
+              c-basic-offset 4)

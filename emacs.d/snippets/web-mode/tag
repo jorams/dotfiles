@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: tag
+# key: tag
+# condition: (string-equal "django" web-mode-engine)
+# --
+{% $1 %}$0{% end${1:$(replace-regexp-in-string "\\s.*" "" yas-text)} %}

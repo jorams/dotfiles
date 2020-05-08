@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: elif
+# key: elif
+# condition: (string-equal "django" web-mode-engine)
+# --
+{% elseif $1 %}$0

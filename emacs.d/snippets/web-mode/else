@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: else
+# key: else
+# condition: (string-equal "django" web-mode-engine)
+# --
+{% else %}

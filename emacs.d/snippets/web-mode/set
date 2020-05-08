@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: set
+# key: set
+# condition: (string-equal "django" web-mode-engine)
+# --
+{% set $1 = $2 %}$0

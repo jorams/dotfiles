@@ -204,8 +204,15 @@
 
 (defun j/day ()
   (interactive)
-  (find-file (expand-file-name (concat "~/life/day/"
-                                       (format-time-string "%Y-%m-%d.day")))))
+  (let* ((filename (format-time-string "%Y-%m-%d.day")))
+    (find-file (expand-file-name (concat "~/life/day/" filename)))))
+
+(defun j/yesterday ()
+  (interactive)
+  (let* ((day (- (* 60 60 24)))
+         (yesterday (time-add (current-time) day))
+         (filename (format-time-string "%Y-%m-%d.day" yesterday)))
+    (find-file (expand-file-name (concat "~/life/day/" filename)))))
 
 (define-derived-mode j/day-mode text-mode "Day"
   "Major mode for editing dayfiles."

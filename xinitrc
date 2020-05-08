@@ -21,12 +21,12 @@ export GTK_THEME=Arc:dark
 xsetroot -cursor_name left_ptr &
 case "$2" in
     dev)
-        exec ~/dev/stumpwm/stumpwm/stumpwm
+        exec env SBCL_HOME=/usr/lib/sbcl/ ~/dev/stumpwm/stumpwm/stumpwm
         ;;
     dev-ql)
         exec sbcl --eval '(ql:quickload :stumpwm)' --eval '(stumpwm:stumpwm)' --quit
         ;;
     *)
-        exec stumpwm
+        exec env SBCL_HOME=/usr/lib/sbcl/ stumpwm
         ;;
 esac

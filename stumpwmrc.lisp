@@ -362,7 +362,9 @@
    :instance "youtube-vid" "ytv"
    :class "Filezilla" "filezilla"
    :class "Chromium" "chromium"
-   :class "Steam" "steam"))
+   :class "Steam" "steam"
+   :class "Insomnia" "insomnia"
+   :instance "virt-manager" "virt-manager"))
 
 (add-hook *new-window-hook* 'normalize-window-titles)
 

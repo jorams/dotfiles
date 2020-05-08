@@ -283,9 +283,21 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [remap move-beginning-of-line]
                 'j/smarter-move-beginning-of-line)
 
-(defun j/align-on-single-quote ()
-  (interactive)
-  (align-regexp (region-beginning) (region-end) "\\(\\s-*\\) '" nil 0 t))
+(defvar-local j/align-default-separator ",")
+
+(defun j/align (separator)
+  (interactive (list (read-string
+                      (format "Separator [%s]: " j/align-default-separator)
+                      nil
+                      nil
+                      j/align-default-separator)))
+  (setq-local j/align-default-separator separator)
+  (align-regexp (region-beginning)
+                (region-end)
+                (concat "\\(\\s-*\\) " (regexp-quote separator))
+                nil
+                0
+                t))
 
 ;;; Theme ---------------------------------------------------------------------
 

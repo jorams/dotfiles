@@ -160,6 +160,10 @@
 ;;; Always follow symlinks under version control
 (setq vc-follow-symlinks t)
 
+;;; Display human-readable file sizes in dired
+
+(setq dired-listing-switches "-alh")
+
 ;;; Diminish various modes
 
 (diminish 'abbrev-mode)

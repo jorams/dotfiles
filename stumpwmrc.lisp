@@ -99,11 +99,11 @@
   ("k" "xrandr --output HDMI-0 --auto --right-of DP-0 --rotate right")
   ;; phyre
   ("n"
-   "xrandr --output eDP1 --mode 1920x1080 --output DP2 --auto --right-of eDP1")
+   "xrandr --output eDP-1 --mode 1920x1080 --output DP-2 --auto --right-of eDP-1")
   ("N"
-   "xrandr --output eDP1 --mode 1920x1080 --output DP2 --auto --left-of eDP1")
+   "xrandr --output eDP-1 --mode 1920x1080 --output DP-2 --auto --left-of eDP-1")
   ("C-n"
-   "xrandr --output eDP1 --mode 1920x1080 --output DP2 --auto --same-as eDP1")
+   "xrandr --output eDP-1 --mode 1920x1080 --output DP-2 --auto --same-as eDP-1")
   ;; Backlight, not all that xrandr-related
   ("b" "exec sudo backlight 2000")
   ("B" "exec sudo backlight 900")

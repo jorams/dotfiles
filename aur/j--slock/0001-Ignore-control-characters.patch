@@ -1,0 +1,28 @@
+From 3df72b1a559188081fdbc93dd8bfdbfa8013e05d Mon Sep 17 00:00:00 2001
+From: Joram Schrijver <i@joram.io>
+Date: Mon, 5 Aug 2019 15:42:09 +0200
+Subject: [PATCH 1/2] Ignore control characters
+
+---
+ slock.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/slock.c b/slock.c
+index d2f0886..eb07ad4 100644
+--- a/slock.c
++++ b/slock.c
+@@ -180,8 +180,9 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
+ 					passwd[len--] = '\0';
+ 				break;
+ 			default:
+-				if (num && !iscntrl((int)buf[0]) &&
+-				    (len + num < sizeof(passwd))) {
++				if (iscntrl((int)buf[0]))
++					continue;
++				if (num && (len + num < sizeof(passwd))) {
+ 					memcpy(passwd + len, buf, num);
+ 					len += num;
+ 				}
+-- 
+2.22.0
+

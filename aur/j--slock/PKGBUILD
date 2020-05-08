@@ -1,0 +1,38 @@
+# Maintainer: i at joram dot io
+# Maintainer: Sergej Pupykin <pupykin.s+arch@gmail.com>
+# Contributor: Sebastian A. Liem <sebastian at liem dot se>
+
+pkgname=j--slock
+pkgver=1.4
+pkgrel=1
+pkgdesc="A simple screen locker for X"
+conflicts=('slock')
+arch=('x86_64')
+url="https://tools.suckless.org/slock"
+license=('MIT')
+depends=('libxext' 'libxrandr')
+source=("https://dl.suckless.org/tools/slock-$pkgver.tar.gz"
+        "0001-Ignore-control-characters.patch"
+        "0002-Pass-through-media-keys.patch")
+md5sums=('f91dd5ba50ce7bd1842caeca067086a3'
+         '50c8b665708128c6f9d520a59f41f8e8'
+         '8354f0da986a0d34de713d86c56de775')
+
+prepare() {
+  cd "$srcdir/slock-$pkgver"
+  sed -i 's|static const char \*group = "nogroup";|static const char *group = "nobody";|' config.def.h
+  sed -ri 's/((CPP|C|LD)FLAGS) =/\1 +=/g' config.mk
+  patch --forward --input="${srcdir}/0001-Ignore-control-characters.patch"
+  patch --forward --input="${srcdir}/0002-Pass-through-media-keys.patch"
+}
+
+build() {
+  cd "$srcdir/slock-$pkgver"
+  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+}
+
+package() {
+  cd "$srcdir/slock-$pkgver"
+  make PREFIX=/usr DESTDIR="$pkgdir" install
+  install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

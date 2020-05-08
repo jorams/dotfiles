@@ -45,15 +45,17 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # The prompt ------------------------------------------------------------------
 
-my_prompt () {
-    last=$?
-    if [[ $last == 0 ]]; then
-        pcolor="\[\e[0;34m\]"
-    else
-        pcolor="\[\033[0;31m\] $last"
-    fi
+if [[ $TERM != dumb ]]; then
+    my_prompt () {
+        last=$?
+        if [[ $last == 0 ]]; then
+            pcolor="\[\e[0;34m\]"
+        else
+            pcolor="\[\033[0;31m\] $last"
+        fi
 
-    PS1="$pcolor » \[\e[0m\]"
-}
+        PS1="$pcolor » \[\e[0m\]"
+    }
 
-PROMPT_COMMAND='my_prompt'
+    PROMPT_COMMAND='my_prompt'
+fi

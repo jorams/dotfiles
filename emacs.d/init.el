@@ -773,7 +773,8 @@ empty string."
          "\\.mustache\\'"
          "\\.djhtml\\'"
          "\\.twig\\'"
-         "\\.etlua\\'")
+         "\\.etlua\\'"
+         "\\.ctml\\'")
   :config
   (setq-default web-mode-markup-indent-offset 2)
   (add-hook 'web-mode-hook

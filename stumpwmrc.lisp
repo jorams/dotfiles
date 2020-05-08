@@ -167,6 +167,13 @@
   :pullp t
   :pull-key (kbd "s-G"))
 
+(defprogram-shortcut inkscape
+  :key (kbd "s-i")
+  :command "inkscape"
+  :props '(:class "Inkscape")
+  :pullp t
+  :pull-key (kbd "s-I"))
+
 (defprogram-shortcut teamspeak
   :key (kbd "s-t")
   :command "teamspeak3"
@@ -349,6 +356,7 @@
 (defun normalize-window-titles (window)
   (normalize-titles
    :class "Gimp" "gimp"
+   :class "Inkscape" "inkscape"
    :class "firefox" "firefox"
    :instance "irc" "irc"
    :instance "youtube-vid" "ytv"

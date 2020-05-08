@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: public-static-function
+# key: pusfun
+# --
+public static function $1($2) {
+    $0
+}

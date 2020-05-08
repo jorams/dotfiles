@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: static-function
+# key: sfun
+# --
+$1static function $2($3) {
+    $0
+}

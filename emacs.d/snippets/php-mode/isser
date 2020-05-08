@@ -1,5 +1,6 @@
-# key: isser
+# -*- mode: snippet -*-
 # name: isser
+# key: isser
 # --
 public function is${1:$(upcase-initials yas-text)}()${2:: ${3:bool}} {
     return $this->$1;

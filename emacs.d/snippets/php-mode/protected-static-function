@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: protected-static-function
+# key: prosfun
+# --
+protected static function $1($2) {
+    $0
+}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: private-static-function
+# key: prisfun
+# --
+private static function $1($2) {
+    $0
+}

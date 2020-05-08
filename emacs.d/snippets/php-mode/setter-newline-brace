@@ -2,7 +2,7 @@
 # name: setter-newline-brace
 # key: settern
 # --
-public function set${1:$(upcase-initials yas-text)}($2\$$1)
+public function set${1:$(upcase-initials yas-text)}($2\$$1): void
 {
     $this->$1 = \$$1;
 }

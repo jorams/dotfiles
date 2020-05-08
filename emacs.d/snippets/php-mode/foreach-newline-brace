@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: foreach-newline-brace
+# key: fen
+# --
+foreach ($1 as $2)
+{
+    $0
+}

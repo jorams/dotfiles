@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: private-function
+# key: prifun
+# --
+private function $1($2) {
+    $0
+}

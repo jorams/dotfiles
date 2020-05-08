@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: isser-newline-brace
+# key: issern
+# --
+public function is${1:$(upcase-initials yas-text)}()${2:: ${3:bool}}
+{
+    return $this->$1;
+}

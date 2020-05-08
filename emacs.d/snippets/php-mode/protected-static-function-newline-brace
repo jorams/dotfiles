@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: protected-static-function-newline-brace
+# key: prosfunn
+# --
+protected static function $1($2)
+{
+    $0
+}

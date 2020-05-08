@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: public-function-newline-brace
+# key: pufunn
+# --
+public function $1($2)
+{
+    $0
+}

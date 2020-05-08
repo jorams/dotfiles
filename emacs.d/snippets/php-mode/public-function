@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: public-function
+# key: pufun
+# --
+public function $1($2) {
+    $0
+}

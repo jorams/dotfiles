@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: private-static-function-newline-brace
+# key: prisfunn
+# --
+private static function $1($2)
+{
+    $0
+}

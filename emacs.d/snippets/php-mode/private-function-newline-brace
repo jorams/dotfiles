@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: private-function-newline-brace
+# key: prifunn
+# --
+private function $1($2)
+{
+    $0
+}

@@ -796,8 +796,7 @@ empty string."
   :init
   (add-to-list
    'eglot-server-programs
-   `(php-mode . ("php" ,(expand-file-name "php-language-server/vendor/felixfbecker/language-server/bin/php-language-server.php"
-                                          user-emacs-directory)))))
+   `(php-mode . ("php" "vendor/bin/psalm-language-server"))))
 
 ;;; Javascript ----------------------------------------------------------------
 

@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+NAME="$1"
+REMOTE="${NAME}:"
+
+/usr/bin/rclone serve http "$REMOTE" \
+                --fast-list \
+                --buffer-size 1G \
+                --dir-cache-time 1h \
+                --drive-chunk-size 32M \
+                --read-only \
+                --addr localhost:8081 \
+                --log-level INFO

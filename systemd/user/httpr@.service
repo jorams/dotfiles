@@ -1,0 +1,9 @@
+[Unit]
+Description=mountr
+After=network.target
+
+[Service]
+ExecStart=/home/joram/bin/httpr %i
+
+[Install]
+WantedBy=default.target

@@ -853,3 +853,8 @@ empty string."
   :ensure t
   :mode "\\.rs\\'"
   :init (setq rust-format-on-save t))
+
+(use-package flycheck-rust
+  :ensure t
+  :after (flycheck rust-mode)
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))

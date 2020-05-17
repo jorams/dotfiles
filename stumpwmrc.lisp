@@ -13,9 +13,8 @@
 
 ;;; Remote control ------------------------------------------------------------
 
-(handler-case
-    (slynk:create-server :dont-close t :port 4005)
-  (serious-condition () (slynk:create-server :dont-close t :port 4006)))
+(defcommand slynk (&optional (port 4005)) (:number)
+  (slynk:create-server :port port))
 
 ;;; Utilities -----------------------------------------------------------------
 

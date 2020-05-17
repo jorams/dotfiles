@@ -16,7 +16,6 @@
   :components ((:file "util")
                (:file "volume")
                (:file "backlight")
-               (:file "puburl")
                (:file "linkbox")
                (:file "defaults")
                (:file "browser")

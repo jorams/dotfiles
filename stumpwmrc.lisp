@@ -55,6 +55,8 @@
 (define-key *root-map* (kbd "p") "prev-in-frame")
 (define-key *root-map* (kbd "C-p") "prev-in-frame")
 
+(define-key *root-map* (kbd "y") "exec xcolor | tr -d '\\n' | xsel --clipboard")
+
 ;;; Focus and window selection ------------------------------------------------
 
 (defkeymap *window-map*

@@ -744,7 +744,9 @@ empty string."
   :mode "\\.lua\\'"
   :interpreter "lua"
   :config
-  (setq-default lua-indent-level 2))
+  (setq-default lua-indent-level 2)
+  (setq-default lua-indent-nested-block-content-align nil)
+  (setq-default lua-indent-close-paren-align nil))
 
 (use-package company-lua
   :ensure t

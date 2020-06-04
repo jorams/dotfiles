@@ -536,7 +536,13 @@ point reaches the beginning or end of the buffer, stop there."
   (unbind-key "TAB" company-active-map)
   ;; This next line would normally use unbind-key, but that breaks on vectors.
   (bind-key [tab] nil company-active-map)
-  (bind-key "M-TAB" 'company-complete-common company-active-map))
+  (bind-key "M-TAB" 'company-complete-common company-active-map)
+  ;; By default, company disables yasnippet bindings while completion is
+  ;; active. Since I explicitly don't want TAB to complete, I really just want
+  ;; yasnippet to keep working.
+  (add-hook 'company-mode-hook
+            (lambda ()
+              (remove-hook 'yas-keymap-disable-hook 'company--active-p t))))
 
 (use-package company-quickhelp
   :ensure t

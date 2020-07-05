@@ -638,6 +638,11 @@ point reaches the beginning or end of the buffer, stop there."
             (lambda ()
               (setq fill-column 72))))
 
+(use-package magit-todos
+  :ensure t
+  :config
+  (magit-todos-mode))
+
 ;;; Git Time Machine ----------------------------------------------------------
 
 (use-package git-timemachine

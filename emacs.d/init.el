@@ -792,7 +792,8 @@ empty string."
          "\\.djhtml\\'"
          "\\.twig\\'"
          "\\.etlua\\'"
-         "\\.ctml\\'")
+         "\\.ctml\\'"
+         "\\.html\\.eex\\'")
   :config
   (setq-default web-mode-markup-indent-offset 2)
   (add-hook 'web-mode-hook
@@ -881,3 +882,13 @@ empty string."
 
 (setq-default c-default-style "linux"
               c-basic-offset 4)
+
+;;; Elixir --------------------------------------------------------------------
+
+(use-package elixir-mode
+  :ensure t
+  :mode "\\.ex\\'"
+  :init
+  (add-to-list
+   'eglot-server-programs
+   `(elixir-mode "~/bin/blob/elixir-ls/language_server.sh")))

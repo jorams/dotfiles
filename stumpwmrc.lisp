@@ -447,6 +447,7 @@ then pastes it into the command."
 
 (setf *mouse-focus-policy* :sloppy)
 (setf *new-frame-action* :empty)
+(setf *honor-window-moves* nil)
 
 (setf *startup-message*
       "^7*^BWelcome^b ^f1to the^f0 ^Bfuture^b.")

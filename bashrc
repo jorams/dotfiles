@@ -43,6 +43,9 @@ export GPG_TTY=$(tty)
 # Refresh the gpg-agent tty in case we're now in an X session
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
+# GTK refuses to scroll without this
+export GDK_CORE_DEVICE_EVENTS=1
+
 # The prompt ------------------------------------------------------------------
 
 if [[ $TERM != dumb ]]; then

@@ -67,6 +67,7 @@
                                  lines-tail
                                  indentation::space
                                  space-before-tab))
+(setq-default whitespace-global-modes '(not magit-status-mode magit-log-mode))
 (global-whitespace-mode 1)
 
 ;;; Indicate empty lines at the end of a buffer
@@ -186,6 +187,8 @@
 
 ;;; Speed up files with very long lines
 (setq-default bidi-display-reordering nil)
+(setq so-long-threshold 300)
+(global-so-long-mode 1)
 
 ;;; Set an explicit custom-file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

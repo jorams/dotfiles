@@ -317,8 +317,10 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defun j/load-theme ()
   (set-frame-parameter nil 'background-mode 'dark)
-  (setq kaolin-themes-comments-style 'alt)
-  (load-theme 'kaolin-eclipse t)
+  (setq doom-spacegrey-brighter-comments t)
+  (setq doom-spacegrey-comment-bg nil)
+  (setq doom-spacegrey-padded-modeline nil)
+  (load-theme 'doom-spacegrey)
   (set-frame-font (font-spec :family "Input"
                              :size (if (getenv "IS4K") 22 11))
                   nil

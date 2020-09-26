@@ -127,20 +127,31 @@
 ;;; Make C-v and M-v scroll by half a page, maintaining the current screen
 ;;; position of the cursor.
 
-(defun j/scroll-half-page-forward (&optional lines)
-  (interactive "P")
-  (let ((scroll-preserve-screen-position 1))
-    (View-scroll-half-page-forward lines)))
+(defun j/half-window-height ()
+  (/ (1- (window-height)) 2))
 
-(defun j/scroll-half-page-backward (&optional lines)
-  (interactive "P")
-  (let ((scroll-preserve-screen-position 1))
-    (View-scroll-half-page-backward lines)))
+(defun j/scroll-half-screen-forward ()
+  "Scroll half a screen forward, keeping cursor position.
+When less than half a screen of lines remains, scroll to the end.
 
-(use-package view
-  :config
-  (bind-key "C-v" 'j/scroll-half-page-forward)
-  (bind-key "M-v" 'j/scroll-half-page-backward))
+There's a bug here that causes it to sometimes scroll 1 line
+short of half a page, which seems to have something to do with
+nearing the end of the buffer."
+  (interactive)
+  (let ((scroll-preserve-screen-position 'always)
+        (scroll-error-top-bottom t))
+    (scroll-up-command (j/half-window-height))))
+
+(defun j/scroll-half-screen-backward ()
+  "Scroll half a screen forward, keeping cursor position.
+When less than half a screen of lines remains, scroll to the start."
+  (interactive)
+  (let ((scroll-preserve-screen-position 'always)
+        (scroll-error-top-bottom t))
+    (scroll-down-command (j/half-window-height))))
+
+(bind-key "C-v" 'j/scroll-half-screen-forward)
+(bind-key "M-v" 'j/scroll-half-screen-backward)
 
 ;;; Remember point position
 (use-package saveplace

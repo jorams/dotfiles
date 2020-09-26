@@ -368,8 +368,7 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package counsel
   :ensure t
   :demand t
-  :bind (("C-s" . swiper)
-         ("C-c C-r" . ivy-resume))
+  :bind (("C-c C-r" . ivy-resume))
   :diminish counsel-mode
   :diminish ivy-mode
   :config
@@ -394,12 +393,18 @@ point reaches the beginning or end of the buffer, stop there."
    'ivy-switch-buffer
    '(("d" ivy--kill-buffer-action "kill"))))
 
+;;; CTRLF ---------------------------------------------------------------------
+
+(use-package ctrlf
+  :ensure t
+  :config
+  (ctrlf-mode 1))
+
 ;;; Avy -----------------------------------------------------------------------
 
 (use-package avy
   :ensure t
   :bind (("C-c j" . avy-goto-word-or-subword-1)
-         ("C-r" . avy-goto-word-or-subword-1)
          ("C-c l" . avy-goto-line)))
 
 ;;; Ace Window ----------------------------------------------------------------

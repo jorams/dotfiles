@@ -344,6 +344,39 @@
 ;; Update volume status for the first time.
 (volume :update)
 
+;;; Quick screenshot or recording ---------------------------------------------
+
+(defcommand screenshot-clipboard () ()
+  (run-shell-command "screenshot -c"))
+
+(defcommand screenshot-file (filename) ((:string "File name: "))
+  (when filename
+    (run-shell-command
+     (format nil
+             "screenshot -f '~a'"
+             filename))))
+
+(defcommand screenvid-start
+    (filename include-audio-p)
+    ((:string "File name: ") (:y-or-n "Include audio? "))
+  (when filename
+    (run-shell-command
+     (format nil
+             "systemd-run --user --scope --unit=screenvid screenvid -f '~a' ~a"
+             filename
+             (if include-audio-p "-a" "")))))
+
+(defcommand screenvid-stop () ()
+  (run-shell-command "systemctl --user stop screenvid.scope"))
+
+(defkeymap *recording-map*
+  ("c" "screenshot-clipboard")
+  ("f" "screenshot-file")
+  ("v" "screenvid-start")
+  ("V" "screenvid-stop"))
+
+(define-key *root-map* (kbd "V") '*recording-map*)
+
 ;;; Window titles -------------------------------------------------------------
 
 (defmacro normalize-titles (&rest triplets)

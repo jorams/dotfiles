@@ -1,0 +1,36 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: $0: [-h] [-f filename] [-F format] [-a]"
+}
+
+OUTPUTNAME=""
+OUTPUTFORMAT=""
+INCLUDEAUDIO=""
+
+while getopts "hf:F:a" arg; do
+    case "$arg" in
+        f) OUTPUTNAME="$OPTARG" ;;
+        F) OUTPUTFORMAT="$OPTARG" ;;
+        a) INCLUDEAUDIO="1" ;;
+        h) usage; exit; ;;
+        *) usage; exit 1 ;;
+    esac
+done
+
+if [[ -z "$OUTPUTNAME" ]]; then
+    OUTPUTNAME=$(date +"%Y-%m-%d_%H-%M-%S")
+fi
+
+if [[ -z "$OUTPUTFORMAT" ]]; then
+    OUTPUTFORMAT="mp4"
+fi
+
+AUDIOARG=""
+if [[ -n "$INCLUDEAUDIO" ]]; then
+    AUDIOARG="-f alsa -i pulse"
+fi
+
+slop=$(slop -f "%x %y %w %h %g %i") || exit 1
+read -r X Y W H G ID < <(echo $slop)
+ffmpeg -f x11grab -s "$W"x"$H" -i :0.0+$X,$Y $AUDIOARG "$OUTPUTNAME.$OUTPUTFORMAT"

@@ -1,0 +1,39 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: $0: [-h] [-c|-f filename] [-d delay]"
+}
+
+OUTPUTCLIP=""
+OUTPUTNAME=""
+DELAY=""
+
+while getopts "hcf:d:" arg; do
+    case "$arg" in
+        f) OUTPUTNAME="$OPTARG" ;;
+        c) OUTPUTCLIP="1" ;;
+        d) DELAY="$OPTARG" ;;
+        h) usage; exit; ;;
+        *) usage; exit 1; ;;
+    esac
+done
+
+if [[ -n "$OUTPUTCLIP" && -n "$OUTPUTNAME" ]]; then
+    usage
+    exit 2
+fi
+
+if [[ -z "$OUTPUTCLIP" && -z "$OUTPUTNAME" ]]; then
+    OUTPUTNAME=$(date +"%Y-%m-%d_%H-%M-%S")
+fi
+
+DELAYARG=""
+if [[ -n "$DELAY" ]]; then
+    DELAYARG="--delay=$DELAY"
+fi
+
+if [[ -n "$OUTPUTCLIP" ]]; then
+    maim --select ${DELAYARG:+"$DELAYARG"} | xclip -selection clipboard -target image/png
+elif [[ -n "$OUTPUTNAME" ]]; then
+    maim --select ${DELAYARG:+"$DELAYARG"} > "$OUTPUTNAME.png"
+fi

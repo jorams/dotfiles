@@ -700,6 +700,7 @@ point reaches the beginning or end of the buffer, stop there."
              rg-save-search
              rg-save-search-as-name
              rg-literal)
+  :config (setq wgrep-auto-save-buffer t)
   :bind (("C-c s r" . rg)
          ("C-c p s r" . rg-project)))
 

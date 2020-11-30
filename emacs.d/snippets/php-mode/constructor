@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: constructor
+# key: con
+# --
+public function __construct($2) {
+    $0
+}

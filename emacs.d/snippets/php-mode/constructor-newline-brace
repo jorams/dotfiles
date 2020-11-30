@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: constructor-newline-brace
+# key: conn
+# --
+public function __construct($2)
+{
+    $0
+}

@@ -818,7 +818,8 @@ empty string."
          "\\.twig\\'"
          "\\.etlua\\'"
          "\\.ctml\\'"
-         "\\.html\\.eex\\'")
+         "\\.html\\.eex\\'"
+         "\\.blade.php\\'")
   :config
   (setq-default web-mode-markup-indent-offset 2)
   (add-hook 'web-mode-hook

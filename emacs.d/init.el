@@ -732,6 +732,14 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (editorconfig-mode 1))
 
+;;; dumb-jump -----------------------------------------------------------------
+
+(use-package dumb-jump
+  :ensure t
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  (setq dumb-jump-force-searcher 'rg))
+
 ;;; Lisp ----------------------------------------------------------------------
 
 (defun j/sly-ivy-completing-read (prompt choices &optional

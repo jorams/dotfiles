@@ -231,6 +231,13 @@
   :pullp t
   :pull-key (kbd "s-S"))
 
+(defprogram-shortcut insomnia
+  :key (kbd "s-s")
+  :command "insomnia"
+  :props '(:class "Insomnia")
+  :pullp t
+  :pull-key (kbd "s-u"))
+
 ;;; Selection -----------------------------------------------------------------
 
 (define-stumpwm-type :selection (input prompt)

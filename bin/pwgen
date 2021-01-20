@@ -1,0 +1,30 @@
+#!/usr/bin/bash
+
+usage() {
+    echo "Usage: $0: [-h] [-a|-s] [-l length] [-c|-p|-e]"
+}
+
+TRARG="[:graph:]"
+LENGTH="32"
+TARGET="echo"
+
+while getopts "hasl:cpe" arg; do
+    case "$arg" in
+        a) TRARG="[:alnum:]" ;;
+        s) TRARG="[:graph:]" ;;
+        l) LENGTH="$OPTARG" ;;
+        c) TARGET="clipboard" ;;
+        p) TARGET="primary" ;;
+        e) TARGET="echo" ;;
+        h) usage; exit; ;;
+        *) usage; exit 1; ;;
+    esac
+done
+
+PASSWORD="$(< /dev/urandom tr -dc "$TRARG" | head -c "$LENGTH")"
+
+case "$TARGET" in
+    echo) echo "$PASSWORD" ;;
+    clipboard) echo "$PASSWORD" | xclip -rmlastnl -selection clipboard ;;
+    primary) echo "$PASSWORD" | xclip -rmlastnl -selection primary ;;
+esac

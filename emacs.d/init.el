@@ -325,10 +325,6 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Theme ---------------------------------------------------------------------
 
-(add-to-list 'custom-theme-load-path
-             (expand-file-name (concat user-emacs-directory
-                                       "themes")))
-
 (defun j/load-theme ()
   (set-frame-parameter nil 'background-mode 'dark)
   (setq doom-spacegrey-brighter-comments t)

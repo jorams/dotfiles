@@ -121,6 +121,9 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 
+;;; Improve M-SPC
+(bind-key "M-SPC" 'cycle-spacing)
+
 ;;; Automatically pair pairs
 (electric-pair-mode 1)
 

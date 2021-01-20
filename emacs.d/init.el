@@ -593,24 +593,12 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Org -----------------------------------------------------------------------
 
-(use-package org-passwords
-  :commands (org-passwords
-             org-passwords-mode
-             org-passwords-copy-password
-             org-passwords-copy-username
-             org-passwords-open-url
-             org-passwords-random-words
-             org-passwords-generate-password))
-
 (defvar j/org-notes-file "~/life/notes.org")
 (bind-key "M-C" 'org-capture)
 
 (setq
  org-capture-templates
- `(("p" "password"
-    entry (file ,j/org-passwords-file)
-    "* %^{Title}\n  %^{URL}p %^{USERNAME}p %^{PASSWORD}p")
-   ("b" "Bookmark"
+ `(("b" "Bookmark"
     entry (file+headline ,j/org-notes-file "Bookmarks")
     "* [[%^{URL}][%^{Title}]] %^g\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n%?")
    ))

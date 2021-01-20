@@ -15,7 +15,8 @@
               "-option" "compose:menu"
               "-option" (ecase caps
                           (:control "ctrl:nocaps")
-                          (:escape "caps:escape")))))
+                          (:escape "caps:escape"))))
+  (run! "xset r rate 200 25"))
 
 (defun beep (&optional enablep)
   "Control whether or not the system beeps."

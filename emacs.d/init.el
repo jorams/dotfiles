@@ -331,6 +331,8 @@ point reaches the beginning or end of the buffer, stop there."
   (setq doom-spacegrey-comment-bg nil)
   (setq doom-spacegrey-padded-modeline nil)
   (load-theme 'doom-spacegrey)
+  (setq doom-themes-treemacs-theme "doom-colors")
+  (doom-themes-treemacs-config)
   (set-frame-font (font-spec :family "Input"
                              :size (if (getenv "IS4K") 22 11))
                   nil
@@ -738,6 +740,32 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (setq dumb-jump-force-searcher 'rg))
+
+;;; Treemacs ------------------------------------------------------------------
+
+(use-package treemacs
+  :ensure t
+  :defer t
+  :config
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+  (treemacs-fringe-indicator-mode 'always)
+  (treemacs-git-mode 'deferred)
+  :bind
+  (("M-0"       . treemacs-select-window)
+   ("C-x t t"   . treemacs)
+   ("C-x t B"   . treemacs-bookmark)
+   ("C-x t M-t" . treemacs-find-tag)
+   :map treemacs-mode-map
+   ([mouse-1] . treemacs-single-click-expand-action)))
+
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :ensure t)
+
+(use-package treemacs-magit
+  :after treemacs magit
+  :ensure t)
 
 ;;; Lisp ----------------------------------------------------------------------
 

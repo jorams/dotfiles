@@ -734,6 +734,7 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package treemacs
   :ensure t
   :defer t
+  :commands (treemacs treemacs-select-window)
   :config
   (treemacs-follow-mode t)
   (treemacs-filewatch-mode t)
@@ -741,9 +742,6 @@ point reaches the beginning or end of the buffer, stop there."
   (treemacs-git-mode 'deferred)
   :bind
   (("M-0"       . treemacs-select-window)
-   ("C-x t t"   . treemacs)
-   ("C-x t B"   . treemacs-bookmark)
-   ("C-x t M-t" . treemacs-find-tag)
    :map treemacs-mode-map
    ([mouse-1] . treemacs-single-click-expand-action)))
 
@@ -754,6 +752,35 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package treemacs-magit
   :after treemacs magit
   :ensure t)
+
+;;; Hydra ---------------------------------------------------------------------
+
+(use-package hydra
+  :ensure t
+  :bind (("C-c r" . hydra-replace/body)
+         ("C-c g" . hydra-git/body)
+         ("C-c t" . hydra-treemacs/body))
+  :config
+  (defhydra hydra-replace (:color teal)
+    "replace"
+    ("s" replace-string "string")
+    ("S" query-replace "string (query)")
+    ("e" replace-regexp "regexp")
+    ("E" query-replace-regexp "regexp (query)"))
+  (defhydra hydra-git (:color teal)
+    "git"
+    ("s" magit-status "status")
+    ("b" magit-blame-addition "blame file")
+    ("B" magit-blame "blame")
+    ("l" magit-log-buffer-file "log file")
+    ("L" magit-log "log")
+    ("t" git-timemachine "time machine"))
+  (defhydra hydra-treemacs (:color teal)
+    "treemacs"
+    ("t" treemacs "toggle")
+    ("w" treemacs-switch-workspace "switch workspace")
+    ("a" treemacs-add-project-to-workspace "add project")
+    ("s" treemacs-select-window "select")))
 
 ;;; Lisp ----------------------------------------------------------------------
 

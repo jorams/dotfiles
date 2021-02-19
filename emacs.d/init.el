@@ -320,12 +320,14 @@ point reaches the beginning or end of the buffer, stop there."
                       nil
                       j/align-default-separator)))
   (setq-local j/align-default-separator separator)
-  (align-regexp (region-beginning)
-                (region-end)
-                (concat "\\(\\s-*\\) " (regexp-quote separator))
-                nil
-                0
-                t))
+  (let ((start (if (use-region-p) (region-beginning) 1))
+        (end (if (use-region-p) (region-end) (point-max))))
+    (align-regexp start
+                  end
+                  (concat "\\(\\s-*\\) " (regexp-quote separator))
+                  nil
+                  0
+                  t)))
 
 ;;; Theme ---------------------------------------------------------------------
 

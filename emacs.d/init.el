@@ -329,6 +329,19 @@ point reaches the beginning or end of the buffer, stop there."
                   0
                   t)))
 
+(defun j/json-pretty-print ()
+  (interactive)
+  (let ((start (if (use-region-p) (region-beginning) 1))
+        (end (if (use-region-p) (region-end) (point-max))))
+    (json-pretty-print start end)))
+
+(defun j/xml-pretty-print ()
+  (interactive)
+  (let ((start (if (use-region-p) (region-beginning) 1))
+        (end (if (use-region-p) (region-end) (point-max))))
+    (shell-command-on-region start end "xmllint --format -"
+                             (current-buffer) t)))
+
 ;;; Theme ---------------------------------------------------------------------
 
 (defun j/load-theme ()
@@ -779,7 +792,8 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :bind (("C-c r" . hydra-replace/body)
          ("C-c g" . hydra-git/body)
-         ("C-c t" . hydra-treemacs/body))
+         ("C-c t" . hydra-treemacs/body)
+         ("C-c f" . hydra-format/body))
   :config
   (defhydra hydra-replace (:color teal)
     "replace"
@@ -800,7 +814,12 @@ point reaches the beginning or end of the buffer, stop there."
     ("t" treemacs "toggle")
     ("w" treemacs-switch-workspace "switch workspace")
     ("a" treemacs-add-project-to-workspace "add project")
-    ("s" treemacs-select-window "select")))
+    ("s" treemacs-select-window "select"))
+  (defhydra hydra-format (:color teal)
+    "format"
+    ("j" j/json-pretty-print "json")
+    ("x" j/xml-pretty-print "xml")
+    ("a" j/align "align")))
 
 ;;; Lisp ----------------------------------------------------------------------
 

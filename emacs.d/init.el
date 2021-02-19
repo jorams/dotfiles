@@ -338,7 +338,7 @@ point reaches the beginning or end of the buffer, stop there."
   (setq doom-themes-treemacs-theme "doom-colors")
   (doom-themes-treemacs-config)
   (set-frame-font (font-spec :family "Input"
-                             :size (if (getenv "IS4K") 22 11))
+                             :size (if (getenv "IS4K") 20 11))
                   nil
                   t))
 

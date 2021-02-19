@@ -208,6 +208,10 @@ When less than half a screen of lines remains, scroll to the start."
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
 
+;;; Disable saving prompts on recompile
+(setq compilation-ask-about-save nil
+      compilation-save-buffers-predicate 'ignore)
+
 ;;; Utilities -----------------------------------------------------------------
 
 (defun j/wrap-hard ()

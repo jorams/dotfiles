@@ -637,6 +637,12 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Magit ---------------------------------------------------------------------
 
+(defun j/display-buffer-next-window (buffer alist)
+  "Display BUFFER in `next-window', much like `display-buffer-same-window'. ALIST is forwarded."
+  (unless (or (window-minibuffer-p (next-window))
+              (window-dedicated-p (next-window)))
+    (window--display-buffer buffer (next-window) 'reuse alist)))
+
 (use-package magit
   :ensure t
   :commands (magit-status)
@@ -645,7 +651,14 @@ point reaches the beginning or end of the buffer, stop there."
   (setq git-commit-summary-max-length 50)
   (add-hook 'git-commit-mode-hook
             (lambda ()
-              (setq fill-column 72))))
+              (setq fill-column 72)))
+
+  (setq magit-display-buffer-function
+        (lambda (buffer)
+          (cond
+           ((derived-mode-p 'treemacs-mode)
+            (display-buffer buffer '(j/display-buffer-next-window)))
+           (t (magit-display-buffer-traditional buffer))))))
 
 (use-package magit-todos
   :ensure t

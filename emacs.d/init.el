@@ -757,6 +757,7 @@ point reaches the beginning or end of the buffer, stop there."
   (treemacs-filewatch-mode t)
   (treemacs-fringe-indicator-mode 'always)
   (treemacs-git-mode 'deferred)
+  (treemacs-define-RET-action 'root-node-open 'magit-status)
   :bind
   (("M-0"       . treemacs-select-window)
    :map treemacs-mode-map

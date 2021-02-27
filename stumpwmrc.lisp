@@ -485,7 +485,7 @@ then pastes it into the command."
 (setf *normal-border-width* 0)
 (setf *maxsize-border-width* 0)
 
-(setf *mouse-focus-policy* :sloppy)
+(setf *mouse-focus-policy* :click)
 (setf *new-frame-action* :empty)
 (setf *honor-window-moves* nil)
 

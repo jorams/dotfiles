@@ -250,7 +250,9 @@
                    ("send-clipboard-escaped" :send-clipboard-escaped)
                    ("send-primary-escaped"   :send-primary-escaped)))
          (raw-command (or (argument-pop input)
-                          (completing-read (current-screen) prompt values)))
+                          (completing-read (current-screen)
+                                           prompt
+                                           (mapcar 'first values))))
          (command (second (assoc raw-command values :test 'string-equal))))
     (or command (throw 'error "Invalid selection command."))))
 
@@ -541,7 +543,9 @@ then pastes it into the command."
   (let* ((values '(("home" :home)
                    ("work" :work)))
          (raw-theme (or (argument-pop input)
-                        (completing-read (current-screen) prompt values)))
+                        (completing-read (current-screen)
+                                         prompt
+                                         (mapcar 'first values))))
          (theme (second (assoc raw-theme values :test 'string-equal))))
     (or theme (throw 'error "Invalid theme."))))
 

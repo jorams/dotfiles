@@ -620,6 +620,9 @@ point reaches the beginning or end of the buffer, stop there."
  `(("b" "Bookmark"
     entry (file+headline ,j/org-notes-file "Bookmarks")
     "* [[%^{URL}][%^{Title}]] %^g\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n%?")
+   ("n" "Note"
+    entry (file+headline ,j/org-notes-file "Notes")
+    "* %^{Note} %^g\n%T\n\n%?")
    ))
 
 ;;; Mail ----------------------------------------------------------------------

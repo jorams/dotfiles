@@ -287,16 +287,7 @@
 
 ;;; Volume --------------------------------------------------------------------
 
-(define-stumpwm-type :volume (input prompt)
-  (let* ((values '(("up" :up)
-                   ("down" :down)
-                   ("toggle" :toggle)
-                   ("update" :update)))
-         (volume (or (argument-pop input)
-                     (completing-read (current-screen) prompt values)))
-         (dir (or (second (assoc volume values :test 'string-equal))
-                  (parse-integer volume :junk-allowed t))))
-    (or dir (throw 'error "Invalid volume."))))
+;;; Status
 
 (defparameter *volume* "")
 
@@ -304,52 +295,103 @@
   (declare (ignore ml))
   *volume*)
 
-(defun run-volume-command (vol &optional amount)
-  (run-shell-command (case vol
-                       (:up (format nil "pamixer --increase ~A" amount))
-                       (:down (format nil "pamixer --decrease ~A" amount))
-                       (:toggle "pamixer --toggle-mute")
-                       (:muted "pamixer --get-mute")
-                       (:update "pamixer --get-volume")
-                       (t (format nil "pamixer --set-volume ~A" vol)))
-                     t))
+(defun volume-muted-p (&key sink source)
+  (and
+   (ppcre:scan "true"
+               (run-shell-command
+                (cond
+                  ((eq sink t) (format nil "pamixer --get-mute"))
+                  (sink (format nil "pamixer --sink ~A --get-mute" sink))
+                  ((eq source t) (format nil "pamixer --default-source --get-mute"))
+                  (source (format nil "pamixer --source ~A --get-mute" source))
+                  (t (error "Neither a sink nor a source selected")))
+                t))
+   t))
 
-(defcommand volume (vol &optional (amount 5))
-    ((:volume "Volume: ") :number)
-  (handler-case
-      (progn
-        (run-volume-command vol amount)
-        (let* ((mutedp (ppcre:scan "true" (run-volume-command :muted)))
-               (volume-string (ppcre:scan-to-strings
-                               "\\d+"
-                               (run-volume-command :update)))
-               (volume (or (parse-integer volume-string :junk-allowed t)
-                           -1)))
-          (setf *volume* (format nil "^[^f2~a ^f0~a^]"
-                                 (cond (mutedp "")
-                                       ((< volume 0) "")
-                                       ((= volume 0) "")
-                                       ((<= 0 volume 50) "")
-                                       ((<= 50 volume 100) "")
-                                       (t ""))
-                                 (if mutedp "" (format nil "~a%" volume))))))
-    (serious-condition (c)
-      (err "An error has occurred while managing the volume: ~S" c)))
-  (values))
+(defun volume-percentage (&key sink source)
+  (let* ((command (cond
+                    ((eq sink t) (format nil "pamixer --get-volume"))
+                    (sink (format nil "pamixer --sink ~A --get-volume" sink))
+                    ((eq source t) (format nil "pamixer --default-source --get-volume"))
+                    (source (format nil "pamixer --source ~A --get-volume" source))
+                    (t (error "Neither a sink nor a source selected"))))
+         (volume-string (ppcre:scan-to-strings
+                         "\\d+"
+                         (run-shell-command command t))))
+    (or (parse-integer (or volume-string "") :junk-allowed t)
+        -1)))
 
-(defkeymap *volume-map*
-  ("u" "volume up")
-  ("U" "volume up 10")
-  ("d" "volume down")
-  ("D" "volume down 10")
-  ("V" "volume update")
-  (("t" "v") "volume toggle"))
+(defcommand update-volume-status () ()
+  (let* ((default-muted-p (volume-muted-p :sink "default-out"))
+         (default-volume (volume-percentage :sink "default-out"))
+         (voice-muted-p (volume-muted-p :sink "voice-out"))
+         (voice-volume (volume-percentage :sink "voice-out"))
+         (mic-muted-p (volume-muted-p :source t))
+         (mic-volume (volume-percentage :source t)))
+    (setf *volume* (format nil "^[^f2 ^f0~a ^f2 ^f0~a ^f2 ^f0~a^]"
+                           (if default-muted-p
+                               ""
+                               (format nil "~a%" default-volume))
+                           (if voice-muted-p
+                               ""
+                               (format nil "~a%" voice-volume))
+                           (if mic-muted-p
+                               ""
+                               (format nil "~a%" mic-volume))))))
 
-(define-key *root-map* (kbd "v") '*volume-map*)
 (add-screen-mode-line-formatter #\V 'volume-status)
 
+;;; Change
+
+(define-stumpwm-type :volume-command (input prompt)
+  "Either up/down/toggle, or the percentage to set it to."
+  (let* ((values '(("up" :up)
+                   ("down" :down)
+                   ("toggle" :toggle)))
+         (volume (or (argument-pop input)
+                     (completing-read (current-screen)
+                                      prompt
+                                      (mapcar 'first values))))
+         (dir (or (second (assoc volume values :test 'string-equal))
+                  (parse-integer volume :junk-allowed t))))
+    (or dir (throw 'error "Invalid volume."))))
+
+(define-stumpwm-type :volume-target (input prompt)
+  (let* ((values '("default-out" "voice-out" "mic"))
+         (command (or (argument-pop input)
+                      (completing-read (current-screen) prompt values))))
+    (or command (throw 'error "Invalid volume command."))))
+
+(defcommand volume (command target &optional (amount 5))
+    ((:volume-command "Command: ")
+     (:volume-target "Target: ")
+     :number)
+  (let ((pamixer-target (if (string-equal target "mic")
+                            "--default-source"
+                            (format nil "--sink ~A" target)))
+        (pamixer-action (case command
+                          (:up (format nil "--increase ~A" amount))
+                          (:down (format nil "--decrease ~A" amount))
+                          (:toggle (format nil "--toggle-mute"))
+                          (t (format nil "--set-volume ~A" command)))))
+    (run-shell-command (format nil "pamixer --allow-boost ~A ~A"
+                               pamixer-target
+                               pamixer-action)))
+  (update-volume-status)
+  (values))
+
+(define-key *top-map* (kbd "s-F12") "volume up default-out")
+(define-key *top-map* (kbd "s-S-F12") "volume up voice-out")
+(define-key *top-map* (kbd "s-C-F12") "volume up mic")
+(define-key *top-map* (kbd "s-F11") "volume down default-out")
+(define-key *top-map* (kbd "s-S-F11") "volume down voice-out")
+(define-key *top-map* (kbd "s-C-F11") "volume down mic")
+(define-key *top-map* (kbd "s-F10") "volume toggle default-out")
+(define-key *top-map* (kbd "s-S-F10") "volume toggle voice-out")
+(define-key *top-map* (kbd "s-C-F10") "volume toggle mic")
+
 ;; Update volume status for the first time.
-(volume :update)
+(update-volume-status)
 
 ;;; Quick screenshot or recording ---------------------------------------------
 

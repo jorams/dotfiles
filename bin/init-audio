@@ -1,0 +1,32 @@
+#!/bin/bash
+
+systemctl --user start pipewire pipewire-pulse
+# This is a terrible hack, but it attempts to make sure everything we need is available
+sleep 1
+
+# If the sinks already exist, we want to remove them for now
+DEFAULT_OUT="$(pactl list short modules | grep default-out | cut -f 1)"
+VOICE_OUT="$(pactl list short modules | grep voice-out | cut -f 1)"
+[[ -n "$DEFAULT_OUT" ]] && pactl unload-module "$DEFAULT_OUT"
+[[ -n "$VOICE_OUT" ]] && pactl unload-module "$VOICE_OUT"
+
+# Create the new sinks
+pactl load-module module-null-sink \
+      sink_name=default-out object.linger=1 audio.channels=2 device.description=default-out \
+      > /dev/null
+
+pactl load-module module-null-sink \
+      sink_name=voice-out object.linger=1 audio.channels=2 device.description=voice-out \
+      > /dev/null
+
+# Link the new sinks to the physical output
+# (These hardcoded names feel wrong)
+pw-jack jack_connect "default-out Monitor:monitor_FL" "Built-in Audio Analog Stereo:playback_FL"
+pw-jack jack_connect "default-out Monitor:monitor_FR" "Built-in Audio Analog Stereo:playback_FR"
+pw-jack jack_connect "voice-out Monitor:monitor_FL" "Built-in Audio Analog Stereo:playback_FL"
+pw-jack jack_connect "voice-out Monitor:monitor_FR" "Built-in Audio Analog Stereo:playback_FR"
+
+# Default configuration
+pactl set-sink-volume default-out 50%
+pactl set-default-sink default-out
+pactl set-sink-volume voice-out 30%

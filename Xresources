@@ -1,11 +1,12 @@
 URxvt*scrollBar: false
 
 ! Url stuff
-URxvt.perl-ext:     default,url-select,keyboard-select,confirm-paste
+URxvt.perl-ext:     default,url-select,keyboard-select,confirm-paste,selection-to-clipboard
 URxvt.keysym.M-u:   perl:url-select:select_next
 URxvt.url-select.launcher:  browser
 URxvt.url-select.underline: true
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keyboard-select.clipboard: true
 URxvt.font: XR_FONT
 
 URxvt.depth: 32

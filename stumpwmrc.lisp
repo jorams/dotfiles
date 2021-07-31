@@ -449,7 +449,8 @@
    :class "Chromium" "chromium"
    :class "Steam" "steam"
    :class "Insomnia" "insomnia"
-   :instance "virt-manager" "virt-manager"))
+   :instance "virt-manager" "virt-manager"
+   :instance "chatterino" "chatterino"))
 
 (add-hook *new-window-hook* 'normalize-window-titles)
 

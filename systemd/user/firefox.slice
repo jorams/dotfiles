@@ -3,6 +3,6 @@ Description=Firefox slice
 
 [Slice]
 MemoryAccounting=true
-MemoryLimit=4G
+MemoryLimit=8G
 CPUAccounting=true
 CPUQuota=50%

@@ -16,7 +16,6 @@ wmname LG3D &
 defaults &
 systemctl --user restart redshift
 init-audio
-builtin type -P pulseeffects && pulseeffects --gapplication-service &
 
 export GTK_THEME=Arc:dark
 

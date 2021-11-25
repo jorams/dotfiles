@@ -908,7 +908,8 @@ empty string."
          "\\.etlua\\'"
          "\\.ctml\\'"
          "\\.html\\.eex\\'"
-         "\\.blade.php\\'")
+         "\\.blade.php\\'"
+         "\\.gohtml\\'")
   :config
   (setq-default web-mode-markup-indent-offset 2)
   (add-hook 'web-mode-hook

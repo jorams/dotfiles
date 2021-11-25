@@ -451,7 +451,8 @@
    :class "Steam" "steam"
    :class "Insomnia" "insomnia"
    :instance "virt-manager" "virt-manager"
-   :instance "chatterino" "chatterino"))
+   :class "chatterino" "chatterino"
+   :class "discord" "discord"))
 
 (add-hook *new-window-hook* 'normalize-window-titles)
 

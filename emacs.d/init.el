@@ -172,6 +172,11 @@ When less than half a screen of lines remains, scroll to the start."
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
+;;; Simplify case conversion in regions
+(bind-key "M-u" 'upcase-dwim)
+(bind-key "M-l" 'downcase-dwim)
+(bind-key "M-c" 'capitalize-dwim)
+
 ;;; Always follow symlinks under version control
 (setq vc-follow-symlinks t)
 

@@ -21,12 +21,7 @@ pactl load-module module-null-sink \
 
 # Link the new sinks to the physical output
 # (These hardcoded names feel wrong)
-pw-jack jack_connect "default-out Monitor:monitor_FL" "Built-in Audio Analog Stereo:playback_FL"
-pw-jack jack_connect "default-out Monitor:monitor_FR" "Built-in Audio Analog Stereo:playback_FR"
-pw-jack jack_connect "voice-out Monitor:monitor_FL" "Built-in Audio Analog Stereo:playback_FL"
-pw-jack jack_connect "voice-out Monitor:monitor_FR" "Built-in Audio Analog Stereo:playback_FR"
-
-# Default configuration
-pactl set-sink-volume default-out 50%
-pactl set-default-sink default-out
-pactl set-sink-volume voice-out 30%
+pw-link "default-out:monitor_FL" "alsa_output.pci-0000_00_1b.0.analog-stereo:playback_FL"
+pw-link "default-out:monitor_FR" "alsa_output.pci-0000_00_1b.0.analog-stereo:playback_FR"
+pw-link "voice-out:monitor_FL" "alsa_output.pci-0000_00_1b.0.analog-stereo:playback_FL"
+pw-link "voice-out:monitor_FR" "alsa_output.pci-0000_00_1b.0.analog-stereo:playback_FR"

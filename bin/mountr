@@ -6,7 +6,7 @@ DIR="/media/${NAME}"
 
 /usr/bin/rclone mount "$REMOTE" "$DIR" \
                 --fast-list \
-                --buffer-size 1G \
+                --buffer-size 64M \
                 --dir-cache-time 1h \
                 --drive-chunk-size 32M \
                 --read-only \

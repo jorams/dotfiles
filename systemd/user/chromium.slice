@@ -3,6 +3,6 @@ Description=Chromium slice
 
 [Slice]
 MemoryAccounting=true
-MemoryLimit=4G
+MemoryLimit=6G
 CPUAccounting=true
 CPUQuota=50%

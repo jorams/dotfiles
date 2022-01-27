@@ -515,22 +515,53 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package multiple-cursors
   :ensure t
-  :bind (("C-S-c C-S-c" . mc/edit-lines)
-         ("C->" . mc/mark-next-like-this)
-         ("C-M->" . mc/mark-next-symbol-like-this)
-         ("C-M-." . mc/unmark-next-like-this)
-         ("C-." . mc/skip-to-next-like-this)
-         ("C-<" . mc/mark-previous-like-this)
-         ("C-M-<" . mc/mark-previous-symbol-like-this)
-         ("C-M-," . mc/unmark-previous-like-this)
-         ("C-," . mc/skip-to-previous-like-this)
+  :bind (("C->" . mc/mark-more-like-this-extended)
+         ("C-M->" . j/mc/mark-next-symbol-like-this-extended)
+         ("C-<" . j/mc/mark-previous-like-this-extended)
+         ("C-M-<" . j/mc/mark-previous-symbol-like-this-extended)
          ("C-c C-<" . mc/mark-all-like-this-dwim)
-         ("C-c C->" . mc/mark-more-like-this-extended)
          ("C-c M-i" . mc/insert-numbers)
-         ("C-S-<mouse-1>" . mc/add-cursor-on-click))
+         ("C-S-<mouse-1>" . mc/add-cursor-on-click)
+         ("C-c C-," . mc/mark-pop)
+         :map mc/mark-more-like-this-extended-keymap
+         ("C->" . mc/mmlte--down)
+         ("C-M->" . j/mc/mmlte--down-symbol)
+         ("C-," . mc/mmlte--left)
+         ("C-." . mc/mmlte--right)
+         ("C-<" . mc/mmlte--up)
+         ("C-M-<" . j/mc/mmlte--up-symbol))
   :init
   (use-package mc-cycle-cursors)
-  (use-package mc-hide-unmatched-lines-mode))
+  (use-package mc-hide-unmatched-lines-mode)
+  :config
+
+  ;; I want to use mark-more-like-this-extended, but still select symbols.
+  (defun j/mc/mmlte--up-symbol ()
+    (interactive)
+    (let ((mc/enclose-search-term 'symbols))
+      (mc/mmlte--up)))
+  (defun j/mc/mmlte--down-symbol ()
+    (interactive)
+    (let ((mc/enclose-search-term 'symbols))
+      (mc/mmlte--down)))
+
+  ;; I want to use mark-more-like-this-extended but be able to start by moving
+  ;; backwards, and/or by selecting symbols.
+  (defun j/mc/mark-previous-like-this-extended ()
+    "Like mc/mark-more-like-this-extended, but starts moving up instead of down."
+    (interactive)
+    (mc/mmlte--up)
+    (set-transient-map mc/mark-more-like-this-extended-keymap t))
+  (defun j/mc/mark-previous-symbol-like-this-extended ()
+    "Like mc/mark-more-like-this-extended, but starts moving up instead of down."
+    (interactive)
+    (j/mc/mmlte--up-symbol)
+    (set-transient-map mc/mark-more-like-this-extended-keymap t))
+  (defun j/mc/mark-next-symbol-like-this-extended ()
+    "Like mc/mark-more-like-this-extended, but starts moving up instead of down."
+    (interactive)
+    (j/mc/mmlte--down-symbol)
+    (set-transient-map mc/mark-more-like-this-extended-keymap t)))
 
 ;;; Shift-number --------------------------------------------------------------
 

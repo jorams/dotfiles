@@ -1069,3 +1069,9 @@ empty string."
   (add-to-list
    'eglot-server-programs
    `(elixir-mode "~/bin/blob/elixir-ls/language_server.sh")))
+
+;;; Apache --------------------------------------------------------------------
+
+(use-package apache-mode
+  :ensure t
+  :mode "\\.htaccess\\'")

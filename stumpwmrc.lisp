@@ -114,7 +114,7 @@
   ("y" "theme home")
   ("Y" "theme work")
   ;; Locking, similarly not xrandr-related
-  ("l" "exec bash -c slock"))
+  ("l" "exec bash -c slock & xset dpms force off"))
 
 (define-key *root-map* (kbd "d") '*xrandr-map*)
 

@@ -785,6 +785,26 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package eglot
   :ensure t)
 
+(use-package lsp-mode
+  :ensure t
+  :init
+  (setq lsp-keymap-prefix "C-c C-l")
+  :config
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("php" "vendor/bin/psalm-language-server"))
+                    :activation-fn (lsp-activate-on "php")
+                    :server-id 'psalm))
+  :commands (lsp lsp-deferred))
+
+(use-package lsp-ui
+  :ensure t
+  :commands (lsp-ui-mode))
+
+(use-package lsp-tailwindcss
+  :ensure t
+  :config
+  (add-to-list 'lsp-language-id-configuration '(".*\\.html.twig$" . "html")))
+
 ;;; Editorconfig --------------------------------------------------------------
 
 (use-package editorconfig

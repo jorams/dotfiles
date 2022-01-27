@@ -880,6 +880,16 @@ point reaches the beginning or end of the buffer, stop there."
     ("x" j/xml-pretty-print "xml")
     ("a" j/align "align")))
 
+;;; Tree Sitter ---------------------------------------------------------------
+
+(use-package tree-sitter
+  :ensure t
+  :commands (tree-sitter-mode tree-sitter-hl-mode global-tree-sitter-mode))
+
+(use-package tree-sitter-langs
+  :ensure t
+  :commands (tree-sitter-mode tree-sitter-hl-mode global-tree-sitter-mode))
+
 ;;; Lisp ----------------------------------------------------------------------
 
 (defun j/sly-ivy-completing-read (prompt choices &optional

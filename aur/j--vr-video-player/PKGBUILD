@@ -1,0 +1,33 @@
+# Maintainer: i at joram dot io
+# Maintainer: dec05eba <dec05eba@protonmail.com>
+
+pkgname=j--vr-video-player-git
+pkgver=r74.a2ae5ec
+pkgrel=1
+pkgdesc='A virtual reality video player for x11 on Linux'
+arch=('x86_64')
+url="https://git.sr.ht/~joram/vr-video-player"
+license=('BSD')
+depends=('glm' 'glew' 'sdl2' 'openvr' 'libx11' 'libxcomposite' 'libxfixes')
+provides=('vr-video-player')
+conflicts=('vr-video-player')
+source=("git+https://git.sr.ht/~joram/vr-video-player")
+sha512sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/vr-video-player"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$srcdir/vr-video-player"
+  ./build.sh
+}
+
+package() {
+  cd "$srcdir/vr-video-player"
+  install -Dm755 "vr-video-player" "$pkgdir/usr/bin/vr-video-player"
+  install -Dm644 config/player_actions.json "$pkgdir/usr/share/vr-video-player/player_actions.json"
+  install -Dm644 config/player_bindings_generic.json "$pkgdir/usr/share/vr-video-player/player_bindings_generic.json"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/vr-video-player/LICENSE"
+}

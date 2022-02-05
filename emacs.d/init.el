@@ -606,14 +606,21 @@ point reaches the beginning or end of the buffer, stop there."
   (global-company-mode)
   (setq company-idle-delay 0)
   (setq company-tooltip-align-annotations t)
-  (unbind-key "RET" company-active-map)
-  ;; This next line would normally use unbind-key, but that breaks on vectors.
-  (bind-key [return] nil company-active-map)
-  (bind-key "M-RET" 'company-complete-selection company-active-map)
-  (unbind-key "TAB" company-active-map)
-  ;; This next line would normally use unbind-key, but that breaks on vectors.
-  (bind-key [tab] nil company-active-map)
-  (bind-key "M-TAB" 'company-complete-common company-active-map)
+  ;; By default company binds some common keys, so that you need to dismiss
+  ;; completions in order to invoke the normal functionality. I want completion
+  ;; to help and not get in the way, so I bind these functions to M-<key>
+  ;; instead.
+  (bind-keys :map company-active-map
+             ("RET" . nil)
+             ([return] . nil)
+             ("M-RET" . company-complete-selection)
+             ("TAB" . nil)
+             ([tab] . nil)
+             ("M-TAB" . company-complete-common)
+             ("C-n" . nil)
+             ("M-n" . company-select-next)
+             ("C-p" . nil)
+             ("M-p" . company-select-previous))
   ;; By default, company disables yasnippet bindings while completion is
   ;; active. Since I explicitly don't want TAB to complete, I really just want
   ;; yasnippet to keep working.

@@ -1,1 +1,50 @@
-blob/autome
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0: [-h] [-t type] [path/url/-/]"
+}
+
+URL="https://link.joram.io/"
+AUTH="$(cat ~/.config/j/linkbox)"
+TYPE=tmp
+
+while getopts "ht:" arg; do
+    case "$arg" in
+        t) TYPE="$OPTARG" ;;
+        h) usage; exit; ;;
+        *) usage; exit 1; ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+THING="$1"
+
+if [ -z "$THING" ]; then THING=-; fi
+
+case "$THING" in
+    *://*)
+        curl \
+            --form-string "auth=$AUTH" \
+            --form-string "url=$THING" \
+            "$URL"
+        ;;
+    mailto:*)
+        curl \
+            --form-string "auth=$AUTH" \
+            --form-string "url=$THING" \
+            "$URL"
+        ;;
+    -)
+        curl \
+            --form-string "auth=$AUTH" \
+            --form "file=@\"$THING\";filename=file.$TYPE" \
+            "$URL"
+        ;;
+    *)
+        curl \
+            --form-string "auth=$AUTH" \
+            --form "file=@\"$THING\"" \
+            "$URL"
+        ;;
+esac

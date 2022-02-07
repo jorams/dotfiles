@@ -270,7 +270,7 @@ When less than half a screen of lines remains, scroll to the start."
                          t
                          nil
                          shell-command-switch
-                         (concat "linkbox --type " type))
+                         (concat "linkbox -t " type))
     (kill-new (buffer-substring-no-properties (point-min)
                                               (point-max)))
     (message (buffer-substring-no-properties (point-min)

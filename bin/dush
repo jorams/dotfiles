@@ -1,1 +1,24 @@
-blob/autome
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0: [-h] [-n|-r] [file(s)]"
+}
+
+SORT=default
+
+while getopts "hnr" arg; do
+    case "$arg" in
+         n) SORT=none ;;
+         r) SORT=reverse ;;
+         h) usage; exit; ;;
+         *) usage; exit 1; ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+case "$SORT" in
+    default) du -sh "$@" | sort -h ;;
+    reverse) du -sh "$@" | sort -hr ;;
+    none) du -sh "$@" ;;
+esac

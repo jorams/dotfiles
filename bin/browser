@@ -1,1 +1,3 @@
-blob/autome
+#!/bin/sh
+
+firefox "$@"

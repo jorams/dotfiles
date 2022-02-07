@@ -1,1 +1,63 @@
-blob/autome
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0: [-h] [-k|-K] [-s|-S] [-b|-B]"
+    echo "-h: Show this help"
+    echo "-k: Configure keyboard (capslock as control)"
+    echo "-K: Configure keyboard (capslock as escape)"
+    echo "-s: Enable DPMS"
+    echo "-S: Disable DPMS"
+    echo "-b: Disable system beep"
+    echo "-B: Enable system beep"
+    echo "Not specifying any options is equivalent to passing in -kbs"
+}
+
+keyboard() {
+    if [ "$1" = esc ]; then
+        setxkbmap -option "" -option compose:menu -option caps:escape
+    else
+        setxkbmap -option "" -option compose:menu -option ctrl:nocaps
+    fi
+
+    xset r rate 200 25
+}
+
+beep() {
+    if [ "$1" = "on" ]; then
+        xset b on
+    else
+        xset b off
+    fi
+}
+
+dpms() {
+    if [ "$1" = "on" ]; then
+        xset +dpms dpms 0 0 300 s on
+    else
+        xset -dpms s off
+    fi
+}
+
+ACTIONS=""
+
+while getopts "hkKsSbB" arg; do
+    case "$arg" in
+        k) ACTIONS="${ACTIONS}k" ;;
+        K) ACTIONS="${ACTIONS}K" ;;
+        s) ACTIONS="${ACTIONS}s" ;;
+        S) ACTIONS="${ACTIONS}S" ;;
+        b) ACTIONS="${ACTIONS}b" ;;
+        B) ACTIONS="${ACTIONS}B" ;;
+        h) usage; exit; ;;
+        *) usage; exit 1; ;;
+    esac
+done
+
+if [ "$ACTIONS" = "" ]; then ACTIONS=kbs; fi
+
+case "$ACTIONS" in *k*) keyboard ctrl; ;; esac
+case "$ACTIONS" in *K*) keyboard esc; ;; esac
+case "$ACTIONS" in *b*) beep off; ;; esac
+case "$ACTIONS" in *B*) beep on; ;; esac
+case "$ACTIONS" in *s*) dpms on; ;; esac
+case "$ACTIONS" in *S*) dpms off; ;; esac

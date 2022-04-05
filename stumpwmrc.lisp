@@ -331,7 +331,7 @@
          (voice-volume (volume-percentage :sink "voice-out"))
          (mic-muted-p (volume-muted-p :source t))
          (mic-volume (volume-percentage :source t)))
-    (setf *volume* (format nil "^[^f2 ^f0~a ^f2 ^f0~a ^f2 ^f0~a^]"
+    (setf *volume* (format nil "^[^f2^f0 ~a ^f2^f0 ~a ^f2^f0 ~a^]"
                            (if default-muted-p
                                ""
                                (format nil "~a%" default-volume))
@@ -518,12 +518,12 @@ then pastes it into the command."
             #+screen-is-4k "-*-tamsyn-medium-r-*-*-20-*-*-*-*-*-*-*"
             #+screen-is-4k "-*-tamsyn-medium-r-*-*-16-*-*-*-*-*-*-*"
             #-screen-is-4k ,(make-instance 'xft:font
-                                           :family "FontAwesome"
-                                           :subfamily "Regular"
+                                           :family "Font Awesome 6 Free Solid"
+                                           :subfamily "Solid"
                                            :size 8)
             #+screen-is-4k ,(make-instance 'xft:font
-                                           :family "FontAwesome"
-                                           :subfamily "Regular"
+                                           :family "Font Awesome 6 Free Solid"
+                                           :subfamily "Solid"
                                            :size 12)))
 
 (setf *input-window-gravity* :bottom)
@@ -594,7 +594,7 @@ then pastes it into the command."
                        -1))
            (chargingp (string-equal "Charging" (elt captures 0))))
       (setf *battery*
-            (format nil "^[^f2~A ^f0~A%^]"
+            (format nil "^[^f2~A^f0 ~A%^]"
                     (cond (chargingp "")
                           ((<= 0 status 5) "")
                           ((<= 5 status 25) "")

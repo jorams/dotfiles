@@ -41,6 +41,9 @@
 (define-key *top-map* (kbd "XF86AudioPrev") "mpd-prev")
 (define-key *top-map* (kbd "s-F9") "mpd-toggle-pause")
 
+(define-key *top-map* (kbd "XF86MonBrightnessUp") "exec brightnessctl set 5%+")
+(define-key *top-map* (kbd "XF86MonBrightnessDown") "exec brightnessctl set 5%-")
+
 (define-key *root-map* (kbd "N") 'notifications:*notifications-map*)
 
 (define-key *root-map* (kbd "c") "exec urxvt")
@@ -386,12 +389,21 @@
 (define-key *top-map* (kbd "s-F12") "volume up default-out")
 (define-key *top-map* (kbd "s-S-F12") "volume up voice-out")
 (define-key *top-map* (kbd "s-C-F12") "volume up mic")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "volume up default-out")
+(define-key *top-map* (kbd "S-XF86AudioRaiseVolume") "volume up voice-out")
+(define-key *top-map* (kbd "C-XF86AudioRaiseVolume") "volume up mic")
 (define-key *top-map* (kbd "s-F11") "volume down default-out")
 (define-key *top-map* (kbd "s-S-F11") "volume down voice-out")
 (define-key *top-map* (kbd "s-C-F11") "volume down mic")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "volume down default-out")
+(define-key *top-map* (kbd "S-XF86AudioLowerVolume") "volume down voice-out")
+(define-key *top-map* (kbd "C-XF86AudioLowerVolume") "volume down mic")
 (define-key *top-map* (kbd "s-F10") "volume toggle default-out")
 (define-key *top-map* (kbd "s-S-F10") "volume toggle voice-out")
 (define-key *top-map* (kbd "s-C-F10") "volume toggle mic")
+(define-key *top-map* (kbd "XF86AudioMute") "volume toggle default-out")
+(define-key *top-map* (kbd "S-XF86AudioMute") "volume toggle voice-out")
+(define-key *top-map* (kbd "C-XF86AudioMute") "volume toggle mic")
 
 ;; Update volume status for the first time.
 (update-volume-status)

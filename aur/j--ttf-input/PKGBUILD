@@ -1,17 +1,17 @@
 # Maintainer: i at joram dot io
 
 pkgname=j--ttf-input
-pkgver=20190112
+pkgver=20220405
 pkgrel=1
 pkgdesc='Fonts for code, with my personal settings'
 conflicts=('ttf-input')
 arch=('any')
 url='http://input.fontbureau.com/'
 license=('custom:Font Software License Agreement')
-depends=('fontconfig' 'xorg-fonts-encodings' 'xorg-font-utils')
-url_long="${url}build/?fontSelection=fourStyleFamily&regular=InputMono-Medium&italic=InputMono-MediumItalic&bold=InputMono-Black&boldItalic=InputMono-BlackItalic&a=0&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=0&preset=default&line-height=1.2&accept=I+do&email="
+depends=('xorg-fonts-encodings')
+url_long="https://input.djr.com/build/?fontSelection=fourStyleFamily&regular=InputMono-Medium&italic=InputMono-MediumItalic&bold=InputMono-Black&boldItalic=InputMono-BlackItalic&a=0&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=0&preset=default&line-height=1.2&accept=I+do&email="
 source=("Input_Fonts_${pkgver}.zip::${url_long}")
-sha256sums=('ec0f7c89cb09981d13f8c3933dc1f0ba994122ba7387152151033cff41b92275')
+sha256sums=('e01117bc9f0734dc34b2942b56cb912ad3f6172087f8095f688f99518d15c18e')
 
 package() {
   mkdir -p ${pkgdir}/usr/share/fonts/TTF

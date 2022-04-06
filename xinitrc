@@ -19,6 +19,9 @@ init-audio
 
 export GTK_THEME=Arc:dark
 
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
+
 xsetroot -cursor_name left_ptr &
 case "$2" in
     dev)

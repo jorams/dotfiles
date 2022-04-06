@@ -1,3 +1,0 @@
-[submodule "emacs.d/vendor/org-passwords.el"]
-	path = emacs.d/vendor/org-passwords.el
-	url = https://bitbucket.org/alfaromurillo/org-passwords.el.git

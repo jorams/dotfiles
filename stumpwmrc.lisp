@@ -9,7 +9,7 @@
 (when (stumpwm:getenv "IS4K")
   (pushnew :screen-is-4k *features*))
 
-(ql:quickload '(#:slynk #:mpd #:notifications #:ttf-fonts #:stumptray))
+(ql:quickload '(#:slynk #:mpd #:ttf-fonts #:stumptray))
 
 ;;; Remote control ------------------------------------------------------------
 
@@ -43,8 +43,6 @@
 
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "exec brightnessctl set 5%+")
 (define-key *top-map* (kbd "XF86MonBrightnessDown") "exec brightnessctl set 5%-")
-
-(define-key *root-map* (kbd "N") 'notifications:*notifications-map*)
 
 (define-key *root-map* (kbd "c") "exec urxvt")
 (define-key *root-map* (kbd "C-c") "exec urxvt")
@@ -628,14 +626,12 @@ then pastes it into the command."
 
 (pushnew '(#\i mpd-status-icon) mpd:*mpd-formatters-alist* :test #'equal)
 
-(notifications:notifications-add "^[^10day^]")
-
 (setf *mode-line-position* :top)
 (setf mpd:*mpd-modeline-fmt* "^f2%i^f0 %t (%n/%p)")
 (setf *screen-mode-line-format* (concatenate 'string
                                              "[^B%d %V"
                                              #+system-has-battery " %B"
-                                             "^b] %W ^>%m(%N)%T"))
+                                             "^b] %W ^>%m%T"))
 (setf *mode-line-highlight-template* "^B~A^b")
 (setf *time-modeline-string* "%H:%M")
 (setf *mode-line-timeout* 10)

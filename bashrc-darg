@@ -1,8 +1,0 @@
-# ~/.bashrc on Darg
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-alias mh='mpv --ao=alsa:device=[plughw:0,3]'
-
-source ~/.dotfiles/bashrc

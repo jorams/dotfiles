@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export DOTFILE_TYPE=laptop
+
+source ~/.dotfiles/xinitrc

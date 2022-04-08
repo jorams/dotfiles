@@ -1082,3 +1082,9 @@ empty string."
 (use-package apache-mode
   :ensure t
   :mode "\\.htaccess\\'")
+
+;;; YAML ----------------------------------------------------------------------
+
+(use-package yaml-mode
+  :ensure t
+  :mode ("\\.yml\\'" "\\.yaml\\'"))

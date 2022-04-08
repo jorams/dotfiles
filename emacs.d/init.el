@@ -890,6 +890,11 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :commands (tree-sitter-mode tree-sitter-hl-mode global-tree-sitter-mode))
 
+;;; Prettier ------------------------------------------------------------------
+
+(use-package prettier
+  :ensure t)
+
 ;;; Lisp ----------------------------------------------------------------------
 
 (defun j/sly-ivy-completing-read (prompt choices &optional

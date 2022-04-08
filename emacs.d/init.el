@@ -206,7 +206,7 @@ When less than half a screen of lines remains, scroll to the start."
 
 ;;; Speed up files with very long lines
 (setq-default bidi-display-reordering nil)
-(setq so-long-threshold 300)
+(setq so-long-threshold 1000)
 (global-so-long-mode 1)
 
 ;;; Set an explicit custom-file

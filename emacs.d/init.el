@@ -25,13 +25,6 @@
 ;;; Initialize package.el
 (package-initialize nil)
 
-;;; Allow loading locally installed packages
-(let ((vendor-dir (expand-file-name "vendor" user-emacs-directory)))
-  (add-to-list 'load-path vendor-dir)
-  (dolist (project (directory-files vendor-dir t "\\w+" t))
-    (when (file-directory-p project)
-      (add-to-list 'load-path project))))
-
 ;;; Load packages from MELPA
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))

@@ -23,8 +23,6 @@ defaults &
 systemctl --user restart redshift
 init-audio
 
-export GTK_THEME=Arc:dark
-
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 

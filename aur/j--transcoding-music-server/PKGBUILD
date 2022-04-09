@@ -1,0 +1,35 @@
+# Maintainer: i at joram dot io
+
+pkgname=j--transcoding-music-server
+pkgver=r1.402c95f
+pkgrel=1
+pkgdesc="A simple, quick-and-dirty HTTP server that transcodes music files before serving them."
+arch=('x86_64')
+url="https://git.sr.ht/~joram/transcoding-music-server"
+license=('MIT')
+depends=('ffmpeg')
+makedepends=('git' 'go')
+source=('git+https://git.sr.ht/~joram/transcoding-music-server')
+sha512sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/transcoding-music-server"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$srcdir/transcoding-music-server"
+  go build \
+     -trimpath \
+     -buildmode=pie \
+     -mod=readonly \
+     -modcacherw \
+     -ldflags "-linkmode external -extldflags \"${LDFLAGS}\"" \
+     .
+}
+
+package() {
+  cd "$srcdir/transcoding-music-server"
+  install -Dm755 "transcoding-music-server" "$pkgdir/usr/bin/transcoding-music-server"
+  install -Dm644 LICENSE "$pkgdir/usr/share/transcoding-music-server/LICENSE"
+}

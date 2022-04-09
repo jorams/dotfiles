@@ -1,0 +1,9 @@
+[Unit]
+Description=transcoding-music-server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/transcoding-music-server --target %h/.music.transcoded --origin %h/music --bind :8844
+
+[Install]
+WantedBy=default.target

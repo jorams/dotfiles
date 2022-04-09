@@ -1080,6 +1080,23 @@ empty string."
    'eglot-server-programs
    `(elixir-mode "~/bin/blob/elixir-ls/language_server.sh")))
 
+(use-package polymode
+  :ensure t
+  :mode ("\\.ex\\'" . poly-elixir-mode)
+  :config
+  (define-hostmode poly-elixir-hostmode :mode 'elixir-mode)
+  (define-innermode poly-elixir-eex-template-innermode
+    :mode 'web-mode
+    :head-matcher " +~[EHL]\"\"\"\n"
+    :tail-matcher "^ *\"\"\"\n"
+    :head-mode 'host
+    :tail-mode 'host)
+  (define-polymode poly-elixir-mode
+    :hostmode 'poly-elixir-hostmode
+    :innermodes '(poly-elixir-eex-template-innermode))
+  ;; Elixir inside web-mode inside Elixir should be properly highlighted.
+  (add-to-list 'web-mode-engines-alist '("elixir" . "\\.ex\\'")))
+
 ;;; Apache --------------------------------------------------------------------
 
 (use-package apache-mode

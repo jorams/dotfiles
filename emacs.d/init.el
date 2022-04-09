@@ -94,6 +94,9 @@
 ;;; Sync selection and X clipboard
 (setq x-select-enable-clipboard t)
 
+;;; Save X clipboard before overwriting
+(setq save-interprogram-paste-before-kill 512000)
+
 ;;; Allow editing of compressed files
 (auto-compression-mode t)
 

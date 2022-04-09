@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cffi-pointer-struct
+# key: cps
+# --
+(:pointer (:struct $1))

@@ -977,6 +977,8 @@ empty string."
          "\\.etlua\\'"
          "\\.ctml\\'"
          "\\.html\\.eex\\'"
+         "\\.html\\.leex\\'"
+         "\\.html\\.heex\\'"
          "\\.blade.php\\'"
          "\\.gohtml\\'")
   :config

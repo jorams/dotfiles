@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: eex-tag
+# key: et
+# --
+<% $0 %>

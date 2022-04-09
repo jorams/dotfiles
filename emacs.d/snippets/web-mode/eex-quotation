@@ -1,0 +1,4 @@
+# key: eq
+# name: eex-quotation
+# --
+<%% $0 %>

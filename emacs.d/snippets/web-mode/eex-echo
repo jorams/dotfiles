@@ -1,0 +1,4 @@
+# key: ee
+# name: eex-echo
+# --
+<%= $0 %>

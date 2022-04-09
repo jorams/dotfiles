@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: eex-comment
+# key: ec
+# --
+<%# $0 %>

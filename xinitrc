@@ -26,6 +26,8 @@ init-audio
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 
+command -v qt5ct && export QT_QPA_PLATFORMTHEME=qt5ct
+
 xsetroot -cursor_name left_ptr &
 case "$2" in
     dev)

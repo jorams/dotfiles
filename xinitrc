@@ -27,6 +27,7 @@ eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 
 command -v qt5ct && export QT_QPA_PLATFORMTHEME=qt5ct
+command -v dunst && systemctl --user start dunst.service
 
 xsetroot -cursor_name left_ptr &
 case "$2" in

@@ -1,0 +1,35 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0: [-h] [-w width] [-H height] inputfile outputfile"
+}
+
+WIDTH="-1"
+HEIGHT="-1"
+
+while getopts "hw:H:" arg; do
+    case "$arg" in
+        w) WIDTH="$OPTARG" ;;
+        H) HEIGHT="$OPTARG" ;;
+        h) usage; exit ;;
+        *) usage; exit 1 ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+INPUTNAME="$1"
+OUTPUTNAME="$2"
+
+if [ -z "$INPUTNAME" ] || [ -z "$OUTPUTNAME" ]; then
+    usage;
+    exit 1;
+fi
+
+if [ "$WIDTH" = "-1" ] && [ "$HEIGHT" = "-1" ]; then
+    echo "Neither width nor height set. Not resizing."
+    usage;
+    exit 2;
+fi
+
+ffmpeg -i "$INPUTNAME" -vf "scale=$WIDTH:$HEIGHT" "$OUTPUTNAME"

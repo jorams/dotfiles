@@ -1,0 +1,41 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: $0: [-h] [-i interval] command..."
+}
+
+INTERVAL="10"
+MESSAGE="Changed:"
+
+while getopts "hi:m:" arg; do
+    case "$arg" in
+        i) INTERVAL="$OPTARG" ;;
+        m) MESSAGE="$OPTARG" ;;
+        h) usage; exit ;;
+        *) usage; exit 1 ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+COMMAND=( "$@" )
+
+INITIAL="$("${COMMAND[@]}")"
+
+echo "Monitoring command for changes: ${COMMAND[*]}"
+echo "Initial output:"
+echo "$INITIAL"
+printf "\nChecking every %s seconds...\n" "${INTERVAL}"
+
+while true; do
+    sleep "$INTERVAL"
+
+    OUTPUT="$("${COMMAND[@]}")"
+
+    if [ "$OUTPUT" != "$INITIAL" ]; then
+        printf "Output changed. New output:\n"
+        echo "$OUTPUT"
+        notify-send "$MESSAGE ${COMMAND[*]}" "$OUTPUT"
+        exit
+    fi
+done

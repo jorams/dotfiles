@@ -441,12 +441,20 @@
 
 ;;; Notifications -------------------------------------------------------------
 
+(defcommand notify-after
+    (duration message)
+    ((:string "Duration: ") (:string "Message: "))
+  (run-shell-command (format nil "notify-after '~a' ~a"
+                             (or duration "")
+                             (or message ""))))
+
 (defkeymap *notifications-map*
   ("d" "exec dunstctl close")
   ("D" "exec dunstctl close-all")
   ("RET" "exec dunstctl action")
   ("SPC" "exec dunstctl context")
-  ("h" "exec dunstctl history-pop"))
+  ("h" "exec dunstctl history-pop")
+  ("a" "notify-after"))
 
 (define-key *root-map* (kbd "N") '*notifications-map*)
 

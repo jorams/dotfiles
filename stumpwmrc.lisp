@@ -439,6 +439,17 @@
 
 (define-key *root-map* (kbd "V") '*recording-map*)
 
+;;; Notifications -------------------------------------------------------------
+
+(defkeymap *notifications-map*
+  ("d" "exec dunstctl close")
+  ("D" "exec dunstctl close-all")
+  ("RET" "exec dunstctl action")
+  ("SPC" "exec dunstctl context")
+  ("h" "exec dunstctl history-pop"))
+
+(define-key *root-map* (kbd "N") '*notifications-map*)
+
 ;;; Window titles -------------------------------------------------------------
 
 (defmacro normalize-titles (&rest triplets)

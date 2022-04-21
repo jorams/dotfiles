@@ -1,0 +1,28 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: $0: [-h] duration message..."
+}
+
+while getopts "h" arg; do
+    case "$arg" in
+        h) usage; exit ;;
+        *) usage; exit 1 ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+DURATION="${1}"
+if [ -z "$DURATION" ]; then
+    usage
+    exit 2
+fi
+
+MESSAGE="${*:2}"
+if [ -z "$MESSAGE" ]; then
+    MESSAGE="$DURATION countdown is over"
+fi
+
+sleep "$DURATION"
+notify-send "$MESSAGE"

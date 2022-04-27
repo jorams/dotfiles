@@ -1108,3 +1108,9 @@ empty string."
 (use-package yaml-mode
   :ensure t
   :mode ("\\.yml\\'" "\\.yaml\\'"))
+
+;;; Caddyfile -----------------------------------------------------------------
+
+(use-package caddyfile-mode
+  :ensure t
+  :mode ("Caddyfile\\'"))

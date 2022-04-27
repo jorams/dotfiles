@@ -1,0 +1,33 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: : [-h] [-d display] [-D display] [-c|-p|-s] host"
+}
+
+SELECTION="clipboard"
+LOCAL_DISPLAY="${DISPLAY:-:0}"
+REMOTE_DISPLAY=":0"
+
+while getopts "hcpsd:D:" arg; do
+    case "$arg" in
+        c) SELECTION="clipboard" ;;
+        p) SELECTION="primary" ;;
+        s) SELECTION="secondary" ;;
+        d) REMOTE_DISPLAY="$OPTARG" ;;
+        D) LOCAL_DISPLAY="$OPTARG" ;;
+        h) usage; exit ;;
+        *) usage; exit 1 ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+HOST="$1"
+
+if [ -z "$HOST" ]; then
+    usage
+    exit 2
+fi
+
+xsel --display "$LOCAL_DISPLAY" "--$SELECTION" --output \
+    | ssh "$HOST" xsel --display "$REMOTE_DISPLAY" "--$SELECTION" --input

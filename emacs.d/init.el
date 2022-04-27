@@ -988,7 +988,9 @@ empty string."
                (setq web-mode-enable-auto-pairing nil)
                (setq-local
                 electric-pair-pairs
-                (append electric-pair-pairs '((?% . ?%)))))))
+                (append electric-pair-pairs '((?% . ?%))))))
+  ;; Elixir inside web-mode inside Elixir should be properly highlighted.
+  (add-to-list 'web-mode-engines-alist '("elixir" . "\\.ex\\'")))
 
 (use-package emmet-mode
   :ensure t
@@ -1093,9 +1095,7 @@ empty string."
     :tail-mode 'host)
   (define-polymode poly-elixir-mode
     :hostmode 'poly-elixir-hostmode
-    :innermodes '(poly-elixir-eex-template-innermode))
-  ;; Elixir inside web-mode inside Elixir should be properly highlighted.
-  (add-to-list 'web-mode-engines-alist '("elixir" . "\\.ex\\'")))
+    :innermodes '(poly-elixir-eex-template-innermode)))
 
 ;;; Apache --------------------------------------------------------------------
 

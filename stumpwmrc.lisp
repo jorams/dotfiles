@@ -242,7 +242,7 @@
 
 ;;; Selection -----------------------------------------------------------------
 
-(define-stumpwm-type :selection (input prompt)
+(define-stumpwm-type :selection-command (input prompt)
   (let* ((values '(("clipboard"              :clipboard)
                    ("primary"                :primary)
                    ("sync-clipboard"         :sync-clipboard)
@@ -277,15 +277,37 @@
     (:send-primary-escaped
      (window-send-string (format nil "~S" (get-x-selection nil :primary))))))
 
+(define-stumpwm-type :selection (input prompt)
+  (let* ((values '(("clipboard" :clipboard)
+                   ("primary"   :primary)
+                   ("secondary" :secondary)))
+         (raw-command (or (argument-pop input)
+                          (completing-read (current-screen)
+                                           prompt
+                                           (mapcar 'first values))))
+         (command (second (assoc raw-command values :test 'string-equal))))
+    (or command (throw 'error "Invalid selection."))))
+
+(defcommand send-selection (selection host)
+    ((:selection "Selection: ") (:string "Host: "))
+  (run-shell-command (format nil "send-selection ~a ~a"
+                             (ecase selection
+                               (:clipboard "-c")
+                               (:primary "-p")
+                               (:secondary "-s"))
+                             host)))
+
 (defkeymap *selection-map*
   ("c" "selection clipboard")
   ("C" "selection sync-clipboard")
   ("C-c" "selection send-clipboard")
   ("M-c" "selection send-clipboard-escaped")
+  ("C-C" "send-selection clipboard")
   ("p" "selection primary")
   ("P" "selection sync-primary")
   ("C-p" "selection send-primary")
-  ("M-p" "selection send-primary-escaped"))
+  ("M-p" "selection send-primary-escaped")
+  ("C-P" "send-selection primary"))
 
 (define-key *root-map* (kbd "t") '*selection-map*)
 

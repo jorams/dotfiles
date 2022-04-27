@@ -1114,3 +1114,9 @@ empty string."
 (use-package caddyfile-mode
   :ensure t
   :mode ("Caddyfile\\'"))
+
+;;; CSV -----------------------------------------------------------------------
+
+(use-package csv-mode
+  :ensure t
+  :mode ("\\.csv'"))

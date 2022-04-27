@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: top
+# key: top
+# --
+#!/bin/bash
+
+usage() {
+    echo "Usage: $0: [-h]"
+}
+
+while getopts "h" arg; do
+    case "$arg" in
+        h) usage; exit ;;
+        *) usage; exit 1 ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+$0

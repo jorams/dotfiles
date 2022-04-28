@@ -258,7 +258,7 @@
          (command (second (assoc raw-command values :test 'string-equal))))
     (or command (throw 'error "Invalid selection command."))))
 
-(defcommand selection (command) ((:selection "Command: "))
+(defcommand selection (command) ((:selection-command "Command: "))
   (case command
     (:clipboard
      (message (get-x-selection nil :clipboard)))

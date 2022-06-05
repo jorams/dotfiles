@@ -383,47 +383,52 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (global-undo-tree-mode))
 
-;;; Ivy -----------------------------------------------------------------------
+;;; Vertico -------------------------------------------------------------------
 
-;;; Small utilities
+(use-package vertico
+  :ensure t
+  :init (vertico-mode)
+  :bind (:map vertico-map
+              ("C-v" . vertico-scroll-up)
+              ("M-v" . vertico-scroll-down)))
+
+(use-package marginalia
+  :ensure t
+  :config (marginalia-mode))
 
 (defun j/run-urxvt-action (dir)
+  "Open urxvt in the specified directory."
   (start-process "urxvt" nil
-                 "urxvt" "-cd" dir))
+                 "urxvt" "-cd" (file-name-directory (expand-file-name dir))))
 
-(defun j/delete-file-action (file)
-  (dired-delete-file file 'top t))
-
-;;; Proper fuzzy matching and sorting
-(use-package flx :ensure t)
-
-(use-package counsel
+(use-package embark
   :ensure t
-  :demand t
-  :bind (("C-c C-r" . ivy-resume))
-  :diminish counsel-mode
-  :diminish ivy-mode
+  :bind (("M-o" . embark-act))
   :config
-  ;; Enable keybinding overrides
-  (ivy-mode 1)
-  (counsel-mode 1)
-  ;; Settings
-  (setq ivy-use-virtual-buffers t
-        ivy-height 15
-        ivy-fixed-height-minibuffer t
-        ivy-re-builders-alist '((swiper . identity)
-                                (t . ivy--regex-fuzzy))
-        ivy-initial-inputs-alist nil)
-  ;; File navigation
-  (bind-key "C-l" 'counsel-up-directory counsel-find-file-map)
-  (ivy-add-actions
-   'counsel-find-file
-   '(("m" magit-status "magit")
-     ("u" j/run-urxvt-action "urxvt")
-     ("d" j/delete-file-action "delete")))
-  (ivy-add-actions
-   'ivy-switch-buffer
-   '(("d" ivy--kill-buffer-action "kill"))))
+  (bind-key "u" 'j/run-urxvt-action embark-file-map))
+
+(use-package consult
+  :ensure t
+  :bind (("M-y" . consult-yank-pop)
+         ("C-x b" . consult-buffer)
+         ("C-x M-b" . consult-buffer-other-window)
+         ("M-g g" . consult-goto-line)
+         ("M-g M-g" . consult-goto-line)
+         ("M-g o" . consult-outline)
+         ("M-g i" . consult-imenu)
+         ("M-g I" . consult-imenu-multi)))
+
+(use-package embark-consult
+  :ensure t
+  :after (embark consult))
+
+(use-package orderless
+  :ensure t
+  :init
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))
+        orderless-matching-styles '(orderless-literal orderless-flex)))
 
 ;;; CTRLF ---------------------------------------------------------------------
 

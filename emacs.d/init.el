@@ -238,7 +238,8 @@ When less than half a screen of lines remains, scroll to the start."
 
 (define-derived-mode j/day-mode text-mode "Day"
   "Major mode for editing dayfiles."
-  (auto-fill-mode 1))
+  (auto-fill-mode 1)
+  (abbrev-mode 1))
 
 (add-to-list 'auto-mode-alist '("\\.day\\'" . j/day-mode))
 

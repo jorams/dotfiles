@@ -386,12 +386,60 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Vertico -------------------------------------------------------------------
 
+(defun j/minibuffer-category ()
+  "Get the current minibuffer completion category."
+  (completion-metadata-get
+   (completion-metadata (minibuffer-contents)
+                        minibuffer-completion-table
+                        minibuffer-completion-predicate)
+   'category))
+
+(defun j/vertico-exit-or-insert-directory (&optional arg)
+  "Exit Vertico with candidate, or insert if directory. Passes along ARG."
+  (interactive "P")
+  (let ((category (j/minibuffer-category)))
+    (if (and (eq category 'file)
+             (>= vertico--index 0)
+             (string-suffix-p "/" (vertico--candidate)))
+        (vertico-insert)
+      (vertico-exit arg))))
+
+(defun j/vertico-kill-line-or-path-component ()
+  "Kill the input to the end of the line, or remove the last path component."
+  (interactive)
+  (let ((input (minibuffer-contents)))
+    (if (and (eq (j/minibuffer-category) 'file)
+             (null (char-after (point))))
+        (let ((slash-pos (cl-search "/" input
+                                    :from-end t
+                                    :end2 (if (string-suffix-p "/" input)
+                                              (1- (length input))
+                                            nil))))
+          (when slash-pos
+            (beginning-of-line)
+            (forward-char (1+ slash-pos))
+            (kill-line)))
+      (kill-line))))
+
+(defun j/vertico-insert-tilde-or-home-directory ()
+  "Insert a tilde character, or replace the input with ~/."
+  (interactive)
+  (if (and (eq (j/minibuffer-category) 'file)
+           (null (char-after (point))))
+      (progn
+        (delete-minibuffer-contents)
+        (insert "~/"))
+    (insert "~")))
+
 (use-package vertico
   :ensure t
   :init (vertico-mode)
   :bind (:map vertico-map
               ("C-v" . vertico-scroll-up)
-              ("M-v" . vertico-scroll-down)))
+              ("M-v" . vertico-scroll-down)
+              ("C-j" . j/vertico-exit-or-insert-directory)
+              ("C-k" . j/vertico-kill-line-or-path-component)
+              ("~" . j/vertico-insert-tilde-or-home-directory)))
 
 (use-package marginalia
   :ensure t

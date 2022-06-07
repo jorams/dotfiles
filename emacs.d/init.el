@@ -1074,6 +1074,12 @@ empty string."
    `(vue-mode ,(expand-file-name "vue-language-server/node_modules/vue-language-server/bin/vls"
                                  user-emacs-directory))))
 
+;;; Typescript ----------------------------------------------------------------
+
+(use-package typescript-mode
+  :ensure t
+  :mode "\\.ts\\'")
+
 ;;; CSS -----------------------------------------------------------------------
 
 (use-package less-css-mode

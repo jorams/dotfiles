@@ -431,11 +431,18 @@ point reaches the beginning or end of the buffer, stop there."
   (start-process "urxvt" nil
                  "urxvt" "-cd" (file-name-directory (expand-file-name dir))))
 
+(defun j/magit-status-action (dir)
+  "Run magit-status in the specified directory."
+  (let ((magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+    (magit-status (file-name-directory (expand-file-name dir)))))
+
 (use-package embark
   :ensure t
   :bind (("M-o" . embark-act))
   :config
-  (bind-key "u" 'j/run-urxvt-action embark-file-map))
+  (bind-key "u" 'j/run-urxvt-action embark-file-map)
+  (bind-key "M" 'chmod)
+  (bind-key "m" 'j/magit-status-action embark-file-map))
 
 (use-package consult
   :ensure t

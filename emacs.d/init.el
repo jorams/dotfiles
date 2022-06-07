@@ -1126,3 +1126,11 @@ empty string."
 (use-package csv-mode
   :ensure t
   :mode ("\\.csv'"))
+
+;;; Verb HTTP client ----------------------------------------------------------
+
+(use-package verb
+  :ensure t
+  :after (org)
+  :config
+  (bind-key "C-c C-r" verb-command-map org-mode-map))

@@ -213,6 +213,9 @@ When less than half a screen of lines remains, scroll to the start."
 (setq compilation-ask-about-save nil
       compilation-save-buffers-predicate 'ignore)
 
+;;; Use hippie-expand instead of dabbrev
+(bind-key [remap dabbrev-expand] 'hippie-expand)
+
 ;;; Utilities -----------------------------------------------------------------
 
 (defun j/wrap-hard ()

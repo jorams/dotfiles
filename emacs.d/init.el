@@ -441,7 +441,7 @@ point reaches the beginning or end of the buffer, stop there."
   :bind (("M-o" . embark-act))
   :config
   (bind-key "u" 'j/run-urxvt-action embark-file-map)
-  (bind-key "M" 'chmod)
+  (bind-key "M" 'chmod embark-file-map)
   (bind-key "m" 'j/magit-status-action embark-file-map))
 
 (use-package consult

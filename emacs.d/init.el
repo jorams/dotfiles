@@ -890,40 +890,40 @@ point reaches the beginning or end of the buffer, stop there."
   :after treemacs magit
   :ensure t)
 
-;;; Hydra ---------------------------------------------------------------------
+;;; Transient -----------------------------------------------------------------
 
-(use-package hydra
+(use-package transient
   :ensure t
-  :bind (("C-c r" . hydra-replace/body)
-         ("C-c g" . hydra-git/body)
-         ("C-c t" . hydra-treemacs/body)
-         ("C-c f" . hydra-format/body))
+  :bind (("C-c r" . j/transient-replace)
+         ("C-c g" . j/transient-git)
+         ("C-c t" . j/transient-treemacs)
+         ("C-c f" . j/transient-format))
   :config
-  (defhydra hydra-replace (:color teal)
-    "replace"
-    ("s" replace-string "string")
-    ("S" query-replace "string (query)")
-    ("e" replace-regexp "regexp")
-    ("E" query-replace-regexp "regexp (query)"))
-  (defhydra hydra-git (:color teal)
-    "git"
-    ("s" magit-status "status")
-    ("b" magit-blame-addition "blame file")
-    ("B" magit-blame "blame")
-    ("l" magit-log-buffer-file "log file")
-    ("L" magit-log "log")
-    ("t" git-timemachine "time machine"))
-  (defhydra hydra-treemacs (:color teal)
-    "treemacs"
-    ("t" treemacs "toggle")
-    ("w" treemacs-switch-workspace "switch workspace")
-    ("a" treemacs-add-project-to-workspace "add project")
-    ("s" treemacs-select-window "select"))
-  (defhydra hydra-format (:color teal)
-    "format"
-    ("j" j/json-pretty-print "json")
-    ("x" j/xml-pretty-print "xml")
-    ("a" j/align "align")))
+  (transient-define-prefix j/transient-format ()
+    ["Format"
+     ("j" "json" j/json-pretty-print)
+     ("x" "xml" j/xml-pretty-print)
+     ("a" "align" j/align)])
+  (transient-define-prefix j/transient-git ()
+    ["Git"
+     ("s" "status" magit-status)
+     ("b" "blame file" magit-blame-addition)
+     ("B" "blame" magit-blame)
+     ("l" "log file" magit-log-buffer-file)
+     ("L" "log" magit-log)
+     ("t" "time machine" git-timemachine)])
+  (transient-define-prefix j/transient-replace ()
+    ["Replace"
+     ("s" "string" replace-string)
+     ("S" "string (query)" query-replace)
+     ("e" "regexp" replace-regexp)
+     ("E" "regexp (query)" query-replace-regexp)])
+  (transient-define-prefix j/transient-treemacs ()
+    ["Treemacs"
+     ("t" "toggle" treemacs)
+     ("w" "switch workspace" treemacs-switch-workspace)
+     ("a" "add project" treemacs-add-project-to-workspace)
+     ("s" "select" treemacs-select-window)]))
 
 ;;; Tree Sitter ---------------------------------------------------------------
 

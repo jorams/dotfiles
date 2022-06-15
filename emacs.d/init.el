@@ -420,7 +420,9 @@ point reaches the beginning or end of the buffer, stop there."
   :bind (:map vertico-map
               ("C-j" . vertico-directory-enter)
               ("C-k" . j/vertico-kill-line-or-path-component)
-              ("~" . j/vertico-insert-tilde-or-home-directory)))
+              ("~" . j/vertico-insert-tilde-or-home-directory))
+  :init
+  (autoload 'vertico-directory--completing-file-p "vertico-directory"))
 
 (use-package marginalia
   :ensure t

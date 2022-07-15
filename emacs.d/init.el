@@ -1169,7 +1169,7 @@ empty string."
 
 (use-package csv-mode
   :ensure t
-  :mode ("\\.csv'"))
+  :mode ("\\.csv\\'"))
 
 ;;; Verb HTTP client ----------------------------------------------------------
 

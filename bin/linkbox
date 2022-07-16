@@ -24,25 +24,25 @@ if [ -z "$THING" ]; then THING=-; fi
 
 case "$THING" in
     *://*)
-        curl \
+        curl --silent --show-error \
             --form-string "auth=$AUTH" \
             --form-string "url=$THING" \
             "$URL"
         ;;
     mailto:*)
-        curl \
+        curl --silent --show-error \
             --form-string "auth=$AUTH" \
             --form-string "url=$THING" \
             "$URL"
         ;;
     -)
-        curl \
+        curl --silent --show-error \
             --form-string "auth=$AUTH" \
             --form "file=@\"$THING\";filename=file.$TYPE" \
             "$URL"
         ;;
     *)
-        curl \
+        curl --silent --show-error \
             --form-string "auth=$AUTH" \
             --form "file=@\"$THING\"" \
             "$URL"

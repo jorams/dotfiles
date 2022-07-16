@@ -273,8 +273,8 @@ When less than half a screen of lines remains, scroll to the start."
                          (concat "linkbox -t " type))
     (kill-new (buffer-substring-no-properties (point-min)
                                               (point-max)))
-    (message (buffer-substring-no-properties (point-min)
-                                             (point-max)))))
+    (message "%s" (buffer-substring-no-properties (point-min)
+                                                  (point-max)))))
 
 (defun j/fill-to-end (char)
   (interactive "cFill Character:")

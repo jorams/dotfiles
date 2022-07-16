@@ -1178,3 +1178,9 @@ empty string."
   :after (org)
   :config
   (bind-key "C-c C-r" verb-command-map org-mode-map))
+
+;;; Nginx ---------------------------------------------------------------------
+
+(use-package nginx-mode
+  :ensure t
+  :commands (nginx-mode))

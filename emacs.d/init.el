@@ -1184,3 +1184,9 @@ empty string."
 (use-package nginx-mode
   :ensure t
   :commands (nginx-mode))
+
+;;; scfg ----------------------------------------------------------------------
+
+(use-package scfg-mode
+  :load-path "lisp/scfg-mode/"
+  :mode ("\\.scfg\\'"))

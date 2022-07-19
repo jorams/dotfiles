@@ -1165,3 +1165,9 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package scfg-mode
   :load-path "lisp/scfg-mode/"
   :mode ("\\.scfg\\'"))
+
+;;; jq ------------------------------------------------------------------------
+
+(use-package jq-mode
+  :ensure t
+  :mode ("\\.jq\\'"))

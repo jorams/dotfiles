@@ -216,6 +216,9 @@ When less than half a screen of lines remains, scroll to the start."
 ;;; Use hippie-expand instead of dabbrev
 (bind-key [remap dabbrev-expand] 'hippie-expand)
 
+;;; Use completing-read to select xref results
+(setq xref-show-definitions-function 'xref-show-definitions-completing-read)
+
 ;;; Utilities -----------------------------------------------------------------
 
 (defun j/wrap-hard ()

@@ -503,7 +503,8 @@
    :class "Insomnia" "insomnia"
    :instance "virt-manager" "virt-manager"
    :class "chatterino" "chatterino"
-   :class "discord" "discord"))
+   :class "discord" "discord"
+   :class "1Password" "1password"))
 
 (add-hook *new-window-hook* 'normalize-window-titles)
 

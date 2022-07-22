@@ -870,6 +870,8 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package editorconfig
   :ensure t
   :config
+  (setq editorconfig-exclude-regexps
+        '("COMMIT_EDITMSG"))
   (editorconfig-mode 1))
 
 ;;; dumb-jump -----------------------------------------------------------------

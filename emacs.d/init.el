@@ -347,6 +347,15 @@ point reaches the beginning or end of the buffer, stop there."
     (shell-command-on-region start end "xmllint --format -"
                              (current-buffer) t)))
 
+(defun j/new-temporary-buffer (arg)
+  "Switch to a new temporary buffer. With prefix ARG, switch in other window."
+  (interactive "p")
+  (if arg
+      (switch-to-buffer-other-window (generate-new-buffer "j/temp"))
+    (switch-to-buffer (generate-new-buffer "j/temp"))))
+
+(bind-key "C-c n" 'j/new-temporary-buffer)
+
 ;;; Theme ---------------------------------------------------------------------
 
 (defun j/load-theme ()

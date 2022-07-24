@@ -455,7 +455,8 @@ point reaches the beginning or end of the buffer, stop there."
          ("M-g M-g" . consult-goto-line)
          ("M-g o" . consult-outline)
          ("M-g i" . consult-imenu)
-         ("M-g I" . consult-imenu-multi)))
+         ("M-g I" . consult-imenu-multi)
+         ("M-g e" . consult-flymake)))
 
 (use-package embark-consult
   :ensure t

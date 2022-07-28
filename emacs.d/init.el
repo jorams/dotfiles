@@ -412,8 +412,18 @@ point reaches the beginning or end of the buffer, stop there."
   "Kill the input to the end of the line, or remove the last path component."
   (interactive)
   (if (and (vertico-directory--completing-file-p)
-           (null (char-after (point))))
-      (vertico-directory-up 1)
+           (null (char-after)))
+      (let* ((input (minibuffer-contents))
+             (slash-pos (cl-search "/" input
+                                   :from-end t
+                                   :end2 (if (string-suffix-p "/" input)
+                                             (1- (length input))
+                                           nil))))
+        (when slash-pos
+          (beginning-of-line)
+          (forward-char (1+ slash-pos))
+          (kill-line)))
+    (vertico-directory-up 1)
     (kill-line)))
 
 (defun j/vertico-insert-tilde-or-home-directory ()

@@ -947,41 +947,13 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Lisp ----------------------------------------------------------------------
 
-(defun j/sly-ivy-completing-read (prompt choices &optional
-                                         predicate
-                                         require-match
-                                         initial-input
-                                         hist
-                                         def
-                                         inherit-input-method)
-  "Equivalent to `sly-ido-completing-read', but for ivy. This
-  means that if REQUIRE-MATCH is nil, a \"(none)\" option is
-  included to return the empty string."
-  "Like `ivy-completing-read' but treat REQUIRE-MATCH different.
-If REQUIRE-MATCH is nil, offer a \"(none)\" option to return the
-empty string."
-  (let ((res (ivy-completing-read
-              prompt
-              (append
-               choices
-               (unless require-match
-                 (list (propertize
-                        sly-completing-read-no-match-label
-                        'sly--none t))))
-              predicate require-match initial-input hist def
-              inherit-input-method)))
-    (if (get-text-property 0 'sly--none res)
-        ""
-      res)))
-
 (use-package sly
   :ensure t
   :commands (sly sly-connect)
   :bind ("M-H" . hyperspec-lookup)
   :diminish ")"
   :config
-  (setq inferior-lisp-program "/usr/bin/sbcl")
-  (setq sly-completing-read-function 'j/sly-ivy-completing-read))
+  (setq inferior-lisp-program "/usr/bin/sbcl"))
 
 ;;; Lua -----------------------------------------------------------------------
 

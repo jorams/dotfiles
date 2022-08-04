@@ -906,7 +906,8 @@ point reaches the beginning or end of the buffer, stop there."
     ["Format"
      ("j" "json" j/json-pretty-print)
      ("x" "xml" j/xml-pretty-print)
-     ("a" "align" j/align)])
+     ("a" "align" j/align)
+     ("l" "eglot" eglot-format)])
   (transient-define-prefix j/transient-git ()
     ["Git"
      ("s" "status" magit-status)
@@ -920,7 +921,8 @@ point reaches the beginning or end of the buffer, stop there."
      ("s" "string" replace-string)
      ("S" "string (query)" query-replace)
      ("e" "regexp" replace-regexp)
-     ("E" "regexp (query)" query-replace-regexp)])
+     ("E" "regexp (query)" query-replace-regexp)
+     ("l" "eglot rename" eglot-rename)])
   (transient-define-prefix j/transient-treemacs ()
     ["Treemacs"
      ("t" "toggle" treemacs)

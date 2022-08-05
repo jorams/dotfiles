@@ -359,6 +359,42 @@ point reaches the beginning or end of the buffer, stop there."
 
 (bind-key "C-c n" 'j/new-temporary-buffer)
 
+(defun j/change-string-quotes (pos char)
+  "Change the quotes of the string at POS to CHAR."
+  (unless (eq 'string (syntax-ppss-context (syntax-ppss pos)))
+    (error "Can only switch quotes in a string"))
+  (save-excursion
+    (goto-char pos)
+    (while (eq 'string (syntax-ppss-context (syntax-ppss (point))))
+      (backward-char 1))
+    (let ((end-of-string (save-excursion (forward-sexp) (point))))
+      (delete-char 1)
+      (insert char)
+      (goto-char end-of-string)
+      (delete-char -1)
+      (insert char))))
+
+(defun j/change-to-single-quote (pos)
+  "Change the string at POS to single quotes."
+  (interactive "d")
+  (j/change-string-quotes pos ?\'))
+
+(bind-key "C-c '" 'j/change-to-single-quote)
+
+(defun j/change-to-double-quote (pos)
+  "Change the string at POS to double quotes."
+  (interactive "d")
+  (j/change-string-quotes pos ?\"))
+
+(bind-key "C-c \"" 'j/change-to-double-quote)
+
+(defun j/change-to-backtick (pos)
+  "Change the string at POS to backticks."
+  (interactive "d")
+  (j/change-string-quotes pos ?\`))
+
+(bind-key "C-c `" 'j/change-to-backtick)
+
 ;;; Theme ---------------------------------------------------------------------
 
 (defun j/load-theme ()

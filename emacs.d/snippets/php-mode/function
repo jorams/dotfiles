@@ -2,6 +2,6 @@
 # name: function
 # key: fun
 # --
-$1function $2($3) {
+function $1($2) {
     $0
 }

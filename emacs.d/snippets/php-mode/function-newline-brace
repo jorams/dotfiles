@@ -2,7 +2,7 @@
 # name: function-newline-brace
 # key: funn
 # --
-$1function $2($3)
+function $2($3)
 {
     $0
 }

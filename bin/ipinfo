@@ -3,19 +3,38 @@
 set -e
 
 usage() {
-    echo "Usage: $0: [-h] [ip-address]"
+    echo "Usage: $0: [-h] [-d <domain>]|[-D <domain>]|[ip-address]"
 }
 
-while getopts "h" arg; do
+ADOMAIN=""
+AAAADOMAIN=""
+
+while getopts "hd:D:" arg; do
     case "$arg" in
+        d) ADOMAIN="$OPTARG"; ;;
+        D) AAAADOMAIN="$OPTARG"; ;;
         h) usage; exit; ;;
         *) usage; exit 1; ;;
     esac
 done
 
-shift "$((OPTIND-1))"
+ALLOWEMPTY=""
+
+if [ -n "$ADOMAIN" ]; then
+    IP="$(dig +short A "$ADOMAIN")"
+elif [ -n "$AAAADOMAIN" ]; then
+    IP="$(dig +short AAAA "$AAAADOMAIN")"
+else
+    shift "$((OPTIND-1))"
+    IP="$1"
+    ALLOWEMPTY="1"
+fi
+
+if [ -z "$IP" ] && [ -z "$ALLOWEMPTY" ]; then
+    echo "No IP address found"
+    exit 2
+fi
 
 URL="https://ipinfo.io"
-IP="$1"
 
 curl --silent "$URL/$IP"; echo;

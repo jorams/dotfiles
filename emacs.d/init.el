@@ -1232,3 +1232,8 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package vterm
   :ensure t)
+
+;;; docker-tramp --------------------------------------------------------------
+
+(use-package docker-tramp
+  :ensure t)

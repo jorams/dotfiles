@@ -1134,12 +1134,6 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :mode "\\.scss\\'")
 
-(use-package rainbow-mode
-  :ensure t
-  :diminish "🌈"
-  :config
-  (add-hook 'css-mode-hook 'rainbow-mode))
-
 ;;; Rust ----------------------------------------------------------------------
 
 (use-package rust-mode

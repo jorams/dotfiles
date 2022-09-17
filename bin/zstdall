@@ -1,0 +1,21 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: $0: [-h] [-l LEVEL] pattern"
+}
+
+LEVEL="10"
+
+while getopts "hl:" arg; do
+    case "$arg" in
+        l) LEVEL="$OPTARG" ;;
+        h) usage; exit ;;
+        *) usage; exit 1 ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+PATTERN="$1"
+
+find . -type f -iname "$PATTERN" -exec zstd --rm "-$LEVEL" '{}' \;

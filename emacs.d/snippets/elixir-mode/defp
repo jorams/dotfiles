@@ -2,6 +2,6 @@
 # name: defp
 # key: defp
 # --
-def $1($2) do
+defp $1($2) do
   $0
 end

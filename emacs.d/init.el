@@ -463,7 +463,6 @@ point reaches the beginning or end of the buffer, stop there."
           (beginning-of-line)
           (forward-char (1+ slash-pos))
           (kill-line)))
-    (vertico-directory-up 1)
     (kill-line)))
 
 (defun j/vertico-insert-tilde-or-home-directory ()

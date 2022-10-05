@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: breakpoint-up
+# key: @up
+# --
+@include breakpoint-up($1) {
+  $0
+}

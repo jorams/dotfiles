@@ -1157,9 +1157,7 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :mode "\\.ex\\'"
   :init
-  (add-to-list
-   'eglot-server-programs
-   `(elixir-mode "~/bin/blob/elixir-ls/language_server.sh")))
+  (add-to-list 'eglot-server-programs `(elixir-mode "elixir-ls")))
 
 (use-package polymode
   :ensure t

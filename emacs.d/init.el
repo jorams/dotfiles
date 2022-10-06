@@ -1225,3 +1225,8 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package jq-mode
   :ensure t
   :mode ("\\.jq\\'"))
+
+;;; vterm ---------------------------------------------------------------------
+
+(use-package vterm
+  :ensure t)

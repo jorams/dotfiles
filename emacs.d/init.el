@@ -1264,3 +1264,9 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package graphql-mode
   :ensure t
   :mode ("\\.graphql\\'"))
+
+;;; Dockerfile ----------------------------------------------------------------
+
+(use-package dockerfile-mode
+  :ensure t
+  :mode ("/\\(?:Dockerfile\\|Containerfile\\)\\'"))

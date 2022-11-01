@@ -1270,3 +1270,9 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package dockerfile-mode
   :ensure t
   :mode ("/\\(?:Dockerfile\\|Containerfile\\)\\'"))
+
+;;; Go ------------------------------------------------------------------------
+
+(use-package go-mode
+  :ensure t
+  :mode ("\\.go\\'"))

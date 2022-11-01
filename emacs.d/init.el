@@ -1258,3 +1258,9 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package docker-tramp
   :ensure t)
+
+;;; GraphQL -------------------------------------------------------------------
+
+(use-package graphql-mode
+  :ensure t
+  :mode ("\\.graphql\\'"))

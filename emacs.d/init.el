@@ -1110,7 +1110,7 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (add-to-list
    'eglot-server-programs
-   `(php-mode . ("php" "vendor/bin/psalm-language-server"))))
+   `(php-mode . ("phpactor" "language-server"))))
 
 ;;; Javascript ----------------------------------------------------------------
 

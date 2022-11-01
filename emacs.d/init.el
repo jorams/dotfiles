@@ -1143,6 +1143,12 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :mode "\\.ts\\'")
 
+(use-package tide
+  :ensure t
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)))
+
 ;;; CSS -----------------------------------------------------------------------
 
 (use-package less-css-mode

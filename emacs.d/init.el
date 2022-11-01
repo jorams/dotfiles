@@ -806,10 +806,26 @@ point reaches the beginning or end of the buffer, stop there."
               (window-dedicated-p (next-window)))
     (window--display-buffer buffer (next-window) 'reuse alist)))
 
+(defun j/consult-magit-buffer ()
+  (interactive)
+  (consult-buffer
+   `((
+      :name "Magit Buffer"
+      :narrow ?b
+      :category buffer
+      :face consult-buffer
+      :history buffer-name-history
+      :state ,#'consult--buffer-state
+      :default t
+      :items ,(lambda () (consult--buffer-query :mode 'magit-status-mode
+                                                :sort 'visibility
+                                                :as #'buffer-name))))))
+
 (use-package magit
   :ensure t
   :commands (magit-status)
-  :bind ("M-M" . magit-status)
+  :bind (("M-M" . magit-status)
+         ("C-x M-M" . j/consult-magit-buffer))
   :config
   (setq git-commit-summary-max-length 50)
   (add-hook 'git-commit-mode-hook

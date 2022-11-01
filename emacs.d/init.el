@@ -908,7 +908,10 @@ point reaches the beginning or end of the buffer, stop there."
 ;;; LSP -----------------------------------------------------------------------
 
 (use-package eglot
-  :ensure t)
+  :ensure t
+  :config
+  (bind-key "M-p" 'eglot-code-actions eglot-mode-map)
+  (setq eglot-confirm-server-initiated-edits nil))
 
 (use-package lsp-mode
   :ensure t

@@ -462,8 +462,8 @@ point reaches the beginning or end of the buffer, stop there."
         (when slash-pos
           (beginning-of-line)
           (forward-char (1+ slash-pos))
-          (kill-line)))
-    (kill-line)))
+          (delete-region (point) (line-end-position))))
+    (delete-region (point) (line-end-position))))
 
 (defun j/vertico-insert-tilde-or-home-directory ()
   "Insert a tilde character, or replace the input with ~/."

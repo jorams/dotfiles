@@ -451,7 +451,7 @@ point reaches the beginning or end of the buffer, stop there."
 (defun j/vertico-kill-line-or-path-component ()
   "Kill the input to the end of the line, or remove the last path component."
   (interactive)
-  (if (and (vertico-directory--completing-file-p)
+  (if (and (eq 'file (vertico--metadata-get 'category))
            (null (char-after)))
       (let* ((input (minibuffer-contents))
              (slash-pos (cl-search "/" input
@@ -468,7 +468,7 @@ point reaches the beginning or end of the buffer, stop there."
 (defun j/vertico-insert-tilde-or-home-directory ()
   "Insert a tilde character, or replace the input with ~/."
   (interactive)
-  (if (and (vertico-directory--completing-file-p)
+  (if (and (eq 'file (vertico--metadata-get 'category))
            (null (char-after (point))))
       (progn
         (delete-minibuffer-contents)
@@ -481,9 +481,7 @@ point reaches the beginning or end of the buffer, stop there."
   :bind (:map vertico-map
               ("C-j" . vertico-directory-enter)
               ("C-k" . j/vertico-kill-line-or-path-component)
-              ("~" . j/vertico-insert-tilde-or-home-directory))
-  :init
-  (autoload 'vertico-directory--completing-file-p "vertico-directory"))
+              ("~" . j/vertico-insert-tilde-or-home-directory)))
 
 (use-package marginalia
   :ensure t

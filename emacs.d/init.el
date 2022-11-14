@@ -508,6 +508,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defun j/magit-status-action (dir)
   "Run magit-status in the specified directory."
+  (require 'magit)
   (let ((magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
     (magit-status (file-name-directory (expand-file-name dir)))))
 

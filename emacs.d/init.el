@@ -417,10 +417,10 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defun j/load-theme ()
   (set-frame-parameter nil 'background-mode 'dark)
-  (setq doom-spacegrey-brighter-comments t)
-  (setq doom-spacegrey-comment-bg nil)
-  (setq doom-spacegrey-padded-modeline nil)
-  (load-theme 'doom-spacegrey)
+  (setq doom-rouge-brighter-comments t)
+  (setq doom-rouge-comment-bg nil)
+  (setq doom-rouge-padded-modeline nil)
+  (load-theme 'j--doom-rouge)
   (setq doom-themes-treemacs-theme "doom-colors")
   (doom-themes-treemacs-config)
   (set-frame-font (font-spec :family "Input"

@@ -769,6 +769,11 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :commands (turn-on-eldoc-mode))
 
+(use-package eldoc-box
+  :ensure t
+  :after eldoc
+  :hook (eldoc-mode . eldoc-box-hover-mode))
+
 ;;; Org -----------------------------------------------------------------------
 
 (defvar j/org-notes-file "~/life/notes.org")

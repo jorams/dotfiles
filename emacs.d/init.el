@@ -399,6 +399,20 @@ point reaches the beginning or end of the buffer, stop there."
 
 (bind-key "C-c `" 'j/change-to-backtick)
 
+;;; Project finding functions
+
+(use-package project
+  :config
+  (defun j/find-projectile-project (dir)
+    "Find project based .projectile file in parent directories of DIR."
+    (let ((f (locate-dominating-file dir ".projectile")))
+      (when f `(projectile . ,f))))
+
+  (add-hook 'project-find-functions 'j/find-projectile-project)
+
+  (cl-defmethod project-root ((project (head projectile)))
+    (cdr project)))
+
 ;;; Theme ---------------------------------------------------------------------
 
 (defun j/load-theme ()
@@ -515,7 +529,8 @@ point reaches the beginning or end of the buffer, stop there."
          ("M-g o" . consult-outline)
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-multi)
-         ("M-g e" . consult-flymake)))
+         ("M-g e" . consult-flymake)
+         ("C-c p b" . consult-project-buffer)))
 
 (use-package embark-consult
   :ensure t
@@ -875,22 +890,6 @@ point reaches the beginning or end of the buffer, stop there."
   :bind (("C-c s r" . rg)
          ("C-c p s r" . rg-project)))
 
-;;; Projectile ----------------------------------------------------------------
-
-(use-package projectile
-  :ensure t
-  :diminish projectile-mode
-  :config (projectile-global-mode))
-
-(defun j/find-projectile-project (dir)
-  (let ((f (locate-dominating-file dir ".projectile")))
-    (when f `(projectile . ,f))))
-
-(add-hook 'project-find-functions 'j/find-projectile-project)
-
-(cl-defmethod project-roots ((project (head projectile)))
-  (list (cdr project)))
-
 ;;; LSP -----------------------------------------------------------------------
 
 (use-package eglot
@@ -952,10 +951,6 @@ point reaches the beginning or end of the buffer, stop there."
   (("M-0"       . treemacs-select-window)
    :map treemacs-mode-map
    ([mouse-1] . treemacs-single-click-expand-action)))
-
-(use-package treemacs-projectile
-  :after treemacs projectile
-  :ensure t)
 
 (use-package treemacs-magit
   :after treemacs magit

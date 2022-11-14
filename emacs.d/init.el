@@ -860,6 +860,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package magit-todos
   :ensure t
+  :after magit
   :config
   (magit-todos-mode))
 

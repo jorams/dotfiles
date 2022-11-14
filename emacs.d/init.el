@@ -43,7 +43,11 @@
   (setq backup-directory-alist
         `(("." . ,backup-directory)))
   (setq auto-save-list-file-prefix
-        (concat backup-directory "list-")))
+        (concat backup-directory "list-"))
+  (setq lock-file-name-transforms
+        ;; Modified from default auto-save-file-name-transforms
+        `(("\\`/\\([^/]*/\\)*\\([^/]*\\)\\'"
+           ,(concat temporary-file-directory "\\2") t))))
 
 ;;; Visual tweaks -------------------------------------------------------------
 

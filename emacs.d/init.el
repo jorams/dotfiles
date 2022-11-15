@@ -413,6 +413,16 @@ point reaches the beginning or end of the buffer, stop there."
   (cl-defmethod project-root ((project (head projectile)))
     (cdr project)))
 
+(defun j/project-urxvt ()
+  "Open urxvt in the current project root."
+  (interactive)
+  (start-process "urxvt" nil
+                 "urxvt" "-cd" (expand-file-name (project-root (project-current t)))))
+
+(with-eval-after-load 'project
+  (define-key project-prefix-map "u" #'j/project-urxvt)
+  (add-to-list 'project-switch-commands '(j/project-urxvt "urxvt") t))
+
 ;;; Theme ---------------------------------------------------------------------
 
 (defun j/load-theme ()

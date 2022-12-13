@@ -420,7 +420,10 @@ point reaches the beginning or end of the buffer, stop there."
   "Open urxvt in the current project root."
   (interactive)
   (start-process "urxvt" nil
-                 "urxvt" "-cd" (expand-file-name (project-root (project-current t)))))
+                 "urxvt"
+                 "-cd" (expand-file-name (project-root (project-current t)))
+                 "-title" "urxvt"
+                 "-e" "tmux"))
 
 (with-eval-after-load 'project
   (define-key project-prefix-map "u" #'j/project-urxvt)
@@ -517,7 +520,10 @@ point reaches the beginning or end of the buffer, stop there."
 (defun j/run-urxvt-action (dir)
   "Open urxvt in the specified directory."
   (start-process "urxvt" nil
-                 "urxvt" "-cd" (file-name-directory (expand-file-name dir))))
+                 "urxvt"
+                 "-cd" (file-name-directory (expand-file-name dir))
+                 "-title" "urxvt"
+                 "-e" "tmux"))
 
 (defun j/magit-status-action (dir)
   "Run magit-status in the specified directory."

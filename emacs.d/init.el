@@ -411,7 +411,10 @@ point reaches the beginning or end of the buffer, stop there."
   (add-hook 'project-find-functions 'j/find-projectile-project)
 
   (cl-defmethod project-root ((project (head projectile)))
-    (cdr project)))
+    (cdr project))
+
+  (define-key project-prefix-map "m" 'magit-project-status)
+  (add-to-list 'project-switch-commands '(magit-project-status "Magit") t))
 
 (defun j/project-urxvt ()
   "Open urxvt in the current project root."

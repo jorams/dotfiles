@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: controller
+# key: controller
+# --
+class $1Controller extends AbstractController
+{
+    $0
+}

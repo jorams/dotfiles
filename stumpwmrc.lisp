@@ -44,8 +44,8 @@
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "exec brightnessctl set 5%+")
 (define-key *top-map* (kbd "XF86MonBrightnessDown") "exec brightnessctl set 5%-")
 
-(define-key *root-map* (kbd "c") "exec urxvt")
-(define-key *root-map* (kbd "C-c") "exec urxvt")
+(define-key *root-map* (kbd "c") "exec urxvt -title urxvt -e tmux")
+(define-key *root-map* (kbd "C-c") "exec urxvt -title urxvt -e tmux")
 (define-key *root-map* (kbd "C")
   "exec urxvt -fn -*-tamsyn-medium-r-*-*-40-*-*-*-*-*-*-*")
 

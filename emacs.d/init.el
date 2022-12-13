@@ -913,7 +913,13 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :config
   (bind-key "M-p" 'eglot-code-actions eglot-mode-map)
-  (setq eglot-confirm-server-initiated-edits nil))
+  (setq eglot-confirm-server-initiated-edits nil)
+  (defun eglot--snippet-expansion-fn ()
+    (lambda (snippet)
+      (yas-expand-snippet
+       (s-replace-regexp "${\\([0-9]+\\)}"
+                         "$\\1"
+                         snippet)))))
 
 (use-package lsp-mode
   :ensure t

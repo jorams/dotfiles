@@ -541,7 +541,10 @@ point reaches the beginning or end of the buffer, stop there."
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-multi)
          ("M-g e" . consult-flymake)
-         ("C-c p b" . consult-project-buffer)))
+         ("C-c p b" . consult-project-buffer))
+  :config
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref))
 
 (use-package embark-consult
   :ensure t

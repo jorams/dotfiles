@@ -553,7 +553,7 @@ point reaches the beginning or end of the buffer, stop there."
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))
-        orderless-matching-styles '(orderless-literal orderless-flex)))
+        orderless-matching-styles '(orderless-literal)))
 
 ;;; CTRLF ---------------------------------------------------------------------
 

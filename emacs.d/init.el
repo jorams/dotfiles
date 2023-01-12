@@ -532,6 +532,24 @@ point reaches the beginning or end of the buffer, stop there."
   (let ((magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
     (magit-status (file-name-directory (expand-file-name dir)))))
 
+(defun j/copy-org-heading-property-as-password ()
+  "Select document outline heading, then properties to copy the value of.
+
+The value is not entered into the kill ring, but copied using
+`interprogram-cut-function'."
+  (interactive)
+  (let ((consult-preview-key nil))
+    (consult-outline))
+  (unwind-protect
+      (loop (let* ((props (delete `("CATEGORY" . ,(org-get-category))
+                                  (org-entry-properties nil 'standard)))
+                   (prop (completing-read "Property: " props nil t)))
+              (when prop
+                (funcall interprogram-cut-function
+                         (cdr (assoc prop props)))
+                nil)))
+    (funcall interprogram-cut-function " ")))
+
 (use-package embark
   :ensure t
   :bind (("M-o" . embark-act))
@@ -551,7 +569,8 @@ point reaches the beginning or end of the buffer, stop there."
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-multi)
          ("M-g e" . consult-flymake)
-         ("C-c p b" . consult-project-buffer))
+         ("C-c p b" . consult-project-buffer)
+         ("M-g M-w" . j/copy-org-heading-property-as-password))
   :config
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref))

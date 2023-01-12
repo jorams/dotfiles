@@ -1,6 +1,6 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
-#tabbrowser-tabs, #alltabs-button {
+#tabbrowser-tabs, #alltabs-button, #TabsToolbar {
   visibility: collapse !important;
 }
 

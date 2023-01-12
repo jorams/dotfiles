@@ -47,7 +47,8 @@
   (setq lock-file-name-transforms
         ;; Modified from default auto-save-file-name-transforms
         `(("\\`/\\([^/]*/\\)*\\([^/]*\\)\\'"
-           ,(concat temporary-file-directory "\\2") t))))
+           ,(concat temporary-file-directory "\\2") t)))
+  (setq tramp-allow-unsafe-temporary-files t))
 
 ;;; Visual tweaks -------------------------------------------------------------
 

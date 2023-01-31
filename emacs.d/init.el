@@ -400,6 +400,22 @@ point reaches the beginning or end of the buffer, stop there."
 
 (bind-key "C-c `" 'j/change-to-backtick)
 
+(defun j/urldecode ()
+  "URL encode (unhex) either the region or the entire buffer."
+  (interactive)
+  (let* ((start (if (use-region-p) (region-beginning) 1))
+         (end (if (use-region-p) (region-end) (point-max)))
+         (text (delete-and-extract-region start end)))
+    (insert (url-unhex-string text))))
+
+(defun j/urlencode ()
+  "URL encode (hexify) either the region or the entire buffer."
+  (interactive)
+  (let* ((start (if (use-region-p) (region-beginning) 1))
+         (end (if (use-region-p) (region-end) (point-max)))
+         (text (delete-and-extract-region start end)))
+    (insert (url-hexify-string text))))
+
 ;;; Project finding functions
 
 (use-package project

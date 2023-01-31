@@ -857,7 +857,18 @@ The value is not entered into the kill ring, but copied using
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
-  :config (yas-global-mode))
+  :config (yas-global-mode)
+  (defun j/expand-ssh-host (command)
+    "Transform an ssh command line into a snippet for the SSH config."
+    (interactive "MCommand: ")
+    (if (string-match "ssh \\([a-zA-Z0-9]+\\)@\\(\\S\\+\\)? -p \\([0-9]+\\)"
+                      command)
+        (let ((snippet (concat "Host $1\n"
+                               "    Hostname " (match-string 2 command) "\n"
+                               "    Port " (match-string 3 command) "\n"
+                               "    User " (match-string 1 command) "\n")))
+          (yas-expand-snippet snippet nil nil '((yas-indent-line nil))))
+      (error "Command does not match expected pattern."))))
 
 ;;; Magit ---------------------------------------------------------------------
 

@@ -557,13 +557,13 @@ The value is not entered into the kill ring, but copied using
   (let ((consult-preview-key nil))
     (consult-outline))
   (unwind-protect
-      (loop (let* ((props (delete `("CATEGORY" . ,(org-get-category))
-                                  (org-entry-properties nil 'standard)))
-                   (prop (completing-read "Property: " props nil t)))
-              (when prop
-                (funcall interprogram-cut-function
-                         (cdr (assoc prop props)))
-                nil)))
+      (cl-loop (let* ((props (delete `("CATEGORY" . ,(org-get-category))
+                                     (org-entry-properties nil 'standard)))
+                      (prop (completing-read "Property: " props nil t)))
+                 (when prop
+                   (funcall interprogram-cut-function
+                            (cdr (assoc prop props)))
+                   nil)))
     (funcall interprogram-cut-function " ")))
 
 (use-package embark

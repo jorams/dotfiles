@@ -21,7 +21,6 @@ wmname LG3D &
 
 defaults &
 systemctl --user restart redshift
-init-audio
 
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK

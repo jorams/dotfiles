@@ -123,7 +123,7 @@
 
 (defprogram-shortcut emacs
   :key (kbd "s-e")
-  :command "emacs"
+  :command "systemd-run --user --scope emacs"
   :props '(:class "Emacs")
   :pullp t
   :pull-key (kbd "s-E"))

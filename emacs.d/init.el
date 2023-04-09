@@ -554,8 +554,7 @@ point reaches the beginning or end of the buffer, stop there."
 The value is not entered into the kill ring, but copied using
 `interprogram-cut-function'."
   (interactive)
-  (let ((consult-preview-key nil))
-    (consult-outline))
+  (consult-outline)
   (unwind-protect
       (cl-loop (let* ((props (delete `("CATEGORY" . ,(org-get-category))
                                      (org-entry-properties nil 'standard)))

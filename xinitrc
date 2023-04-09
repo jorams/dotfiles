@@ -24,6 +24,7 @@ systemctl --user restart redshift
 
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
+systemctl --user import-environment SSH_AUTH_SOCK
 
 command -v qt5ct && export QT_QPA_PLATFORMTHEME=qt5ct
 command -v dunst && systemctl --user start dunst.service

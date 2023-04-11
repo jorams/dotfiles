@@ -1,0 +1,38 @@
+pkgname=j--meta-graphical
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Packages for a graphical interface"
+arch=('any')
+license=('GPL')
+depends=(
+    xorg-server
+    xorg-setxkbmap
+    xorg-xev
+    xorg-xinput
+    xorg-xkill
+    xorg-xmodmap
+    xorg-xprop
+    xorg-xrandr
+    xorg-xrdb
+    xorg-xset
+    xorg-xsetroot
+    xorg-xwininfo
+    xorg-xinit
+    wmname
+    x11vnc
+    tigervnc
+    noto-fonts
+    noto-fonts-emoji
+    noto-fonts-extra
+    # Only in AUR
+    #tamsyn-font
+    j--ttf-input
+    j--slock
+    ttf-font-awesome
+    mpv
+    rxvt-unicode
+    redshift
+    dunst
+    feh
+    firefox
+)

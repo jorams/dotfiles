@@ -1,0 +1,15 @@
+pkgname=j--meta-gaming
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Packages for gaming"
+arch=('any')
+license=('GPL')
+depends=(
+    discord
+    # These lib32 versions of packages are for Steam
+    lib32-gtk2
+    lib32-libva
+    lib32-libvdpau
+    steam
+    j--vr-video-player-git
+)

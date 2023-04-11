@@ -4,3 +4,6 @@ pkg
 *.tar.gz
 *.tar.zst
 *.zip
+*.log
+/repo
+/root

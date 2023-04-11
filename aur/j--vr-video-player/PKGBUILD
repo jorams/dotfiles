@@ -9,6 +9,7 @@ arch=('x86_64')
 url="https://git.sr.ht/~joram/vr-video-player"
 license=('BSD')
 depends=('glm' 'glew' 'sdl2' 'openvr' 'libx11' 'libxcomposite' 'libxfixes')
+makedepends=('git')
 provides=('vr-video-player')
 conflicts=('vr-video-player')
 source=("git+https://git.sr.ht/~joram/vr-video-player")

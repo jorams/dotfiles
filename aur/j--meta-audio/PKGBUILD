@@ -1,0 +1,23 @@
+pkgname=j--meta-audio
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Packages for audio"
+arch=('any')
+license=('GPL')
+depends=(
+    pipewire
+    wireplumber
+    pipewire-audio
+    pipewire-pulse
+    pipewire-alsa
+    pipewire-jack
+    lib32-libpipewire
+    lib32-libpulse
+    noise-suppression-for-voice
+    alsa-utils
+    pamixer
+    pavucontrol
+    helvum
+    mpd
+    cantata
+)

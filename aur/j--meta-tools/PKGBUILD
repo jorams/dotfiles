@@ -1,0 +1,25 @@
+pkgname=j--meta-tools
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Various tools to use on any system"
+arch=('any')
+license=('GPL')
+depends=(
+    rsync
+    gnome-keyring
+    tmux
+    git
+    fd
+    ripgrep
+    whois
+    openssh
+    nethogs
+    syncthing
+    tailscale
+    emacs
+    vim
+    sbcl
+    rclone
+    p7zip
+    lftp
+)

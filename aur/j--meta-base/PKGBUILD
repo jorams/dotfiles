@@ -1,0 +1,23 @@
+pkgname=j--meta-base
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Base system packages"
+arch=('any')
+license=('GPL')
+depends=(
+    base
+    base-devel
+    devtools
+    linux
+    linux-firmware
+    man-db
+    man-pages
+    xdg-user-dirs
+    fuse2
+    fuse3
+    bash-completion
+    cmake
+    libnotify
+    nano
+    htop
+)

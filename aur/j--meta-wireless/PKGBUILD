@@ -1,0 +1,12 @@
+pkgname=j--meta-wireless
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Packages for wireless connections"
+arch=('any')
+license=('GPL')
+depends=(
+    connman
+    iwd
+    bluez
+    bluez-utils
+)

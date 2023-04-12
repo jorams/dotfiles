@@ -1,0 +1,5 @@
+[global]
+    follow = keyboard
+    corner_radius = 8
+    font = Monospace 10
+    mouse_right_click = context

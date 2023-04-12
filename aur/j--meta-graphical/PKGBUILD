@@ -35,4 +35,5 @@ depends=(
     dunst
     feh
     firefox
+    autorandr
 )

@@ -692,3 +692,4 @@ then pastes it into the command."
 (theme :home)
 
 (run-shell-command "gpg-connect-agent updatestartuptty /bye >/dev/null")
+(run-shell-command "autorandr --change --default default")

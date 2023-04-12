@@ -8,6 +8,7 @@ URxvt.url-select.underline: true
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keyboard-select.clipboard: true
 URxvt.font: XR_FONT
+URxvt.letterSpace: -1
 
 URxvt.depth: 32
 

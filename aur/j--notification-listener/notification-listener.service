@@ -1,0 +1,9 @@
+[Unit]
+Description=Notification listener
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/notification-listener start
+
+[Install]
+WantedBy=default.target

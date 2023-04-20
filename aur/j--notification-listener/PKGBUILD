@@ -1,0 +1,50 @@
+# Maintainer: i at joram dot io
+
+pkgname=j--notification-listener-git
+pkgver=r2.17d3447
+pkgrel=1
+pkgdesc='A notification listener that forwards to notify-send'
+arch=('x86_64')
+url="https://git.sr.ht/~joram/notification-listener"
+license=('GPL3')
+depends=('libnotify')
+makedepends=('git' 'elixir')
+source=(
+    "git+https://git.sr.ht/~joram/notification-listener"
+    "notification-listener.service"
+)
+sha512sums=(
+    'SKIP'
+    'fa9fe3ea184ba065560b8f725a01ff6e1c88563cab62ab7ed16acb07bb007f400cd9c27cc7f636eb95ffe4d01bea58c61d562a1f313b694807aa596f726f3a06'
+)
+
+pkgver() {
+  cd "$srcdir/notification-listener"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$srcdir/notification-listener"
+
+  export MIX_ENV=prod
+  export MIX_HOME="$srcdir/mix-cache"
+
+  mix local.hex --force
+  mix deps.get
+  mix compile
+}
+
+package() {
+  cd "$srcdir/notification-listener"
+
+  export MIX_ENV=prod
+
+  install -dm0755 "$pkgdir"/usr/lib/$pkgname
+  mix release --path "$pkgdir"/usr/lib/$pkgname
+
+  install -dm0755 "$pkgdir"/usr/bin
+  echo -e "#!/bin/sh\nexec /usr/lib/$pkgname/bin/notification_listener \$@" > "$pkgdir"/usr/bin/notification-listener
+  chmod +x "$pkgdir"/usr/bin/notification-listener
+
+  install -Dm644 "$srcdir/notification-listener.service" "$pkgdir/usr/lib/systemd/user/notification-listener.service"
+}

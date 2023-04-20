@@ -34,6 +34,7 @@ package j--slock
 package j--ttf-input
 package j--vr-video-player
 package j--transcoding-music-server
+package j--notification-listener
 
 # Meta packages
 package j--meta-base

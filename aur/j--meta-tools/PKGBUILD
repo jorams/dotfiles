@@ -1,5 +1,5 @@
 pkgname=j--meta-tools
-pkgver=0.0.1
+pkgver=2
 pkgrel=1
 pkgdesc="Various tools to use on any system"
 arch=('any')
@@ -22,4 +22,6 @@ depends=(
     rclone
     p7zip
     lftp
+    smartmontools
+    beets
 )

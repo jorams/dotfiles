@@ -1,5 +1,5 @@
 pkgname=j--meta-gaming
-pkgver=0.0.1
+pkgver=2
 pkgrel=1
 pkgdesc="Packages for gaming"
 arch=('any')
@@ -11,5 +11,6 @@ depends=(
     lib32-libva
     lib32-libvdpau
     steam
+    lutris
     j--vr-video-player-git
 )

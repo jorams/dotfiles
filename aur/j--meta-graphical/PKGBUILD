@@ -1,5 +1,5 @@
 pkgname=j--meta-graphical
-pkgver=0.0.1
+pkgver=2
 pkgrel=1
 pkgdesc="Packages for a graphical interface"
 arch=('any')
@@ -36,4 +36,8 @@ depends=(
     feh
     firefox
     autorandr
+    qt5ct
+    adwaita-qt5
+    gimp
+    inkscape
 )

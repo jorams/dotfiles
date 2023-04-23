@@ -4,6 +4,8 @@ After=network.target
 
 [Service]
 ExecStart=/usr/bin/notification-listener start
+Restart=always
+RestartSec=10
 
 [Install]
 WantedBy=default.target

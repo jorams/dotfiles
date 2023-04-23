@@ -2,7 +2,7 @@
 
 pkgname=j--notification-listener-git
 pkgver=r2.17d3447
-pkgrel=1
+pkgrel=2
 pkgdesc='A notification listener that forwards to notify-send'
 arch=('x86_64')
 url="https://git.sr.ht/~joram/notification-listener"
@@ -15,7 +15,7 @@ source=(
 )
 sha512sums=(
     'SKIP'
-    'fa9fe3ea184ba065560b8f725a01ff6e1c88563cab62ab7ed16acb07bb007f400cd9c27cc7f636eb95ffe4d01bea58c61d562a1f313b694807aa596f726f3a06'
+    'f0f87fffa0d4c2e56db7cb7922b0df14075b09e9aca1cec5fe041d41cf9af5927817b8a9cbf4de692b71d4f4991030b92caba57c8d8953b21a1e8619caa4bc55'
 )
 
 pkgver() {

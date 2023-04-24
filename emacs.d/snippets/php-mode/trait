@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: trait
+# key: trait
+# --
+trait ${1:`(file-name-nondirectory (file-name-sans-extension (or (buffer-file-name) (buffer-name (current-buffer)))))`}
+{
+    $0
+}

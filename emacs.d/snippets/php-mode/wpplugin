@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: wpplugin
+# key: wpplugin
+# --
+<?php
+declare(strict_types=1);
+/*
+ * Plugin Name: $1
+ * Plugin URI:  $2
+ * Description: $3
+ * Version:     1.0.0
+ * Author:      ${4:Joram Schrijver}
+ * Author URI:  ${5:$2}
+ * License:     GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ */

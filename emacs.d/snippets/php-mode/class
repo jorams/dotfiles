@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: class
+# key: class
+# --
+class ${1:`(file-name-nondirectory (file-name-sans-extension (or (buffer-file-name) (buffer-name (current-buffer)))))`}$2
+{
+    $0
+}

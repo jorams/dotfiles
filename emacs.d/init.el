@@ -1343,3 +1343,12 @@ The value is not entered into the kill ring, but copied using
 (use-package go-mode
   :ensure t
   :mode ("\\.go\\'"))
+
+;;; systemd -------------------------------------------------------------------
+
+(use-package systemd
+  :ensure t
+  :mode (("\\.service\\'" . systemd-mode)
+         ("\\.socket\\'" . systemd-mode)
+         ("\\.slice\\'" . systemd-mode)))
+(put 'dired-find-alternate-file 'disabled nil)

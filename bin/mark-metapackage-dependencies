@@ -1,0 +1,19 @@
+#!/bin/sh
+# Mark all dependencies of the specified meta-package as dependencies, rather
+# than explicitly installed.
+
+set -e -o pipefail
+
+if [ "$#" -lt "1" ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+    echo "Usage: $0 <meta-packages...>"
+    echo ""
+    echo "Mark all dependencies of the specified metapackages as dependencies,"
+    echo "rather than explicitly installed."
+
+    exit 1
+fi
+
+pacman -Qi "$@" \
+    | grep '^Depends On' \
+    | cut -d ':' -f 2- \
+    | xargs sudo pacman -D --asdeps

@@ -1,5 +1,5 @@
 pkgname=j--meta-graphical
-pkgver=2
+pkgver=3
 pkgrel=1
 pkgdesc="Packages for a graphical interface"
 arch=('any')
@@ -31,6 +31,7 @@ depends=(
     ttf-font-awesome
     mpv
     rxvt-unicode
+    urxvt-perls
     redshift
     dunst
     feh

@@ -3,7 +3,7 @@ Description=mountr
 After=network.target
 
 [Service]
-ExecStart=/home/joram/bin/httpr %i
+ExecStart=%h/bin/httpr %i
 
 [Install]
 WantedBy=default.target

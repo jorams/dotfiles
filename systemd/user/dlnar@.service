@@ -3,7 +3,7 @@ Description=dlnar
 After=network.target
 
 [Service]
-ExecStart=/home/joram/bin/dlnar %i
+ExecStart=%h/bin/dlnar %i
 
 [Install]
 WantedBy=default.target

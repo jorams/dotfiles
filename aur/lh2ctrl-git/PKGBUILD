@@ -1,0 +1,24 @@
+# Maintainer: i at joram dot io
+
+pkgname=lh2ctrl-git
+pkgver=r9.720e54e
+pkgrel=1
+pkgdesc='Power management of Valve v2 lighthouses over Bluetooth LE'
+arch=('x86_64')
+url="https://github.com/risa2000/lh2ctrl/"
+license=('MIT')
+depends=('python' 'python-bluepy')
+makedepends=('git')
+source=("git+https://github.com/risa2000/lh2ctrl")
+sha512sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/lh2ctrl"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd "$srcdir/lh2ctrl"
+  install -Dm755 pylh2ctrl/lh2ctrl.py "$pkgdir/usr/bin/lh2ctrl"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/lh2ctrl/LICENSE"
+}

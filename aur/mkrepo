@@ -38,6 +38,7 @@ package j--notification-listener
 
 # AUR packages
 package tamsyn-font
+package lh2ctrl-git
 
 # Meta packages
 package j--meta-base

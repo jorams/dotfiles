@@ -48,7 +48,10 @@ if [[ $TERM != dumb ]]; then
             pcolor="\[\033[0;31m\] $last"
         fi
 
-        PS1="$pcolor » \[\e[0m\]"
+        host=""
+        [ -n "$SSH_CONNECTION" ] && host="\h "
+
+        PS1="$pcolor $host» \[\e[0m\]"
     }
 
     PROMPT_COMMAND='my_prompt'

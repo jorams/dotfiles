@@ -1,5 +1,5 @@
 pkgname=j--meta-graphical
-pkgver=3
+pkgver=4
 pkgrel=1
 pkgdesc="Packages for a graphical interface"
 arch=('any')
@@ -24,8 +24,7 @@ depends=(
     noto-fonts
     noto-fonts-emoji
     noto-fonts-extra
-    # Only in AUR
-    #tamsyn-font
+    tamsyn-font
     j--ttf-input
     j--slock
     ttf-font-awesome

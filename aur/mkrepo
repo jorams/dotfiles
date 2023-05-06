@@ -36,6 +36,9 @@ package j--vr-video-player
 package j--transcoding-music-server
 package j--notification-listener
 
+# AUR packages
+package tamsyn-font
+
 # Meta packages
 package j--meta-base
 package j--meta-tools

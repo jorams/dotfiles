@@ -1,0 +1,16 @@
+pkgname=j--meta-dev
+pkgver=1
+pkgrel=1
+pkgdesc="Packages for development purposes"
+arch=('any')
+license=('GPL')
+depends=(
+    elixir
+    elixir-ls
+    go
+    gopls
+    postgresql
+    nodejs-lts-hydrogen
+    yarn
+    inotify-tools
+)

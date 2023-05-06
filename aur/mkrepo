@@ -39,6 +39,8 @@ package j--notification-listener
 # AUR packages
 package tamsyn-font
 package lh2ctrl-git
+package rebar3
+package elixir-ls
 
 # Meta packages
 package j--meta-base
@@ -47,3 +49,4 @@ package j--meta-audio
 package j--meta-graphical
 package j--meta-wireless
 package j--meta-gaming
+package j--meta-dev

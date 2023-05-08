@@ -21,9 +21,9 @@ done
 ALLOWEMPTY=""
 
 if [ -n "$ADOMAIN" ]; then
-    IP="$(dig +short A "$ADOMAIN")"
+    IP="$(drill -Q A "$ADOMAIN")"
 elif [ -n "$AAAADOMAIN" ]; then
-    IP="$(dig +short AAAA "$AAAADOMAIN")"
+    IP="$(drill -Q AAAA "$AAAADOMAIN")"
 else
     shift "$((OPTIND-1))"
     IP="$1"

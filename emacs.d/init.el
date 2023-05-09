@@ -772,41 +772,46 @@ The value is not entered into the kill ring, but copied using
          ("C-h v" . helpful-variable)
          ("C-h k" . helpful-key)))
 
-;;; Company -------------------------------------------------------------------
+;;; Corfu ---------------------------------------------------------------------
 
-(use-package company
+(use-package corfu
   :ensure t
-  :diminish company-mode
-  :config
-  (global-company-mode)
-  (setq company-idle-delay 0)
-  (setq company-tooltip-align-annotations t)
-  ;; By default company binds some common keys, so that you need to dismiss
+  :init
+  (global-corfu-mode)
+  ;; By default corfu binds some common keys, so that you need to dismiss
   ;; completions in order to invoke the normal functionality. I want completion
   ;; to help and not get in the way, so I bind these functions to M-<key>
   ;; instead.
-  (bind-keys :map company-active-map
-             ("RET" . nil)
-             ([return] . nil)
-             ("M-RET" . company-complete-selection)
-             ("TAB" . nil)
-             ([tab] . nil)
-             ("M-TAB" . company-complete-common)
-             ("C-n" . nil)
-             ("M-n" . company-select-next)
-             ("C-p" . nil)
-             ("M-p" . company-select-previous))
-  ;; By default, company disables yasnippet bindings while completion is
-  ;; active. Since I explicitly don't want TAB to complete, I really just want
-  ;; yasnippet to keep working.
-  (add-hook 'company-mode-hook
-            (lambda ()
-              (remove-hook 'yas-keymap-disable-hook 'company--active-p t))))
-
-(use-package company-quickhelp
-  :ensure t
+  :bind (:map corfu-map
+              ("TAB" . nil)
+              ("<tab>" . nil)
+              ("M-TAB" . corfu-complete)
+              ("RET" . nil)
+              ("M-RET" . corfu-insert)
+              ("<remap> <beginning-of-buffer>" . nil)
+              ("<remap> <end-of-buffer>" . nil)
+              ("<remap> <move-beginning-of-line>" . nil)
+              ("C-a" . nil)
+              ("<remap> <move-end-of-line>" . nil)
+              ("<remap> <next-line>" . nil)
+              ("<remap> <previous-line-line>" . nil))
   :config
-  (company-quickhelp-mode))
+  (setq corfu-auto t
+        corfu-auto-delay 0))
+
+(use-package corfu-popupinfo
+  :init
+  (corfu-popupinfo-mode 1)
+  :config
+  (setq corfu-popupinfo-delay '(0.5 . 0.5)))
+
+(use-package kind-icon
+  :ensure t
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 ;;; Flycheck ------------------------------------------------------------------
 
@@ -1112,15 +1117,6 @@ The value is not entered into the kill ring, but copied using
   (setq-default lua-indent-nested-block-content-align nil)
   (setq-default lua-indent-close-paren-align nil))
 
-(use-package company-lua
-  :ensure t
-  :commands company-lua
-  :init
-  (add-hook 'lua-mode-hook
-            (lambda ()
-              (setq-local company-backends '(company-lua))
-              (electric-indent-mode -1))))
-
 ;;; Markdown ------------------------------------------------------------------
 
 (use-package markdown-mode
@@ -1163,12 +1159,6 @@ The value is not entered into the kill ring, but copied using
   :init
   (add-hook 'web-mode-hook 'emmet-mode t)
   (add-hook 'web-mode-hook 'emmet-preview-mode t))
-
-(use-package company-web
-  :ensure t
-  :commands company-web-html
-  :init
-  (add-to-list 'company-backends 'company-web-html))
 
 ;;; PHP -----------------------------------------------------------------------
 

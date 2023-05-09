@@ -1161,7 +1161,8 @@ The value is not entered into the kill ring, but copied using
   :ensure t
   :commands emmet-mode
   :init
-  (add-hook 'web-mode-hook 'emmet-mode t))
+  (add-hook 'web-mode-hook 'emmet-mode t)
+  (add-hook 'web-mode-hook 'emmet-preview-mode t))
 
 (use-package company-web
   :ensure t

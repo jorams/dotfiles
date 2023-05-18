@@ -1,5 +1,5 @@
 pkgname=j--meta-graphical
-pkgver=4
+pkgver=5
 pkgrel=1
 pkgdesc="Packages for a graphical interface"
 arch=('any')
@@ -19,6 +19,9 @@ depends=(
     xorg-xwininfo
     xorg-xinit
     wmname
+    xclip
+    xcolor
+    maim
     x11vnc
     tigervnc
     noto-fonts

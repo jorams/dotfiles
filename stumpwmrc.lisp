@@ -115,7 +115,9 @@
   ("y" "theme home")
   ("Y" "theme work")
   ;; Locking, similarly not xrandr-related
-  ("l" "exec bash -c slock & xset dpms force off"))
+  ("l" "exec bash -c slock & xset dpms force off")
+  ;; Refresh heads after a change in connected displays
+  ("r" "refresh-heads"))
 
 (define-key *root-map* (kbd "d") '*xrandr-map*)
 

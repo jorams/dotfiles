@@ -30,6 +30,10 @@ fi
 DELAYARG=""
 if [[ -n "$DELAY" ]]; then
     DELAYARG="--delay=$DELAY"
+else
+    # If there's no delay the cursor is used to select the area to take a
+    # screenshot of, so we don't want it shown.
+    DELAYARG="--hidecursor"
 fi
 
 if [[ -n "$OUTPUTCLIP" ]]; then

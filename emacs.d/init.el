@@ -793,7 +793,7 @@ The value is not entered into the kill ring, but copied using
               ("C-a" . nil)
               ("<remap> <move-end-of-line>" . nil)
               ("<remap> <next-line>" . nil)
-              ("<remap> <previous-line-line>" . nil))
+              ("<remap> <previous-line>" . nil))
   :config
   (setq corfu-auto t
         corfu-auto-delay 0))

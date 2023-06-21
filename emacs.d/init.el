@@ -1080,16 +1080,6 @@ The value is not entered into the kill ring, but copied using
      ("a" "add project" treemacs-add-project-to-workspace)
      ("s" "select" treemacs-select-window)]))
 
-;;; Tree Sitter ---------------------------------------------------------------
-
-(use-package tree-sitter
-  :ensure t
-  :commands (tree-sitter-mode tree-sitter-hl-mode global-tree-sitter-mode))
-
-(use-package tree-sitter-langs
-  :ensure t
-  :commands (tree-sitter-mode tree-sitter-hl-mode global-tree-sitter-mode))
-
 ;;; Prettier ------------------------------------------------------------------
 
 (use-package prettier
@@ -1138,7 +1128,6 @@ The value is not entered into the kill ring, but copied using
          "\\.ctml\\'"
          "\\.html\\.eex\\'"
          "\\.html\\.leex\\'"
-         "\\.html\\.heex\\'"
          "\\.blade.php\\'"
          "\\.gohtml\\'")
   :config
@@ -1196,15 +1185,14 @@ The value is not entered into the kill ring, but copied using
 
 ;;; Typescript ----------------------------------------------------------------
 
-(use-package typescript-mode
-  :ensure t
-  :mode "\\.ts\\'")
-
-(use-package tide
-  :ensure t
-  :after (typescript-mode company flycheck)
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)))
+(use-package typescript-ts-mode
+  :ensure nil
+  :mode (("\\.ts\\'" . typescript-ts-mode)
+         ("\\.tsx\\'" . tsx-ts-mode))
+  :init
+  (add-to-list
+   'eglot-server-programs
+   `((typescript-ts-mode tsx-ts-mode) . ("typescript-language-server" "--stdio"))))
 
 ;;; CSS -----------------------------------------------------------------------
 
@@ -1235,26 +1223,15 @@ The value is not entered into the kill ring, but copied using
 
 ;;; Elixir --------------------------------------------------------------------
 
-(use-package elixir-mode
+(use-package heex-ts-mode
+  :ensure t
+  :mode "\\.heex\\'")
+
+(use-package elixir-ts-mode
   :ensure t
   :mode "\\.ex\\'"
   :init
-  (add-to-list 'eglot-server-programs `(elixir-mode "elixir-ls")))
-
-(use-package polymode
-  :ensure t
-  :mode ("\\.ex\\'" . poly-elixir-mode)
-  :config
-  (define-hostmode poly-elixir-hostmode :mode 'elixir-mode)
-  (define-innermode poly-elixir-eex-template-innermode
-    :mode 'web-mode
-    :head-matcher " +~[EHL]\"\"\"\n"
-    :tail-matcher "^ *\"\"\"\n"
-    :head-mode 'host
-    :tail-mode 'host)
-  (define-polymode poly-elixir-mode
-    :hostmode 'poly-elixir-hostmode
-    :innermodes '(poly-elixir-eex-template-innermode)))
+  (add-to-list 'eglot-server-programs `(elixir-ts-mode "elixir-ls")))
 
 ;;; Apache --------------------------------------------------------------------
 
@@ -1309,11 +1286,6 @@ The value is not entered into the kill ring, but copied using
 ;;; vterm ---------------------------------------------------------------------
 
 (use-package vterm
-  :ensure t)
-
-;;; docker-tramp --------------------------------------------------------------
-
-(use-package docker-tramp
   :ensure t)
 
 ;;; GraphQL -------------------------------------------------------------------

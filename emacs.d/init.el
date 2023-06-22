@@ -297,6 +297,29 @@ When less than half a screen of lines remains, scroll to the start."
 
 (bind-key "M-F" 'j/fill-to-end--)
 
+(defun j/split-list-into-lines ()
+  "Split a parameter list across lines.
+
+Assumes point is in the parameter list, not in a nested one expression.
+
+Designed to work in many cases."
+  (interactive)
+  (backward-up-list)
+  (forward-char)
+  (unless (member (char-after) '(?\) ?\] ?\}))
+    (newline-and-indent)
+    (cl-loop
+     (cl-case (char-after)
+       ((?, ?\;)
+        (forward-char)
+        (newline-and-indent))
+       ((?\) ?\] ?\})
+        (newline-and-indent)
+        (cl-return)))
+     (if (member (char-after) '(?\) ?\] ?\}))
+         (cl-return)
+       (forward-sexp)))))
+
 ;;; Smarter C-a.
 ;;; From http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
 
@@ -1057,7 +1080,8 @@ The value is not entered into the kill ring, but copied using
      ("j" "json" j/json-pretty-print)
      ("x" "xml" j/xml-pretty-print)
      ("a" "align" j/align)
-     ("l" "eglot" eglot-format)])
+     ("l" "eglot" eglot-format)
+     ("s" "split lines" j/split-list-into-lines)])
   (transient-define-prefix j/transient-git ()
     ["Git"
      ("s" "status" magit-status)

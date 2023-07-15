@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+rootdir="$PWD/root"
+
+if [ -d "$rootdir" ]; then
+    printf "Existing root found, delete it? (y/n)"
+    read -r answer
+    case "$answer" in
+        y|Y)
+            sudo rm -r "$rootdir"
+            ;;
+        *)
+            echo "Aborted."
+            exit 1
+            ;;
+    esac
+fi
+
+mkdir -p "$rootdir"
+mkarchroot -C /etc/pacman.conf "$rootdir/root" base-devel

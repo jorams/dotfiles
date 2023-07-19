@@ -29,18 +29,20 @@ mkdir -p "$repodir"
 
 [ -d "$rootdir/root" ] || mkarchroot -C /etc/pacman.conf "$rootdir/root" base-devel
 
+# AUR packages
+package tamsyn-font
+package lh2ctrl-git
+package rebar3
+package elixir-ls
+package ttfautohint
+
 # Personal packages
 package j--slock
 package j--ttf-input
 package j--vr-video-player
 package j--transcoding-music-server
 package j--notification-listener
-
-# AUR packages
-package tamsyn-font
-package lh2ctrl-git
-package rebar3
-package elixir-ls
+package j--ttf-iosevka-output
 
 # Meta packages
 package j--meta-base

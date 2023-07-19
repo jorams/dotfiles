@@ -1,0 +1,86 @@
+# For coding
+[buildPlans.iosevka-output]
+family = "Iosevka Output"
+spacing = "term"
+serifs = "sans"
+
+  [buildPlans.iosevka-output.variants]
+  inherits = "ss18"
+
+    [buildPlans.iosevka-output.variants.design]
+    # b = "toothed"
+    f = "flat-hook-serifless-crossbar-at-x-height"
+    g = "single-storey-earless-corner"
+    i = "tailed-serifed"
+    l = "tailed-serifed"
+    q = "straight-serifless"
+    t = "flat-hook"
+    lower-alpha = "crossing"
+    zero = "slashed"
+    four = "semi-open"
+    seven = "bend-serifed"
+    eight = "crossing-asymmetric"
+    asterisk = "hex-low"
+    brace = "curly-flat-boundary"
+    number-sign = "upright"
+
+  [buildPlans.iosevka-output.metric-override]
+  leading = 1130
+  parenSize = 850
+
+# Non-term spacing; ligatures galore
+[buildPlans.iosevka-output-reader]
+family = "Iosevka Output Reader"
+spacing = "normal"
+serifs = "sans"
+
+  [buildPlans.iosevka-output-reader.variants]
+  inherits = "ss18"
+
+    [buildPlans.iosevka-output-reader.variants.design]
+    # b = "toothed"
+    f = "flat-hook-serifless-crossbar-at-x-height"
+    g = "single-storey-earless-corner"
+    i = "tailed-serifed"
+    l = "tailed-serifed"
+    q = "straight-serifless"
+    t = "flat-hook"
+    lower-alpha = "crossing"
+    zero = "slashed"
+    four = "semi-open"
+    seven = "bend-serifed"
+    eight = "crossing-asymmetric"
+    asterisk = "hex-low"
+    brace = "curly-flat-boundary"
+    number-sign = "upright"
+
+  [buildPlans.iosevka-output-reader.metric-override]
+  leading = 1130
+  parenSize = 850
+
+
+[buildPlans.iosevka-output-prose]
+family = "Iosevka Output Prose"
+spacing = "quasi-proportional"
+serifs = "sans"
+
+  [buildPlans.iosevka-output-prose.variants]
+  inherits = "ss18"
+
+    [buildPlans.iosevka-output-prose.variants.design]
+    # b = "toothed"
+    f = "flat-hook"
+    l = "tailed-serifed"
+    q = "straight-serifless"
+    t = "flat-hook"
+    lower-alpha = "crossing"
+    zero = "slashed"
+    four = "semi-open"
+    seven = "bend-serifed"
+    eight = "crossing-asymmetric"
+    asterisk = "hex-low"
+    number-sign = "upright"
+
+  [buildPlans.iosevka-output-prose.metric-override]
+  leading = 1130
+  parenSize = 850

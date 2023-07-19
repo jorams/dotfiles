@@ -479,10 +479,12 @@ point reaches the beginning or end of the buffer, stop there."
   (load-theme 'j--doom-rouge)
   (setq doom-themes-treemacs-theme "doom-colors")
   (doom-themes-treemacs-config)
-  (set-frame-font (font-spec :family "Input"
+  (set-frame-font (font-spec :family "Iosevka Output"
+                             :weight 'medium
+                             :width 'expanded
                              :size (cond ((getenv "IS4K") 20)
                                          ((getenv "DOTFILE_FONT_RESOLUTION") 16)
-                                         (t 11)))
+                                         (t 12)))
                   nil
                   t))
 

@@ -1,5 +1,5 @@
 pkgname=j--meta-tools
-pkgver=3
+pkgver=4
 pkgrel=1
 pkgdesc="Various tools to use on any system"
 arch=('any')
@@ -9,6 +9,7 @@ depends=(
     gnome-keyring
     tmux
     git
+    perl-authen-sasl perl-io-socket-ssl # for git send-email
     fd
     ripgrep
     whois

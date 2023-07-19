@@ -892,9 +892,9 @@ The value is not entered into the kill ring, but copied using
 (use-package smtpmail
   :config
   (setq message-send-mail-function 'smtpmail-send-it
-        smtpmail-stream-type 'starttls
-        smtpmail-smtp-server "mail.messagingengine.com"
-        smtpmail-smtp-service 587))
+        smtpmail-stream-type 'ssl
+        smtpmail-smtp-server "smtp.fastmail.com"
+        smtpmail-smtp-service 465))
 
 ;;; Yasnippet -----------------------------------------------------------------
 

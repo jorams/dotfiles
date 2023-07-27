@@ -482,6 +482,55 @@
 
 (define-key *root-map* (kbd "N") '*notifications-map*)
 
+;;; Network connections -------------------------------------------------------
+
+(defun list-network-connections ()
+  (flet ((data (prop props) (gethash "data" (gethash prop props))))
+    (let* ((output (run-shell-command
+                    (format nil "~@{~a~^ ~}"
+                            "busctl --json=short --timeout=1ms"
+                            "call net.connman / net.connman.Manager GetServices")
+                    t))
+           (parsed (com.inuoe.jzon:parse output))
+           (services (elt (gethash "data" parsed) 0)))
+      (loop for service across services
+            for props = (elt service 1)
+            when (data "Favorite" props)
+              collect (list :name (data "Name" props)
+                            :state (data "State" props)
+                            :path (elt service 0))))))
+
+(defun connect-network-connection (conn)
+  (let* ((output (run-shell-command
+                  (print (format nil "~@{~a~^ ~}"
+                                 ;; Barely a timeout. We want instant failures,
+                                 ;; not any others.
+                                 "busctl --json=short --timeout=100ms"
+                                 "call net.connman"
+                                 (getf conn :path)
+                                 "net.connman.Service Connect"
+                                 "2>&1"))
+                  t)))
+    (if (search "Connection timed out" output)
+        "Connecting..."
+        (format nil "^1Error:^n ~a" output))))
+
+(define-stumpwm-type :network (input prompt)
+  (let* ((networks (list-network-connections)))
+    (or (argument-pop input)
+        (second
+         (select-from-menu (current-screen)
+                           (loop for network in networks
+                                 collect (list (format nil "~A (~a)"
+                                                       (getf network :name)
+                                                       (getf network :state))
+                                               network))
+                           prompt)))))
+
+(defcommand connect-network (network) ((:network "Network: "))
+  (when network
+    (message "~a" (connect-network-connection network))))
+
 ;;; Window titles -------------------------------------------------------------
 
 (defmacro normalize-titles (&rest triplets)

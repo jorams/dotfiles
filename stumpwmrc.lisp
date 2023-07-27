@@ -427,8 +427,8 @@
 (define-key *top-map* (kbd "S-XF86AudioMute") "volume toggle voice-out")
 (define-key *top-map* (kbd "C-XF86AudioMute") "volume toggle mic")
 
-;; Update volume status for the first time.
-(update-volume-status)
+;; Update volume status now and regularly
+(run-with-timer 0 30 'update-volume-status)
 
 ;;; Quick screenshot or recording ---------------------------------------------
 

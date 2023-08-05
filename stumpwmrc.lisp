@@ -9,7 +9,7 @@
 (when (stumpwm:getenv "IS4K")
   (pushnew :screen-is-4k *features*))
 
-(ql:quickload '(#:slynk #:mpd #:ttf-fonts #:stumptray))
+(ql:quickload '(#:slynk #:mpd #:ttf-fonts #:stumptray #:com.inuoe.jzon))
 
 ;;; Remote control ------------------------------------------------------------
 

@@ -1,0 +1,124 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0 <code>"
+    echo "Wikipedia https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
+}
+
+code="$1"
+if [ -z "$code" ]; then
+    usage
+    exit 1
+fi
+
+case "$code" in
+    100) echo "100 Continue    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#100" ;;
+    101) echo "101 Switching Protocols    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#101" ;;
+    102) echo "102 Processing (WebDAV; RFC 2518)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#102" ;;
+    103) echo "103 Early Hints (RFC 8297)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#103" ;;
+    110) echo "110 Response is Stale    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#110" ;;
+    111) echo "111 Revalidation Failed    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#111" ;;
+    112) echo "112 Disconnected Operation    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#112" ;;
+    113) echo "113 Heuristic Expiration    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#113" ;;
+    199) echo "199 Miscellaneous Warning    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#199" ;;
+    200) echo "200 OK    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#200" ;;
+    201) echo "201 Created    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#201" ;;
+    202) echo "202 Accepted    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#202" ;;
+    203) echo "203 Non-Authoritative Information (since HTTP/1.1)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#203" ;;
+    204) echo "204 No Content    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#204" ;;
+    205) echo "205 Reset Content    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#205" ;;
+    206) echo "206 Partial Content    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#206" ;;
+    207) echo "207 Multi-Status (WebDAV; RFC 4918)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#207" ;;
+    208) echo "208 Already Reported (WebDAV; RFC 5842)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#208" ;;
+    214) echo "214 Transformation Applied    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#214" ;;
+    218) echo "218 This is fine (Apache HTTP Server)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#218" ;;
+    226) echo "226 IM Used (RFC 3229)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#226" ;;
+    299) echo "299 Miscellaneous Persistent Warning    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#299" ;;
+    300) echo "300 Multiple Choices    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#300" ;;
+    301) echo "301 Moved Permanently    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#301" ;;
+    302) echo "302 Found (Previously \"Moved temporarily\")    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#302" ;;
+    303) echo "303 See Other (since HTTP/1.1)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#303" ;;
+    304) echo "304 Not Modified    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#304" ;;
+    305) echo "305 Use Proxy (since HTTP/1.1)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#305" ;;
+    306) echo "306 Switch Proxy    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#306" ;;
+    307) echo "307 Temporary Redirect (since HTTP/1.1)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#307" ;;
+    308) echo "308 Permanent Redirect    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#308" ;;
+    400) echo "400 Bad Request    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#400" ;;
+    401) echo "401 Unauthorized    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#401" ;;
+    402) echo "402 Payment Required    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#402" ;;
+    403) echo "403 Forbidden    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#403" ;;
+    404) echo "404 Not Found    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#404" ;;
+    405) echo "405 Method Not Allowed    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#405" ;;
+    406) echo "406 Not Acceptable    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#406" ;;
+    407) echo "407 Proxy Authentication Required    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#407" ;;
+    408) echo "408 Request Timeout    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#408" ;;
+    409) echo "409 Conflict    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#409" ;;
+    410) echo "410 Gone    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#410" ;;
+    411) echo "411 Length Required    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#411" ;;
+    412) echo "412 Precondition Failed    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#412" ;;
+    413) echo "413 Payload Too Large    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#413" ;;
+    414) echo "414 URI Too Long    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#414" ;;
+    415) echo "415 Unsupported Media Type    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#415" ;;
+    416) echo "416 Range Not Satisfiable    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#416" ;;
+    417) echo "417 Expectation Failed    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#417" ;;
+    418) echo "418 I'm a teapot (RFC 2324, RFC 7168)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#418" ;;
+    419) echo "419 Page Expired (Laravel Framework)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#419" ;;
+    420) echo "420 Enhance Your Calm (Twitter)"
+         echo "420 Method Failure (Spring Framework)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#420" ;;
+    421) echo "421 Misdirected Request    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#421" ;;
+    422) echo "422 Unprocessable Entity    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#422" ;;
+    423) echo "423 Locked (WebDAV; RFC 4918)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#423" ;;
+    424) echo "424 Failed Dependency (WebDAV; RFC 4918)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#424" ;;
+    425) echo "425 Too Early (RFC 8470)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#425" ;;
+    426) echo "426 Upgrade Required    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#426" ;;
+    428) echo "428 Precondition Required (RFC 6585)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#428" ;;
+    429) echo "429 Too Many Requests (RFC 6585)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#429" ;;
+    430) echo "430 Request Header Fields Too Large (Shopify)" ;;
+    431) echo "431 Request Header Fields Too Large (RFC 6585)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#431" ;;
+    440) echo "440 Login Time-out    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#440" ;;
+    444) echo "444 No Response    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#444" ;;
+    449) echo "449 Retry With    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#449" ;;
+    450) echo "450 Blocked by Windows Parental Controls (Microsoft)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#450" ;;
+    451) echo "451 Redirect    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#451-MS"
+         echo "451 Unavailable For Legal Reasons (RFC 7725)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#451" ;;
+    460) echo "460    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#460" ;;
+    463) echo "463    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#463" ;;
+    464) echo "464    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#464" ;;
+    494) echo "494 Request header too large    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#494" ;;
+    495) echo "495 SSL Certificate Error    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#495" ;;
+    496) echo "496 SSL Certificate Required    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#496" ;;
+    497) echo "497 HTTP Request Sent to HTTPS Port    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#497" ;;
+    498) echo "498 Invalid Token (Esri)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#498" ;;
+    499) echo "499 Client Closed Request    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#499"
+         echo "499 Token Required (Esri)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#499" ;;
+    500) echo "500 Internal Server Error    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#500" ;;
+    501) echo "501 Not Implemented    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#501" ;;
+    502) echo "502 Bad Gateway    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#502" ;;
+    503) echo "503 Service Unavailable    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#503" ;;
+    504) echo "504 Gateway Timeout    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#504" ;;
+    505) echo "505 HTTP Version Not Supported    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#505" ;;
+    506) echo "506 Variant Also Negotiates (RFC 2295)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#506" ;;
+    507) echo "507 Insufficient Storage (WebDAV; RFC 4918)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#507" ;;
+    508) echo "508 Loop Detected (WebDAV; RFC 5842)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#508" ;;
+    509) echo "509 Bandwidth Limit Exceeded (Apache Web Server/cPanel)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#509" ;;
+    510) echo "510 Not Extended (RFC 2774)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#510" ;;
+    511) echo "511 Network Authentication Required (RFC 6585)    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#511" ;;
+    520) echo "520 Web Server Returned an Unknown Error    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#520" ;;
+    521) echo "521 Web Server Is Down    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#521" ;;
+    522) echo "522 Connection Timed Out    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#522" ;;
+    523) echo "523 Origin Is Unreachable    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#523" ;;
+    524) echo "524 A Timeout Occurred    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#524" ;;
+    525) echo "525 SSL Handshake Failed    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#525" ;;
+    526) echo "526 Invalid SSL Certificate    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#526" ;;
+    527) echo "527 Railgun Error    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#527" ;;
+    529) echo "529 Site is overloaded    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#529" ;;
+    530) echo "530 Site is frozen    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#530"
+         echo "530    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#530" ;;
+    561) echo "561 Unauthorized    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#561" ;;
+    598) echo "598 (Informal convention) Network read timeout error    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#598" ;;
+    599) echo "599 Network Connect Timeout Error    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#599" ;;
+    *)
+        echo "Unknown status code $code"
+        exit 2
+        ;;
+esac

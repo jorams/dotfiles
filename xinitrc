@@ -14,6 +14,10 @@ if [ -n "$IS4K" ]; then
     xr_font="xft:Iosevka Output Extended:pixelsize=18"
 fi
 
+if [ "$DOTFILE_FONT_RESOLUTION" = "high" ]; then
+    xr_font="xft:Iosevka Output Extended:pixelsize=18"
+fi
+
 [[ -f ~/.Xresources ]] && xrdb -DXR_FONT="$xr_font" -load ~/.Xresources &
 
 # Fix Java

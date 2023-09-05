@@ -1,5 +1,6 @@
 /*
 !/.gitignore
+!/early-init.el
 !/init.el
 !/snippets
 !/j--doom-rouge-theme.el

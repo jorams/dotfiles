@@ -1,9 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 ;;; Speed up init -------------------------------------------------------------
 
-(setq gc-cons-threshold 402653184
-      gc-cons-percentage 0.6)
-
 (defvar j//file-name-handler-alist file-name-handler-alist)
 (setq file-name-handler-alist nil)
 
@@ -28,13 +25,6 @@
 ;;; Load packages from MELPA
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
-
-;;; Use use-package to load packages
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-(require 'use-package)
-(require 'bind-key)
-(require 'diminish)
 
 ;;; Backups -------------------------------------------------------------------
 
@@ -110,7 +100,6 @@
 
 ;;; Handle CamelCase nicely
 (global-subword-mode 1)
-(diminish 'subword-mode)
 
 ;;; Delete selection before typing with region active
 (delete-selection-mode)
@@ -184,26 +173,6 @@ When less than half a screen of lines remains, scroll to the start."
 ;;; Display human-readable file sizes in dired
 
 (setq dired-listing-switches "-alh")
-
-;;; Diminish various modes
-
-(diminish 'abbrev-mode)
-(diminish 'auto-fill-function "&")
-(diminish 'visual-line-mode "\\")
-(diminish 'eldoc-mode "doc")
-
-;; Some modes are apparently hard to diminish
-(defmacro really-diminish (mode replacement)
-  (let ((function-name (intern (concat "j/diminish/" (symbol-name mode))))
-        (hook-name (intern (concat (symbol-name mode) "-hook"))))
-    `(progn
-       (defun ,function-name ()
-         (interactive)
-         (diminish ',mode ,replacement))
-       (add-hook ',hook-name ',function-name))))
-
-(really-diminish org-indent-mode "»")
-(really-diminish auto-revert-mode "#")
 
 ;;; Speed up files with very long lines
 (setq-default bidi-display-reordering nil)
@@ -493,7 +462,9 @@ point reaches the beginning or end of the buffer, stop there."
             (with-selected-frame frame
               (j/load-theme))))
 
-(j/load-theme)
+(use-package doom-themes
+  :ensure t
+  :config (j/load-theme))
 
 ;;; doom-modeline -------------------------------------------------------------
 
@@ -505,7 +476,6 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package undo-tree
   :ensure t
-  :diminish undo-tree-mode
   :init
   (setq undo-tree-history-directory-alist
         `((".*" . ,(expand-file-name
@@ -671,7 +641,6 @@ The value is not entered into the kill ring, but copied using
 (use-package paredit
   :ensure t
   :commands enable-paredit-mode
-  :diminish "()"
   :init
   (add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
   (add-hook 'ielm-mode-hook             'enable-paredit-mode)
@@ -687,7 +656,6 @@ The value is not entered into the kill ring, but copied using
 (use-package highlight-symbol
   :ensure t
   :commands (highlight-symbol-mode)
-  :diminish highlight-symbol-mode
   :init
   (add-hook 'prog-mode-hook #'highlight-symbol-mode))
 
@@ -696,7 +664,6 @@ The value is not entered into the kill ring, but copied using
 (use-package whitespace-cleanup-mode
   :ensure t
   :commands (global-whitespace-cleanup-mode)
-  :diminish whitespace-cleanup-mode
   :init
   (global-whitespace-cleanup-mode))
 
@@ -773,7 +740,6 @@ The value is not entered into the kill ring, but copied using
 
 (use-package aggressive-indent
   :ensure t
-  :diminish "!"
   :config
   (add-hook 'lisp-mode-hook #'aggressive-indent-mode)
   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
@@ -784,7 +750,6 @@ The value is not entered into the kill ring, but copied using
 
 (use-package elisp-slime-nav
   :ensure t
-  :diminish elisp-slime-nav-mode
   :config
   (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode))
 
@@ -841,7 +806,6 @@ The value is not entered into the kill ring, but copied using
 
 (use-package flycheck
   :ensure t
-  :diminish flycheck-mode
   :config
   (global-flycheck-mode))
 
@@ -902,7 +866,6 @@ The value is not entered into the kill ring, but copied using
 
 (use-package yasnippet
   :ensure t
-  :diminish yas-minor-mode
   :config (yas-global-mode)
   (defun j/expand-ssh-host (command)
     "Transform an ssh command line into a snippet for the SSH config."
@@ -999,7 +962,6 @@ The value is not entered into the kill ring, but copied using
 ;;; LSP -----------------------------------------------------------------------
 
 (use-package eglot
-  :ensure t
   :config
   (bind-key "M-p" 'eglot-code-actions eglot-mode-map)
   (setq eglot-confirm-server-initiated-edits nil)
@@ -1009,26 +971,6 @@ The value is not entered into the kill ring, but copied using
        (s-replace-regexp "${\\([0-9]+\\)}"
                          "$\\1"
                          snippet)))))
-
-(use-package lsp-mode
-  :ensure t
-  :init
-  (setq lsp-keymap-prefix "C-c C-l")
-  :config
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection '("php" "vendor/bin/psalm-language-server"))
-                    :activation-fn (lsp-activate-on "php")
-                    :server-id 'psalm))
-  :commands (lsp lsp-deferred))
-
-(use-package lsp-ui
-  :ensure t
-  :commands (lsp-ui-mode))
-
-(use-package lsp-tailwindcss
-  :ensure t
-  :config
-  (add-to-list 'lsp-language-id-configuration '(".*\\.html.twig$" . "html")))
 
 ;;; Editorconfig --------------------------------------------------------------
 
@@ -1117,7 +1059,6 @@ The value is not entered into the kill ring, but copied using
   :ensure t
   :commands (sly sly-connect)
   :bind ("M-H" . hyperspec-lookup)
-  :diminish ")"
   :config
   (setq inferior-lisp-program "/usr/bin/sbcl"))
 
@@ -1159,11 +1100,11 @@ The value is not entered into the kill ring, but copied using
   :config
   (setq-default web-mode-markup-indent-offset 2)
   (add-hook 'web-mode-hook
-            '(lambda ()
-               (setq web-mode-enable-auto-pairing nil)
-               (setq-local
-                electric-pair-pairs
-                (append electric-pair-pairs '((?% . ?%))))))
+            #'(lambda ()
+                (setq web-mode-enable-auto-pairing nil)
+                (setq-local
+                 electric-pair-pairs
+                 (append electric-pair-pairs '((?% . ?%))))))
   ;; Elixir inside web-mode inside Elixir should be properly highlighted.
   (add-to-list 'web-mode-engines-alist '("elixir" . "\\.ex\\'")))
 

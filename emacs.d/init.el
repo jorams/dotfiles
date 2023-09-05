@@ -446,8 +446,6 @@ point reaches the beginning or end of the buffer, stop there."
   (setq doom-rouge-comment-bg nil)
   (setq doom-rouge-padded-modeline nil)
   (load-theme 'j--doom-rouge)
-  (setq doom-themes-treemacs-theme "doom-colors")
-  (doom-themes-treemacs-config)
   (set-frame-font (font-spec :family "Iosevka Output"
                              :weight 'medium
                              :width 'expanded
@@ -911,14 +909,7 @@ The value is not entered into the kill ring, but copied using
   (setq git-commit-summary-max-length 50)
   (add-hook 'git-commit-mode-hook
             (lambda ()
-              (setq fill-column 72)))
-
-  (setq magit-display-buffer-function
-        (lambda (buffer)
-          (cond
-           ((derived-mode-p 'treemacs-mode)
-            (display-buffer buffer '(j/display-buffer-next-window)))
-           (t (magit-display-buffer-traditional buffer))))))
+              (setq fill-column 72))))
 
 (use-package magit-todos
   :ensure t
@@ -989,34 +980,12 @@ The value is not entered into the kill ring, but copied using
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (setq dumb-jump-force-searcher 'rg))
 
-;;; Treemacs ------------------------------------------------------------------
-
-(use-package treemacs
-  :ensure t
-  :defer t
-  :commands (treemacs treemacs-select-window)
-  :config
-  (treemacs-follow-mode t)
-  (treemacs-filewatch-mode t)
-  (treemacs-fringe-indicator-mode 'always)
-  (treemacs-git-mode 'deferred)
-  (treemacs-define-RET-action 'root-node-open 'magit-status)
-  :bind
-  (("M-0"       . treemacs-select-window)
-   :map treemacs-mode-map
-   ([mouse-1] . treemacs-single-click-expand-action)))
-
-(use-package treemacs-magit
-  :after treemacs magit
-  :ensure t)
-
 ;;; Transient -----------------------------------------------------------------
 
 (use-package transient
   :ensure t
   :bind (("C-c r" . j/transient-replace)
          ("C-c g" . j/transient-git)
-         ("C-c t" . j/transient-treemacs)
          ("C-c f" . j/transient-format))
   :config
   (transient-define-prefix j/transient-format ()
@@ -1040,13 +1009,7 @@ The value is not entered into the kill ring, but copied using
      ("S" "string (query)" query-replace)
      ("e" "regexp" replace-regexp)
      ("E" "regexp (query)" query-replace-regexp)
-     ("l" "eglot rename" eglot-rename)])
-  (transient-define-prefix j/transient-treemacs ()
-    ["Treemacs"
-     ("t" "toggle" treemacs)
-     ("w" "switch workspace" treemacs-switch-workspace)
-     ("a" "add project" treemacs-add-project-to-workspace)
-     ("s" "select" treemacs-select-window)]))
+     ("l" "eglot rename" eglot-rename)]))
 
 ;;; Prettier ------------------------------------------------------------------
 

@@ -35,6 +35,7 @@ package lh2ctrl-git
 package rebar3
 package elixir-ls
 package ttfautohint
+package polymc
 
 # Personal packages
 package j--slock

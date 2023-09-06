@@ -1,0 +1,22 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0 <timestamp|->"
+}
+
+arg="$1"
+
+case "$arg" in
+    -)
+        read -r arg
+        ;;
+    ''|*[!0-9]*)
+        usage
+        exit 1
+        ;;
+    *)
+        ;;
+esac
+
+date -d "@$arg" +'%_5Z (%z): %A %Y-%m-%d %H:%M:%S'
+date -u -d "@$arg" +'%_5Z (%z): %A %Y-%m-%d %H:%M:%S'

@@ -6,8 +6,7 @@
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (setq gc-cons-threshold 16777216
-                  gc-cons-percentage 0.1)
+            (setq gc-cons-threshold 16777216)
             (setq file-name-handler-alist j//file-name-handler-alist)))
 
 ;;; Me ------------------------------------------------------------------------
@@ -176,8 +175,6 @@ When less than half a screen of lines remains, scroll to the start."
 
 ;;; Speed up files with very long lines
 (setq-default bidi-display-reordering nil)
-(setq so-long-threshold 1000)
-(global-so-long-mode 1)
 
 ;;; Set an explicit custom-file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

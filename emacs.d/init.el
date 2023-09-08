@@ -1169,9 +1169,13 @@ The value is not entered into the kill ring, but copied using
 
 ;;; YAML ----------------------------------------------------------------------
 
-(use-package yaml-mode
-  :ensure t
-  :mode ("\\.yml\\'" "\\.yaml\\'"))
+(use-package yaml-ts-mode
+  :ensure nil
+  :mode ("\\.yml\\'" "\\.yaml\\'")
+  :init
+  (with-eval-after-load 'treesit
+    (add-to-list 'treesit-language-source-alist
+                 '(yaml "https://github.com/ikatyang/tree-sitter-yaml"))))
 
 ;;; Caddyfile -----------------------------------------------------------------
 

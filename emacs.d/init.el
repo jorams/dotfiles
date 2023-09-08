@@ -762,6 +762,13 @@ The value is not entered into the kill ring, but copied using
          ("C-h v" . helpful-variable)
          ("C-h k" . helpful-key)))
 
+;;; Keybind hints -------------------------------------------------------------
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
 ;;; Corfu ---------------------------------------------------------------------
 
 (use-package corfu

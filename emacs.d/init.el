@@ -1234,9 +1234,21 @@ The value is not entered into the kill ring, but copied using
 
 ;;; Go ------------------------------------------------------------------------
 
-(use-package go-mode
-  :ensure t
-  :mode ("\\.go\\'"))
+(use-package go-ts-mode
+  :ensure nil
+  :mode ("\\.go\\'")
+  :init
+  (with-eval-after-load 'treesit
+    (add-to-list 'treesit-language-source-alist
+                 '(go "https://github.com/tree-sitter/tree-sitter-go"))))
+
+(use-package go-mod-ts-mode
+  :ensure nil
+  :mode ("/go\\.mod\\'")
+  :init
+  (with-eval-after-load 'treesit
+    (add-to-list 'treesit-language-source-alist
+                 '(gomod "https://github.com/camdencheek/tree-sitter-go-mod"))))
 
 ;;; systemd -------------------------------------------------------------------
 

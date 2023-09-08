@@ -47,15 +47,11 @@
 ;;; Highlight matching parentheses
 (show-paren-mode 1)
 
-;;; Whitespace mode
-(setq-default whitespace-line-column nil)
-(setq-default whitespace-style '(face
-                                 trailing
-                                 lines-tail
-                                 indentation::space
-                                 space-before-tab))
-(setq-default whitespace-global-modes '(not magit-status-mode magit-log-mode))
-(global-whitespace-mode 1)
+;;; Show trailing whitespace
+(setq-default show-trailing-whitespace t)
+
+;;; Fill column indicator
+(global-display-fill-column-indicator-mode 1)
 
 ;;; Indicate empty lines at the end of a buffer
 (setq-default indicate-empty-lines t)

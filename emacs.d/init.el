@@ -1126,9 +1126,11 @@ The value is not entered into the kill ring, but copied using
   :mode (("\\.ts\\'" . typescript-ts-mode)
          ("\\.tsx\\'" . tsx-ts-mode))
   :init
-  (add-to-list
-   'eglot-server-programs
-   `((typescript-ts-mode tsx-ts-mode) . ("typescript-language-server" "--stdio"))))
+  (with-eval-after-load 'treesit
+    (add-to-list 'treesit-language-source-alist
+                 '(typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
+    (add-to-list 'treesit-language-source-alist
+                 '(tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))))
 
 ;;; Rust ----------------------------------------------------------------------
 

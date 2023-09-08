@@ -1130,16 +1130,6 @@ The value is not entered into the kill ring, but copied using
    'eglot-server-programs
    `((typescript-ts-mode tsx-ts-mode) . ("typescript-language-server" "--stdio"))))
 
-;;; CSS -----------------------------------------------------------------------
-
-(use-package less-css-mode
-  :ensure t
-  :mode "\\.less\\'")
-
-(use-package scss-mode
-  :ensure t
-  :mode "\\.scss\\'")
-
 ;;; Rust ----------------------------------------------------------------------
 
 (use-package rust-mode

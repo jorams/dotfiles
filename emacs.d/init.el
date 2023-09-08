@@ -72,7 +72,7 @@
 ;;; Simplify frame title
 (setq frame-title-format
       '(multiple-frames
-        "%b"
+        ("" invocation-name " %b")
         ("" invocation-name)))
 
 ;;; Display line and column numbers

@@ -192,6 +192,10 @@ When less than half a screen of lines remains, scroll to the start."
 
 (bind-key "C-c d" 'duplicate-dwim)
 
+;;; Enable the context menu
+(when (display-graphic-p)
+  (context-menu-mode))
+
 ;;; Utilities -----------------------------------------------------------------
 
 (defun j/wrap-hard ()

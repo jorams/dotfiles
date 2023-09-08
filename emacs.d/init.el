@@ -193,6 +193,8 @@ When less than half a screen of lines remains, scroll to the start."
 ;;; Use completing-read to select xref results
 (setq xref-show-definitions-function 'xref-show-definitions-completing-read)
 
+(bind-key "C-c d" 'duplicate-dwim)
+
 ;;; Utilities -----------------------------------------------------------------
 
 (defun j/wrap-hard ()
@@ -1009,7 +1011,8 @@ The value is not entered into the kill ring, but copied using
      ("S" "string (query)" query-replace)
      ("e" "regexp" replace-regexp)
      ("E" "regexp (query)" query-replace-regexp)
-     ("l" "eglot rename" eglot-rename)]))
+     ("l" "eglot rename" eglot-rename)
+     ("F" "current file" rename-visited-file)]))
 
 ;;; Prettier ------------------------------------------------------------------
 

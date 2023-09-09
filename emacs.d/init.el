@@ -1222,9 +1222,14 @@ The value is not entered into the kill ring, but copied using
 
 ;;; GraphQL -------------------------------------------------------------------
 
-(use-package graphql-mode
-  :ensure t
-  :mode ("\\.graphql\\'"))
+(use-package graphql-ts-mode
+  :ensure nil
+  :load-path "lisp/graphql-ts-mode/"
+  :mode ("\\.graphql\\'" "\\.gql\\'")
+  :init
+  (with-eval-after-load 'treesit
+    (add-to-list 'treesit-language-source-alist
+                 '(graphql "https://github.com/bkegley/tree-sitter-graphql"))))
 
 ;;; Dockerfile ----------------------------------------------------------------
 

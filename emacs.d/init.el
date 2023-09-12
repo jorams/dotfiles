@@ -790,7 +790,7 @@ The value is not entered into the kill ring, but copied using
               ("<remap> <previous-line>" . nil))
   :config
   (setq corfu-auto t
-        corfu-auto-delay 0
+        corfu-auto-delay 0.02
         corfu-on-exact-match 'quit))
 
 (use-package corfu-popupinfo

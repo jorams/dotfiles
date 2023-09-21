@@ -1263,4 +1263,3 @@ The value is not entered into the kill ring, but copied using
   :mode (("\\.service\\'" . systemd-mode)
          ("\\.socket\\'" . systemd-mode)
          ("\\.slice\\'" . systemd-mode)))
-(put 'dired-find-alternate-file 'disabled nil)

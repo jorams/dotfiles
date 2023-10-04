@@ -555,7 +555,8 @@
    :instance "virt-manager" "virt-manager"
    :class "chatterino" "chatterino"
    :class "discord" "discord"
-   :class "1Password" "1password"))
+   :class "1Password" "1password"
+   :class "cantata" "cantata"))
 
 (add-hook *new-window-hook* 'normalize-window-titles)
 

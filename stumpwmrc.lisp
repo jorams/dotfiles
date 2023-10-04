@@ -116,6 +116,9 @@
   ("Y" "theme work")
   ;; Locking, similarly not xrandr-related
   ("l" "exec bash -c slock & xset dpms force off")
+  ;; Lock and hibernate. Doesn't turn off the screen because it's clearer if it
+  ;; comes back immediately on reboot.
+  ("C-L" "exec bash -c slock & systemctl hibernate")
   ;; Refresh heads after a change in connected displays
   ("r" "refresh-heads"))
 

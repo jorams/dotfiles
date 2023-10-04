@@ -1178,6 +1178,16 @@ The value is not entered into the kill ring, but copied using
     (add-to-list 'treesit-language-source-alist
                  '(yaml "https://github.com/ikatyang/tree-sitter-yaml"))))
 
+;;; Python --------------------------------------------------------------------
+
+(use-package python-ts-mode
+  :ensure nil
+  :mode ("\\.py[iw]?\\'")
+  :init
+  (with-eval-after-load 'treesit
+    (add-to-list 'treesit-language-source-alist
+                 '(python "https://github.com/tree-sitter/tree-sitter-python"))))
+
 ;;; Caddyfile -----------------------------------------------------------------
 
 (use-package caddyfile-mode

@@ -414,7 +414,14 @@ point reaches the beginning or end of the buffer, stop there."
   (defun j/find-projectile-project (dir)
     "Find project based .projectile file in parent directories of DIR."
     (let ((f (locate-dominating-file dir ".projectile")))
-      (when f `(projectile . ,f))))
+      (when f
+        ;; If this is inside a VC repository, we want to detect that while
+        ;; staying inside the directory marked with .projectile.
+        (if-let ((vc-project (project-try-vc dir)))
+            (list 'vc
+                  (nth 1 vc-project)    ; backend
+                  f)
+          (cons 'projectile f)))))
 
   (add-hook 'project-find-functions 'j/find-projectile-project)
 

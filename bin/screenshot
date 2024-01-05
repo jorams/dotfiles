@@ -7,12 +7,14 @@ usage() {
 OUTPUTCLIP=""
 OUTPUTNAME=""
 DELAY=""
+SELECT="1"
 
-while getopts "hcf:d:" arg; do
+while getopts "hcf:d:n" arg; do
     case "$arg" in
         f) OUTPUTNAME="$OPTARG" ;;
         c) OUTPUTCLIP="1" ;;
         d) DELAY="$OPTARG" ;;
+        n) SELECT="" ;;
         h) usage; exit; ;;
         *) usage; exit 1; ;;
     esac
@@ -27,6 +29,11 @@ if [[ -z "$OUTPUTCLIP" && -z "$OUTPUTNAME" ]]; then
     OUTPUTNAME=$(date +"%Y-%m-%d_%H-%M-%S")
 fi
 
+SELECTARG="--select"
+if [[ -z "$SELECT" ]]; then
+    SELECTARG=""
+fi
+
 DELAYARG=""
 if [[ -n "$DELAY" ]]; then
     DELAYARG="--delay=$DELAY"
@@ -37,7 +44,7 @@ else
 fi
 
 if [[ -n "$OUTPUTCLIP" ]]; then
-    maim --select ${DELAYARG:+"$DELAYARG"} | xclip -selection clipboard -target image/png
+    maim ${SELECTARG:+"$SELECTARG"} ${DELAYARG:+"$DELAYARG"} | xclip -selection clipboard -target image/png
 elif [[ -n "$OUTPUTNAME" ]]; then
-    maim --select ${DELAYARG:+"$DELAYARG"} > "$OUTPUTNAME.png"
+    maim ${SELECTARG:+"$SELECTARG"} ${DELAYARG:+"$DELAYARG"} > "$OUTPUTNAME.png"
 fi

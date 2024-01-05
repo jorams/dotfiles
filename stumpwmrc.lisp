@@ -435,9 +435,6 @@
 
 ;;; Quick screenshot or recording ---------------------------------------------
 
-(defcommand screenshot-clipboard () ()
-  (run-shell-command "screenshot -c"))
-
 (defcommand screenshot-file (filename) ((:string "File name: "))
   (when filename
     (run-shell-command
@@ -459,12 +456,15 @@
   (run-shell-command "systemctl --user stop screenvid.scope"))
 
 (defkeymap *recording-map*
-  ("c" "screenshot-clipboard")
+  ("c" "exec screenshot -c")
   ("f" "screenshot-file")
   ("v" "screenvid-start")
   ("V" "screenvid-stop"))
 
 (define-key *root-map* (kbd "V") '*recording-map*)
+
+(define-key *top-map* (kbd "Print") "exec screenshot -c -n")
+(define-key *top-map* (kbd "C-Print") "exec screenshot -c")
 
 ;;; Notifications -------------------------------------------------------------
 

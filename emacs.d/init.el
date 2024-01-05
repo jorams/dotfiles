@@ -603,13 +603,6 @@ The value is not entered into the kill ring, but copied using
         completion-category-overrides '((file (styles partial-completion)))
         orderless-matching-styles '(orderless-literal)))
 
-;;; CTRLF ---------------------------------------------------------------------
-
-(use-package ctrlf
-  :ensure t
-  :config
-  (ctrlf-mode 1))
-
 ;;; Avy -----------------------------------------------------------------------
 
 (use-package avy

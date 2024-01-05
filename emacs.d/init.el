@@ -841,17 +841,25 @@ The value is not entered into the kill ring, but copied using
 ;;; Org -----------------------------------------------------------------------
 
 (defvar j/org-notes-file "~/life/notes.org")
-(bind-key "M-C" 'org-capture)
 
-(setq
- org-capture-templates
- `(("b" "Bookmark"
-    entry (file+headline ,j/org-notes-file "Bookmarks")
-    "* [[%^{URL}][%^{Title}]] %^g\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n%?")
-   ("n" "Note"
-    entry (file+headline ,j/org-notes-file "Notes")
-    "* %^{Note} %^g\n%T\n\n%?")
-   ))
+(use-package org
+  :ensure nil
+  :bind (("M-C" . org-capture))
+  :config
+  (setq
+   org-capture-templates
+   `(("b" "Bookmark"
+      entry (file+headline ,j/org-notes-file "Bookmarks")
+      "* [[%^{URL}][%^{Title}]] %^g\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n%?")
+     ("n" "Note"
+      entry (file+headline ,j/org-notes-file "Notes")
+      "* %^{Note} %^g\n%T\n\n%?")
+     ))
+  ;; Increase some text sizes for clarity
+  (set-face-attribute 'org-document-title nil :height 1.4)
+  (set-face-attribute 'org-level-1 nil :height 1.3)
+  (set-face-attribute 'org-level-2 nil :height 1.2)
+  (set-face-attribute 'org-level-3 nil :height 1.1))
 
 ;;; Mail ----------------------------------------------------------------------
 

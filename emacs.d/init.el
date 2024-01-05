@@ -1274,8 +1274,10 @@ The value is not entered into the kill ring, but copied using
 ;;; GraphQL -------------------------------------------------------------------
 
 (use-package graphql-ts-mode
-  :ensure nil
-  :load-path "lisp/graphql-ts-mode/"
+  ;; To use development code:
+  ;; :ensure nil
+  ;; :load-path "lisp/graphql-ts-mode/"
+  :ensure t
   :mode ("\\.graphql\\'" "\\.gql\\'")
   :init
   (with-eval-after-load 'treesit

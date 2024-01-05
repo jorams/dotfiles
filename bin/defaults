@@ -14,9 +14,9 @@ usage() {
 
 keyboard() {
     if [ "$1" = esc ]; then
-        setxkbmap -option "" -option compose:menu -option caps:escape
+        setxkbmap -option "" -option compose:menu -option compose:paus -option caps:escape
     else
-        setxkbmap -option "" -option compose:menu -option ctrl:nocaps
+        setxkbmap -option "" -option compose:menu -option compose:paus -option ctrl:nocaps
     fi
 
     xset r rate 200 25

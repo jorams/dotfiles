@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export DOTFILE_TYPE=laptop
+export DOTFILE_FONT_RESOLUTION=high
+
+source ~/.dotfiles/xinitrc

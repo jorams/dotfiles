@@ -1,5 +1,5 @@
 pkgname=j--meta-graphical
-pkgver=5
+pkgver=6
 pkgrel=1
 pkgdesc="Packages for a graphical interface"
 arch=('any')
@@ -29,6 +29,7 @@ depends=(
     noto-fonts-extra
     tamsyn-font
     j--ttf-input
+    j--ttf-iosevka-output
     j--slock
     ttf-font-awesome
     mpv
@@ -40,7 +41,6 @@ depends=(
     firefox
     autorandr
     qt5ct
-    adwaita-qt5
     gimp
     inkscape
 )

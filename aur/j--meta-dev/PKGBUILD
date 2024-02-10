@@ -1,6 +1,6 @@
 pkgname=j--meta-dev
 pkgver=1
-pkgrel=1
+pkgrel=2
 pkgdesc="Packages for development purposes"
 arch=('any')
 license=('GPL')
@@ -10,7 +10,7 @@ depends=(
     go
     gopls
     postgresql
-    nodejs-lts-hydrogen
+    nodejs-lts-iron
     yarn
     inotify-tools
 )

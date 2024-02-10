@@ -1,6 +1,6 @@
 pkgname=j--meta-base
 pkgver=0.0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Base system packages"
 arch=('any')
 license=('GPL')
@@ -20,4 +20,5 @@ depends=(
     libnotify
     nano
     htop
+    acpi
 )

@@ -457,6 +457,7 @@
 
 (defkeymap *recording-map*
   ("c" "exec screenshot -c")
+  ("s" "exec screenshot -s")
   ("f" "screenshot-file")
   ("v" "screenvid-start")
   ("V" "screenvid-stop"))
@@ -465,6 +466,8 @@
 
 (define-key *top-map* (kbd "Print") "exec screenshot -c -n")
 (define-key *top-map* (kbd "C-Print") "exec screenshot -c")
+(define-key *top-map* (kbd "M-Print") "exec screenshot -s")
+(define-key *top-map* (kbd "C-M-Print") "exec screenshot -s -n")
 
 ;;; Notifications -------------------------------------------------------------
 

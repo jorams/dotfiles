@@ -648,6 +648,12 @@ The value is not entered into the kill ring, but copied using
   (setq paredit-space-for-delimiter-predicates
         '((lambda (endp delimiter) nil))))
 
+;;; Colors in compilation mode ------------------------------------------------
+
+(use-package ansi-color
+  :ensure nil
+  :hook (compilation-filter . ansi-color-compilation-filter))
+
 ;;; Highlight symbol ----------------------------------------------------------
 
 (use-package highlight-symbol
@@ -1160,6 +1166,10 @@ The value is not entered into the kill ring, but copied using
 
 ;;; Elixir --------------------------------------------------------------------
 
+(use-package exunit
+  :ensure t
+  :commands (exunit-mode))
+
 (use-package heex-ts-mode
   :ensure t
   :mode "\\.heex\\'")
@@ -1193,7 +1203,8 @@ The value is not entered into the kill ring, but copied using
               ;; paragraph-{start,separate} are set so that multi-line strings
               ;; keep the quotes on separate lines.
               (setq-local paragraph-start "\f\\|[ \t]*$\\|.*\"\"\"[ \t]*$")
-              (setq-local paragraph-separate "[ \t\f]*$\\|.*\"\"\"[ \t]*$"))))
+              (setq-local paragraph-separate "[ \t\f]*$\\|.*\"\"\"[ \t]*$")))
+  (add-hook 'elixir-ts-mode-hook 'exunit-mode))
 
 ;;; Apache --------------------------------------------------------------------
 

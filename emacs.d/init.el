@@ -1288,7 +1288,7 @@ The value is not entered into the kill ring, but copied using
   ;; :ensure nil
   ;; :load-path "lisp/graphql-ts-mode/"
   :ensure t
-  :mode ("\\.graphql\\'" "\\.gql\\'")
+  :mode ("\\.graphql\\'" "\\.gql\\'" "\\.graphqls\\'")
   :init
   (with-eval-after-load 'treesit
     (add-to-list 'treesit-language-source-alist

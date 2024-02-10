@@ -9,6 +9,12 @@
             (setq gc-cons-threshold 16777216)
             (setq file-name-handler-alist j//file-name-handler-alist)))
 
+;;; Tweak some settings for performance
+(setq read-process-output-max (* 256 1024)
+      idle-update-delay 1.0
+      fast-but-imprecise-scrolling t
+      redisplay-skip-fontification-on-input t)
+
 ;;; Me ------------------------------------------------------------------------
 
 (setq user-full-name "Joram Schrijver"

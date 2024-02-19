@@ -85,6 +85,8 @@
 (setq line-number-mode t)
 (setq column-number-mode t)
 
+(setq isearch-lazy-count t)
+
 ;;; Basic behaviour -----------------------------------------------------------
 
 ;;; Sync selection and X clipboard

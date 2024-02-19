@@ -36,6 +36,7 @@ package rebar3
 package elixir-ls
 package ttfautohint
 package polymc
+package cantata
 
 # Personal packages
 package j--slock

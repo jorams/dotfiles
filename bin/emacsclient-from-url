@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Easy snippet to automatically install the URL handler. Use like this:
+# eval "$(emacsclient-from-url --install)"
+install() {
+    echo 'echo "[Desktop Entry]
+Name=Emacsclient from URL
+Exec=emacsclient-from-url %u
+Icon=emacs-icon
+Type=Application
+Terminal=false
+MimeType=x-scheme-handler/emacsclient" > ~/.local/share/applications/emacsclient-from-url.desktop'
+echo 'xdg-mime default emacsclient-from-url.desktop x-scheme-handler/emacsclient'
+}
+
+if [ "$1" = "--install" ]; then
+    install
+    exit 0
+fi
+
+file="$(echo "$1" | sed -r 's/^emacsclient:([^:]+):?[0-9:]*$/\1/')"
+line="$(echo "$1" | sed -r 's/^emacsclient:[^:]+:?([0-9:]*)$/+0\1/')"
+
+emacsclient -n "$line" "$file"

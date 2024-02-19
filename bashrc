@@ -37,6 +37,10 @@ export LESSHISTFILE='-'
 # GTK refuses to scroll without this
 export GDK_CORE_DEVICE_EVENTS=1
 
+# Elixir Plug can generate links to files in debugger views
+# Requires emacsclient-from-url to be set up
+export PLUG_EDITOR="emacsclient:__FILE__:__LINE__"
+
 # The prompt ------------------------------------------------------------------
 
 if [[ $TERM != dumb ]]; then

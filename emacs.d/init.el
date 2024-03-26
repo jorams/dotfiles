@@ -444,6 +444,7 @@ point reaches the beginning or end of the buffer, stop there."
   (interactive)
   (start-process "kitty" nil
                  "kitty"
+                 "--single-instance"
                  "--detach"
                  "--directory" (expand-file-name (project-root (project-current t)))
                  "--title" "kitty"
@@ -548,6 +549,7 @@ point reaches the beginning or end of the buffer, stop there."
   "Open a terminal in the specified directory."
   (start-process "kitty" nil
                  "kitty"
+                 "--single-instance"
                  "--detach"
                  "--directory" (file-name-directory (expand-file-name dir))
                  "--title" "kitty"

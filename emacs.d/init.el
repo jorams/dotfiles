@@ -439,18 +439,19 @@ point reaches the beginning or end of the buffer, stop there."
   (define-key project-prefix-map "m" 'magit-project-status)
   (add-to-list 'project-switch-commands '(magit-project-status "Magit") t))
 
-(defun j/project-urxvt ()
-  "Open urxvt in the current project root."
+(defun j/project-terminal ()
+  "Open a terminal in the current project root."
   (interactive)
-  (start-process "urxvt" nil
-                 "urxvt"
-                 "-cd" (expand-file-name (project-root (project-current t)))
-                 "-title" "urxvt"
-                 "-e" "tmux"))
+  (start-process "kitty" nil
+                 "kitty"
+                 "--detach"
+                 "--directory" (expand-file-name (project-root (project-current t)))
+                 "--title" "kitty"
+                 "--override" "shell=/usr/bin/tmux"))
 
 (with-eval-after-load 'project
-  (define-key project-prefix-map "u" #'j/project-urxvt)
-  (add-to-list 'project-switch-commands '(j/project-urxvt "urxvt") t))
+  (define-key project-prefix-map "u" #'j/project-terminal)
+  (add-to-list 'project-switch-commands '(j/project-terminal "terminal") t))
 
 ;;; Theme ---------------------------------------------------------------------
 
@@ -543,13 +544,14 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :config (marginalia-mode))
 
-(defun j/run-urxvt-action (dir)
-  "Open urxvt in the specified directory."
-  (start-process "urxvt" nil
-                 "urxvt"
-                 "-cd" (file-name-directory (expand-file-name dir))
-                 "-title" "urxvt"
-                 "-e" "tmux"))
+(defun j/run-terminal-action (dir)
+  "Open a terminal in the specified directory."
+  (start-process "kitty" nil
+                 "kitty"
+                 "--detach"
+                 "--directory" (file-name-directory (expand-file-name dir))
+                 "--title" "kitty"
+                 "--override" "shell=/usr/bin/tmux"))
 
 (defun j/magit-status-action (dir)
   "Run magit-status in the specified directory."
@@ -578,7 +580,7 @@ The value is not entered into the kill ring, but copied using
   :ensure t
   :bind (("M-o" . embark-act))
   :config
-  (bind-key "u" 'j/run-urxvt-action embark-file-map)
+  (bind-key "u" 'j/run-terminal-action embark-file-map)
   (bind-key "M" 'chmod embark-file-map)
   (bind-key "m" 'j/magit-status-action embark-file-map))
 

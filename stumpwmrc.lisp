@@ -44,10 +44,8 @@
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "exec brightnessctl set 5%+")
 (define-key *top-map* (kbd "XF86MonBrightnessDown") "exec brightnessctl set 5%-")
 
-(define-key *root-map* (kbd "c") "exec urxvt -title urxvt -e tmux")
-(define-key *root-map* (kbd "C-c") "exec urxvt -title urxvt -e tmux")
-(define-key *root-map* (kbd "C")
-  "exec urxvt -fn -*-tamsyn-medium-r-*-*-40-*-*-*-*-*-*-*")
+(define-key *root-map* (kbd "c") "exec kitty --title kitty --override shell=/usr/bin/tmux")
+(define-key *root-map* (kbd "C-c") "exec kitty --title kitty --override shell=/usr/bin/tmux")
 
 (define-key *root-map* (kbd "'") "windowlist")
 (define-key *root-map* (kbd "\"") "pull-window-from-list")

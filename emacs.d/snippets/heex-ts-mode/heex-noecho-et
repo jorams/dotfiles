@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: et
+# key: et
+# --
+<% $0 %>

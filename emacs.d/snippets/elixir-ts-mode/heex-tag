@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: heex-tag
+# key: t
+# --
+<$1>$0</${1:$(replace-regexp-in-string "\\s.*" "" yas-text)}>

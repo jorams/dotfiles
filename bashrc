@@ -41,6 +41,9 @@ export GDK_CORE_DEVICE_EVENTS=1
 # Requires emacsclient-from-url to be set up
 export PLUG_EDITOR="emacsclient:__FILE__:__LINE__"
 
+# Use gcr-ssh-agent for SSH
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+
 # The prompt ------------------------------------------------------------------
 
 if [[ $TERM != dumb ]]; then

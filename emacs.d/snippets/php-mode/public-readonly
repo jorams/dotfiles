@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: public-readonly
+# key: puo
+# --
+public readonly $0

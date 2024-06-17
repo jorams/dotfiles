@@ -847,7 +847,7 @@ The value is not entered into the kill ring, but copied using
 (use-package eldoc-box
   :ensure t
   :after eldoc
-  :hook (eldoc-mode . eldoc-box-hover-at-point-mode))
+  :bind ("C-h ." . eldoc-box-help-at-point))
 
 ;;; Org -----------------------------------------------------------------------
 

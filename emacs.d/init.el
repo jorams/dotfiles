@@ -1121,6 +1121,21 @@ The value is not entered into the kill ring, but copied using
    'eglot-server-programs
    `(php-mode . ("phpactor" "language-server"))))
 
+;;; phpunit -------------------------------------------------------------------
+
+(use-package phpunit
+  :ensure t
+  :bind (:map php-mode-map
+              :package php-mode
+              ("C-c ," . j/transient-phpunit))
+  :config
+  (transient-define-prefix j/transient-phpunit ()
+    ["PHPUnit"
+     [("a" "all" phpunit-current-project)
+      ("g" "group" phpunit-group)]
+     [("v" "class" phpunit-current-class)
+      ("s" "single" phpunit-current-test)]]))
+
 ;;; Javascript ----------------------------------------------------------------
 
 (use-package js2-mode

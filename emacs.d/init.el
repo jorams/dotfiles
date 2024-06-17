@@ -1125,7 +1125,7 @@ The value is not entered into the kill ring, but copied using
 
 (use-package js2-mode
   :ensure t
-  :mode "\\.js\\'"
+  :mode "\\.m?js\\'"
   :config
   (add-hook 'js2-mode-hook 'js2-refactor-mode))
 

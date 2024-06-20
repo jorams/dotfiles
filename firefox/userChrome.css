@@ -31,3 +31,13 @@
 #main-window[privatebrowsingmode="temporary"] #back-button .toolbarbutton-icon {
   background: #25003E;
 }
+
+#sidebar-box:-moz-window-inactive {
+  background-color: #000 !important;
+}
+
+#sidebar:-moz-window-inactive,
+#sidebar-header:-moz-window-inactive,
+#nav-bar:-moz-window-inactive {
+  opacity: 0.5;
+}

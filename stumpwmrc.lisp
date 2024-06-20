@@ -52,8 +52,10 @@
 
 (define-key *root-map* (kbd "n") "next-in-frame")
 (define-key *root-map* (kbd "C-n") "next-in-frame")
+(define-key *top-map* (kbd "s-n") "next-in-frame")
 (define-key *root-map* (kbd "p") "prev-in-frame")
 (define-key *root-map* (kbd "C-p") "prev-in-frame")
+(define-key *top-map* (kbd "s-p") "prev-in-frame")
 
 (define-key *root-map* (kbd "y") "exec xcolor | tr -d '\\n' | xsel --clipboard")
 
@@ -214,13 +216,6 @@
   :props '(:class "mpv")
   :pullp t
   :pull-key (kbd "s-V"))
-
-(defprogram-shortcut telegram
-  :key (kbd "s-p")
-  :command "telegram-desktop"
-  :props '(:class "TelegramDesktop")
-  :pullp t
-  :pull-key (kbd "s-P"))
 
 (defprogram-shortcut zathura
   :key (kbd "s-a")

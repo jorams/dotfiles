@@ -2,19 +2,23 @@
 # name: top
 # key: top
 # --
-#!/bin/bash
+#!/bin/sh
 
 usage() {
-    echo "Usage: $0: [-h]"
+    echo "Summary"
+    echo ""
+    echo "Usage: \$0 [-h]"
+    echo "  -h: show this help text and exit"
+    echo "Notable remark"
 }
 
 while getopts "h" arg; do
-    case "$arg" in
+    case "\$arg" in
         h) usage; exit ;;
         *) usage; exit 1 ;;
     esac
 done
 
-shift $((OPTIND-1))
+shift \$((OPTIND-1))
 
 $0

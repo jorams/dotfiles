@@ -1346,3 +1346,14 @@ The value is not entered into the kill ring, but copied using
   :mode (("\\.service\\'" . systemd-mode)
          ("\\.socket\\'" . systemd-mode)
          ("\\.slice\\'" . systemd-mode)))
+
+;;; HCL -----------------------------------------------------------------------
+
+(use-package hcl-mode
+  :ensure t
+  :mode (("\\.hcl\\'" . hcl-mode)
+         ("\\.nomad\\'" . hcl-mode)
+         ("\\.tf\\'" . hcl-mode)
+         ("\\.tfvars\\'" . hcl-mode))
+  :custom
+  (hcl-indent-level 4))

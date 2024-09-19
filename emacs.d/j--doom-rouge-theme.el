@@ -154,8 +154,9 @@ determine the exact padding."
    (doom-themes-treemacs-root-face :foreground highlight :weight 'ultra-bold :height 1.2)
    (doom-themes-treemacs-file-face :foreground highlight)
    ;;;; ediff <built-in>
-   (ediff-fine-diff-A    :background (doom-darken violet 0.4) :weight 'bold)
-   (ediff-current-diff-A :background (doom-darken base0 0.25))
+   (ediff-fine-diff-A    :background (doom-darken base5 0.25) :weight 'bold)
+   (ediff-current-diff-A :background (doom-darken base5 0.5))
+   (ediff-even-diff-A    :background (doom-darken base5 0.6))
    ;;;; elscreen
    (elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
    ;;;; highlight-symbol

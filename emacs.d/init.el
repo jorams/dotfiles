@@ -203,6 +203,8 @@ When less than half a screen of lines remains, scroll to the start."
 (when (display-graphic-p)
   (context-menu-mode))
 
+(setq split-height-threshold 90)
+
 ;;; Utilities -----------------------------------------------------------------
 
 (defun j/wrap-hard ()

@@ -830,6 +830,12 @@ The value is not entered into the kill ring, but copied using
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
+(use-package cape
+  :ensure t
+  :init
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file))
+
 ;;; Flycheck ------------------------------------------------------------------
 
 (use-package flycheck

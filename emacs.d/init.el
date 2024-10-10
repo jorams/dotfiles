@@ -81,6 +81,9 @@
         ("" invocation-name " %b")
         ("" invocation-name)))
 
+;;; Maximize frames by default
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;;; Display line and column numbers
 (setq line-number-mode t)
 (setq column-number-mode t)

@@ -1,13 +1,12 @@
 # To be included by machine-specific bashrc
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
 # Environment variables -------------------------------------------------------
 
 # ~/bin and ~/bin/blob come first so that other executables can be overridden
-PATH=~/bin:~/bin/blob:$PATH
-export PATH
+export PATH=~/bin:~/bin/blob:$PATH
+
+# If not running interactively, don't do anything else
+[[ $- != *i* ]] && return
 
 # Bash settings ---------------------------------------------------------------
 complete -cf sudo

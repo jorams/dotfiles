@@ -1,0 +1,79 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0 [-h] [-d] file1 [file2 ...]"
+    echo "  -h: Show this help"
+    echo "  -d: dry run, skip actual conversion"
+}
+
+dry_run=""
+
+while getopts "hd" arg; do
+    case "$arg" in
+        d) dry_run="1" ;;
+        h) usage; exit; ;;
+        *) usage; exit 1; ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+if [ $# -eq 0 ]; then
+    usage
+    exit 1
+fi
+
+total=$#
+count=1
+
+# First a quick sanity check of all of the files. Anything can change between
+# this and the actual conversion, but that's fine.
+for infile in "$@"; do
+    if [ ! -f "$infile" ]; then
+        echo "Input file $count does not exist or is not a file: $infile"
+        exit 1
+    fi
+
+    outfile="av1-$(basename "$infile")"
+
+    if [ -f "$outfile" ]; then
+        echo "Output file $count already exists: $outfile"
+        exit 1
+    fi
+
+    incodec="$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$infile")"
+    induration="$(ffprobe -v error -sexagesimal -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$infile" | cut -d. -f1)"
+    inresolution="$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 "$infile")"
+
+    if [ "$incodec" = "av1" ]; then
+        echo "Input file $count is already av1: $infile"
+        exit 1
+    fi
+
+    echo "Checked $count/$total ($incodec $inresolution $induration) $infile -> $outfile"
+
+    count=$((count + 1))
+done
+
+if [ -n "$dry_run" ]; then
+    echo "Dry run, skipping conversion of $total files..."
+    exit 0
+fi
+
+count=1
+
+for infile in "$@"; do
+    outfile="av1-$(basename "$infile")"
+
+    echo "Converting $count/$total: $infile -> $outfile"
+
+    if [ -z "$dry_run" ]; then
+        ffmpeg -i "$infile" -c:v libsvtav1 -preset 5 -crf 30 -c:a copy "$outfile"
+
+        if [ $? -ne 0 ]; then
+            echo "Error converting $infile"
+        fi
+    fi
+
+    count=$((count + 1))
+done

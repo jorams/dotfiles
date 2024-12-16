@@ -37,6 +37,7 @@ package elixir-ls
 package ttfautohint
 package polymc
 package cantata
+package mise
 
 # Personal packages
 package j--slock

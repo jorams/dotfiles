@@ -13,4 +13,5 @@ depends=(
     nodejs-lts-iron
     yarn
     inotify-tools
+    mise
 )

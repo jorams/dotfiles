@@ -5,7 +5,7 @@ set -e
 # If there's an argument we only want to build that package.
 only="$1"
 
-rootdir="$PWD/root"
+rootdir="/var/pacman-j--root"
 
 repodir="$(realpath repo)"
 reponame="j--repo"
@@ -24,7 +24,7 @@ package() {
     repo-add "$repodir/$reponame.db.tar.zst" "$repodir/$pkgfile"
 }
 
-mkdir -p "$rootdir"
+sudo mkdir -p "$rootdir"
 mkdir -p "$repodir"
 
 [ -d "$rootdir/root" ] || mkarchroot -C /etc/pacman.conf "$rootdir/root" base-devel

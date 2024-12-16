@@ -2,7 +2,7 @@
 
 set -e
 
-rootdir="$PWD/root"
+rootdir="/var/pacman-j--root"
 
 if [ -d "$rootdir" ]; then
     printf "Existing root found, delete it? (y/n)"
@@ -18,5 +18,5 @@ if [ -d "$rootdir" ]; then
     esac
 fi
 
-mkdir -p "$rootdir"
+sudo mkdir -p "$rootdir"
 mkarchroot -C /etc/pacman.conf "$rootdir/root" base-devel

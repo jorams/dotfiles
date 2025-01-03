@@ -72,9 +72,6 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tooltip-mode) (scroll-bar-mode -1))
 
-;;; Disable startup screen
-(setq inhibit-startup-screen t)
-
 ;;; Simplify frame title
 (setq frame-title-format
       '(multiple-frames
@@ -89,6 +86,36 @@
 (setq column-number-mode t)
 
 (setq isearch-lazy-count t)
+
+;;; Custom startup screen -----------------------------------------------------
+
+(defun j/update-startup-screen (&optional window)
+  "Update startup screen content and configure its behavior."
+  (with-current-buffer (get-buffer-create "*Startup*")
+    (read-only-mode -1)
+    (let* ((image (create-image (fancy-splash-image-file)))
+           (size (image-size image)))
+      (erase-buffer)
+      ;; I looked into using an overlay, but this seems easier.
+      (insert (make-string (floor (- (window-height) (cdr size)) 2) ?\n)
+              (make-string (floor (- (window-width) (car size)) 2) ?\s))
+      (insert-image image))
+    (setq mode-line-format nil
+          cursor-type nil
+          truncate-lines t)
+    (read-only-mode 1)
+    (local-set-key (kbd "q") 'kill-this-buffer)))
+
+(defun j/startup-screen ()
+  "Show a startup screen showing only the Emacs splash screen image."
+  (j/update-startup-screen (current-buffer))
+  (with-current-buffer (get-buffer-create "*Startup*")
+    (switch-to-buffer (current-buffer))
+    (add-hook 'window-size-change-functions 'j/update-startup-screen 90 t)))
+
+;;; Disable default startup screen
+(setq inhibit-startup-screen t)
+(add-hook 'emacs-startup-hook #'j/startup-screen)
 
 ;;; Basic behaviour -----------------------------------------------------------
 

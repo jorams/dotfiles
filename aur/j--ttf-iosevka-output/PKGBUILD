@@ -1,7 +1,7 @@
 # Maintainer: i at joram dot io
 
 pkgname=j--ttf-iosevka-output
-pkgver=1
+pkgver=2
 pkgrel=1
 pkgdesc="A custom Iosevka build modeled after the lovely Input Mono font, slightly modified"
 arch=('any')
@@ -21,12 +21,12 @@ prepare() {
 build() {
     cd "$srcdir/Iosevka"
     npm install
-    npm run build -- ttf::iosevka-output
+    npm run build -- ttf::IosevkaOutput --jCmd=8
 }
 
 package() {
     install -d "$pkgdir/usr/share/fonts/TTF"
-    install -m644 Iosevka/dist/*/ttf/*.ttf "$pkgdir/usr/share/fonts/TTF/"
+    install -m644 Iosevka/dist/*/TTF/*.ttf "$pkgdir/usr/share/fonts/TTF/"
     install -m644 -D Iosevka/LICENSE.md "$pkgdir/usr/share/licenses/$pkgname/LICENSE.Iosevka"
     install -m644 -D LICENSE.iosevka-output "$pkgdir/usr/share/licenses/$pkgname/LICENSE.iosevka-output"
 }

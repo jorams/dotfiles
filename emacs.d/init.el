@@ -1088,7 +1088,8 @@ The value is not entered into the kill ring, but copied using
 ;;; Prettier ------------------------------------------------------------------
 
 (use-package prettier
-  :ensure t)
+  :ensure t
+  :commands (prettier-mode global-prettier-mode))
 
 ;;; Lisp ----------------------------------------------------------------------
 

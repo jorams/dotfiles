@@ -159,7 +159,9 @@ When less than half a screen of lines remains, scroll to the start."
   (setq save-place-file (expand-file-name ".places" user-emacs-directory)))
 
 ;;; Start a server for emacsclients
-(server-start)
+(use-package server
+  :config
+  (unless (server-running-p) (server-start)))
 
 ;;; Allow multiple recursive minibuffers
 (setq-default enable-recursive-minibuffers t)

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: heex-self-closing-tag
+# key: t/
+# --
+<$1 />

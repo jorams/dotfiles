@@ -1401,3 +1401,9 @@ The value is not entered into the kill ring, but copied using
          ("\\.tfvars\\'" . hcl-mode))
   :custom
   (hcl-indent-level 4))
+
+;;; Breadcrumb ----------------------------------------------------------------
+
+(use-package breadcrumb
+  :ensure t
+  :config (breadcrumb-mode))

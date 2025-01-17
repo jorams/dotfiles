@@ -1030,6 +1030,7 @@ The value is not entered into the kill ring, but copied using
 (use-package eglot
   :config
   (bind-key "M-p" 'eglot-code-actions eglot-mode-map)
+  (bind-key "C-." 'eglot-find-implementation eglot-mode-map)
   (setq eglot-confirm-server-initiated-edits nil)
   (defun eglot--snippet-expansion-fn ()
     (lambda (snippet)

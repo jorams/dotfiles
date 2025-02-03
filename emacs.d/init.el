@@ -516,11 +516,12 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :config (j/load-theme))
 
-;;; doom-modeline -------------------------------------------------------------
+;;; mood-line -----------------------------------------------------------------
 
-(use-package doom-modeline
+(use-package mood-line
   :ensure t
-  :hook (after-init . doom-modeline-mode))
+  :hook (after-init . mood-line-mode)
+  :config (setq mood-line-format mood-line-format-default-extended))
 
 ;;; Undo Tree -----------------------------------------------------------------
 

@@ -4,40 +4,11 @@
   visibility: collapse !important;
 }
 
-#main-window {
-  -moz-appearance: -moz-win-media-toolbox !important;
+#nav-bar {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 #sidebar-header {
-  background-color: #323234 !important;
-  color: #BEBEBE !important;;
-  border-bottom: 1px solid black !important;
-  font-size: 14px;
-}
-
-#sidebar-title {
-  font-size: 16px;
-}
-
-.sidebar-splitter {
-  border-color: #323234 !important;
-  background-color: #323234 !important;
-}
-
-.private-browsing-indicator {
-  display: none;
-}
-
-#main-window[privatebrowsingmode="temporary"] #back-button .toolbarbutton-icon {
-  background: #25003E;
-}
-
-#sidebar-box:-moz-window-inactive {
-  background-color: #000 !important;
-}
-
-#sidebar:-moz-window-inactive,
-#sidebar-header:-moz-window-inactive,
-#nav-bar:-moz-window-inactive {
-  opacity: 0.5;
+    font-size: 1em !important;
 }

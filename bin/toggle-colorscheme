@@ -6,3 +6,8 @@ then
 else
     plasma-apply-colorscheme BreezeDark
 fi
+
+# Fix Chromium not picking up the theme correctly
+cmd=$(command -v qdbus qdbus6 qdbus-qt6 | head -n1)
+"$cmd" org.kde.GtkConfig /GtkConfig setGtkTheme Default
+"$cmd" org.kde.GtkConfig /GtkConfig setGtkTheme Breeze

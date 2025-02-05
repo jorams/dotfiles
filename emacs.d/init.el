@@ -234,7 +234,7 @@ When less than half a screen of lines remains, scroll to the start."
 (when (display-graphic-p)
   (context-menu-mode))
 
-(setq split-height-threshold 100)
+(setq split-height-threshold 120)
 
 ;;; Utilities -----------------------------------------------------------------
 

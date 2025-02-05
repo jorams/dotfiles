@@ -1404,3 +1404,9 @@ The value is not entered into the kill ring, but copied using
 (use-package breadcrumb
   :ensure t
   :config (breadcrumb-mode))
+
+;;; Mise ----------------------------------------------------------------------
+
+(use-package mise
+  :ensure t
+  :config (global-mise-mode))

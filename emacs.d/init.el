@@ -492,12 +492,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Theme ---------------------------------------------------------------------
 
-(defun j/load-theme ()
-  (set-frame-parameter nil 'background-mode 'dark)
-  (setq doom-rouge-brighter-comments t)
-  (setq doom-rouge-comment-bg nil)
-  (setq doom-rouge-padded-modeline nil)
-  (load-theme 'j--doom-rouge)
+(defun j/set-font ()
   (set-frame-font (font-spec :family "Iosevka Output"
                              :weight 'medium
                              :width 'expanded
@@ -510,11 +505,12 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (with-selected-frame frame
-              (j/load-theme))))
+              (j/set-font))))
 
-(use-package doom-themes
+(use-package auto-dark
   :ensure t
-  :config (j/load-theme))
+  :init (auto-dark-mode)
+  :custom (auto-dark-themes '((modus-vivendi-tinted) (modus-operandi))))
 
 ;;; mood-line -----------------------------------------------------------------
 

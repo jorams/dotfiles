@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if plasma-apply-colorscheme --list-schemes | grep -qe 'BreezeDark.*current';
+then
+    plasma-apply-colorscheme BreezeLight
+else
+    plasma-apply-colorscheme BreezeDark
+fi

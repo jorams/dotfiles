@@ -296,6 +296,33 @@ When less than half a screen of lines remains, scroll to the start."
     (message "%s" (buffer-substring-no-properties (point-min)
                                                   (point-max)))))
 
+(defun j/kdeconnect-get-devices ()
+  (with-temp-buffer
+    (call-process "kdeconnect-cli"
+                  nil
+                  t
+                  nil
+                  "--list-available"
+                  "--name-only")
+    (split-string (buffer-substring-no-properties (point-min) (point-max)))))
+
+(defun j/send-using-kdeconnect ()
+  (interactive)
+  "Send selection or buffer to another device using KDE Connect."
+  (let* ((start (or (use-region-beginning) (point-min)))
+         (end (or (use-region-end) (point-max)))
+         (text (buffer-substring-no-properties start end))
+         (devices (j/kdeconnect-get-devices))
+         (device (completing-read "Device: " devices nil t)))
+    (call-process "kdeconnect-cli"
+                  nil
+                  nil
+                  nil
+                  "--name"
+                  device
+                  "--share-text"
+                  text)))
+
 (defun j/fill-to-end (char)
   (interactive "cFill Character:")
   (save-excursion

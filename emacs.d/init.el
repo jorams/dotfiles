@@ -567,6 +567,12 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (undo-fu-session-global-mode))
 
+;;; Tabs ----------------------------------------------------------------------
+
+(use-package emacs
+  :bind (("C-S-n" . tab-next)
+         ("C-S-p" . tab-previous)))
+
 ;;; Vertico -------------------------------------------------------------------
 
 (use-package vertico

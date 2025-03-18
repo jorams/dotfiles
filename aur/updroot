@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+rootdir="/var/pacman-j--root"
+
+arch-nspawn "$rootdir/root" pacman -Syu

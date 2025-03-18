@@ -548,14 +548,24 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Undo Tree -----------------------------------------------------------------
 
-(use-package undo-tree
+(use-package vundo
   :ensure t
-  :init
-  (setq undo-tree-history-directory-alist
-        `((".*" . ,(expand-file-name
-                    (concat user-emacs-directory "undo")))))
+  :bind (("C-x u" . vundo)
+         ("C-/" . undo-only)
+         ("C-?" . undo-redo))
   :config
-  (global-undo-tree-mode))
+  (setq vundo-glyph-alist vundo-unicode-symbols
+        vundo-compact-display t
+        vundo-window-max-height 8)
+  ;; Increase undo limits to avoid truncation.
+  (setq undo-limit 67108864             ; 64 MiB
+        undo-strong-limit 100663296     ; 96 MiB
+        undo-outer-limit 1006632960))   ; 960 MiB
+
+(use-package undo-fu-session
+  :ensure t
+  :config
+  (undo-fu-session-global-mode))
 
 ;;; Vertico -------------------------------------------------------------------
 

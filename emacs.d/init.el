@@ -1209,20 +1209,19 @@ The value is not entered into the kill ring, but copied using
 
 ;;; PHP -----------------------------------------------------------------------
 
-(use-package php-mode
-  :ensure t
+(use-package php-ts-mode
   :mode "\\.php\\'"
   :init
   (add-to-list
    'eglot-server-programs
-   `(php-mode . ("phpactor" "language-server"))))
+   `(php-ts-mode . ("phpactor" "language-server"))))
 
 ;;; phpunit -------------------------------------------------------------------
 
 (use-package phpunit
   :ensure t
-  :bind (:map php-mode-map
-              :package php-mode
+  :bind (:map php-ts-mode-map
+              :package php-ts-mode
               ("C-c ," . j/transient-phpunit))
   :config
   (transient-define-prefix j/transient-phpunit ()

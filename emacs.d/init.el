@@ -1085,6 +1085,15 @@ The value is not entered into the kill ring, but copied using
                          "$\\1"
                          snippet)))))
 
+;;; DAP -----------------------------------------------------------------------
+
+(use-package dape
+  :ensure t)
+
+(use-package repeat
+  :config
+  (repeat-mode))
+
 ;;; Editorconfig --------------------------------------------------------------
 
 (use-package editorconfig

@@ -1082,10 +1082,7 @@ The value is not entered into the kill ring, but copied using
 ;;; Editorconfig --------------------------------------------------------------
 
 (use-package editorconfig
-  :ensure t
   :config
-  (setq editorconfig-exclude-regexps
-        '("COMMIT_EDITMSG"))
   (editorconfig-mode 1))
 
 ;;; dumb-jump -----------------------------------------------------------------

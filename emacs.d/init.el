@@ -539,6 +539,12 @@ point reaches the beginning or end of the buffer, stop there."
   :init (auto-dark-mode)
   :custom (auto-dark-themes '((modus-vivendi-tinted) (modus-operandi))))
 
+;;; Flymake -------------------------------------------------------------------
+
+(use-package flymake
+  :config
+  (setq flymake-show-diagnostics-at-end-of-line t))
+
 ;;; mood-line -----------------------------------------------------------------
 
 (use-package mood-line

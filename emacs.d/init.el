@@ -1224,10 +1224,60 @@ The value is not entered into the kill ring, but copied using
               :package php-ts-mode
               ("C-c ," . j/transient-phpunit))
   :config
+  (defvar phpunit-last-suite-cache nil)
+
+  (defun phpunit--get-last-suite (path)
+    "Get last suite cache by `PATH'."
+    (if (null phpunit-last-suite-cache)
+        nil
+      (gethash path phpunit-last-suite-cache nil)))
+
+  (defun phpunit--put-last-suite (suite path)
+    "Put last suite `SUITE' cache by `PATH'."
+    (unless phpunit-last-suite-cache
+      (setq phpunit-last-suite-cache (make-hash-table :test 'equal)))
+    (puthash path suite phpunit-last-suite-cache))
+
+  (defun phpunit--listing-suites ()
+    "Return list of test suites."
+    (let ((phpunit-output (phpunit--execute "--list-suites")))
+      (with-temp-buffer
+        (insert phpunit-output)
+        (goto-char (point-min))
+        (search-forward "Available test suites")
+        (move-beginning-of-line 1)
+        (forward-line)
+        (cl-loop
+         for line in (s-split "\n" (buffer-substring-no-properties (point) (point-max)))
+         if (string-match " - \\(.+?\\)\\(?: ([0-9]+ tests?)\\)?$" line)
+         collect (print (match-string 1 line))))))
+
+  (defun phpunit-suite (use-last-suite &optional suite)
+    "Launch PHPUnit for suite."
+    (interactive "p")
+    (let* ((current-root-directory (phpunit-get-root-directory))
+           (last-suite (phpunit--get-last-suite current-root-directory)))
+      (when (called-interactively-p 'interactive)
+        (setq use-last-suite (eq use-last-suite 1))
+        (setq suite (if (and use-last-suite last-suite)
+                        last-suite
+                      (completing-read "PHPUnit suite: " (phpunit--listing-suites)))))
+      (phpunit-run (format "--testsuite %s" suite))
+      (phpunit--put-last-suite suite current-root-directory)))
+
+  (defun j/phpunit-last-suite ()
+    (interactive)
+    (funcall-interactively #'phpunit-suite 1))
+
+  (defun j/phpunit-select-suite ()
+    (interactive)
+    (funcall-interactively #'phpunit-suite nil))
+
   (transient-define-prefix j/transient-phpunit ()
     ["PHPUnit"
      [("a" "all" phpunit-current-project)
-      ("g" "group" phpunit-group)]
+      ("t" "suite" j/phpunit-last-suite)
+      ("T" "select suite" j/phpunit-select-suite)]
      [("v" "class" phpunit-current-class)
       ("s" "single" phpunit-current-test)]]))
 

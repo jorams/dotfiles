@@ -1209,8 +1209,19 @@ The value is not entered into the kill ring, but copied using
 
 ;;; PHP -----------------------------------------------------------------------
 
+(defun j/php-manual-lookup (name)
+  "Look up NAME on php.net."
+  (interactive
+   (list (when-let* ((thing (treesit-thing-at-point "" 'nested)))
+           (treesit-node-text thing))))
+  (when name
+    (browse-url (concat "https://www.php.net/" name))))
+
 (use-package php-ts-mode
   :mode "\\.php\\'"
+  :bind (:map php-ts-mode-map
+              :package php-ts-mode
+              ("C-c C-f" . j/php-manual-lookup))
   :init
   (add-to-list
    'eglot-server-programs

@@ -1307,8 +1307,8 @@ The value is not entered into the kill ring, but copied using
         (setq use-last-suite (eq use-last-suite 1))
         (setq suite (if (and use-last-suite last-suite)
                         last-suite
-                      (completing-read "PHPUnit suite: " (phpunit--listing-suites)))))
-      (phpunit-run (format "--testsuite %s" suite))
+                      (completing-read-multiple "PHPUnit suite: " (phpunit--listing-suites)))))
+      (phpunit-run (format "--testsuite %s" (string-join suite ",")))
       (phpunit--put-last-suite suite current-root-directory)))
 
   (defun j/phpunit-last-suite ()

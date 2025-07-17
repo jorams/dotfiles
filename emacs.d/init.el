@@ -1253,6 +1253,10 @@ The value is not entered into the kill ring, but copied using
   :bind (:map php-ts-mode-map
               :package php-ts-mode
               ("C-c C-f" . j/php-manual-lookup))
+  :config
+  (add-hook 'php-ts-mode-hook
+            (lambda ()
+              (setq imenu-create-index-function #'treesit-simple-imenu)))
   :init
   (add-to-list
    'eglot-server-programs

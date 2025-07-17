@@ -505,6 +505,15 @@ point reaches the beginning or end of the buffer, stop there."
   (magit-project-status)
   (delete-other-windows))
 
+(defun j/project-copy-buffer-file-name ()
+  "Copy the project-relative file name of the current buffer."
+  (interactive)
+  (let* ((file-name (buffer-file-name))
+         (project-root (project-root (project-current)))
+         (relative-name (file-relative-name file-name project-root)))
+    (kill-new relative-name)
+    (message relative-name)))
+
 (use-package project
   :config
   (defun j/find-projectile-project (dir)
@@ -534,7 +543,10 @@ point reaches the beginning or end of the buffer, stop there."
   (add-to-list 'project-switch-commands '(j/project-terminal "terminal") t)
 
   (define-key project-prefix-map "t" #'j/project-tab-magit-project-status)
-  (add-to-list 'project-switch-commands '(j/project-tab-magit-project-status "tab-magit") t))
+  (add-to-list 'project-switch-commands '(j/project-tab-magit-project-status "tab-magit") t)
+
+  (define-key project-prefix-map (kbd "M-w") #'j/project-copy-buffer-file-name))
+
 
 ;;; Theme ---------------------------------------------------------------------
 

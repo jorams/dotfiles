@@ -480,6 +480,31 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;; Project finding functions
 
+(defun j/project-terminal ()
+  "Open a terminal in the current project root."
+  (interactive)
+  (start-process "kitty" nil
+                 "kitty"
+                 "--single-instance"
+                 "--detach"
+                 "--directory" (expand-file-name (project-root (project-current t)))
+                 "--title" "kitty"
+                 "--override" "shell=/usr/bin/tmux"))
+
+(defun j/project-tab-magit-project-status ()
+  "Open a new tab with the magit status of the project."
+  (interactive)
+  (tab-new)
+  (tab-rename (project-name (project-current)))
+  (magit-project-status)
+  (delete-other-windows))
+
+(defun j/magit-project-status-only ()
+  "Open a magit status buffer and make it the only window."
+  (interactive)
+  (magit-project-status)
+  (delete-other-windows))
+
 (use-package project
   :config
   (defun j/find-projectile-project (dir)
@@ -500,22 +525,16 @@ point reaches the beginning or end of the buffer, stop there."
     (cdr project))
 
   (define-key project-prefix-map "m" 'magit-project-status)
-  (add-to-list 'project-switch-commands '(magit-project-status "Magit") t))
+  (add-to-list 'project-switch-commands '(magit-project-status "Magit") t)
 
-(defun j/project-terminal ()
-  "Open a terminal in the current project root."
-  (interactive)
-  (start-process "kitty" nil
-                 "kitty"
-                 "--single-instance"
-                 "--detach"
-                 "--directory" (expand-file-name (project-root (project-current t)))
-                 "--title" "kitty"
-                 "--override" "shell=/usr/bin/tmux"))
+  (define-key project-prefix-map "M" 'j/magit-project-status-only)
+  (add-to-list 'project-switch-commands '(j/magit-project-status-only "Magit (only)") t)
 
-(with-eval-after-load 'project
   (define-key project-prefix-map "u" #'j/project-terminal)
-  (add-to-list 'project-switch-commands '(j/project-terminal "terminal") t))
+  (add-to-list 'project-switch-commands '(j/project-terminal "terminal") t)
+
+  (define-key project-prefix-map "t" #'j/project-tab-magit-project-status)
+  (add-to-list 'project-switch-commands '(j/project-tab-magit-project-status "tab-magit") t))
 
 ;;; Theme ---------------------------------------------------------------------
 

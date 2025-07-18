@@ -565,6 +565,8 @@ point reaches the beginning or end of the buffer, stop there."
             (with-selected-frame frame
               (j/set-font))))
 
+(j/set-font)
+
 (use-package auto-dark
   :ensure t
   :init (auto-dark-mode)

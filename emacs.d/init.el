@@ -991,7 +991,9 @@ The value is not entered into the kill ring, but copied using
   (set-face-attribute 'org-document-title nil :height 1.4)
   (set-face-attribute 'org-level-1 nil :height 1.3)
   (set-face-attribute 'org-level-2 nil :height 1.2)
-  (set-face-attribute 'org-level-3 nil :height 1.1))
+  (set-face-attribute 'org-level-3 nil :height 1.1)
+  (add-to-list 'browse-url-handlers
+               '("https://\.*\\.atlassian\\.net/\.*" . browse-url-chromium)))
 
 ;;; Mail ----------------------------------------------------------------------
 

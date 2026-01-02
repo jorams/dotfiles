@@ -1,0 +1,98 @@
+#!/usr/bin/env elixir
+
+log_file =
+  NaiveDateTime.local_now()
+  |> NaiveDateTime.to_date()
+  |> Calendar.strftime("renamed-%Y-%m-%d.log")
+
+# Eligible files are video files
+
+files =
+  Path.wildcard("*")
+  |> Enum.filter(&File.regular?/1)
+  |> Enum.filter(&Path.extname(&1) in [".mkv", ".mp4", ".avi"])
+
+file_count = length(files)
+IO.puts(:stderr, "#{file_count} files")
+
+# Episode titles should be provided in the expected format: 01 - Episode Title
+
+IO.puts(:stderr, "Enter the episode titles:")
+
+episode_titles =
+  Stream.repeatedly(fn -> IO.read(:line) end)
+  |> Enum.take_while(fn
+    "\n" -> false
+    :eof -> false
+    title when is_binary(title) -> true
+  end)
+  |> Enum.map(&String.trim(&1))
+
+episode_count = length(episode_titles)
+IO.puts(:stderr, "#{episode_count} episodes")
+
+episode_nr_map =
+  episode_titles
+  |> Enum.map(fn title ->
+    captures =
+      Regex.named_captures(
+        ~r/^(?<nr>[0-9]+) /,
+        title
+      )
+
+    nr = captures["nr"] |> String.to_integer()
+
+    {nr, title}
+  end)
+  |> Map.new()
+
+# Quick sanity check on the numbers
+cond do
+  file_count > episode_count ->
+    raise "Found more files than episodes, not continuing"
+
+  file_count == episode_count ->
+    IO.puts(:stderr, "Same number of files and episodes, continuing")
+
+  file_count < episode_count ->
+    IO.puts(:stderr, "More episodes than files, continuing anyway")
+end
+
+# Match files to the relevant episode number
+renames =
+  Enum.map(files, fn file ->
+    dir = Path.dirname(file)
+    name = Path.basename(file)
+    ext = Path.extname(file)
+
+    captures =
+      Regex.named_captures(
+        ~r/[sS](?<season>[0-9]+)[eE](?<episode>[0-9]+)/,
+        name
+      )
+
+    nr = captures["episode"] |> String.to_integer()
+
+    expected_file_name = episode_nr_map[nr]
+
+    {file, "#{dir}/#{expected_file_name}#{ext}"}
+  end)
+
+# New math
+
+Enum.each(renames, fn {from, to} ->
+  IO.puts(:stderr, "#{from} -> #{to}")
+end)
+
+answer = IO.gets("Perform these renames? [yN]: ")
+
+if is_binary(answer) and String.trim(answer) in ["y", "Y"] do
+  Enum.each(renames, fn {from, to} ->
+    IO.puts("#{from} -> #{to}")
+    :ok = File.rename(from, to)
+    File.write!(log_file, "#{from} -> #{to}\n", [:append])
+  end)
+else
+  IO.puts(:stderr, "Aborted.")
+  System.stop(1)
+end

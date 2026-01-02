@@ -1,16 +1,19 @@
 #!/bin/sh
 
 usage() {
-    echo "Usage: $0 [-h] [-d] file1 [file2 ...]"
+    echo "Usage: $0 [-h] [-d] [-a FILE] file1 [file2 ...]"
     echo "  -h: Show this help"
     echo "  -d: dry run, skip actual conversion"
+    echo "  -a FILE: append paths of files that are already av1 to FILE"
 }
 
 dry_run=""
+already_file=""
 
-while getopts "hd" arg; do
+while getopts "hda:" arg; do
     case "$arg" in
         d) dry_run="1" ;;
+        a) already_file="$OPTARG" ;;
         h) usage; exit; ;;
         *) usage; exit 1; ;;
     esac
@@ -25,6 +28,7 @@ fi
 
 total=$#
 count=1
+already=0
 
 # First a quick sanity check of all of the files. Anything can change between
 # this and the actual conversion, but that's fine.
@@ -47,7 +51,13 @@ for infile in "$@"; do
 
     if [ "$incodec" = "av1" ]; then
         echo "Input file $count is already av1: $infile"
-        exit 1
+        already=$((already + 1))
+        if [ -n "$already_file" ]; then
+            echo "$infile" >> "$already_file"
+        fi
+        if [ -z "$dry_run" ]; then
+            exit 1
+        fi
     fi
 
     echo "Checked $count/$total ($incodec $inresolution $induration) $infile -> $outfile"
@@ -57,6 +67,7 @@ done
 
 if [ -n "$dry_run" ]; then
     echo "Dry run, skipping conversion of $total files..."
+    echo "$already files are already AV1"
     exit 0
 fi
 

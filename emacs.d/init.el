@@ -1524,7 +1524,9 @@ The value is not entered into the kill ring, but copied using
   :init
   (with-eval-after-load 'treesit
     (add-to-list 'treesit-language-source-alist
-                 '(go "https://github.com/tree-sitter/tree-sitter-go"))))
+                 '(go "https://github.com/tree-sitter/tree-sitter-go")))
+  :config
+  (setq go-ts-mode-indent-offset 4))
 
 (use-package go-mod-ts-mode
   :ensure nil

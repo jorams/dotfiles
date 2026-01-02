@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: tag-closing
+# key: tag/
+# condition: (string-equal "django" web-mode-engine)
+# --
+{% $0 %}

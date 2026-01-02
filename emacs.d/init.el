@@ -115,7 +115,16 @@
 
 ;;; Disable default startup screen
 (setq inhibit-startup-screen t)
-(add-hook 'emacs-startup-hook #'j/startup-screen)
+
+;;; Startup template
+
+(add-hook
+ 'after-init-hook
+ (lambda ()
+   (let ((file (expand-file-name "startup.el" user-emacs-directory)))
+     (if (file-exists-p file)
+         (load-file file)
+       (add-hook 'emacs-startup-hook #'j/startup-screen)))))
 
 ;;; Basic behaviour -----------------------------------------------------------
 

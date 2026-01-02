@@ -497,7 +497,7 @@ point reaches the beginning or end of the buffer, stop there."
                  "--single-instance"
                  "--detach"
                  "--directory" (expand-file-name (project-root (project-current t)))
-                 "--title" "kitty"
+                 "--title" (project-name (project-current))
                  "--override" "shell=/usr/bin/tmux"))
 
 (defun j/project-tab-magit-project-status ()

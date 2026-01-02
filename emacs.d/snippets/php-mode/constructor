@@ -2,6 +2,5 @@
 # name: constructor
 # key: con
 # --
-public function __construct($2) {
-    $0
+public function __construct($2) {$0
 }

@@ -1525,7 +1525,10 @@ The value is not entered into the kill ring, but copied using
 ;;; vterm ---------------------------------------------------------------------
 
 (use-package vterm
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'vterm-mode-hook
+            (lambda () (setq-local show-trailing-whitespace nil))))
 
 ;;; GraphQL -------------------------------------------------------------------
 

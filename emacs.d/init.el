@@ -1225,9 +1225,17 @@ The value is not entered into the kill ring, but copied using
 
 ;;; Markdown ------------------------------------------------------------------
 
+(defvar j/markdown-live-preview-temporary-file-name nil)
+
 (use-package markdown-mode
   :ensure t
-  :mode ("\\.markdown\\'" "\\.md\\'"))
+  :mode ("\\.markdown\\'" "\\.md\\'")
+  :config
+  (define-advice markdown-live-preview-get-filename (:override () j/markdown-live-preview-temporary-file)
+    "Make markdown-live-preview-mode use a temporary file for exports."
+    (unless j/markdown-live-preview-temporary-file-name
+      (setq-local j/markdown-live-preview-temporary-file-name (make-temp-file "markdown-live-" nil ".html")))
+    j/markdown-live-preview-temporary-file-name))
 
 ;;; Web -----------------------------------------------------------------------
 

@@ -1,0 +1,44 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0 [-h] [-f] dir"
+    echo "  -h: Show this help"
+    echo "  -f: force, actually purge"
+}
+
+force=""
+
+while getopts "hf" arg; do
+    case "$arg" in
+        f) force="1" ;;
+        h) usage; exit; ;;
+        *) usage; exit 1; ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+dir="$1"
+
+case "$dir" in /*)
+    echo "directory argument should not start with a /"
+    exit 1;
+esac
+
+for id in /.snapshots/*; do
+    snap="$id/snapshot"
+    [ -d "$snap/$dir" ] || continue
+
+    if [ -z "$force" ]; then
+        echo "Found $snap/$dir in snapshot $id"
+        continue;
+    fi
+
+    sudo btrfs property set "$snap" ro false
+    sudo rm -rf "$snap/$dir"
+    sudo btrfs property set "$snap" ro true
+done
+
+if [ -z "$force" ]; then
+    echo "Nothing purged, run with -f to actually purge."
+fi

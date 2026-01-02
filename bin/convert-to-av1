@@ -42,7 +42,7 @@ for infile in "$@"; do
 
     if [ -f "$outfile" ]; then
         echo "Output file $count already exists: $outfile"
-        exit 1
+        continue
     fi
 
     incodec="$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$infile")"
@@ -75,6 +75,12 @@ count=1
 
 for infile in "$@"; do
     outfile="av1-$(basename "$infile")"
+
+    if [ -f "$outfile" ]; then
+        echo "Output file $count already exists: $outfile"
+        count=$((count + 1))
+        continue
+    fi
 
     echo "Converting $count/$total: $infile -> $outfile"
 

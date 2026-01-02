@@ -500,6 +500,16 @@ point reaches the beginning or end of the buffer, stop there."
                  "--title" (project-name (project-current))
                  "--override" "shell=/usr/bin/tmux"))
 
+(defun j/project-vterm ()
+  "Open a vterm in the current project root or switch to an existing vterm."
+  (interactive)
+  (let* ((default-directory (project-root (project-current t)))
+         (vterm-buffer-name (project-prefixed-buffer-name "vterm"))
+         (vterm-buffer (get-buffer vterm-buffer-name)))
+    (if vterm-buffer
+        (pop-to-buffer-same-window vterm-buffer)
+      (vterm vterm-buffer-name))))
+
 (defun j/project-tab-magit-project-status ()
   "Open a new tab with the magit status of the project."
   (interactive)
@@ -550,6 +560,9 @@ point reaches the beginning or end of the buffer, stop there."
 
   (define-key project-prefix-map "u" #'j/project-terminal)
   (add-to-list 'project-switch-commands '(j/project-terminal "terminal") t)
+
+  (define-key project-prefix-map "v" #'j/project-vterm)
+  (add-to-list 'project-switch-commands '(j/project-vterm "vterm") t)
 
   (define-key project-prefix-map "t" #'j/project-tab-magit-project-status)
   (add-to-list 'project-switch-commands '(j/project-tab-magit-project-status "tab-magit") t)

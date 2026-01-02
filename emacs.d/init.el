@@ -487,6 +487,25 @@ point reaches the beginning or end of the buffer, stop there."
          (text (delete-and-extract-region start end)))
     (insert (url-hexify-string text))))
 
+(defvar-local j/compilation-file-strip-absolute-regexp nil)
+
+(define-advice compilation-find-file (:around (orig marker filename directory &rest formats) j/strip-absolute-regexp)
+  "Allow compilation output filenames to change before opening.
+
+The regexp should be set buffer-locally as
+j/compilation-file-strip-absolute-regexp. Any match for this regex will
+be removed from the filename.
+
+An example use for this is when the output references file names of the current
+directory mounted inside a container. The regexp could be something like ^/app/"
+  (if (and (file-name-absolute-p filename) j/compilation-file-strip-absolute-regexp)
+      (let ((filename (replace-regexp-in-string j/compilation-file-strip-absolute-regexp "" filename)))
+        (apply orig marker filename directory formats))
+    (apply orig marker filename directory formats)))
+
+;;; Compilation mode doesn't normally load variables from .dir-locals.el
+(add-hook 'compilation-mode-hook 'hack-dir-local-variables-non-file-buffer)
+
 ;;; Project finding functions
 
 (defun j/project-terminal ()

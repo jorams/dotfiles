@@ -38,6 +38,7 @@ package ttfautohint
 package polymc
 package cantata
 package mise
+package web-ext
 
 # Personal packages
 package j--slock

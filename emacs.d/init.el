@@ -1445,6 +1445,33 @@ The value is not entered into the kill ring, but copied using
   :ensure t
   :mode "\\.heex\\'")
 
+(defun j/local-hexdocs ()
+  "Open local documentation for a selected hex dependency."
+  (interactive)
+  (let ((mix-dir (locate-dominating-file default-directory "mix.exs")))
+    (unless mix-dir
+      (error "Can't find a mix.exs file"))
+    (let* ((default-directory mix-dir)
+           (deps-output
+            (with-temp-buffer
+              (call-process "mix" nil t nil "deps")
+              (buffer-string)))
+           (regex
+            "\\* .+ (Hex package).+\n  locked at [^ ]+? (\\([^ ]+?\\))")
+           (hex-deps (cl-loop
+                      for start = 0 then (match-end 0)
+                      for matches = (string-match regex deps-output start)
+                      do (message "%s" start)
+                      while matches
+                      collect (match-string 1 deps-output)))
+           (deps (completing-read-multiple "Open documentation for: "
+                                           (cons "elixir" hex-deps)
+                                           nil
+                                           t)))
+      (dolist (dep deps)
+        (start-process (format "mix hex.docs offline %s" dep) nil
+                       "mix" "hex.docs" "offline" dep)))))
+
 (use-package elixir-ts-mode
   :ensure t
   :mode "\\.ex\\'"
@@ -1475,7 +1502,8 @@ The value is not entered into the kill ring, but copied using
               ;; keep the quotes on separate lines.
               (setq-local paragraph-start "\f\\|[ \t]*$\\|.*\"\"\"[ \t]*$")
               (setq-local paragraph-separate "[ \t\f]*$\\|.*\"\"\"[ \t]*$")))
-  (add-hook 'elixir-ts-mode-hook 'exunit-mode))
+  (add-hook 'elixir-ts-mode-hook 'exunit-mode)
+  (bind-key "C-c h" 'j/local-hexdocs elixir-ts-mode-map))
 
 ;;; Apache --------------------------------------------------------------------
 

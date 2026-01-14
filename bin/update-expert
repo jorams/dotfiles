@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -e
+
+usage() {
+    echo "Update Expert to the latest release available on GitHub."
+    echo ""
+    echo "Usage: $0 [-h]"
+    echo "  -h: show this help text and exit"
+    echo "Renames an existing file with a .bak prefix."
+}
+
+while getopts "h" arg; do
+    case "$arg" in
+        h) usage; exit ;;
+        *) usage; exit 1 ;;
+    esac
+done
+
+file="$HOME/bin/blob/expert"
+backupfile="$HOME/bin/blob/expert.bak"
+url="https://github.com/elixir-lang/expert/releases/download/nightly/expert_linux_amd64"
+
+# If anything goes wrong it's useful to keep the old file around.
+[ -f "$file" ] && mv "$file" "$backupfile"
+
+curl --location --output "$file" "$url"
+chmod +x "$file"

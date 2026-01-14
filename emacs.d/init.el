@@ -1476,7 +1476,7 @@ The value is not entered into the kill ring, but copied using
   :ensure t
   :mode "\\.ex\\'"
   :init
-  (add-to-list 'eglot-server-programs `(elixir-ts-mode "elixir-ls"))
+  (add-to-list 'eglot-server-programs `((elixir-ts-mode heex-ts-mode) "expert" "--stdio"))
   :config
   (defun j/elixir-ts--fill-paragraph (&optional justify)
     "Fill and possibly JUSTIFY paragraph, making sure to stay inside strings."

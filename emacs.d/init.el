@@ -1153,13 +1153,7 @@ The value is not entered into the kill ring, but copied using
   :config
   (bind-key "M-p" 'eglot-code-actions eglot-mode-map)
   (bind-key "C-." 'eglot-find-implementation eglot-mode-map)
-  (setq eglot-confirm-server-initiated-edits nil)
-  (defun eglot--snippet-expansion-fn ()
-    (lambda (snippet)
-      (yas-expand-snippet
-       (s-replace-regexp "${\\([0-9]+\\)}"
-                         "$\\1"
-                         snippet)))))
+  (setq eglot-confirm-server-initiated-edits nil))
 
 ;;; DAP -----------------------------------------------------------------------
 

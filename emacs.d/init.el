@@ -1436,8 +1436,7 @@ The value is not entered into the kill ring, but copied using
   :commands (exunit-mode))
 
 (use-package heex-ts-mode
-  :ensure t
-  :mode "\\.heex\\'")
+  :mode ("\\.[hl]?eex\\'"))
 
 (defun j/local-hexdocs ()
   "Open local documentation for a selected hex dependency."
@@ -1467,8 +1466,7 @@ The value is not entered into the kill ring, but copied using
                        "mix" "hex.docs" "offline" dep)))))
 
 (use-package elixir-ts-mode
-  :ensure t
-  :mode "\\.ex\\'"
+  :mode ("\\.ex\\'" "\\.exs\\'" "mix\\.lock")
   :init
   (add-to-list 'eglot-server-programs `((elixir-ts-mode heex-ts-mode) "expert" "--stdio"))
   :config

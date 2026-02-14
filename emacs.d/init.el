@@ -586,8 +586,176 @@ directory mounted inside a container. The regexp could be something like ^/app/"
   (define-key project-prefix-map "t" #'j/project-tab-magit-project-status)
   (add-to-list 'project-switch-commands '(j/project-tab-magit-project-status "tab-magit") t)
 
-  (define-key project-prefix-map (kbd "M-w") #'j/project-copy-buffer-file-name))
+  (define-key project-prefix-map (kbd "M-w") #'j/project-copy-buffer-file-name)
 
+  ;; Project-specific transients
+  (define-key project-prefix-map "/" 'j/project-transient)
+  (add-to-list 'project-switch-commands '(j/project-transient "Transient") t))
+
+;;; Project-specific transients -----------------------------------------------
+;;; Transients offering easy access to common commands you can run in the
+;;; context of a project. The actual commands and transients are mostly defined
+;;; in project-transients.el.
+;;;
+;;; project-transients.el should look somewhat like the following. Note that
+;;; more specific transients are defined later.
+;;
+;; ;;; a --- Project transients -*- lexical-binding: t; -*-
+;; ;;; Commentary:
+;; ;;; Code:
+;;
+;; (require 'j/project-transients
+;;          (expand-file-name "init.el" user-emacs-directory))
+;;
+;; (j/define-project-vterm j---mix-run "run"
+;;   "mix run")
+;;
+;; (j/define-project-transient-prefix (:indicator-file "mix.lock") ()
+;;   ["Elixir"
+;;    ("r" "run" j---mix-run)])
+;;
+;; (j/define-project-transient-prefix (:root "~/dev/some-project/") ()
+;;   ["Main"
+;;    ("r" "run" j---mix-run)])
+;;
+;; ;;; project-transients.el ends here
+
+(defvar j/project-transient-prefixes ())
+
+(cl-defmacro j/define-project-transient-prefix ((&key root indicator-file)
+                                                &body body)
+  "Define project transient for ROOT or INDICATOR-FILE.
+See transient-define-prefix for BODY.
+
+ROOT is a directory in which the transient is active. This does not have
+to be the project root itself, it can also be a directory higher up in
+the directory tree, which will make it apply to all projects under it
+that don't have their own.
+
+INDICATOR-FILE is a file name that, if found in the project root, makes
+this transient apply to the project. It can also be a list of file
+names. Transients defined with ROOT take precedence over those defined
+with INDICATOR-FILE."
+  (declare (indent defun))
+  (let* ((subname (or root
+                      (if (stringp indicator-file)
+                          indicator-file
+                        (car indicator-file))))
+         (transient-name (intern (concat "j/project-transient/" subname))))
+    `(progn
+       (add-to-list 'j/project-transient-prefixes '((:root ,root :indicator-file ,indicator-file) ,transient-name))
+       (transient-define-prefix ,transient-name ,@body))))
+
+(defvar j/project-transient-temp-buffer-name "*j/temporary-project*")
+
+(defun j/project-transient-delete-temporary-buffer ()
+  "Delete temporary buffer created for the project transient.
+A temporary buffer is created when opening a project transient from
+outside the relevant project, to ensure suffix commands in the transient
+run inside said project."
+  (when (get-buffer j/project-transient-temp-buffer-name)
+    (kill-buffer j/project-transient-temp-buffer-name)))
+
+(defun j/project-transient-call-in-project (fun project)
+  "Call FUN, a transient, in the context of PROJECT."
+  (unless (eq project (project-current nil default-directory))
+    ;; Any suffix commands will end up running outside the context of the
+    ;; project, so pop to a temporary buffer in the correct project.
+    (add-hook 'transient-post-exit-hook #'j/project-transient-delete-temporary-buffer)
+    (let ((default-directory (project-root project)))
+      (pop-to-buffer-same-window j/project-transient-temp-buffer-name)))
+  (funcall-interactively fun))
+
+(defun j/project-transient ()
+  "Run a possible transient for the current project."
+  (interactive)
+  (j/load-project-transients)
+  (let* ((current-project (project-current t))
+         (root (project-root current-project))
+         (root-prefix
+          (cl-loop for (transient-indicator transient-name)
+                   in j/project-transient-prefixes
+                   for transient-root = (cl-getf transient-indicator :root)
+                   when (and transient-root
+                             (string-prefix-p (expand-file-name root)
+                                              (expand-file-name transient-root)))
+                   return transient-name)))
+    (if root-prefix
+        (j/project-transient-call-in-project root-prefix current-project)
+      (let ((indicator-file-prefix
+             (cl-loop for (transient-indicator transient-name)
+                      in j/project-transient-prefixes
+                      for transient-indicator-file = (cl-getf transient-indicator :indicator-file)
+                      when (or (and transient-indicator-file
+                                    (stringp transient-indicator-file)
+                                    (file-exists-p (expand-file-name transient-indicator-file root)))
+                               (and transient-indicator-file
+                                    (listp transient-indicator-file)
+                                    (cl-find-if
+                                     (lambda (f)
+                                       (file-exists-p (expand-file-name f root)))
+                                     transient-indicator-file)))
+                      return transient-name)))
+        (if indicator-file-prefix
+            (j/project-transient-call-in-project indicator-file-prefix current-project))))))
+
+(cl-defmacro j/define-project-shell-command (name command)
+  "Define NAME to run COMMAND in project."
+  (declare (indent defun))
+  `(defun ,name ()
+     (interactive)
+     (j/shell-command-in-project ,command)))
+
+(cl-defmacro j/define-project-compile (name buffer-name command)
+  "Define NAME to run COMMAND as compilation in project buffer BUFFER-NAME."
+  (declare (indent defun))
+  `(defun ,name ()
+     (interactive)
+     (j/compile-in-project ,command ,buffer-name)))
+
+(cl-defmacro j/define-project-vterm (name buffer-name command)
+  "Define NAME to run COMMAND in vterm in project buffer BUFFER-NAME."
+  (declare (indent defun))
+  `(defun ,name ()
+     (interactive)
+     (j/run-in-vterm-in-project ,command ,buffer-name)))
+
+(defun j/shell-command-in-project (command)
+  "Run COMMAND in the current project root."
+  (let ((default-directory (project-root (project-current t))))
+    (shell-command command)))
+
+(defun j/compile-in-project (command buffer-name)
+  "Run COMMAND in the current project root.
+BUFFER-NAME is used to generate a compilation buffer name."
+  (let ((default-directory (project-root (project-current t)))
+        (compilation-buffer-name-function
+         (lambda (_)
+           (concat (project-prefixed-buffer-name buffer-name))))
+        (compilation-read-command nil))
+    (compile command)))
+
+(defun j/run-in-vterm-in-project (command buffer-name)
+  "Run COMMAND in the current project root in a vterm.
+BUFFER-NAME is used to generate a buffer name."
+  (let* ((default-directory (project-root (project-current t)))
+         (buffer-name (project-prefixed-buffer-name buffer-name))
+         (buffer (get-buffer buffer-name)))
+    (if buffer
+        (pop-to-buffer buffer)
+      (with-current-buffer (vterm-other-window buffer-name)
+        (vterm-insert command)
+        (vterm-send-return)))))
+
+(defun j/load-project-transients ()
+  "Load project-specific transients from project-transients.el."
+  (unless (featurep 'j/project-transients)
+    (provide 'j/project-transients)
+    (require 'transient)
+    (let ((file (expand-file-name "project-transients.el"
+                                  user-emacs-directory)))
+      (when (file-exists-p file)
+        (load-file file)))))
 
 ;;; Theme ---------------------------------------------------------------------
 
@@ -1184,7 +1352,8 @@ The value is not entered into the kill ring, but copied using
   :ensure t
   :bind (("C-c r" . j/transient-replace)
          ("C-c g" . j/transient-git)
-         ("C-c f" . j/transient-format))
+         ("C-c f" . j/transient-format)
+         ("C-c /" . j/project-transient))
   :config
   (transient-define-prefix j/transient-format ()
     ["Format"

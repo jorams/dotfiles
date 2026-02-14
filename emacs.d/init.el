@@ -1639,26 +1639,12 @@ The value is not entered into the kill ring, but copied using
   :init
   (add-to-list 'eglot-server-programs `((elixir-ts-mode heex-ts-mode) "expert" "--stdio"))
   :config
-  (defun j/elixir-ts--fill-paragraph (&optional justify)
-    "Fill and possibly JUSTIFY paragraph, making sure to stay inside strings."
-    (or
-     ;; Standard comment handling works fine
-     (fill-comment-paragraph justify)
-     ;; Inside a string we want to make sure we stay inside the string
-     (when-let* ((node (treesit-thing-at-point "string" nil))
-                 (start (treesit-node-start node))
-                 (end (treesit-node-end node)))
-       (save-excursion
-         (move-to-left-margin)
-         (let ((end (progn (forward-paragraph 1) (min (point) end)))
-               (beg (progn (forward-paragraph -1) (max (point) start))))
-           (fill-region beg end justify)))
-       t)
-     ;; We're not in a comment and not in a string, so nothing should happen.
-     t))
   (add-hook 'elixir-ts-mode-hook
             (lambda ()
-              (setq-local fill-paragraph-function #'j/elixir-ts--fill-paragraph)
+              ;; Something more complete than this should be added to
+              ;; elixir-ts-mode proper.
+              (setq-local treesit-thing-settings
+                          `((elixir (text ,(regexp-opt '("comment" "quoted_content"))))))
               ;; paragraph-{start,separate} are set so that multi-line strings
               ;; keep the quotes on separate lines.
               (setq-local paragraph-start "\f\\|[ \t]*$\\|.*\"\"\"[ \t]*$")

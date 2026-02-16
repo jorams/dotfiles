@@ -526,8 +526,8 @@ directory mounted inside a container. The regexp could be something like ^/app/"
          (vterm-buffer-name (project-prefixed-buffer-name "vterm"))
          (vterm-buffer (get-buffer vterm-buffer-name)))
     (if vterm-buffer
-        (pop-to-buffer-same-window vterm-buffer)
-      (vterm vterm-buffer-name))))
+        (pop-to-buffer vterm-buffer)
+      (vterm-other-window vterm-buffer-name))))
 
 (defun j/project-tab-magit-project-status ()
   "Open a new tab with the magit status of the project."
@@ -756,6 +756,16 @@ BUFFER-NAME is used to generate a buffer name."
                                   user-emacs-directory)))
       (when (file-exists-p file)
         (load-file file)))))
+
+;;; Window rules --------------------------------------------------------------
+
+(add-to-list 'display-buffer-alist
+             '((or (major-mode . vterm-mode)
+                   (derived-mode . compilation-mode)
+                   "-vterm\\*")
+               display-buffer-in-side-window
+               (side . right)
+               (window-width . 80)))
 
 ;;; Theme ---------------------------------------------------------------------
 

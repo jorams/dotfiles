@@ -789,7 +789,32 @@ BUFFER-NAME is used to generate a buffer name."
 (use-package auto-dark
   :ensure t
   :init (auto-dark-mode)
-  :custom (auto-dark-themes '((modus-vivendi-tinted) (modus-operandi))))
+  :custom (auto-dark-themes '((modus-vivendi-tinted) (modus-operandi)))
+  :config
+  (add-hook 'auto-dark-dark-mode-hook
+            (lambda ()
+              (set-face-attribute 'mode-line-inactive nil
+                                  :box nil
+                                  :foreground "#969696"
+                                  :background "#1d2235"
+                                  :overline "#4a4f69")
+              (set-face-attribute 'mode-line-active nil
+                                  :box nil
+                                  :foreground "#ffffff"
+                                  :background "#1d2235"
+                                  :overline "#4a4f69")))
+  (add-hook 'auto-dark-light-mode-hook
+            (lambda ()
+              (set-face-attribute 'mode-line-inactive nil
+                                  :box nil
+                                  :foreground "#656565"
+                                  :background "#f2f2f2"
+                                  :overline "#a0a0a0")
+              (set-face-attribute 'mode-line-active nil
+                                  :box nil
+                                  :foreground "#000000"
+                                  :background "#F2F2F2"
+                                  :overline "#a0a0a0"))))
 
 ;;; Flymake -------------------------------------------------------------------
 
@@ -797,12 +822,91 @@ BUFFER-NAME is used to generate a buffer name."
   :config
   (setq flymake-show-diagnostics-at-end-of-line t))
 
-;;; mood-line -----------------------------------------------------------------
+;;; Custom mode line ----------------------------------------------------------
 
-(use-package mood-line
-  :ensure t
-  :hook (after-init . mood-line-mode)
-  :config (setq mood-line-format mood-line-format-default-extended))
+(setq-default mode-line-format
+              '("%e "
+                ;; Keyboard macro recording?
+                (:eval
+                 (when (and defining-kbd-macro
+                            (mode-line-window-selected-p))
+                   (propertize "rec " 'face 'breakpoint-enabled)))
+                ;; Buffer readonly?
+                (:eval
+                 (when buffer-read-only
+                   (propertize "# " 'face 'font-lock-keyword-face)))
+                ;; Buffer remote?
+                (:eval
+                 (when (and default-directory
+                            (file-remote-p default-directory))
+                   (propertize "@ " 'face 'warning)))
+                ;; Buffer narrowed?
+                (:eval
+                 (when (buffer-narrowed-p)
+                   (propertize "N " 'face 'warning)))
+                ;; Buffer modified?
+                (:eval
+                 (when (and (buffer-file-name (buffer-base-buffer))
+                            (buffer-modified-p))
+                   (propertize "* " 'face 'error)))
+                ;; Current project
+                (:eval
+                 (when-let* ((project (project-current nil))
+                             (name (project-name project)))
+                   (propertize (format "%s / " name)
+                               'face 'ansi-color-faint)))
+                ;; Buffer name
+                (:eval
+                 (propertize "%b" 'face 'bold))
+                ;; Current line, current character in line
+                (:eval
+                 (if (buffer-file-name (buffer-base-buffer))
+                     (propertize ":%l:%c " 'face 'ansi-color-faint)
+                   " "))
+                ;; Region lines and characters
+                (:eval
+                 (when (use-region-p)
+                   (propertize (format "%sL/%sC "
+                                       (count-lines (region-beginning)
+                                                    (region-end))
+                                       (- (region-end) (region-beginning)))
+                               'face 'font-lock-variable-use-face)))
+                ;; Line endings if not LF
+                (:eval
+                 (when buffer-file-coding-system
+                   (propertize
+                    (pcase (coding-system-eol-type buffer-file-coding-system)
+                      (0 "")
+                      (1 "CRLF ")
+                      (2 "CR "))
+                    'face 'warning)))
+                ;; Encoding if not UTF-8
+                (:eval
+                 (when buffer-file-coding-system
+                   (let ((plist (coding-system-plist
+                                 buffer-file-coding-system)))
+                     (unless (memq (plist-get plist :category)
+                                   '(coding-category-undecided
+                                     coding-category-utf-8))
+                       (propertize (upcase
+                                    (symbol-name (plist-get plist :name)))
+                                   'face 'warning)))))
+                ;; Multiple cursors
+                (:eval
+                 (when (bound-and-true-p multiple-cursors-mode)
+                   (propertize (format "%s cursors " (mc/num-cursors))
+                               'face 'font-lock-comment-face)))
+                ;; Right align the rest
+                mode-line-format-right-align
+                ;; Flymake status
+                (:eval
+                 (when (bound-and-true-p flymake-mode)
+                   flymake-mode-line-counters))
+                " "
+                ;; Leaving out mode-name because it's usually obvious
+                mode-line-process
+                mode-line-misc-info
+                "  "))
 
 ;;; Undo Tree -----------------------------------------------------------------
 

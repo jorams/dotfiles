@@ -823,7 +823,18 @@ BUFFER-NAME is used to generate a buffer name."
 
 (use-package flymake
   :config
-  (setq flymake-show-diagnostics-at-end-of-line t))
+  (setq flymake-show-diagnostics-at-end-of-line t)
+  (add-hook 'prog-mode-hook
+            (lambda ()
+              (unless (or
+                       ;; Encrypted
+                       (local-variable-p 'epa-file-encrypt-to)
+                       ;; Ephemeral
+                       (string-prefix-p " " (buffer-name))
+                       ;; Remote
+                       (and (buffer-file-name)
+                            (file-remote-p (buffer-file-name))))
+                (flymake-mode 1)))))
 
 ;;; Custom mode line ----------------------------------------------------------
 
@@ -1272,19 +1283,6 @@ The value is not entered into the kill ring, but copied using
   (add-hook 'completion-at-point-functions #'cape-dabbrev)
   (add-hook 'completion-at-point-functions #'cape-file))
 
-;;; Flycheck ------------------------------------------------------------------
-
-(use-package flycheck
-  :ensure t
-  :config
-  (global-flycheck-mode))
-
-(use-package flycheck-inline
-  :ensure t
-  :after flycheck
-  :config
-  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
-
 ;;; Eldoc ---------------------------------------------------------------------
 
 (use-package eldoc
@@ -1704,11 +1702,6 @@ The value is not entered into the kill ring, but copied using
   :ensure t
   :mode "\\.rs\\'"
   :init (setq rust-format-on-save t))
-
-(use-package flycheck-rust
-  :ensure t
-  :after (flycheck rust-mode)
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 ;;; C -------------------------------------------------------------------------
 

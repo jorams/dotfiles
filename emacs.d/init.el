@@ -782,6 +782,32 @@ BUFFER-NAME is used to generate a buffer name."
                   nil
                   t))
 
+(defun j/mode-line-light ()
+  "Tweak mode line colors for light mode."
+  (set-face-attribute 'mode-line-inactive nil
+                      :box nil
+                      :foreground "#656565"
+                      :background "#f2f2f2"
+                      :overline "#a0a0a0")
+  (set-face-attribute 'mode-line-active nil
+                      :box nil
+                      :foreground "#000000"
+                      :background "#F2F2F2"
+                      :overline "#a0a0a0"))
+
+(defun j/mode-line-dark ()
+  "Tweak mode line colors for dark mode."
+  (set-face-attribute 'mode-line-inactive nil
+                      :box nil
+                      :foreground "#969696"
+                      :background "#1d2235"
+                      :overline "#4a4f69")
+  (set-face-attribute 'mode-line-active nil
+                      :box nil
+                      :foreground "#ffffff"
+                      :background "#1d2235"
+                      :overline "#4a4f69"))
+
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (with-selected-frame frame
@@ -791,33 +817,13 @@ BUFFER-NAME is used to generate a buffer name."
 
 (use-package auto-dark
   :ensure t
-  :init (auto-dark-mode)
-  :custom (auto-dark-themes '((modus-vivendi-tinted) (modus-operandi)))
-  :config
-  (add-hook 'auto-dark-dark-mode-hook
-            (lambda ()
-              (set-face-attribute 'mode-line-inactive nil
-                                  :box nil
-                                  :foreground "#969696"
-                                  :background "#1d2235"
-                                  :overline "#4a4f69")
-              (set-face-attribute 'mode-line-active nil
-                                  :box nil
-                                  :foreground "#ffffff"
-                                  :background "#1d2235"
-                                  :overline "#4a4f69")))
-  (add-hook 'auto-dark-light-mode-hook
-            (lambda ()
-              (set-face-attribute 'mode-line-inactive nil
-                                  :box nil
-                                  :foreground "#656565"
-                                  :background "#f2f2f2"
-                                  :overline "#a0a0a0")
-              (set-face-attribute 'mode-line-active nil
-                                  :box nil
-                                  :foreground "#000000"
-                                  :background "#F2F2F2"
-                                  :overline "#a0a0a0"))))
+  :hook ((auto-dark-dark-mode . (lambda ()
+                                  (load-theme 'modus-vivendi-tinted)
+                                  (j/mode-line-dark)))
+         (auto-dark-light-mode . (lambda ()
+                                   (load-theme 'modus-operandi)
+                                   (j/mode-line-light)))
+         (after-init . auto-dark-mode)))
 
 ;;; Flymake -------------------------------------------------------------------
 

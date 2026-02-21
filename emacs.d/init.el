@@ -87,6 +87,9 @@
 
 (setq isearch-lazy-count t)
 
+(add-hook 'special-mode-hook
+          (lambda () (setq-local show-trailing-whitespace nil)))
+
 ;;; Custom startup screen -----------------------------------------------------
 
 (defun j/update-startup-screen (&optional window)

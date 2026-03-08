@@ -1837,6 +1837,7 @@ The value is not entered into the kill ring, but copied using
 (use-package vterm
   :ensure t
   :config
+  (setq vterm-shell "/usr/bin/tmux")
   (add-hook 'vterm-mode-hook
             (lambda () (setq-local show-trailing-whitespace nil))))
 

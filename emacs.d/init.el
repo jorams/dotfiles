@@ -762,13 +762,22 @@ BUFFER-NAME is used to generate a buffer name."
 
 ;;; Window rules --------------------------------------------------------------
 
-(add-to-list 'display-buffer-alist
-             '((or (major-mode . vterm-mode)
-                   (derived-mode . compilation-mode)
-                   "-vterm\\*")
-               display-buffer-in-side-window
-               (side . right)
-               (window-width . 80)))
+(setq display-buffer-alist
+      `(((or (major-mode . vterm-mode)
+             (derived-mode . compilation-mode)
+             "-vterm\\*")
+         display-buffer-in-side-window
+         (side . right)
+         (dedicated . nil)
+         (window-width . 80)
+         (preserve-size . (t . nil))
+         ;; window-width and preserve-size are only applied when a new window
+         ;; is opened and not when one is reused, so force it using
+         ;; body-function.
+         (body-function
+          . ,(lambda (w)
+               (window-resize w (- 80 (window-total-width w)) t)
+               (window-preserve-size w t t))))))
 
 ;;; Theme ---------------------------------------------------------------------
 

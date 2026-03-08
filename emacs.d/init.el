@@ -1919,3 +1919,13 @@ The value is not entered into the kill ring, but copied using
 (use-package mise
   :ensure t
   :config (global-mise-mode))
+
+;;; Jinx ----------------------------------------------------------------------
+
+(use-package jinx
+  :ensure t
+  :hook (emacs-startup . global-jinx-mode)
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
+
+;;; init.el ends here

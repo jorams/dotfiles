@@ -1343,9 +1343,11 @@ The value is not entered into the kill ring, but copied using
         mu4e-drafts-folder "/fm/Drafts"
         mu4e-trash-folder  "/fm/Trash"
         mu4e-refile-folder "/fm/Archive"
-        mu4e-get-mail-command "syncmail"
+        mu4e-get-mail-command "mbsync -a"
         mu4e-compose-signature "Joram"
-        mu4e-change-filenames-when-moving t)
+        mu4e-change-filenames-when-moving t
+        mu4e-read-option-use-builtin nil
+        mu4e-completing-read-function 'completing-read)
   :bind (("M-N" . mu4e)))
 
 (use-package smtpmail

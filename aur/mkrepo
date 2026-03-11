@@ -39,6 +39,7 @@ package polymc
 package cantata
 package mise
 package web-ext
+package mu
 
 # Personal packages
 package j--slock

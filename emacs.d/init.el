@@ -656,7 +656,7 @@ BUFFER-NAME is used to generate a compilation buffer name."
   "Run COMMAND in the current project root in a vterm.
 BUFFER-NAME is used to generate a buffer name."
   (let* ((default-directory (project-root (project-current t)))
-         (buffer-name (project-prefixed-buffer-name buffer-name))
+         (buffer-name (project-prefixed-buffer-name (concat buffer-name "-vterm")))
          (buffer (get-buffer buffer-name)))
     (if buffer
         (pop-to-buffer buffer)

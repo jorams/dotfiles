@@ -676,7 +676,9 @@ BUFFER-NAME is used to generate a buffer name."
     (`(,key ,desc :compile ,buffer-name ,cmd)
      `(,key ,desc (lambda () (interactive) (j/compile-in-project ,cmd ,buffer-name))))
     (`(,key ,desc :shell ,cmd)
-     `(,key ,desc (lambda () (interactive) (j/shell-command-in-project ,cmd))))))
+     `(,key ,desc (lambda () (interactive) (j/shell-command-in-project ,cmd))))
+    (`(,key ,desc :command ,cmd)
+     `(,key ,desc ,cmd))))
 
 (cl-defmacro j/define-project-transient (project-root group)
   "Define a project transient for project PROJECT-ROOT with converted GROUP."

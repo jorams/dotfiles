@@ -1858,7 +1858,10 @@ The value is not entered into the kill ring, but copied using
   :ensure t
   :mode (("\\.service\\'" . systemd-mode)
          ("\\.socket\\'" . systemd-mode)
-         ("\\.slice\\'" . systemd-mode)))
+         ("\\.slice\\'" . systemd-mode)
+         ("\\.container\\'" . systemd-mode)
+         ("\\.pod\\'" . systemd-mode)
+         ("\\.kube\\'" . systemd-mode)))
 
 ;;; HCL -----------------------------------------------------------------------
 

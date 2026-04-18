@@ -1,0 +1,84 @@
+#!/bin/sh
+
+set -e
+
+usage() {
+    echo "Download DRM-protected media that you have the key for"
+    echo ""
+    echo "Usage: $0 [-h]"
+    echo "  -h: show this help text and exit"
+    echo "  -k: decryption key (required)"
+    echo "  -o: output file (required)"
+    echo "  -u: url (required)"
+}
+
+key=""
+out=""
+url=""
+
+while getopts "hk:o:u:" arg; do
+    case "$arg" in
+        h) usage; exit ;;
+        k) key="$OPTARG" ;;
+        o) out="$OPTARG" ;;
+        u) url="$OPTARG" ;;
+        *) usage; exit 1 ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+fail() {
+    echo "$1"
+    exit 1
+}
+
+[ -n "$key" ] || fail "Key (-k) is required"
+[ -n "$url" ] || fail "URL (-u) is required"
+[ -n "$out" ] || fail "Output file (-o) is required"
+[ -f "$out" ] && fail "Output file already exists"
+
+for f in "dldrm.$out."*; do
+    [ -e "$f" ] && fail "File $f conflicts with temporary download files"
+done
+
+echo "Downloading..."
+yt-dlp --output "dldrm.$out.%(ext)s" --allow-unplayable "$url"
+
+encryptedaudio=""
+encryptedvideo=""
+
+for f in "dldrm.$out."*faudio*; do
+    if [ ! -e "$f" ]; then continue; fi
+    if [ -n "$encryptedaudio" ]; then
+        fail "Multiple audio files found: $encryptedaudio and $f"
+    fi
+    encryptedaudio="$f"
+done
+
+[ -z "$encryptedaudio" ] && fail "No audio file found"
+
+for f in "dldrm.$out."*fvideo*; do
+    if [ ! -e "$f" ]; then continue; fi
+    if [ -n "$encryptedvideo" ]; then
+        fail "Multiple video files found: $encryptedvideo and $f"
+    fi
+    encryptedvideo="$f"
+done
+
+[ -z "$encryptedvideo" ] && fail "No video file found"
+
+decryptedvideo="dldrm.$out.video.mp4"
+decryptedaudio="dldrm.$out.audio.m4a"
+
+echo "Decrypting $encryptedvideo"
+mp4decrypt --key "$key" "$encryptedvideo" "$decryptedvideo"
+
+echo "Decrypting $encryptedaudio"
+mp4decrypt --key "$key" "$encryptedaudio" "$decryptedaudio"
+
+echo "Merging..."
+ffmpeg -i "$decryptedvideo" -i "$decryptedaudio" -c:v copy -c:a copy "$out"
+
+echo "Deleting intermediary files..."
+rm "$encryptedaudio" "$encryptedvideo" "$decryptedaudio" "$decryptedvideo"

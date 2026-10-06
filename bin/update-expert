@@ -5,21 +5,27 @@ set -e
 usage() {
     echo "Update Expert to the latest release available on GitHub."
     echo ""
-    echo "Usage: $0 [-h]"
+    echo "Usage: $0 [-h] [-l]"
     echo "  -h: show this help text and exit"
+    echo "  -l: use the latest release instead of the nightly"
     echo "Renames an existing file with a .bak prefix."
 }
 
-while getopts "h" arg; do
+nightly_url="https://github.com/elixir-lang/expert/releases/download/nightly/expert_linux_amd64"
+latest_url="https://github.com/elixir-lang/expert/releases/latest/download/expert_linux_amd64"
+
+url="$nightly_url"
+
+while getopts "hl" arg; do
     case "$arg" in
         h) usage; exit ;;
+        l) url="$latest_url" ;;
         *) usage; exit 1 ;;
     esac
 done
 
 file="$HOME/bin/blob/expert"
 backupfile="$HOME/bin/blob/expert.bak"
-url="https://github.com/elixir-lang/expert/releases/download/nightly/expert_linux_amd64"
 
 # If anything goes wrong it's useful to keep the old file around.
 [ -f "$file" ] && mv "$file" "$backupfile"

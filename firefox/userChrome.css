@@ -1,5 +1,3 @@
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
-
 #tabbrowser-tabs, #alltabs-button, #TabsToolbar {
     visibility: collapse !important;
 }
@@ -9,11 +7,6 @@
     border-top-right-radius: 8px;
 }
 
-#sidebar-header {
-    font-size: 1em !important;
-}
-
-#sidebar-splitter {
-    background-color: var(--sidebar-background-color) !important;
-    border-color: var(--toolbar-bgcolor) !important;
+#sidebar-panel-header {
+    display: none !important;
 }

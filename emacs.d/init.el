@@ -36,7 +36,8 @@
 (let ((backup-directory (expand-file-name
                          (concat user-emacs-directory "backups/"))))
   (setq backup-directory-alist
-        `(("." . ,backup-directory)))
+        `(,(cons tramp-file-name-regexp nil)
+          ("." . ,backup-directory)))
   (setq auto-save-list-file-prefix
         (concat backup-directory "list-"))
   (setq lock-file-name-transforms
